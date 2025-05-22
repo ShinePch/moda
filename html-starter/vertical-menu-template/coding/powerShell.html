@@ -1,0 +1,173 @@
+<!-- Content powerShell-->
+<div class="container-xxl flex-grow-1 container-p-y">
+  <!-- Autosize -->
+  <div class="col-12">
+
+    <!-- 폴더생성 -->
+    <div class="card mb-4">
+      <nav class="navbar navbar-example navbar-expand-lg">
+        <div class="container-fluid ">
+          <a class="navbar-brand" href="javascript:void(0)">폴더생성</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-ex-3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-ex-3">
+            <div class="navbar-nav me-auto">
+              <a class="nav-item nav-link" href="javascript:void(0)">#폴더 생성</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#폴더</a>
+            </div>
+            <button
+              class="clipboard-btn btn btn-primary me-2"
+              data-clipboard-action="copy"
+              data-clipboard-target="#mkdir">
+              Copy
+            </button>
+            <button
+              class="clipboard-btn btn btn-primary"
+              data-clipboard-action="cut"
+              data-clipboard-target="#mkdir">
+              Cut
+            </button>
+          </div>
+        </div>
+      </nav> 
+      <div class="card-body">
+        <textarea id="mkdir" rows="3" class="form-control" value="test">mkdir name</textarea>
+        <textarea rows="1" class="form-control" value="test"></textarea>
+        <br>
+        <textarea rows="1" class="card-body form-control" value="test"></textarea>
+      </div>
+    </div>
+    <!-- 폴더생성 -->
+
+    <!-- 파일복사 -->
+    <div class="card mb-4">
+      <nav class="navbar navbar-example navbar-expand-lg">
+        <div class="container-fluid ">
+          <a class="navbar-brand" href="javascript:void(0)">복사</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-ex-3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-ex-3">
+            <div class="navbar-nav me-auto">
+              <a class="nav-item nav-link" href="javascript:void(0)">#파일 복사</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#복사</a>
+            </div>
+            <button
+              class="clipboard-btn btn btn-primary me-2"
+              data-clipboard-action="copy"
+              data-clipboard-target="#cp">
+              Copy
+            </button>
+            <button
+              class="clipboard-btn btn btn-primary"
+              data-clipboard-action="cut"
+              data-clipboard-target="#cp">
+              Cut
+            </button>
+          </div>
+        </div>
+      </nav> 
+      <div class="card-body">
+        <textarea id="cp" rows="3" class="form-control" value="test">cp file1.txt file2.txt</textarea>
+        <textarea rows="1" class="form-control" value="test">cp -Recurse * G:\01.Certyficate\movie\ /*현재 폴더에서 -Recurse(하위폴더)의 "*"(모든)내용을 복사한다*/</textarea>
+        <br>
+        <textarea rows="1" class="card-body form-control" value="test"></textarea>
+      </div>
+    </div>
+    <!-- 파일복사 -->
+
+    <!-- 파일이동 -->
+    <div class="card mb-4">
+      <nav class="navbar navbar-example navbar-expand-lg">
+        <div class="container-fluid ">
+          <a class="navbar-brand" href="javascript:void(0)">이동</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-ex-3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-ex-3">
+            <div class="navbar-nav me-auto">
+              <a class="nav-item nav-link" href="javascript:void(0)">#파일 이동</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#이동</a>
+            </div>
+            <button
+              class="clipboard-btn btn btn-primary me-2"
+              data-clipboard-action="copy"
+              data-clipboard-target="#mv">
+              Copy
+            </button>
+            <button
+              class="clipboard-btn btn btn-primary"
+              data-clipboard-action="cut"
+              data-clipboard-target="#mv">
+              Cut
+            </button>
+          </div>
+        </div>
+      </nav> 
+      <div class="card-body">
+        <textarea id="mv" rows="3" class="form-control" value="test">mv file1.txt file2.txt</textarea>
+        <textarea rows="1" class="form-control" value="test"></textarea>
+        <br>
+        <textarea rows="1" class="card-body form-control" value="test"></textarea>
+      </div>
+    </div>
+    <!-- 파일이동 -->
+
+    <!-- 파일삭제 -->
+    <div class="card mb-4">
+      <nav class="navbar navbar-example navbar-expand-lg">
+        <div class="container-fluid ">
+          <a class="navbar-brand" href="javascript:void(0)">삭제</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-ex-3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-ex-3">
+            <div class="navbar-nav me-auto">
+              <a class="nav-item nav-link" href="javascript:void(0)">#파일 삭제</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#삭제</a>
+            </div>
+            <button
+              class="clipboard-btn btn btn-primary me-2"
+              data-clipboard-action="copy"
+              data-clipboard-target="#rm">
+              Copy
+            </button>
+            <button
+              class="clipboard-btn btn btn-primary"
+              data-clipboard-action="cut"
+              data-clipboard-target="#rm">
+              Cut
+            </button>
+          </div>
+        </div>
+      </nav> 
+      <div class="card-body">
+        <textarea id="rm" rows="3" class="form-control" value="test">rm unwanted-file.txt</textarea>
+        <textarea rows="1" class="form-control" value="test"></textarea>
+        <br>
+        <textarea rows="1" class="card-body form-control" value="test"></textarea>
+      </div>
+    </div>
+    <!-- 파일이동 -->
+
+    
+  </div>
+  <!-- /Autosize -->
+</div>

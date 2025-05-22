@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;GAEG;AAEH,IAAI,CAAJ,iDAAI;AACJ,IAAI,CAAJ,qDAAI;AAGJ,AAAA,UAAU,CAAC;EACT,QAAQ,EAAE,MAAM;EAChB,MAAM,EAAE,CAAC;EACT,GAAG,EAAE,UAAU;CAIhB;;AAPD,AAIE,UAJQ,AAIP,qBAAqB,CAAC;EACrB,GAAG,EAAE,iBAAiB;CACvB;;AAEH,AAAA,iBAAiB,AAAA,OAAO,CAAC;EACvB,UAAU,EAAE,IAAI;CACjB",
+    "sources": [
+        "app-academy-details.scss",
+        "../_custom-variables/_libs.scss",
+        "../_custom-variables/_support.scss"
+    ],
+    "names": [],
+    "file": "app-academy-details.css"
+}

@@ -1,0 +1,20 @@
+/**
+ * Academy Course courseContent
+ */
+@use '../../scss/_bootstrap-extended/include' as light;
+@use '../../scss/_bootstrap-extended/include-dark' as dark;
+.stick-top {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  top: calc(10px);
+}
+
+.stick-top.course-content-fixed {
+  top: calc(70px + 10px);
+}
+
+.accordion-button::after {
+  margin-top: 1rem;
+}
+/*# sourceMappingURL=app-academy-details.css.map */
