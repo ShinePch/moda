@@ -236,11 +236,11 @@
   <!-- Autosize -->
   <div class="col-12">
 
-    <!-- card-navbar -->
     <div class="card mb-4">
-      <nav class="navbar navbar-example navbar-expand-lg bdr">
+      <!-- card-navbar -->
+      <nav class="navbar navbar-example navbar-expand-lg">
         <div class="container-fluid ">
-          <a class="navbar-brand" href="javascript:void(0)">Accordion With Border</a>
+          <a class="navbar-brand" href="javascript:void(0)">gitHub</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -250,8 +250,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbar-ex-3">
             <div class="navbar-nav me-auto">
-              <a class="nav-item nav-link" href="javascript:void(0)">#아코디언 생성</a>
-              <a class="nav-item nav-link" href="javascript:void(0)">#아코디언</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#gitHub 생성</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#깃허브</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#github</a>
             </div>
           </div>
         </div>
@@ -268,20 +269,23 @@
                 data-bs-toggle="collapse"
                 data-bs-target="#accordionStyle1-1"
                 aria-expanded="false">
-                Header Option 1
+                Git 다운로드 및 설치
               </button>
             </h2>
-
             <div id="accordionStyle1-1" class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
               <div class="accordion-body">
-                Lemon drops chocolate cake gummies carrot cake chupa chups muffin topping. Sesame snaps icing
-                marzipan gummi bears macaroon dragée danish caramels powder. Bear claw dragée pastry topping
-                soufflé. Wafer gummi bears marshmallow pastry pie.
+                <ul>
+                  <li>1. <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
+                  <li>2. 64-bit Git for Windows Setup 다운</li>
+                  <li>3. POWERSHELL을 열고, git --version</li>
+                  <li>4. Windows 검색에서 "환경 변수" 검색 > "시스템 환경 변수 편집" 클릭 > "환경 변수" 버튼 클릭 > 시스템 변수에서 "Path" 선택 후 "편집"</li>
+                  <li>5. C:\Program Files\Git\cmd / C:\Program Files\Git\bin 입력 후 POWERSHELL을 열고, git --version</li>
+                </ul>                  
               </div>
             </div>
           </div>
 
-          <div class="accordion-item card">
+          <div class="accordion-item card ">
             <h2 class="accordion-header">
               <button
                 type="button"
@@ -289,48 +293,60 @@
                 data-bs-toggle="collapse"
                 data-bs-target="#accordionStyle1-2"
                 aria-expanded="false">
-                Header Option 2
+                Git 초기 설정
               </button>
             </h2>
-            <div id="accordionStyle1-2" class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+            <div id="accordionStyle1-2" class="accordion-collapse collapse " data-bs-parent="#accordionStyle1">
               <div class="accordion-body">
-                Dessert ice cream donut oat cake jelly-o pie sugar plum cheesecake. Bear claw dragée oat cake
-                dragée ice cream halvah tootsie roll. Danish cake oat cake pie macaroon tart donut gummies.
-                Jelly beans candy canes carrot cake. Fruitcake chocolate chupa chups.
+                <ul>
+                  <h6>Git 초기 설정</h2>
+                  <li>1. win > powerShell</li>
+                  <li>2. git config --global user.name "" git config --global user.email ""</li>
+                  <li>3. git config --list (설정 확인.)</li>
+                </ul>        
+                <ul>
+                  <h6>Git 계정 연동</h2>
+                  <li>1. 다운받고자 하는 폴더생성 후 오른쪽 클릭 > gitBash</li>
+                  <li>2. https://github.com/"gitHub에 있는 이름"/projectName</li>
+                  <li>3. git config --global user.name "" / git config --global user.email ""</li>
+                  <li>4. 확인하는 법git config --global user.name/ git config --global user.email </li>
+                </ul>                        
               </div>
             </div>
           </div>
 
-          <div class="card accordion-item active">
+          <div class="card accordion-item">
             <h2 class="accordion-header">
               <button
                 type="button"
-                class="accordion-button"
+                class="accordion-button collapsed"
                 data-bs-toggle="collapse"
                 data-bs-target="#accordionStyle1-3"
-                aria-expanded="true">
-                Header Option 3
+                aria-expanded="false">
+                Git Full/Push
               </button>
             </h2>
-            <div
-              id="accordionStyle1-3"
-              class="accordion-collapse collapse show"
-              data-bs-parent="#accordionStyle1">
+            <div id="accordionStyle1-3"class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
               <div class="accordion-body">
-                Oat cake toffee chocolate bar jujubes. Marshmallow brownie lemon drops cheesecake. Bonbon
-                gingerbread marshmallow sweet jelly beans muffin. Sweet roll bear claw candy canes oat cake
-                dragée caramels. Ice cream wafer danish cookie caramels muffin.
+                <ul>
+                  <h6>Commit & Push</h2>
+                  <li>1. Ctrl + Shift + G</li>
+                  <li>2. CHANGES에 코드 내용 작성</li>
+                  <li>3. commit > ... > push / ... > commit&push</li>
+                  <li>4. 확인하는 법git config --global user.name/ git config --global user.email </li>
+                </ul>
+                <ul>
+                  <h6>Full</h2>
+                  <li>1. commit 하단 창에 이모티콘 중 Full만 클릭</li>
+                </ul>                     
               </div>
             </div>
           </div>
         </div>
       </div>
       <!--/ Accordion Border styling -->
-
-
-
     </div>
-    <!-- 아코디언 -->
+
 
     
 
