@@ -6,6 +6,28 @@
 function initializeMenu() {
   console.log(window.location.pathname);
   
+  // 메뉴 토글 이벤트 바인딩 추가
+  function initMenuToggle() {
+    let menuToggler = document.querySelectorAll('.layout-menu-toggle');
+    console.log('메뉴 토글러 초기화:', menuToggler.length);
+    
+    menuToggler.forEach(item => {
+      // 기존 이벤트 제거 (중복 방지)
+      item.removeEventListener('click', handleMenuToggle);
+      // 새 이벤트 추가
+      item.addEventListener('click', handleMenuToggle);
+    });
+  }
+  
+  function handleMenuToggle(event) {
+    event.preventDefault();
+    console.log('메뉴 토글 클릭됨!');
+    window.Helpers.toggleCollapsed();
+  }
+  
+  // 메뉴 토글 초기화 실행
+  initMenuToggle();
+  
   // 메뉴 토글 기능 (상위 메뉴 클릭 시 하위 메뉴 표시/숨김)
   $(document).on('click', '.menu-toggle, a[href="javascript:void(0);"]', function(e) {
     e.preventDefault();
