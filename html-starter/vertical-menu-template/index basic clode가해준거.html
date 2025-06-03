@@ -1,0 +1,360 @@
+<div class="tab-pane fade" id="navs-top-messages" role="tabpanel">
+    <!--accordion-->
+    <div class="col-md">
+      <div class="accordion mt-3 accordion-bordered" id="accordionStyle3">
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionStyle1-3"
+              aria-expanded="false">
+              영상다운로드 크롤러
+            </button>
+          </h2>
+          <div id="accordionStyle1-3" class="accordion-collapse collapse" data-bs-parent="#accordionStyle3">
+            <div class="accordion-body">
+              <!-- 복사 버튼과 코드 컨테이너 -->
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Python 영상 체크&다운로드 크롤러</h6>
+                <button
+                  class="clipboard-btn btn btn-sm btn-primary"
+                  data-clipboard-action="copy"
+                  data-clipboard-target="#video-crawler-code">
+                  Copy Code
+                </button>
+              </div>
+              
+              <!-- 코드 블록 -->
+              <pre style="background-color: #2d3748; border-radius: 8px; padding: 15px; overflow-x: auto; max-height: 500px;"><code id="video-crawler-code" style="color: #e2e8f0; font-size: 14px; line-height: 1.5;">import requests
+  import time
+  import os
+  from urllib.parse import urlparse
+  
+  def download_video(url, download_folder=r"E:\crolling_itdong"):
+      """
+      영상을 다운로드하는 함수
+      Args:
+          url: 다운로드할 영상 URL
+          download_folder: 다운로드할 폴더명
+      Returns:
+          성공 여부 (True/False)
+      """
+      try:
+          # 절대 경로로 변환
+          download_folder = os.path.abspath(download_folder)
+          print(f"📁 저장 경로: {download_folder}")
+          
+          # 다운로드 폴더 생성
+          if not os.path.exists(download_folder):
+              os.makedirs(download_folder)
+              print(f"📁 '{download_folder}' 폴더를 생성했습니다.")
+          
+          # 파일명 추출 (예: 01.mp4, 02.mp4)
+          filename = os.path.basename(url)
+          filepath = os.path.join(download_folder, filename)
+          print(f"💾 저장될 파일: {filepath}")
+          
+          # 이미 다운로드된 파일이 있는지 확인
+          if os.path.exists(filepath):
+              file_size = os.path.getsize(filepath)
+              print(f"⏭️ {filename} - 이미 존재 (크기: {file_size/(1024*1024):.2f} MB)")
+              return True
+          
+          print(f"⬇️ {filename} 다운로드 시작...")
+          
+          # 영상 다운로드
+          response = requests.get(url, stream=True, timeout=30)
+          response.raise_for_status()
+          
+          total_size = int(response.headers.get('Content-Length', 0))
+          downloaded_size = 0
+          
+          with open(filepath, 'wb') as file:
+              for chunk in response.iter_content(chunk_size=8192):
+                  if chunk:
+                      file.write(chunk)
+                      downloaded_size += len(chunk)
+                      
+                      # 진행률 표시
+                      if total_size > 0:
+                          progress = (downloaded_size / total_size) * 100
+                          print(f"\r 진행률: {progress:.1f}% ({downloaded_size/(1024*1024):.2f}/{total_size/(1024*1024):.2f} MB)", end='')
+          
+          print(f"\n✅ {filename} 다운로드 완료!")
+          print(f"📂 저장 위치: {filepath}")
+          return True
+          
+      except Exception as e:
+          print(f"\n❌ {filename} 다운로드 실패: {str(e)}")
+          return False
+  
+  def download_all_videos(urls, download_folder=r"E:\crolling_itdong"):
+      """
+      모든 영상을 다운로드하는 함수
+      Args:
+          urls: 다운로드할 URL 리스트
+          download_folder: 다운로드할 폴더명
+      """
+      if not urls:
+          print("❌ 다운로드할 영상이 없습니다.")
+          return
+      
+      print(f"\n🎬 총 {len(urls)}개 영상 다운로드를 시작합니다!")
+      print(f"📁 저장 위치: {os.path.abspath(download_folder)}")
+      print("-" * 50)
+      
+      success_count = 0
+      fail_count = 0
+      
+      for i, url in enumerate(urls, 1):
+          print(f"\n[{i}/{len(urls)}]", end=" ")
+          if download_video(url, download_folder):
+              success_count += 1
+          else:
+              fail_count += 1
+          
+          # 서버 부하 방지를 위한 대기
+          time.sleep(0.5)
+      
+      print("\n" + "=" * 50)
+      print(f"📊 다운로드 완료!")
+      print(f" 성공: {success_count}개")
+      print(f" 실패: {fail_count}개")
+      print(f" 총 파일: {len(urls)}개")
+      print(f"📁 저장된 위치: {os.path.abspath(download_folder)}")
+  
+  def check_video_urls(base_url, max_count=30):
+      """
+      영상 URL들이 존재하는지 확인하는 함수
+      Args:
+          base_url: 기본 URL (예: "https://mp4.itgo.co.kr/mp4/F120111/")
+          max_count: 확인할 최대 개수 (기본값: 30)
+      Returns:
+          존재하는 URL들의 리스트
+      """
+      existing_urls = []
+      not_found_urls = []
+      
+      print(f"영상 URL 존재 여부 확인 중... (1부터 {max_count}까지)")
+      print("-" * 50)
+      
+      # 세션 사용으로 연결 재사용 (더 빠른 요청)
+      session = requests.Session()
+      session.headers.update({
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      })
+      
+      for i in range(1, max_count + 1):
+          # URL 생성 (01, 02, 03... 형식으로)
+          url = f"{base_url}{i:02d}.mp4"
+          
+          try:
+              # HEAD 요청으로 파일 존재 여부만 확인 (더 빠름)
+              response = session.head(url, timeout=10)
+              
+              if response.status_code == 200:
+                  file_size = response.headers.get('Content-Length', 'Unknown')
+                  if file_size != 'Unknown':
+                      file_size = f"{int(file_size) / (1024*1024):.2f} MB"
+                  print(f"✅ {i:02d}.mp4 - 존재 (크기: {file_size})")
+                  existing_urls.append(url)
+              else:
+                  print(f"❌ {i:02d}.mp4 - 없음 (HTTP {response.status_code})")
+                  not_found_urls.append(url)
+                  
+          except requests.exceptions.RequestException as e:
+              print(f"⚠️ {i:02d}.mp4 - 오류: {str(e)[:50]}...")
+              not_found_urls.append(url)
+          
+          # 서버 부하 방지를 위한 짧은 대기
+          time.sleep(0.1)
+      
+      session.close()
+      
+      print("-" * 50)
+      print(f"📊 결과 요약:")
+      print(f" 존재하는 영상: {len(existing_urls)}개")
+      print(f" 존재하지 않는 영상: {len(not_found_urls)}개")
+      
+      return existing_urls
+  
+  def save_results_to_file(urls, filename="existing_videos.txt"):
+      """
+      존재하는 URL들을 파일로 저장
+      """
+      with open(filename, 'w', encoding='utf-8') as f:
+          f.write("존재하는 영상 URL 목록:\n")
+          f.write("=" * 30 + "\n")
+          for i, url in enumerate(urls, 1):
+              f.write(f"{i}. {url}\n")
+      
+      print(f"📝 결과가 '{filename}' 파일로 저장되었습니다.")
+  
+  def download_single_video():
+      """
+      개별 영상 URL을 입력받아 다운로드
+      """
+      url = input("다운로드할 영상 URL을 입력하세요: ").strip()
+      if url:
+          folder_name = input(f"저장할 폴더 경로 (기본값: E:\\crolling_itdong): ").strip()
+          if not folder_name:
+              folder_name = r"E:\crolling_itdong"
+          download_video(url, folder_name)
+      else:
+          print("❌ URL이 입력되지 않았습니다.")
+  
+  def check_and_download_range(base_url, start, end, download_folder=r"E:\crolling_itdong"):
+      """
+      특정 범위의 URL만 확인하고 다운로드
+      Args:
+          base_url: 기본 URL
+          start: 시작 번호
+          end: 끝 번호
+          download_folder: 다운로드 폴더
+      """
+      existing_urls = []
+      print(f"영상 URL 존재 여부 확인 중... ({start}부터 {end}까지)")
+      print("-" * 50)
+      
+      session = requests.Session()
+      session.headers.update({
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      })
+      
+      for i in range(start, end + 1):
+          url = f"{base_url}{i:02d}.mp4"
+          try:
+              response = session.head(url, timeout=10)
+              if response.status_code == 200:
+                  print(f"✅ {i:02d}.mp4 - 존재")
+                  existing_urls.append(url)
+              else:
+                  print(f"❌ {i:02d}.mp4 - 없음")
+          except requests.exceptions.RequestException:
+              print(f"⚠️ {i:02d}.mp4 - 오류")
+          
+          time.sleep(0.1)
+      
+      session.close()
+      
+      if existing_urls:
+          download_choice = input(f"\n⬇️ {len(existing_urls)}개 영상을 다운로드하시겠습니까? (y/n): ").lower()
+          if download_choice == 'y':
+              download_all_videos(existing_urls, download_folder)
+      
+      return existing_urls
+  
+  # 메인 실행 부분
+  if __name__ == "__main__":
+      print("🎬 영상 URL 존재 확인 & 다운로드 크롤러")
+      print("=" * 50)
+      print(f"💻 현재 작업 디렉토리: {os.getcwd()}")
+      print(f"📁 기본 저장 경로: E:\\crolling_itdong")
+      print("=" * 50)
+      
+      # 사용자로부터 URL 입력받기
+      print("\n🌐 기본 URL을 입력해주세요")
+      print("💡 예시: https://mp4.itgo.co.kr/mp4/F120111/")
+      print("💡 팁: URL 끝에 '/'를 붙여주세요")
+      
+      while True:
+          base_url = input("\n📝 기본 URL: ").strip()
+          if not base_url:
+              print("❌ URL을 입력해주세요!")
+              continue
+          
+          # URL 형식 간단 검증
+          if not base_url.startswith(('http://', 'https://')):
+              print("❌ URL은 http:// 또는 https://로 시작해야 합니다!")
+              continue
+          
+          # URL 끝에 '/' 없으면 자동으로 추가
+          if not base_url.endswith('/'):
+              base_url += '/'
+              print(f"💡 URL 끝에 '/'를 자동으로 추가했습니다: {base_url}")
+          
+          print(f"✅ 설정된 URL: {base_url}")
+          break
+      
+      # 확인할 파일 개수 입력받기
+      while True:
+          try:
+              max_count_input = input("\n🔢 확인할 최대 파일 개수 (기본값: 30): ").strip()
+              if not max_count_input:
+                  max_count = 30
+              else:
+                  max_count = int(max_count_input)
+              
+              if max_count <= 0:
+                  print("❌ 1 이상의 숫자를 입력해주세요!")
+                  continue
+              
+              print(f"✅ {max_count}개 파일까지 확인합니다.")
+              break
+          except ValueError:
+              print("❌ 숫자만 입력해주세요!")
+              continue
+      
+      # URL 존재 여부 확인
+      existing_videos = check_video_urls(base_url, max_count=max_count)
+      
+      # 결과 출력
+      if existing_videos:
+          print("\n📋 존재하는 영상 URL 목록:")
+          for i, url in enumerate(existing_videos, 1):
+              print(f" {i}. {url}")
+          
+          # 다운로드할지 물어보기
+          download_choice = input(f"\n⬇️ {len(existing_videos)}개 영상을 모두 다운로드하시겠습니까? (y/n): ").lower()
+          if download_choice == 'y':
+              # 기본 저장 경로를 E:\crolling_itdong으로 설정
+              default_folder = r"E:\crolling_itdong"
+              folder_name = input(f"📁 다운로드 폴더 경로 (기본값: {default_folder}): ").strip()
+              if not folder_name:
+                  folder_name = default_folder
+              download_all_videos(existing_videos, folder_name)
+          
+          # 파일로 저장할지 물어보기
+          save_choice = input("\n💾 URL 목록을 텍스트 파일로 저장하시겠습니까? (y/n): ").lower()
+          if save_choice == 'y':
+              save_results_to_file(existing_videos)
+      else:
+          print("\n❌ 존재하는 영상이 없습니다.")
+      
+      print("\n✅ 모든 작업 완료!")
+  
+  # 사용 예시:
+  # specific_videos = check_and_download_range("https://mp4.itgo.co.kr/mp4/F120111/", 1, 10)
+              </code></pre>
+              
+              <!-- 사용법 안내 -->
+              <div class="alert alert-info mt-3">
+                <h6><i class="ti ti-info-circle me-2"></i>사용 방법:</h6>
+                <ol class="mb-0">
+                  <li><strong>라이브러리 설치:</strong> <code>pip install requests</code></li>
+                  <li><strong>스크립트 실행</strong> 후 기본 URL 입력</li>
+                  <li><strong>확인할 파일 개수</strong> 입력 (기본값: 30)</li>
+                  <li><strong>다운로드 여부</strong> 선택 (y/n)</li>
+                  <li><strong>저장 경로</strong> 설정 (기본값: E:\crolling_itdong)</li>
+                </ol>
+              </div>
+              
+              <!-- 기능 설명 -->
+              <div class="alert alert-success mt-2">
+                <h6><i class="ti ti-check-circle me-2"></i>주요 기능:</h6>
+                <ul class="mb-0">
+                  <li>URL 존재 여부 자동 확인</li>
+                  <li>진행률 표시가 포함된 다운로드</li>
+                  <li>중복 다운로드 방지</li>
+                  <li>결과를 텍스트 파일로 저장</li>
+                  <li>오류 처리 및 재시도</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--accordion-->
+  </div>
