@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+
+<html
+  lang="en"
+  class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../../assets/"
+  data-template="vertical-menu-template-starter">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Page 1 - Starter Kit | Vuexy - Bootstrap Admin Template</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../assets/vendor/fonts/tabler-icons.css" />
+    <!-- <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" /> -->
+    <!-- <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" /> -->
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="../../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="../../assets/vendor/js/template-customizer.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../../assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                    fill="#7367F0" />
+                  <path
+                    opacity="0.06"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
+                    fill="#161616" />
+                  <path
+                    opacity="0.06"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
+                    fill="#161616" />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                    fill="#7367F0" />
+                </svg>
+              </span>
+              <span class="app-brand-text demo menu-text fw-bold">Vuexy</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+              <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+              <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Page -->
+            <li class="menu-item active">
+              <a href="index.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div data-i18n="Page 1">Page 1</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="page-2.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-app-window"></i>
+                <div data-i18n="Page 2">Page 2</div>
+              </a>
+            </li>
+          </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="ti ti-menu-2 ti-sm"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <i class="ti ti-md"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-start dropdown-styles">
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                        <span class="align-middle"><i class="ti ti-sun me-2"></i>Light</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                        <span class="align-middle"><i class="ti ti-moon me-2"></i>Dark</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                        <span class="align-middle"><i class="ti ti-device-desktop me-2"></i>System</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-medium d-block">John Doe</span>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="ti ti-user-check me-2 ti-sm"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="ti ti-settings me-2 ti-sm"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20"
+                            >2</span
+                          >
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="ti ti-logout me-2 ti-sm"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="py-3 mb-4">basic</h4>
+              <!-- Autosize 하얀배경 전체 사이즈-->
+              <div class="col-12">
+                <div class="card mb-4">
+                <!-- card-navbar -->
+                <nav class="navbar navbar-example navbar-expand-lg">
+                  <div class="container-fluid ">
+                    <a class="navbar-brand" href="javascript:void(0)">Python</a>
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbar-ex-3">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar-ex-3">
+                      <div class="navbar-nav me-auto">
+                        <a class="nav-item nav-link" href="javascript:void(0)">#Python 생성</a>
+                        <a class="nav-item nav-link" href="javascript:void(0)">#파이썬</a>
+                      </div>
+                    </div>
+                  </div>
+                </nav> 
+                <!-- card-navbar -->               
+                 
+                
+                <!-- 여기서부터 시작-->
+                <div class="nav-align-top nav-tabs-shadow mb-4">
+                    <ul class="nav nav-tabs" role="tablist" style="width: 100%; margin-left: 0.01%;">
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link active"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-home"
+                          aria-controls="navs-top-home"
+                          aria-selected="true">
+                          deepLarning
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-profile"
+                          aria-controls="navs-top-profile"
+                          aria-selected="false">
+                          machineLearning
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-messages"
+                          aria-controls="navs-top-messages"
+                          aria-selected="false">
+                          cralling
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-word"
+                          aria-controls="navs-top-word"
+                          aria-selected="false">
+                          Python Inport 모음
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button
+                          type="button"
+                          class="nav-link"
+                          role="tab"
+                          data-bs-toggle="tab"
+                          data-bs-target="#navs-top-word2"
+                          aria-controls="navs-top-word2"
+                          aria-selected="false">
+                          Python 라이브러리 모음집
+                        </button>
+                      </li>
+                    </ul>
+                    <!--tab-content-->
+                    <div class="tab-content">
+
+                      <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
+                        <!--accordion-->
+                        <div class="col-md">
+                          <div class="accordion mt-3 accordion-bordered" id="accordionStyle1">
+                            <div class="accordion-item card">
+                              <h2 class="accordion-header">
+                                <button
+                                  type="button"
+                                  class="accordion-button collapsed"
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#accordionStyle1-1"
+                                  aria-expanded="false">
+                                  1
+                                </button>
+                              </h2>
+                              <div id="accordionStyle1-1" class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+                                <div class="accordion-body">
+                                  <ul>
+                                    <li>1. <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
+                                    <li>2. 64-bit Git for Windows Setup 다운</li>
+                                    <li>3. POWERSHELL을 열고, git --version</li>
+                                    <li>4. Windows 검색에서 "환경 변수" 검색 > "시스템 환경 변수 편집" 클릭 > "환경 변수" 버튼 클릭 > 시스템 변수에서 "Path" 선택 후 "편집"</li>
+                                    <li>5. C:\Program Files\Git\cmd / C:\Program Files\Git\bin 입력 후 POWERSHELL을 열고, git --version</li>
+                                  </ul>                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!--accordion-->
+                      </div>
+                      <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
+                        <!--accordion-->
+                        <div class="col-md">
+                          <div class="accordion mt-3 accordion-bordered" id="accordionStyle2">
+                            <div class="accordion-item card">
+                              <h2 class="accordion-header">
+                                <button
+                                  type="button"
+                                  class="accordion-button collapsed"
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#accordionStyle1-2"
+                                  aria-expanded="false">
+                                  2
+                                </button>
+                              </h2>
+                              <div id="accordionStyle1-2" class="accordion-collapse collapse" data-bs-parent="#accordionStyle2">
+                                <div class="accordion-body">
+                                  <ul>
+                                    <li>1. <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
+                                    <li>2. 64-bit Git for Windows Setup 다운</li>
+                                    <li>3. POWERSHELL을 열고, git --version</li>
+                                    <li>4. Windows 검색에서 "환경 변수" 검색 > "시스템 환경 변수 편집" 클릭 > "환경 변수" 버튼 클릭 > 시스템 변수에서 "Path" 선택 후 "편집"</li>
+                                    <li>5. C:\Program Files\Git\cmd / C:\Program Files\Git\bin 입력 후 POWERSHELL을 열고, git --version</li>
+                                  </ul>                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!--accordion-->
+                      </div>
+                      <div class="tab-pane fade" id="navs-top-messages" role="tabpanel">
+                        <!--accordion-->
+                        <div class="col-md">
+                          <div class="accordion mt-3 accordion-bordered" id="accordionStyle3">
+                            <div class="accordion-item card">
+                              <h2 class="accordion-header">
+                                <button
+                                  type="button"
+                                  class="accordion-button collapsed"
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#accordionStyle1-3"
+                                  aria-expanded="false">
+                                  영상다운로드 크롤러
+                                </button>
+                              </h2>
+                              <div id="accordionStyle1-3" class="accordion-collapse collapse" data-bs-parent="#accordionStyle3">
+                                <div class="accordion-body">
+                                  <ul>
+                                    <li>
+                                      <!-- 복사 버튼 -->
+                                      <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <strong>1. 영상 다운로드 크롤러 코드</strong>
+                                        <button
+                                          class="clipboard-btn btn btn-sm btn-primary"
+                                          data-clipboard-action="copy"
+                                          data-clipboard-target="#video-crawler-code">
+                                          📋 Copy
+                                        </button>
+                                      </div>
+                                      <pre class="python-code-block"><code id="video-crawler-code">
+  import requests
+  import requests
+  import time
+  import os
+  from urllib.parse import urlparse
+  
+  def download_video(url, download_folder=r"E:\crolling_itdong"):
+      """
+      영상을 다운로드하는 함수
+      Args:
+          url: 다운로드할 영상 URL
+          download_folder: 다운로드할 폴더명
+      Returns:
+          성공 여부 (True/False)
+      """
+      try:
+          # 절대 경로로 변환
+          download_folder = os.path.abspath(download_folder)
+          print(f"📁 저장 경로: {download_folder}")
+          
+          # 다운로드 폴더 생성
+          if not os.path.exists(download_folder):
+              os.makedirs(download_folder)
+              print(f"📁 '{download_folder}' 폴더를 생성했습니다.")
+          
+          # 파일명 추출 (예: 01.mp4, 02.mp4)
+          filename = os.path.basename(url)
+          filepath = os.path.join(download_folder, filename)
+          print(f"💾 저장될 파일: {filepath}")
+          
+          # 이미 다운로드된 파일이 있는지 확인
+          if os.path.exists(filepath):
+              file_size = os.path.getsize(filepath)
+              print(f"⏭️ {filename} - 이미 존재 (크기: {file_size/(1024*1024):.2f} MB)")
+              return True
+          
+          print(f"⬇️ {filename} 다운로드 시작...")
+          
+          # 영상 다운로드
+          response = requests.get(url, stream=True, timeout=30)
+          response.raise_for_status()
+          
+          total_size = int(response.headers.get('Content-Length', 0))
+          downloaded_size = 0
+          
+          with open(filepath, 'wb') as file:
+              for chunk in response.iter_content(chunk_size=8192):
+                  if chunk:
+                      file.write(chunk)
+                      downloaded_size += len(chunk)
+                      
+                      # 진행률 표시
+                      if total_size > 0:
+                          progress = (downloaded_size / total_size) * 100
+                          print(f"\r 진행률: {progress:.1f}% ({downloaded_size/(1024*1024):.2f}/{total_size/(1024*1024):.2f} MB)", end='')
+          
+          print(f"\n✅ {filename} 다운로드 완료!")
+          print(f"📂 저장 위치: {filepath}")
+          return True
+          
+      except Exception as e:
+          print(f"\n❌ {filename} 다운로드 실패: {str(e)}")
+          return False
+  
+  def download_all_videos(urls, download_folder=r"E:\crolling_itdong"):
+      """
+      모든 영상을 다운로드하는 함수
+      Args:
+          urls: 다운로드할 URL 리스트
+          download_folder: 다운로드할 폴더명
+      """
+      if not urls:
+          print("❌ 다운로드할 영상이 없습니다.")
+          return
+      
+      print(f"\n🎬 총 {len(urls)}개 영상 다운로드를 시작합니다!")
+      print(f"📁 저장 위치: {os.path.abspath(download_folder)}")
+      print("-" * 50)
+      
+      success_count = 0
+      fail_count = 0
+      
+      for i, url in enumerate(urls, 1):
+          print(f"\n[{i}/{len(urls)}]", end=" ")
+          if download_video(url, download_folder):
+              success_count += 1
+          else:
+              fail_count += 1
+          
+          # 서버 부하 방지를 위한 대기
+          time.sleep(0.5)
+      
+      print("\n" + "=" * 50)
+      print(f"📊 다운로드 완료!")
+      print(f" 성공: {success_count}개")
+      print(f" 실패: {fail_count}개")
+      print(f" 총 파일: {len(urls)}개")
+      print(f"📁 저장된 위치: {os.path.abspath(download_folder)}")
+  
+  def check_video_urls(base_url, max_count=30):
+      """
+      영상 URL들이 존재하는지 확인하는 함수
+      Args:
+          base_url: 기본 URL (예: "https://mp4.itgo.co.kr/mp4/F120111/")
+          max_count: 확인할 최대 개수 (기본값: 30)
+      Returns:
+          존재하는 URL들의 리스트
+      """
+      existing_urls = []
+      not_found_urls = []
+      
+      print(f"영상 URL 존재 여부 확인 중... (1부터 {max_count}까지)")
+      print("-" * 50)
+      
+      # 세션 사용으로 연결 재사용 (더 빠른 요청)
+      session = requests.Session()
+      session.headers.update({
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      })
+      
+      for i in range(1, max_count + 1):
+          # URL 생성 (01, 02, 03... 형식으로)
+          url = f"{base_url}{i:02d}.mp4"
+          
+          try:
+              # HEAD 요청으로 파일 존재 여부만 확인 (더 빠름)
+              response = session.head(url, timeout=10)
+              
+              if response.status_code == 200:
+                  file_size = response.headers.get('Content-Length', 'Unknown')
+                  if file_size != 'Unknown':
+                      file_size = f"{int(file_size) / (1024*1024):.2f} MB"
+                  print(f"✅ {i:02d}.mp4 - 존재 (크기: {file_size})")
+                  existing_urls.append(url)
+              else:
+                  print(f"❌ {i:02d}.mp4 - 없음 (HTTP {response.status_code})")
+                  not_found_urls.append(url)
+                  
+          except requests.exceptions.RequestException as e:
+              print(f"⚠️ {i:02d}.mp4 - 오류: {str(e)[:50]}...")
+              not_found_urls.append(url)
+          
+          # 서버 부하 방지를 위한 짧은 대기
+          time.sleep(0.1)
+      
+      session.close()
+      
+      print("-" * 50)
+      print(f"📊 결과 요약:")
+      print(f" 존재하는 영상: {len(existing_urls)}개")
+      print(f" 존재하지 않는 영상: {len(not_found_urls)}개")
+      
+      return existing_urls
+  
+  def save_results_to_file(urls, filename="existing_videos.txt"):
+      """
+      존재하는 URL들을 파일로 저장
+      """
+      with open(filename, 'w', encoding='utf-8') as f:
+          f.write("존재하는 영상 URL 목록:\n")
+          f.write("=" * 30 + "\n")
+          for i, url in enumerate(urls, 1):
+              f.write(f"{i}. {url}\n")
+      
+      print(f"📝 결과가 '{filename}' 파일로 저장되었습니다.")
+  
+  def download_single_video():
+      """
+      개별 영상 URL을 입력받아 다운로드
+      """
+      url = input("다운로드할 영상 URL을 입력하세요: ").strip()
+      if url:
+          folder_name = input(f"저장할 폴더 경로 (기본값: E:\\crolling_itdong): ").strip()
+          if not folder_name:
+              folder_name = r"E:\crolling_itdong"
+          download_video(url, folder_name)
+      else:
+          print("❌ URL이 입력되지 않았습니다.")
+  
+  def check_and_download_range(base_url, start, end, download_folder=r"E:\crolling_itdong"):
+      """
+      특정 범위의 URL만 확인하고 다운로드
+      Args:
+          base_url: 기본 URL
+          start: 시작 번호
+          end: 끝 번호
+          download_folder: 다운로드 폴더
+      """
+      existing_urls = []
+      print(f"영상 URL 존재 여부 확인 중... ({start}부터 {end}까지)")
+      print("-" * 50)
+      
+      session = requests.Session()
+      session.headers.update({
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      })
+      
+      for i in range(start, end + 1):
+          url = f"{base_url}{i:02d}.mp4"
+          try:
+              response = session.head(url, timeout=10)
+              if response.status_code == 200:
+                  print(f"✅ {i:02d}.mp4 - 존재")
+                  existing_urls.append(url)
+              else:
+                  print(f"❌ {i:02d}.mp4 - 없음")
+          except requests.exceptions.RequestException:
+              print(f"⚠️ {i:02d}.mp4 - 오류")
+          
+          time.sleep(0.1)
+      
+      session.close()
+      
+      if existing_urls:
+          download_choice = input(f"\n⬇️ {len(existing_urls)}개 영상을 다운로드하시겠습니까? (y/n): ").lower()
+          if download_choice == 'y':
+              download_all_videos(existing_urls, download_folder)
+      
+      return existing_urls
+  
+  # 메인 실행 부분
+  if __name__ == "__main__":
+      print("🎬 영상 URL 존재 확인 & 다운로드 크롤러")
+      print("=" * 50)
+      print(f"💻 현재 작업 디렉토리: {os.getcwd()}")
+      print(f"📁 기본 저장 경로: E:\\crolling_itdong")
+      print("=" * 50)
+      
+      # 사용자로부터 URL 입력받기
+      print("\n🌐 기본 URL을 입력해주세요")
+      print("💡 예시: https://mp4.itgo.co.kr/mp4/F120111/")
+      print("💡 팁: URL 끝에 '/'를 붙여주세요")
+      
+      while True:
+          base_url = input("\n📝 기본 URL: ").strip()
+          if not base_url:
+              print("❌ URL을 입력해주세요!")
+              continue
+          
+          # URL 형식 간단 검증
+          if not base_url.startswith(('http://', 'https://')):
+              print("❌ URL은 http:// 또는 https://로 시작해야 합니다!")
+              continue
+          
+          # URL 끝에 '/' 없으면 자동으로 추가
+          if not base_url.endswith('/'):
+              base_url += '/'
+              print(f"💡 URL 끝에 '/'를 자동으로 추가했습니다: {base_url}")
+          
+          print(f"✅ 설정된 URL: {base_url}")
+          break
+      
+      # 확인할 파일 개수 입력받기
+      while True:
+          try:
+              max_count_input = input("\n🔢 확인할 최대 파일 개수 (기본값: 30): ").strip()
+              if not max_count_input:
+                  max_count = 30
+              else:
+                  max_count = int(max_count_input)
+              
+              if max_count <= 0:
+                  print("❌ 1 이상의 숫자를 입력해주세요!")
+                  continue
+              
+              print(f"✅ {max_count}개 파일까지 확인합니다.")
+              break
+          except ValueError:
+              print("❌ 숫자만 입력해주세요!")
+              continue
+      
+      # URL 존재 여부 확인
+      existing_videos = check_video_urls(base_url, max_count=max_count)
+      
+      # 결과 출력
+      if existing_videos:
+          print("\n📋 존재하는 영상 URL 목록:")
+          for i, url in enumerate(existing_videos, 1):
+              print(f" {i}. {url}")
+          
+          # 다운로드할지 물어보기
+          download_choice = input(f"\n⬇️ {len(existing_videos)}개 영상을 모두 다운로드하시겠습니까? (y/n): ").lower()
+          if download_choice == 'y':
+              # 기본 저장 경로를 E:\crolling_itdong으로 설정
+              default_folder = r"E:\crolling_itdong"
+              folder_name = input(f"📁 다운로드 폴더 경로 (기본값: {default_folder}): ").strip()
+              if not folder_name:
+                  folder_name = default_folder
+              download_all_videos(existing_videos, folder_name)
+          
+          # 파일로 저장할지 물어보기
+          save_choice = input("\n💾 URL 목록을 텍스트 파일로 저장하시겠습니까? (y/n): ").lower()
+          if save_choice == 'y':
+              save_results_to_file(existing_videos)
+      else:
+          print("\n❌ 존재하는 영상이 없습니다.")
+      
+      print("\n✅ 모든 작업 완료!")
+  
+  # 사용 예시:
+  # specific_videos = check_and_download_range("https://mp4.itgo.co.kr/mp4/F120111/", 1, 10)
+                                      </code></pre>
+                                    </li>
+                                    <!-- 사용법 안내 -->
+                                    <div class="alert alert-info mt-3">
+                                      <h6><i class="ti ti-info-circle me-2"></i>사용 방법:</h6>
+                                      <ol class="mb-0">
+                                        <li><strong>라이브러리 설치:</strong> <code>pip install requests</code></li>
+                                        <li><strong>스크립트 실행</strong> 후 기본 URL 입력</li>
+                                        <li><strong>확인할 파일 개수</strong> 입력 (기본값: 30)</li>
+                                        <li><strong>다운로드 여부</strong> 선택 (y/n)</li>
+                                        <li><strong>저장 경로</strong> 설정 (기본값: E:\crolling_itdong)</li>
+                                      </ol>
+                                    </div>
+                                    <li>2</li>
+                                    <li>3</li>
+                                  </ul>                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!--accordion-->
+                      </div>
+                      <div class="tab-pane fade" id="navs-top-word" role="tabpanel">
+                        <!-- 네비게이션 바 -->
+                        <nav class="navbar navbar-example navbar-expand-lg">
+                          <div class="container-fluid">
+                            <a class="navbar-brand" href="javascript:void(0)">Python Import 모음</a>
+                            <button
+                              class="navbar-toggler"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#navbar-ex-word1">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbar-ex-word1">
+                              <div class="navbar-nav me-auto">
+                                <a class="nav-item nav-link" href="javascript:void(0)">#빠른복사</a>
+                                <a class="nav-item nav-link" href="javascript:void(0)">#필수라이브러리</a>
+                                <a class="nav-item nav-link" href="javascript:void(0)">#개발도구</a>
+                              </div>
+                            </div>
+                          </div>
+                        </nav>
+                      
+                        <!-- 아코디언 시작 -->
+                        <div class="accordion mt-3 accordion-bordered" id="accordionSimpleImports">
+                          
+                          <!-- 기본 필수 라이브러리 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#basic-imports" aria-expanded="true">
+                                💎 기본 필수 라이브러리 (데이터 분석 기초)
+                              </button>
+                            </h2>
+                            <div id="basic-imports" class="accordion-collapse collapse show" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>데이터 처리 & 분석</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#basic-data-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="basic-data-simple">
+                      import pandas as pd
+                      import numpy as np
+                      import matplotlib.pyplot as plt
+                      import seaborn as sns
+                                    </code></pre>
+                                    <small class="text-muted">• pandas: 데이터프레임 처리<br>• numpy: 수치 계산<br>• matplotlib: 기본 그래프<br>• seaborn: 예쁜 차트</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>기본 유틸리티</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#basic-util-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="basic-util-simple">
+                      import os
+                      import sys
+                      import time
+                      from datetime import datetime
+                                    </code></pre>
+                                    <small class="text-muted">• os: 파일/폴더 작업<br>• sys: 시스템 정보<br>• time: 시간 처리<br>• datetime: 날짜 계산</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 머신러닝 필수 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ml-simple" aria-expanded="false">
+                                🤖 머신러닝 필수 Import
+                              </button>
+                            </h2>
+                            <div id="ml-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>Scikit-learn 기본</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#sklearn-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="sklearn-simple">
+                      from sklearn.model_selection import train_test_split
+                      from sklearn.linear_model import LinearRegression
+                      from sklearn.ensemble import RandomForestClassifier
+                      from sklearn.metrics import accuracy_score
+                                    </code></pre>
+                                    <small class="text-muted">• train_test_split: 데이터 분할<br>• LinearRegression: 선형회귀<br>• RandomForest: 랜덤포레스트<br>• accuracy_score: 정확도 측정</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>딥러닝 기본</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#dl-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="dl-simple">
+                      import tensorflow as tf
+                      from tensorflow import keras
+                      from tensorflow.keras.models import Sequential
+                      from tensorflow.keras.layers import Dense
+                                    </code></pre>
+                                    <small class="text-muted">• tensorflow: 딥러닝 프레임워크<br>• keras: 고수준 API<br>• Sequential: 순차 모델<br>• Dense: 완전연결층</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 웹 크롤링 필수 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#crawling-simple" aria-expanded="false">
+                                🕷️ 웹 크롤링 필수 Import
+                              </button>
+                            </h2>
+                            <div id="crawling-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>기본 크롤링</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#crawl-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="crawl-simple">
+                      import requests
+                      from bs4 import BeautifulSoup
+                      import json
+                      import time
+                                    </code></pre>
+                                    <small class="text-muted">• requests: HTTP 요청<br>• BeautifulSoup: HTML 파싱<br>• json: JSON 데이터 처리<br>• time: 딜레이 추가</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>고급 크롤링</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#selenium-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="selenium-simple">
+                      from selenium import webdriver
+                      from selenium.webdriver.common.by import By
+                      from selenium.webdriver.support.ui import WebDriverWait
+                      from selenium.webdriver.support import expected_conditions as EC
+                                    </code></pre>
+                                    <small class="text-muted">• webdriver: 브라우저 제어<br>• By: 요소 찾기 방법<br>• WebDriverWait: 대기<br>• expected_conditions: 조건 체크</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 금융 & 회계 분석 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#finance-simple" aria-expanded="false">
+                                💰 금융 & 회계 분석 필수 Import
+                              </button>
+                            </h2>
+                            <div id="finance-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>주식 & 금융 데이터</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#stock-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="stock-simple">
+                      import yfinance as yf
+                      import pandas_datareader as pdr
+                      import FinanceDataReader as fdr
+                      from yahoo_fin import stock_info
+                                    </code></pre>
+                                    <small class="text-muted">• yfinance: 야후 금융 데이터<br>• pandas_datareader: 경제 데이터<br>• FinanceDataReader: 한국 주식<br>• yahoo_fin: 주식 정보</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>금융 계산</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#finance-calc-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="finance-calc-simple">
+                      import numpy_financial as npf
+                      from datetime import datetime, timedelta
+                      import math
+                      import scipy.stats as stats
+                                    </code></pre>
+                                    <small class="text-muted">• numpy_financial: 금융 함수<br>• datetime: 날짜 계산<br>• math: 수학 함수<br>• scipy.stats: 통계 분석</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 이미지 & 영상 처리 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#image-simple" aria-expanded="false">
+                                🖼️ 이미지 & 영상 처리 필수 Import
+                              </button>
+                            </h2>
+                            <div id="image-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>이미지 처리</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#img-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="img-simple">
+                      import cv2
+                      from PIL import Image, ImageDraw, ImageFont
+                      import matplotlib.pyplot as plt
+                      import numpy as np
+                                    </code></pre>
+                                    <small class="text-muted">• cv2: OpenCV 이미지 처리<br>• PIL: 파이썬 이미지 라이브러리<br>• matplotlib: 이미지 표시<br>• numpy: 배열 연산</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>영상 처리</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#video-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="video-simple">
+                      import moviepy.editor as mp
+                      from moviepy.video.io.VideoFileClip import VideoFileClip
+                      import pytube
+                      from pydub import AudioSegment
+                                    </code></pre>
+                                    <small class="text-muted">• moviepy: 영상 편집<br>• VideoFileClip: 영상 파일 처리<br>• pytube: 유튜브 다운로드<br>• pydub: 오디오 처리</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 자연어 처리 & AI -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#nlp-simple" aria-expanded="false">
+                                🗣️ 자연어 처리 & AI 필수 Import
+                              </button>
+                            </h2>
+                            <div id="nlp-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>영어 자연어 처리</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#nlp-en-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="nlp-en-simple">
+                      import nltk
+                      from transformers import pipeline
+                      from textblob import TextBlob
+                      import openai
+                                    </code></pre>
+                                    <small class="text-muted">• nltk: 자연어 툴킷<br>• transformers: 최신 AI 모델<br>• textblob: 간단한 텍스트 분석<br>• openai: GPT API</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>한국어 자연어 처리</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#nlp-ko-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="nlp-ko-simple">
+                      from konlpy.tag import Okt, Mecab
+                      import re
+                      from googletrans import Translator
+                      from kiwipiepy import Kiwi
+                                    </code></pre>
+                                    <small class="text-muted">• konlpy: 한국어 형태소 분석<br>• re: 정규표현식<br>• googletrans: 번역<br>• kiwipiepy: 빠른 한국어 분석</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 게임 & GUI 개발 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#gui-simple" aria-expanded="false">
+                                🎮 게임 & GUI 개발 필수 Import
+                              </button>
+                            </h2>
+                            <div id="gui-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>게임 개발</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#game-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="game-simple">
+                      import pygame
+                      import random
+                      import math
+                      import time
+                                    </code></pre>
+                                    <small class="text-muted">• pygame: 게임 개발<br>• random: 랜덤 생성<br>• math: 수학 계산<br>• time: 시간 제어</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>GUI 개발</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#gui-dev-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="gui-dev-simple">
+                      import tkinter as tk
+                      from tkinter import ttk, messagebox, filedialog
+                      import streamlit as st
+                                    </code></pre>
+                                    <small class="text-muted">• tkinter: 기본 GUI<br>• ttk: 개선된 위젯<br>• messagebox: 팝업<br>• streamlit: 웹앱 개발</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 웹 개발 & 서버 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#web-simple" aria-expanded="false">
+                                🌐 웹 개발 & 서버 필수 Import
+                              </button>
+                            </h2>
+                            <div id="web-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>웹 프레임워크</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#web-framework-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="web-framework-simple">
+                      from flask import Flask, render_template, request
+                      from django.shortcuts import render
+                      import fastapi
+                      from fastapi import FastAPI
+                                    </code></pre>
+                                    <small class="text-muted">• flask: 가벼운 웹 프레임워크<br>• django: 풀스택 웹 프레임워크<br>• fastapi: 현대적 API 프레임워크<br>• FastAPI: 빠른 API 개발</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>API & 서버</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#api-server-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="api-server-simple">
+                      import requests
+                      import json
+                      from urllib.parse import urljoin
+                      import uvicorn
+                                    </code></pre>
+                                    <small class="text-muted">• requests: HTTP 클라이언트<br>• json: JSON 처리<br>• urljoin: URL 조합<br>• uvicorn: ASGI 서버</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 자동화 & 업무 효율화 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#automation-simple" aria-expanded="false">
+                                🤖 자동화 & 업무 효율화 필수 Import
+                              </button>
+                            </h2>
+                            <div id="automation-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>업무 자동화</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#auto-work-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="auto-work-simple">
+                      import pyautogui
+                      import keyboard
+                      import mouse
+                      from pynput import mouse, keyboard
+                                    </code></pre>
+                                    <small class="text-muted">• pyautogui: 마우스/키보드 자동화<br>• keyboard: 키보드 제어<br>• mouse: 마우스 제어<br>• pynput: 입력 장치 모니터링</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>이메일 & 알림</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#email-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="email-simple">
+                      import smtplib
+                      from email.mime.text import MIMEText
+                      from email.mime.multipart import MIMEMultipart
+                      import schedule
+                                    </code></pre>
+                                    <small class="text-muted">• smtplib: 이메일 전송<br>• MIMEText: 텍스트 이메일<br>• MIMEMultipart: 첨부파일 이메일<br>• schedule: 작업 스케줄링</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 파일 처리 필수 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#file-simple" aria-expanded="false">
+                                📁 파일 처리 필수 Import
+                              </button>
+                            </h2>
+                            <div id="file-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>엑셀 파일</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#excel-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="excel-simple">
+                      import openpyxl
+                      from openpyxl import Workbook, load_workbook
+                      # 또는 pandas 사용
+                      import pandas as pd
+                                    </code></pre>
+                                    <small class="text-muted">• openpyxl: 엑셀 파일 읽기/쓰기<br>• Workbook: 새 엑셀 생성<br>• load_workbook: 기존 엑셀 열기<br>• pandas: 간단한 엑셀 처리</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>기타 파일</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#other-file-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="other-file-simple">
+                      import csv
+                      import json
+                      from pathlib import Path
+                      import glob
+                                    </code></pre>
+                                    <small class="text-muted">• csv: CSV 파일 처리<br>• json: JSON 파일 처리<br>• pathlib: 경로 관리<br>• glob: 파일 검색</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- API 및 데이터베이스 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#api-simple" aria-expanded="false">
+                                🔗 API & 데이터베이스 필수 Import
+                              </button>
+                            </h2>
+                            <div id="api-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>데이터베이스</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#db-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="db-simple">
+                      import sqlite3
+                      import sqlalchemy
+                      from sqlalchemy import create_engine
+                      import pymongo
+                                    </code></pre>
+                                    <small class="text-muted">• sqlite3: SQLite 데이터베이스<br>• sqlalchemy: ORM 프레임워크<br>• create_engine: DB 연결<br>• pymongo: MongoDB 연결</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>API 및 HTTP</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#http-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="http-simple">
+                      import requests
+                      import urllib.request
+                      from urllib.parse import urljoin, urlparse
+                      import asyncio
+                                    </code></pre>
+                                    <small class="text-muted">• requests: HTTP 클라이언트<br>• urllib: URL 처리<br>• urljoin: URL 결합<br>• asyncio: 비동기 처리</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 자주 사용하는 유틸리티 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#utils-simple" aria-expanded="false">
+                                🛠️ 자주 사용하는 유틸리티
+                              </button>
+                            </h2>
+                            <div id="utils-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>개발 도구</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#dev-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="dev-simple">
+                      from tqdm import tqdm
+                      import logging
+                      import warnings
+                      warnings.filterwarnings('ignore')
+                                    </code></pre>
+                                    <small class="text-muted">• tqdm: 진행바 표시<br>• logging: 로그 관리<br>• warnings: 경고 메시지 제어<br>• filterwarnings: 경고 숨기기</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>날짜 & 시간</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#datetime-simple">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="datetime-simple">
+                      from datetime import datetime, timedelta, date
+                      import calendar
+                      import pytz
+                      from dateutil import parser
+                                    </code></pre>
+                                    <small class="text-muted">• datetime: 날짜/시간 처리<br>• calendar: 달력 기능<br>• pytz: 시간대 처리<br>• dateutil: 날짜 파싱</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 빠른 시작 템플릿 -->
+                          <div class="accordion-item card">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#template-simple" aria-expanded="false">
+                                ⚡ 빠른 시작 템플릿
+                              </button>
+                            </h2>
+                            <div id="template-simple" class="accordion-collapse collapse" data-bs-parent="#accordionSimpleImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>데이터 분석 시작</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#data-template">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="data-template">
+                      import pandas as pd
+                      import numpy as np
+                      import matplotlib.pyplot as plt
+                      import seaborn as sns
+                      from sklearn.model_selection import train_test_split
+                      from sklearn.preprocessing import StandardScaler
+                                    </code></pre>
+                                    <small class="text-muted">데이터 분석 프로젝트 시작할 때 기본으로 사용</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>웹 크롤링 시작</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#crawl-template">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="crawl-template">
+                      import requests
+                      from bs4 import BeautifulSoup
+                      import pandas as pd
+                      import time
+                      from tqdm import tqdm
+                                    </code></pre>
+                                    <small class="text-muted">웹 크롤링 프로젝트 시작할 때 기본으로 사용</small>
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>금융 분석 시작</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#finance-template">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="finance-template">
+                      import yfinance as yf
+                      import pandas as pd
+                      import matplotlib.pyplot as plt
+                      import numpy as np
+                      from datetime import datetime, timedelta
+                                    </code></pre>
+                                    <small class="text-muted">주식/금융 분석 프로젝트 시작할 때 기본으로 사용</small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="copy-btn-container">
+                                      <strong>이미지 처리 시작</strong>
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#image-template">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="image-template">
+                      import cv2
+                      import numpy as np
+                      from PIL import Image
+                      import matplotlib.pyplot as plt
+                                    </code></pre>
+                                    <small class="text-muted">이미지 처리 프로젝트 시작할 때 기본으로 사용</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                        </div>
+                        <!-- 아코디언 끝 -->
+                      
+                        <!-- 사용 팁 -->
+                        <div class="alert alert-success mt-4">
+                          <h6><i class="ti ti-lightbulb me-2"></i>사용 팁:</h6>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <ul class="mb-0">
+                                <li><strong>별칭 사용:</strong> <code>import pandas as pd</code></li>
+                                <li><strong>필요한 것만:</strong> <code>from sklearn import ...</code></li>
+                              </ul>
+                            </div>
+                            <div class="col-md-6">
+                              <ul class="mb-0">
+                                <li><strong>설치:</strong> <code>pip install 라이브러리명</code></li>
+                                <li><strong>업그레이드:</strong> <code>pip install --upgrade 라이브러리명</code></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      
+                        <!-- 설치 가이드 -->
+                        <div class="alert alert-info mt-3">
+                          <h6><i class="ti ti-download me-2"></i>주요 라이브러리 설치 명령어:</h6>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <h6>기본 패키지:</h6>
+                              <code>pip install pandas numpy matplotlib seaborn</code><br>
+                              <h6 class="mt-2">머신러닝:</h6>
+                              <code>pip install scikit-learn tensorflow</code><br>
+                              <h6 class="mt-2">크롤링:</h6>
+                              <code>pip install requests beautifulsoup4 selenium</code>
+                            </div>
+                            <div class="col-md-6">
+                              <h6>금융분석:</h6>
+                              <code>pip install yfinance pandas-datareader</code><br>
+                              <h6 class="mt-2">이미지처리:</h6>
+                              <code>pip install opencv-python pillow</code><br>
+                              <h6 class="mt-2">자연어처리:</h6>
+                              <code>pip install nltk konlpy transformers</code>
+                            </div>
+                          </div>
+                        </div>
+                      
+                      </div>
+                      <div class="tab-pane fade" id="navs-top-word2" role="tabpanel">
+                        <nav class="navbar navbar-example navbar-expand-lg">
+                          <div class="container-fluid">
+                            <a class="navbar-brand" href="javascript:void(0)">Python Import 라이브러리</a>
+                            <button
+                              class="navbar-toggler"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#navbar-ex-word2">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbar-ex-word2">
+                              <div class="navbar-nav me-auto">
+                                <a class="nav-item nav-link" href="javascript:void(0)">#딥러닝</a>
+                                <a class="nav-item nav-link" href="javascript:void(0)">#머신러닝</a>
+                                <a class="nav-item nav-link" href="javascript:void(0)">#데이터분석</a>
+                              </div>
+                            </div>
+                          </div>
+                        </nav>
+                      
+                        <!-- 아코디언 시작 Python 라이브러리 모음집-->
+                        <div class="accordion mt-3 accordion-bordered" id="accordionImports">
+                          
+                          <!-- 딥러닝 라이브러리 -->
+                          <div class="accordion-item card category-deep-learning">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#deeplearning-imports" aria-expanded="false">
+                                <span class="accordion-icon">🧠</span> 딥러닝 (Deep Learning) & 신경망
+                              </button>
+                            </h2>
+                            <div id="deeplearning-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <h6><strong>TensorFlow & Keras</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#tensorflow-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="tensorflow-code">
+                      import tensorflow as tf
+                      from tensorflow import keras
+                      from tensorflow.keras import layers
+                      from tensorflow.keras.models import Sequential, Model
+                      from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten
+                      from tensorflow.keras.layers import LSTM, GRU, Dropout, BatchNormalization
+                      from tensorflow.keras.optimizers import Adam, SGD, RMSprop
+                      from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+                      from tensorflow.keras.preprocessing.image import ImageDataGenerator
+                      from tensorflow.keras.utils import to_categorical
+                      from tensorflow.keras.preprocessing.text import Tokenizer
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <h6><strong>PyTorch</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#pytorch-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="pytorch-code">
+                      import torch
+                      import torch.nn as nn
+                      import torch.optim as optim
+                      import torch.nn.functional as F
+                      from torch.utils.data import DataLoader, Dataset
+                      import torchvision
+                      import torchvision.transforms as transforms
+                      from torch.autograd import Variable
+                      import torch.cuda
+                      from torchsummary import summary
+                      from torch.nn import CrossEntropyLoss
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 머신러닝 라이브러리 -->
+                          <div class="accordion-item card category-machine-learning">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#ml-imports" aria-expanded="false">
+                                <span class="accordion-icon">🤖</span> 머신러닝 (Machine Learning) & 예측 모델
+                              </button>
+                            </h2>
+                            <div id="ml-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <h6><strong>Scikit-learn</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#sklearn-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="sklearn-code">
+                      from sklearn.model_selection import train_test_split, cross_val_score
+                      from sklearn.linear_model import LinearRegression, LogisticRegression
+                      from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+                      from sklearn.svm import SVC, SVR
+                      from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+                      from sklearn.preprocessing import StandardScaler, LabelEncoder, MinMaxScaler
+                      from sklearn.cluster import KMeans, DBSCAN
+                      from sklearn.decomposition import PCA
+                      from sklearn.feature_selection import SelectKBest, chi2
+                      from sklearn.pipeline import Pipeline, make_pipeline
+                      from sklearn.model_selection import GridSearchCV
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <h6><strong>고급 ML 라이브러리</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#advanced-ml-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="advanced-ml-code">
+                      import xgboost as xgb
+                      import lightgbm as lgb
+                      from catboost import CatBoostClassifier
+                      import joblib  # 모델 저장/로드
+                      from imblearn.over_sampling import SMOTE  # 불균형 데이터
+                      from sklearn.manifold import TSNE
+                      import hyperopt  # 하이퍼파라미터 최적화
+                      from sklearn.ensemble import VotingClassifier
+                      from sklearn.model_selection import StratifiedKFold
+                      import optuna  # 하이퍼파라미터 튜닝
+                      from sklearn.experimental import enable_iterative_imputer
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 데이터 분석 & 처리 -->
+                          <div class="accordion-item card category-data-analysis">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#data-imports" aria-expanded="false">
+                                <span class="accordion-icon">📊</span> 데이터 분석 & 처리
+                              </button>
+                            </h2>
+                            <div id="data-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <h6><strong>기본 데이터 분석</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#basic-data-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="basic-data-code">
+                      import pandas as pd
+                      import numpy as np
+                      import scipy.stats as stats
+                      from scipy import optimize
+                      import statsmodels.api as sm
+                      from scipy.stats import pearsonr, spearmanr
+                      import scipy.cluster.hierarchy as sch
+                      from scipy.spatial.distance import pdist, squareform
+                      import scipy.interpolate as interp
+                      from scipy.signal import savgol_filter
+                      from scipy.integrate import quad
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <h6><strong>시각화</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#viz-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="viz-code">
+                      import matplotlib.pyplot as plt
+                      import seaborn as sns
+                      import plotly.express as px
+                      import plotly.graph_objects as go
+                      from bokeh.plotting import figure
+                      import matplotlib.dates as mdates
+                      import plotly.figure_factory as ff
+                      from plotly.subplots import make_subplots
+                      import altair as alt
+                      from matplotlib.animation import FuncAnimation
+                      import matplotlib.patches as patches
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <h6><strong>고급 분석</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#advanced-analysis-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="advanced-analysis-code">
+                      import networkx as nx
+                      from sklearn.feature_selection import SelectKBest
+                      from sklearn.pipeline import Pipeline
+                      import warnings
+                      warnings.filterwarnings('ignore')
+                      from sklearn.model_selection import cross_validate
+                      from sklearn.compose import ColumnTransformer
+                      from sklearn.impute import SimpleImputer, KNNImputer
+                      from sklearn.base import BaseEstimator, TransformerMixin
+                      import dask.dataframe as dd  # 대용량 데이터
+                      from scipy.cluster.hierarchy import dendrogram, linkage
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 웹 크롤링 & 데이터 수집 -->
+                          <div class="accordion-item card category-crawling">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#crawling-imports" aria-expanded="false">
+                                <span class="accordion-icon">🕷️</span> 웹 크롤링 & 데이터 수집
+                              </button>
+                            </h2>
+                            <div id="crawling-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <h6><strong>웹 크롤링</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#crawling-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="crawling-code">
+                      import requests
+                      from bs4 import BeautifulSoup
+                      import selenium
+                      from selenium import webdriver
+                      from selenium.webdriver.common.by import By
+                      from selenium.webdriver.support.ui import WebDriverWait
+                      from selenium.webdriver.support import expected_conditions as EC
+                      import scrapy
+                      from selenium.webdriver.chrome.options import Options
+                      from selenium.common.exceptions import TimeoutException
+                      import lxml
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <h6><strong>API & 데이터 수집</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#api-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="api-code">
+                      import json
+                      import urllib.request
+                      from urllib.parse import urljoin, urlparse
+                      import time
+                      import os
+                      from pathlib import Path
+                      import csv
+                      import asyncio
+                      import aiohttp
+                      from concurrent.futures import ThreadPoolExecutor
+                      import threading
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 엑셀 & 파일 처리 -->
+                          <div class="accordion-item card category-excel">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#excel-imports" aria-expanded="false">
+                                <span class="accordion-icon">📈</span> 엑셀 & 파일 처리
+                              </button>
+                            </h2>
+                            <div id="excel-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <h6><strong>엑셀 처리</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#excel-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="excel-code">
+                      import openpyxl
+                      from openpyxl import Workbook, load_workbook
+                      from openpyxl.styles import Font, Alignment, PatternFill
+                      import xlrd
+                      import xlwt
+                      import xlsxwriter
+                      # pandas로 엑셀 읽기/쓰기
+                      pd.read_excel('file.xlsx')
+                      pd.to_excel('output.xlsx')
+                      from openpyxl.chart import BarChart, LineChart
+                      from openpyxl.utils.dataframe import dataframe_to_rows
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <h6><strong>파일 & 텍스트 처리</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#file-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="file-code">
+                      import os
+                      import glob
+                      import shutil
+                      from pathlib import Path
+                      import zipfile
+                      import tarfile
+                      import pickle
+                      import docx  # python-docx
+                      import PyPDF2
+                      import configparser
+                      from datetime import datetime
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 회계 & 금융 분석 -->
+                          <div class="accordion-item card category-finance">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#finance-imports" aria-expanded="false">
+                                <span class="accordion-icon">💰</span> 회계 & 금융 분석
+                              </button>
+                            </h2>
+                            <div id="finance-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <h6><strong>금융 데이터</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#finance-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="finance-code">
+                      import yfinance as yf
+                      import pandas_datareader as pdr
+                      import quantlib as ql
+                      from alpha_vantage.timeseries import TimeSeries
+                      import investpy  # 주식, 채권, 펀드 데이터
+                      import fredapi  # 미국 연방준비제도 데이터
+                      import FinanceDataReader as fdr
+                      from yahoo_fin import stock_info
+                      import quandl
+                      from pandas_datareader import data as web
+                      import ccxt  # 암호화폐 거래소 API
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <h6><strong>금융 계산</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#calc-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="calc-code">
+                      import numpy_financial as npf  # 금융 함수
+                      from datetime import datetime, timedelta
+                      import calendar
+                      # 복리 계산, NPV, IRR 등
+                      npf.pv()  # 현재가치
+                      npf.fv()  # 미래가치
+                      npf.irr() # 내부수익률
+                      npf.nper() # 기간 계산
+                      npf.pmt()  # 지불액 계산
+                      import math
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 자연어 처리 & AI -->
+                          <div class="accordion-item card category-nlp">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#nlp-imports" aria-expanded="false">
+                                <span class="accordion-icon">🗣️</span> 자연어 처리 & AI
+                              </button>
+                            </h2>
+                            <div id="nlp-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <h6><strong>자연어 처리</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#nlp-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="nlp-code">
+                      import nltk
+                      from nltk.corpus import stopwords
+                      from nltk.tokenize import word_tokenize, sent_tokenize
+                      import spacy
+                      from transformers import pipeline, AutoTokenizer, AutoModel
+                      from sklearn.feature_extraction.text import TfidfVectorizer
+                      import gensim
+                      from gensim.models import Word2Vec, Doc2Vec
+                      from textblob import TextBlob
+                      import openai
+                      from langchain import LLMChain
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <h6><strong>한국어 처리</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#korean-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="korean-code">
+                      from konlpy.tag import Okt, Mecab, Hannanum
+                      import jpype1  # konlpy 의존성
+                      from soynlp import DoublespaceLineCorpus
+                      from soynlp.word import WordExtractor
+                      import re  # 정규표현식
+                      from kiwipiepy import Kiwi
+                      from hanspell import spell_checker
+                      import hanja
+                      from googletrans import Translator
+                      import fasttext
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 이미지 & 영상 처리 -->
+                          <div class="accordion-item card category-image">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#image-imports" aria-expanded="false">
+                                <span class="accordion-icon">🖼️</span> 이미지 & 영상 처리
+                              </button>
+                            </h2>
+                            <div id="image-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <h6><strong>이미지 처리</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#image-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="image-code">
+                      import cv2  # OpenCV
+                      from PIL import Image, ImageDraw, ImageFont
+                      import matplotlib.image as mpimg
+                      from skimage import filters, transform, measure
+                      import imageio
+                      from scipy import ndimage
+                      import numpy as np
+                      from matplotlib import pyplot as plt
+                      import mediapipe as mp
+                      from rembg import remove  # 배경 제거
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <h6><strong>영상 처리</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#video-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="video-code">
+                      import moviepy.editor as mp
+                      from moviepy.video.io.VideoFileClip import VideoFileClip
+                      import ffmpeg
+                      import youtube_dl  # 유튜브 다운로드
+                      import pytube  # 유튜브 API
+                      from pydub import AudioSegment
+                      import speech_recognition as sr
+                      import librosa  # 음성 분석
+                      from gtts import gTTS  # 텍스트 음성 변환
+                      import wave
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- 유틸리티 & 기타 -->
+                          <div class="accordion-item card category-utility">
+                            <h2 class="accordion-header">
+                              <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#utility-imports" aria-expanded="false">
+                                <span class="accordion-icon">🔧</span> 유틸리티 & 기타 도구
+                              </button>
+                            </h2>
+                            <div id="utility-imports" class="accordion-collapse collapse" data-bs-parent="#accordionImports">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <h6><strong>날짜 & 시간</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#datetime-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="datetime-code">
+                      from datetime import datetime, timedelta, date
+                      import calendar
+                      import pytz  # 시간대
+                      from dateutil import parser, relativedelta
+                      import arrow  # 날짜 처리 라이브러리
+                      import pendulum
+                      from dateutil.rrule import rrule, DAILY
+                      import holidays  # 공휴일 라이브러리
+                      import locale
+                      from zoneinfo import ZoneInfo
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <h6><strong>데이터베이스</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#db-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="db-code">
+                      import sqlite3
+                      import pymongo  # MongoDB
+                      import sqlalchemy
+                      from sqlalchemy import create_engine
+                      import psycopg2  # PostgreSQL
+                      import mysql.connector  # MySQL
+                      import redis
+                      from elasticsearch import Elasticsearch
+                      import cx_Oracle  # Oracle
+                      import pyodbc  # ODBC
+                      import peewee  # ORM
+                                    </code></pre>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <h6><strong>시스템 & 기타</strong></h6>
+                                    <div class="copy-btn-container">
+                                      <button class="clipboard-btn btn btn-sm btn-primary copy-btn" data-clipboard-action="copy" data-clipboard-target="#system-code">📋 Copy</button>
+                                    </div>
+                                    <pre class="python-code-block"><code id="system-code">
+                      import sys
+                      import subprocess
+                      import threading
+                      import multiprocessing
+                      import logging
+                      from tqdm import tqdm  # 진행바
+                      import hashlib  # 해시 함수
+                      import uuid  # 고유 식별자
+                      from functools import wraps
+                      import itertools
+                      import collections
+                                    </code></pre>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      
+                        </div>
+                        <!-- 아코디언 끝 -->
+                      
+                        <!-- 설치 가이드 -->
+                        <div class="install-guide">
+                          <h6><i class="ti ti-info-circle me-2"></i>라이브러리 설치 가이드:</h6>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <h6>기본 설치:</h6>
+                              <code>pip install pandas numpy matplotlib seaborn</code>
+                            </div>
+                            <div class="col-md-6">
+                              <h6>머신러닝:</h6>
+                              <code>pip install scikit-learn tensorflow pytorch</code>
+                            </div>
+                          </div>
+                          <div class="row mt-2">
+                            <div class="col-md-6">
+                              <h6>크롤링:</h6>
+                              <code>pip install requests beautifulsoup4 selenium</code>
+                            </div>
+                            <div class="col-md-6">
+                              <h6>자연어처리:</h6>
+                              <code>pip install nltk spacy konlpy transformers</code>
+                            </div>
+                          </div>
+                        </div>
+                      
+                      </div> 
+                      <!-- card-navbar -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl">
+                <div
+                  class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                  <div>
+                    ©
+                    <script>
+                      document.write(new Date().getFullYear());
+                    </script>
+                    , made with ❤️ by <a href="https://pixinvent.com" target="_blank" class="fw-medium">Pixinvent</a>
+                  </div>
+                  <div class="d-none d-lg-inline-block">
+                    <a
+                      href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/"
+                      target="_blank"
+                      class="footer-link me-4"
+                      >Documentation</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+
+    <script src="../../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/clipboard/clipboard.js"></script> 
+    <!-- Main JS -->
+    <script src="../../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+     <script src="../../assets/js/extended-ui-misc-clipboardjs.js"></script>
+  </body>
+</html>

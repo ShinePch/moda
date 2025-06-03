@@ -1,0 +1,40 @@
+<!-- Content java-->
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="py-3 mb-4">java</h4>
+  <!-- Autosize 하얀배경 전체 사이즈-->
+  <div class="col-12">
+    <div class="card mb-4">
+      <!-- card-navbar -->
+      <nav class="navbar navbar-example navbar-expand-lg">
+        <div class="container-fluid ">
+          <a class="navbar-brand" href="javascript:void(0)">java</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-ex-3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-ex-3">
+            <div class="navbar-nav me-auto">
+              <a class="nav-item nav-link" href="javascript:void(0)">#java 생성</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#자바</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#java</a>
+            </div>
+          </div>
+        </div>
+      </nav> 
+      <!-- card-navbar -->
+
+
+      <!-- 여기서부터 시작-->
+
+
+
+
+
+
+
+  </div> <!-- /Autosize -->
+</div> <!-- / Content -->
+<div class="content-backdrop fade"></div>

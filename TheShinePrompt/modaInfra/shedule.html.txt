@@ -1,0 +1,21 @@
+<!-- Content info-->
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="py-3 mb-4">schedule</h4>
+      <!-- Autosize 하얀배경 전체 사이즈-->
+  <div class="col-12">
+    <div class="card mb-4">
+      <h5 class="card-header">schedule</h5>
+      <div class="card-body">
+        <textarea id="autosize-demo" rows="10" class="form-control">
+          1. 파이썬 영상크롤링
+          2. 차트 api 가져오기
+          3. 가쉽걸 다운로드
+          4. 엄마집 넷플릭스 연동
+          5. 29일까지 청약제출 22페이지
+          6. 검색기만들기
+        </textarea>
+      </div>
+    </div>
+  </div> <!-- / Content -->
+</div>
+<div class="content-backdrop fade"></div>
