@@ -1,13 +1,13 @@
-<!-- Content java-->
+<!-- Content gitHub-->
 <div class="container-xxl flex-grow-1 container-p-y">
-  <h4 class="py-3 mb-4">java</h4>
+  <h4 class="py-3 mb-4">gitHub</h4>
   <!-- Autosize 하얀배경 전체 사이즈-->
   <div class="col-12">
     <div class="card mb-4">
       <!-- card-navbar -->
       <nav class="navbar navbar-example navbar-expand-lg">
         <div class="container-fluid ">
-          <a class="navbar-brand" href="javascript:void(0)">java</a>
+          <a class="navbar-brand" href="javascript:void(0)">Java</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -19,22 +19,99 @@
             <div class="navbar-nav me-auto">
               <a class="nav-item nav-link" href="javascript:void(0)">#java 생성</a>
               <a class="nav-item nav-link" href="javascript:void(0)">#자바</a>
-              <a class="nav-item nav-link" href="javascript:void(0)">#java</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#Java</a>
             </div>
           </div>
         </div>
       </nav> 
       <!-- card-navbar -->
 
-
+      
       <!-- 여기서부터 시작-->
+      <!-- Accordion Border styling -->
+      <div class="col-md">
+        <div class="accordion mt-3 accordion-bordered" id="accordionStyle1">
+          <div class="accordion-item card">
+            <h2 class="accordion-header">
+              <button
+                type="button"
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#accordionStyle1-1"
+                aria-expanded="false">
+                Java 다운로드 및 설치
+              </button>
+            </h2>
+            <div id="accordionStyle1-1" class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+              <div class="accordion-body">
+                <ul>
+                  <li>1. <a href="https://spring.io/tools">STS</a></li>
+                  <li>2. x.xx.x- WINDOWS X86_64다운</li>
+                  <li>3. <a href="https://www.oracle.com/java/technologies/downloads/">Oracle : Java(JDK17)이상</a></li>
+                  <li>3. <a href="https://adoptium.net/">OpenJDK : Java(JDK17)이상</a></li>
+                </ul>                  
+              </div>
+            </div>
+          </div>
 
+          <div class="accordion-item card ">
+            <h2 class="accordion-header">
+              <button
+                type="button"
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#accordionStyle1-2"
+                aria-expanded="false">
+                java 초기 설정
+              </button>
+            </h2>
+            <div id="accordionStyle1-2" class="accordion-collapse collapse " data-bs-parent="#accordionStyle1">
+              <div class="accordion-body">
+                <ul>
+                  <h6>시스템&Path 환경변수</h6>
+                  <li>1. 시스템 환경변수 : 내컴퓨터 > 속성 > 고급시스템설정 > 환경변수 > 시스템 변수에서 새로만들기 > 변수 이름 : JAVA HOME > 변수값 C:\Program Files|Java|jdk-17</li>
+                  <li>3. Path : 시스템 변수에서 Path선택 > 편집 > 새로만들기 : %JAVA_HOME%\bin</li>
+                  <li>4. 확인 cmd > java -version javac -version</li>
+                </ul>        
+              </div>
+            </div>
+          </div>
 
+          <div class="card accordion-item">
+            <h2 class="accordion-header">
+              <button
+                type="button"
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#accordionStyle1-3"
+                aria-expanded="false">
+                spring initializr
+              </button>
+            </h2>
+            <div id="accordionStyle1-3"class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+              <div class="accordion-body">
+                <ul>
+                  <h6>spring initializr</h6> 
+                  <li>1. <a href="https://start.spring.io/">srping.start.io</a></li>
+                  <li>2. Add : </br>Spring Web(RESTful 애플리케이션과 MVC 사용을 위해 필수) 
+                                </br>, MyBatis Framework(SQL 매퍼 프레임워크)
+                                </br>, MariaDB Driver(MariaDB 연결을 위한 JDBC 드라이버)
+                                </br>, Spring Boot DevTools(자동 재시작, 라이브 리로드 등 개발 편의 기능)
+                                </br>, Lombok(Getter, Setter, Constructor)
+                                </br>, Spring Configuration Processor(application.properties)
+                                </br>, Thymeleaf(서버사이드 템플릿 엔진 (웹 페이지 렌더링용))
+                                </br>, Spring Security(선택사항 인증,인가)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Accordion Border styling -->
+    </div>
 
-
-
-
-
-  </div> <!-- /Autosize -->
-</div> <!-- / Content -->
-<div class="content-backdrop fade"></div>
+    
+  </div>
+  <!-- /Autosize -->
+</div>

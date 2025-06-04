@@ -1,0 +1,139 @@
+<!-- Content gitHub-->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="py-3 mb-4">gitHub</h4>
+    <!-- Autosize 하얀배경 전체 사이즈-->
+    <div class="col-12">
+      <div class="card mb-4">
+        <!-- card-navbar -->
+        <nav class="navbar navbar-example navbar-expand-lg">
+          <div class="container-fluid ">
+            <a class="navbar-brand" href="javascript:void(0)">MariaDB & DBeaver</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbar-ex-3">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-ex-3">
+              <div class="navbar-nav me-auto">
+                <a class="nav-item nav-link" href="javascript:void(0)">#MariaDB & DBeaver 생성</a>
+                <a class="nav-item nav-link" href="javascript:void(0)">#마리아디비</a>
+                <a class="nav-item nav-link" href="javascript:void(0)">#디비버</a>
+              </div>
+            </div>
+          </div>
+        </nav> 
+        <!-- card-navbar -->
+  
+        
+        <!-- 여기서부터 시작-->
+        <!-- Accordion Border styling -->
+        <div class="col-md">
+          <div class="accordion mt-3 accordion-bordered" id="accordionStyle1">
+            <div class="accordion-item card">
+              <h2 class="accordion-header">
+                <button
+                  type="button"
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#accordionStyle1-1"
+                  aria-expanded="false">
+                  MariDB 다운로드 및 설치
+                </button>
+              </h2>
+              <div id="accordionStyle1-1" class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+                <div class="accordion-body">
+                  <ul>
+                    <li>1. <a href="https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.7.2&os=windows&cpu=x86_64&pkg=msi&mirror=blendbyte">MariaDB</a></li>
+                    <li>2. <a href="https://dbeaver.io/download/">DBeaver</a></li>
+                  </ul>                  
+                </div>
+              </div>
+            </div>
+  
+            <div class="accordion-item card ">
+              <h2 class="accordion-header">
+                <button
+                  type="button"
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#accordionStyle1-2"
+                  aria-expanded="false">
+                  MariaDB & DBeaver 초기 설정
+                </button>
+              </h2>
+              <div id="accordionStyle1-2" class="accordion-collapse collapse " data-bs-parent="#accordionStyle1">
+                <div class="accordion-body">
+                  <ul>
+                    <h6>MariaDB 초기 설정</h6>
+                        <li>1. window > mysql client > use mysql 계정 생성 (admin/ admin12)</li>
+                        <li>2. create user 'admin'@'localhost' identified by 'admin12';</li>
+                        <li>3. 계정이 잘 생성됐는지 확인</li>
+                        <li>4. select host, user from user;</li>
+                        <li>5. 권한주기</li>
+                        <li>6. grant all privileges on *.* to 'admin'@'localhost';</li>
+                        <li>7. 권한적용</li>
+                        <li>8. FLUSH PRIVILEGES;</li>
+                  </ul>        
+                  <ul>
+                    <h6>DBeaver</h6>
+                    <li>Server Host: localhost
+                        , </br> Server Host: localhost
+                        , </br> Port: 3306
+                        , </br> Database: myproject (또는 생성한 DB명)
+                        , </br> Username: root (또는 생성한 사용자명)
+                        , </br> Password: 설치시 설정한 패스워드
+                    </li>
+                  </ul>                        
+                </div>
+              </div>
+            </div>
+  
+            <div class="card accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  type="button"
+                  class="accordion-button collapsed"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#accordionStyle1-3"
+                  aria-expanded="false">
+                  테이블 만들기
+                </button>
+              </h2>
+              <div id="accordionStyle1-3"class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+                <div class="accordion-body">
+                  <ul>
+                    <h6>테이블 만들기</h6>
+                    <li>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <strong>1. 영상 다운로드 크롤러 코드</strong>
+                            <button
+                                class="clipboard-btn btn btn-sm btn-primary"
+                                data-clipboard-action="copy"
+                                data-clipboard-target="#video-crawler-code">
+                                📋 Copy
+                            </button>
+                        </div>
+                        <pre class="python-code-block"><code id="video-crawler-code">
+                        CREATE TABLE users (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        username VARCHAR(50) NOT NULL,
+                        email VARCHAR(100),
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    );
+                        </code></pre>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Accordion Border styling -->
+      </div>
+  
+      
+    </div>
+    <!-- /Autosize -->
+  </div>
