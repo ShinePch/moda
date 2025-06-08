@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+<html
+  lang="en"
+  class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../../../assets/"
+  data-template="vertical-menu-template-starter">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Parsec Tool - Download | Vuexy Admin Template</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../../assets/vendor/fonts/tabler-icons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../../../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../../assets/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <script src="../../../assets/vendor/js/helpers.js"></script>
+    <script src="../../../assets/vendor/js/template-customizer.js"></script>
+    <script src="../../../assets/js/config.js"></script>
+
+    <!-- 커스텀 스타일 -->
+    <style>
+      .download-section {
+        background: linear-gradient(45deg, #7367f0, #5a52d5);
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 15px 0;
+      }
+      .download-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid white;
+        color: white;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        padding: 12px 30px;
+        border-radius: 8px;
+      }
+      .download-btn:hover {
+        background: white;
+        color: #7367f0;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+      .download-info {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 15px;
+      }
+      .status-indicator {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+      .status-ready { background-color: #28a745; }
+      .status-downloading { background-color: #ffc107; }
+      .status-error { background-color: #dc3545; }
+      
+      .progress-bar-custom {
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 10px 0;
+      }
+      .progress-fill {
+        background-color: white;
+        height: 100%;
+        width: 0%;
+        transition: width 0.3s ease;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                    fill="#7367F0" />
+                  <path
+                    opacity="0.06"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
+                    fill="#161616" />
+                  <path
+                    opacity="0.06"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
+                    fill="#161616" />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                    fill="#7367F0" />
+                </svg>
+              </span>
+              <span class="app-brand-text demo menu-text fw-bold">Vuexy</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+              <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+              <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <li class="menu-item active">
+              <a href="index.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div data-i18n="Page 1">Page 1</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="page-2.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-app-window"></i>
+                <div data-i18n="Page 2">Page 2</div>
+              </a>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Layout page -->
+        <div class="layout-page">
+          <!-- Navbar -->
+          <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="ti ti-menu-2 ti-sm"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <i class="ti ti-sun ti-md"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-start dropdown-styles">
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                        <span class="align-middle"><i class="ti ti-sun me-2"></i>Light</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                        <span class="align-middle"><i class="ti ti-moon me-2"></i>Dark</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                        <span class="align-middle"><i class="ti ti-device-desktop me-2"></i>System</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="../../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="../../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-medium d-block">John Doe</span>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li><div class="dropdown-divider"></div></li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="ti ti-user-check me-2 ti-sm"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="ti ti-settings me-2 ti-sm"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="ti ti-logout me-2 ti-sm"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="py-3 mb-4">Parsec Tool</h4>
+
+              <!-- Parsec 다운로드 카드 -->
+              <div class="card mb-4">
+                <nav class="navbar navbar-example navbar-expand-lg">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="javascript:void(0)">
+                      <i class="ti ti-download me-2"></i>Parsec Tool 다운로드
+                    </a>
+                    <div class="navbar-nav me-auto">
+                      <a class="nav-item nav-link" href="javascript:void(0)">#원격데스크톱</a>
+                      <a class="nav-item nav-link" href="javascript:void(0)">#게임스트리밍</a>
+                      <a class="nav-item nav-link" href="javascript:void(0)">#parsec</a>
+                    </div>
+                  </div>
+                </nav>
+
+                <div class="card-body">
+                  <div class="download-section text-center">
+                    <h3><i class="ti ti-device-gamepad-2 me-2"></i>Parsec</h3>
+                    <p class="mb-3">고품질 저지연 원격 데스크톱 및 게임 스트리밍 도구</p>
+                    
+                    <button id="downloadParsec" class="btn download-btn btn-lg">
+                      <i class="ti ti-download me-2"></i>Windows용 Parsec 다운로드
+                    </button>
+
+                    <div class="download-info mt-3">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <span class="status-indicator status-ready" id="statusIndicator"></span>
+                          <span id="downloadStatus">다운로드 준비완료</span>
+                        </div>
+                        <div>
+                          <small id="fileSize">파일 크기: 약 50MB</small>
+                        </div>
+                      </div>
+                      
+                      <div class="progress-bar-custom" id="progressContainer" style="display: none;">
+                        <div class="progress-fill" id="progressFill"></div>
+                      </div>
+                      <div class="text-center mt-2" id="progressText" style="display: none;">
+                        <small>다운로드 중... <span id="progressPercent">0%</span></small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-4">
+                    <div class="col-md-6">
+                      <h6><i class="ti ti-info-circle me-2"></i>Parsec 소개</h6>
+                      <ul class="mb-0">
+                        <li>초저지연 원격 데스크톱</li>
+                        <li>4K 60fps 게임 스트리밍</li>
+                        <li>간편한 설정과 사용</li>
+                        <li>암호화된 안전한 연결</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <h6><i class="ti ti-settings me-2"></i>시스템 요구사항</h6>
+                      <ul class="mb-0">
+                        <li>Windows 10/11 (64비트)</li>
+                        <li>DirectX 11 지원 그래픽카드</li>
+                        <li>안정적인 인터넷 연결</li>
+                        <li>최소 4GB RAM 권장</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 기존 아코디언 내용들 -->
+              <div class="card mb-4">
+                <nav class="navbar navbar-example navbar-expand-lg">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="javascript:void(0)">설정 가이드</a>
+                    <div class="navbar-nav me-auto">
+                      <a class="nav-item nav-link" href="javascript:void(0)">#설정</a>
+                      <a class="nav-item nav-link" href="javascript:void(0)">#가이드</a>
+                    </div>
+                  </div>
+                </nav>
+
+                <div class="accordion mt-3 accordion-bordered" id="accordionStyle1">
+                  <div class="accordion-item card">
+                    <h2 class="accordion-header">
+                      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionStyle1-1" aria-expanded="false">
+                        <i class="ti ti-download me-2"></i>Parsec 설치 및 초기 설정
+                      </button>
+                    </h2>
+                    <div id="accordionStyle1-1" class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+                      <div class="accordion-body">
+                        <div class="alert alert-info">
+                          <h6><i class="ti ti-info-circle me-2"></i>설치 순서</h6>
+                          <ol>
+                            <li>위의 다운로드 버튼으로 Parsec 설치파일 다운로드</li>
+                            <li>다운로드된 <code>parsec-windows.exe</code> 파일 실행</li>
+                            <li>설치 마법사 따라 설치 진행</li>
+                            <li>Parsec 계정 생성 또는 로그인</li>
+                            <li>호스트 설정 또는 게스트 연결 설정</li>
+                          </ol>
+                        </div>
+                        <p><strong>공식 사이트:</strong> <a href="https://parsec.app" target="_blank">https://parsec.app</a></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item card">
+                    <h2 class="accordion-header">
+                      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionStyle1-2" aria-expanded="false">
+                        <i class="ti ti-settings me-2"></i>호스트 설정 (원격으로 접속당하는 컴퓨터)
+                      </button>
+                    </h2>
+                    <div id="accordionStyle1-2" class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+                      <div class="accordion-body">
+                        <h6>호스트 설정 단계</h6>
+                        <ol>
+                          <li>Parsec 실행 후 로그인</li>
+                          <li>설정(Settings) → 호스트(Host) 탭 이동</li>
+                          <li>'호스트 활성화' 체크박스 활성화</li>
+                          <li>해상도, 대역폭, 품질 설정 조정</li>
+                          <li>친구 또는 팀원에게 컴퓨터 ID 공유</li>
+                        </ol>
+                        <div class="alert alert-warning">
+                          <strong>주의:</strong> 방화벽에서 Parsec 허용 필요
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item card">
+                    <h2 class="accordion-header">
+                      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordionStyle1-3" aria-expanded="false">
+                        <i class="ti ti-device-desktop me-2"></i>게스트 연결 (다른 컴퓨터에 접속)
+                      </button>
+                    </h2>
+                    <div id="accordionStyle1-3" class="accordion-collapse collapse" data-bs-parent="#accordionStyle1">
+                      <div class="accordion-body">
+                        <h6>게스트 연결 방법</h6>
+                        <ol>
+                          <li>Parsec 실행 후 로그인</li>
+                          <li>메인 화면에서 '컴퓨터 추가' 클릭</li>
+                          <li>호스트로부터 받은 컴퓨터 ID 입력</li>
+                          <li>연결 요청 승인 대기</li>
+                          <li>연결 완료 후 원격 데스크톱 사용</li>
+                        </ol>
+                        <div class="alert alert-success">
+                          <strong>팁:</strong> 게임 모드에서는 마우스와 키보드가 자동으로 최적화됩니다
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PowerShell 명령어들 (기존 내용 유지) -->
+              <div class="card mb-4">
+                <nav class="navbar navbar-example navbar-expand-lg">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="javascript:void(0)">PowerShell 명령어</a>
+                    <div class="navbar-nav me-auto">
+                      <a class="nav-item nav-link" href="javascript:void(0)">#파워셸</a>
+                      <a class="nav-item nav-link" href="javascript:void(0)">#명령어</a>
+                    </div>
+                  </div>
+                </nav>
+
+                <div class="row">
+                  <!-- 폴더생성 -->
+                  <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                      <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">폴더 생성</h6>
+                        <button class="clipboard-btn btn btn-sm btn-primary" data-clipboard-action="copy" data-clipboard-target="#mkdir">
+                          <i class="ti ti-copy me-1"></i>Copy
+                        </button>
+                      </div>
+                      <div class="card-body">
+                        <textarea id="mkdir" rows="2" class="form-control" readonly>mkdir 폴더명</textarea>
+                        <small class="text-muted mt-2 d-block">새로운 폴더를 생성합니다</small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 파일복사 -->
+                  <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                      <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">파일 복사</h6>
+                        <button class="clipboard-btn btn btn-sm btn-primary" data-clipboard-action="copy" data-clipboard-target="#cp">
+                          <i class="ti ti-copy me-1"></i>Copy
+                        </button>
+                      </div>
+                      <div class="card-body">
+                        <textarea id="cp" rows="3" class="form-control" readonly>cp file1.txt file2.txt
+cp -Recurse * G:\backup\</textarea>
+                        <small class="text-muted mt-2 d-block">파일을 복사하거나 폴더 전체를 백업</small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 파일이동 -->
+                  <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                      <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">파일 이동</h6>
+                        <button class="clipboard-btn btn btn-sm btn-primary" data-clipboard-action="copy" data-clipboard-target="#mv">
+                          <i class="ti ti-copy me-1"></i>Copy
+                        </button>
+                      </div>
+                      <div class="card-body">
+                        <textarea id="mv" rows="2" class="form-control" readonly>mv file1.txt newlocation/</textarea>
+                        <small class="text-muted mt-2 d-block">파일을 다른 위치로 이동</small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 파일삭제 -->
+                  <div class="col-md-6 mb-3">
+                    <div class="card h-100">
+                      <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">파일 삭제</h6>
+                        <button class="clipboard-btn btn btn-sm btn-primary" data-clipboard-action="copy" data-clipboard-target="#rm">
+                          <i class="ti ti-copy me-1"></i>Copy
+                        </button>
+                      </div>
+                      <div class="card-body">
+                        <textarea id="rm" rows="2" class="form-control" readonly>rm unwanted-file.txt</textarea>
+                        <small class="text-muted mt-2 d-block">불필요한 파일을 삭제</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core JS -->
+    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../../assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../../../assets/vendor/js/menu.js"></script>
+
+    <!-- Vendors JS -->
+    <script src="../../../assets/vendor/libs/clipboard/clipboard.js"></script>
+    
+    <!-- Main JS -->
+    <script src="../../../assets/js/main.js"></script>
+    <script src="../../../assets/js/extended-ui-misc-clipboardjs.js"></script>
+
+    <!-- Parsec 다운로드 스크립트 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const downloadBtn = document.getElementById('downloadParsec');
+        const statusIndicator = document.getElementById('statusIndicator');
+        const downloadStatus = document.getElementById('downloadStatus');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const progressPercent = document.getElementById('progressPercent');
+
+        // 클립보드 기능 초기화
+        if (typeof ClipboardJS !== 'undefined') {
+          new ClipboardJS('.clipboard-btn');
+        }
+
+        downloadBtn.addEventListener('click', function() {
+          // 다운로드 시작
+          startDownload();
+        });
+
+        function startDownload() {
+          // 상태 업데이트
+          statusIndicator.className = 'status-indicator status-downloading';
+          downloadStatus.textContent = '다운로드 중...';
+          downloadBtn.disabled = true;
+          downloadBtn.innerHTML = '<i class="ti ti-loader ti-spin me-2"></i>다운로드 중...';
+          
+          // 진행률 표시
+          progressContainer.style.display = 'block';
+          progressText.style.display = 'block';
+
+          // 실제 파일 다운로드
+          const link = document.createElement('a');
+          link.href = '../../../assets/vendor/tool/parsec-windows.exe';
+          link.download = 'parsec-windows.exe';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          // 가짜 진행률 애니메이션 (실제 다운로드 진행률을 받아올 수 없으므로)
+          simulateProgress();
+        }
+
+        function simulateProgress() {
+          let progress = 0;
+          const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 100) progress = 100;
+            
+            progressFill.style.width = progress + '%';
+            progressPercent.textContent = Math.round(progress) + '%';
+
+            if (progress >= 100) {
+              clearInterval(interval);
+              setTimeout(() => {
+                downloadComplete();
+              }, 500);
+            }
+          }, 200);
+        }
+
+        function downloadComplete() {
+          statusIndicator.className = 'status-indicator status-ready';
+          downloadStatus.textContent = '다운로드 완료!';
+          downloadBtn.disabled = false;
+          downloadBtn.innerHTML = '<i class="ti ti-check me-2"></i>다운로드 완료';
+          downloadBtn.classList.add('btn-success');
+          
+          progressContainer.style.display = 'none';
+          progressText.style.display = 'none';
+
+          // 3초 후 원래 상태로 복원
+          setTimeout(() => {
+            statusIndicator.className = 'status-indicator status-ready';
+            downloadStatus.textContent = '다운로드 준비완료';
+            downloadBtn.innerHTML = '<i class="ti ti-download me-2"></i>Windows용 Parsec 다운로드';
+            downloadBtn.classList.remove('btn-success');
+            progressFill.style.width = '0%';
+          }, 3000);
+        }
+
+        // 토스트 알림 표시 함수
+        function showToast(message, type = 'success') {
+          // 기존 토스트가 있다면 제거
+          const existingToast = document.querySelector('.toast-notification');
+          if (existingToast) {
+            existingToast.remove();
+          }
+
+          // 새 토스트 생성
+          const toast = document.createElement('div');
+          toast.className = `toast-notification alert alert-${type} alert-dismissible fade show`;
+          toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+          `;
+          toast.innerHTML = `
+            <i class="ti ti-${type === 'success' ? 'check' : 'info-circle'} me-2"></i>
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          `;
+
+          document.body.appendChild(toast);
+
+          // 5초 후 자동 제거
+          setTimeout(() => {
+            if (toast && toast.parentNode) {
+              toast.remove();
+            }
+          }, 5000);
+        }
+
+        // 파일 존재 확인 (선택사항)
+        function checkFileExists() {
+          fetch('../../../assets/vendor/tool/parsec-windows.exe', { method: 'HEAD' })
+            .then(response => {
+              if (response.ok) {
+                showToast('Parsec 설치파일이 준비되었습니다.', 'info');
+              } else {
+                statusIndicator.className = 'status-indicator status-error';
+                downloadStatus.textContent = '파일을 찾을 수 없습니다';
+                downloadBtn.disabled = true;
+                downloadBtn.innerHTML = '<i class="ti ti-alert-circle me-2"></i>파일 없음';
+              }
+            })
+            .catch(() => {
+              console.log('파일 확인 중 오류 발생');
+            });
+        }
+
+        // 페이지 로드 시 파일 존재 확인
+        // checkFileExists(); // 필요시 주석 해제
+      });
+
+      // 추가 유틸리티 함수들
+      function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      }
+
+      // 다운로드 통계 업데이트 (선택사항)
+      function updateDownloadStats() {
+        const downloads = localStorage.getItem('parsec-downloads') || 0;
+        const newCount = parseInt(downloads) + 1;
+        localStorage.setItem('parsec-downloads', newCount);
+        
+        if (newCount > 1) {
+          document.getElementById('fileSize').innerHTML += ` <small class="text-success">(${newCount}번째 다운로드)</small>`;
+        }
+      }
+    </script>
+
+    <!-- 추가 스타일 -->
+    <style>
+      .toast-notification {
+        animation: slideInRight 0.3s ease-out;
+      }
+      
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .btn-success.download-btn {
+        background: #28a745 !important;
+        border-color: #28a745 !important;
+        color: white !important;
+      }
+
+      .btn-success.download-btn:hover {
+        background: #218838 !important;
+        border-color: #218838 !important;
+        transform: translateY(-2px);
+      }
+
+      .card-header {
+        background-color: rgba(115, 103, 240, 0.1);
+        border-bottom: 1px solid rgba(115, 103, 240, 0.2);
+      }
+
+      .form-control[readonly] {
+        background-color: #f8f9fa;
+        border: 1px solid #e3e6f0;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+      }
+
+      .alert-info {
+        background-color: rgba(54, 162, 235, 0.1);
+        border-color: rgba(54, 162, 235, 0.2);
+        color: #2c5aa0;
+      }
+
+      .alert-warning {
+        background-color: rgba(255, 193, 7, 0.1);
+        border-color: rgba(255, 193, 7, 0.2);
+        color: #856404;
+      }
+
+      .alert-success {
+        background-color: rgba(40, 167, 69, 0.1);
+        border-color: rgba(40, 167, 69, 0.2);
+        color: #155724;
+      }
+    </style>
+  </body>
+</html>
