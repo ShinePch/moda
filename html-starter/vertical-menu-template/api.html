@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api 스캐너</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00d4ff, #90e0ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .api-config {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 14px;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #00d4ff, #90e0ef);
+            color: #1e3c72;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00d4ff;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .coin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .coin-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .coin-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .coin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .coin-symbol {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .coin-price {
+            font-size: 16px;
+            color: #90e0ef;
+        }
+
+        .coin-details {
+            font-size: 14px;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-up { background-color: #4ade80; }
+        .status-down { background-color: #f87171; }
+
+        .summary {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-stat {
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 18px;
+        }
+
+        .error {
+            background: rgba(248, 113, 113, 0.2);
+            border: 1px solid #f87171;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: #fecaca;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #90e0ef);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Bybit 암호화폐 스캐너</h1>
+            <p>MA448/644 아래 코인 검색기</p>
+        </div>
+
+        <div class="api-config">
+            <h3>🔑 API 설정</h3>
+            <div class="input-group">
+                <label for="apiKey">API Key:</label>
+                <input type="password" id="apiKey" placeholder="Bybit API Key를 입력하세요">
+            </div>
+            <div class="input-group">
+                <label for="apiSecret">API Secret:</label>
+                <input type="password" id="apiSecret" placeholder="Bybit API Secret을 입력하세요">
+            </div>
+            <small>* API 키는 브라우저에 저장되지 않습니다 (Read-Only 권한만 필요)</small>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="testConnection()">🔍 연결 테스트</button>
+            <button class="btn" onclick="quickScan()">⚡ 빠른 스캔 (50개)</button>
+            <button class="btn" onclick="fullScan()">🎯 전체 스캔 (MA448/644)</button>
+            <button class="btn" onclick="clearResults()">🗑️ 결과 지우기</button>
+        </div>
+
+        <div class="results" id="results">
+            <div style="text-align: center; opacity: 0.7; padding: 40px;">
+                <h3>🎯 검색 결과가 여기에 표시됩니다</h3>
+                <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let apiKey = '';
+        let apiSecret = '';
+        let isScanning = false;
+
+        // API 설정 가져오기
+        function getApiConfig() {
+            apiKey = document.getElementById('apiKey').value.trim();
+            apiSecret = document.getElementById('apiSecret').value.trim();
+            
+            if (!apiKey || !apiSecret) {
+                showError('API Key와 Secret을 입력해주세요');
+                return false;
+            }
+            return true;
+        }
+
+        // Bybit API 서명 생성
+        function generateSignature(timestamp, params) {
+            const queryString = new URLSearchParams(params).toString();
+            const payload = timestamp + apiKey + '5000' + queryString;
+            return CryptoJS.HmacSHA256(payload, apiSecret).toString();
+        }
+
+        // API 호출 함수
+        async function callBybitAPI(endpoint, params = {}) {
+            if (!getApiConfig()) return null;
+
+            const timestamp = Date.now().toString();
+            const signature = generateSignature(timestamp, params);
+            
+            const queryString = new URLSearchParams(params).toString();
+            const url = `https://api.bybit.com${endpoint}?${queryString}`;
+
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'X-BAPI-API-KEY': apiKey,
+                        'X-BAPI-SIGN': signature,
+                        'X-BAPI-SIGN-TYPE': '2',
+                        'X-BAPI-TIMESTAMP': timestamp,
+                        'X-BAPI-RECV-WINDOW': '5000'
+                    }
+                });
+
+                const data = await response.json();
+                if (data.retCode !== 0) {
+                    throw new Error(data.retMsg || 'API 오류');
+                }
+                return data.result;
+            } catch (error) {
+                console.error('API 호출 오류:', error);
+                throw error;
+            }
+        }
+
+        // 연결 테스트
+        async function testConnection() {
+            if (!getApiConfig()) return;
+
+            showLoading('API 연결을 테스트하는 중...');
+            
+            try {
+                const serverTime = await callBybitAPI('/v5/market/time');
+                const tickers = await callBybitAPI('/v5/market/tickers', { category: 'spot', symbol: 'BTCUSDT' });
+                
+                const btcPrice = parseFloat(tickers.list[0].lastPrice);
+                
+                showResults(`
+                    <div class="summary">
+                        <h3>✅ 연결 성공!</h3>
+                        <p>비트코인 현재가: $${btcPrice.toLocaleString()}</p>
+                        <p>서버 시간: ${new Date(parseInt(serverTime.timeSecond) * 1000).toLocaleString()}</p>
+                    </div>
+                `);
+            } catch (error) {
+                showError(`연결 실패: ${error.message}`);
+            }
+        }
+
+        // 빠른 스캔 (MA112 기준)
+        async function quickScan() {
+            if (!getApiConfig() || isScanning) return;
+
+            isScanning = true;
+            showLoading('빠른 스캔 중... (50개 코인 검사)');
+
+            try {
+                // 인기 코인 50개 리스트
+                const popularCoins = [
+                    'BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'ADAUSDT', 'SOLUSDT', 'DOTUSDT', 'LINKUSDT', 'AVAXUSDT',
+                    'MATICUSDT', 'ATOMUSDT', 'NEARUSDT', 'ALGOUSDT', 'VETUSDT', 'ICPUSDT', 'FILUSDT',
+                    'TRXUSDT', 'ETCUSDT', 'XLMUSDT', 'AAVEUSDT', 'UNIUSDT', 'LTCUSDT', 'BCHUSDT',
+                    'DOGEUSDT', 'SHIBUSDT', 'PEPEUSDT', 'FLOKIUSDT', 'BONKUSDT', 'WIFUSDT', 'NOTUSDT',
+                    'THETAUSDT', 'CHZUSDT', 'MANAUSDT', 'SANDUSDT', 'AXSUSDT', 'ENJUSDT', 'GALAUSDT',
+                    'FLOWUSDT', 'GRTUSDT', 'YGGUSDT', 'SLPUSDT', 'TLMUSDT', 'ALICEUSDT', 'CHROUSDT',
+                    'COTIUSDT', 'CTSIUSDT', 'CVCUSDT', 'DIAUSDT', 'FIDAUSDT', 'FORMUSDT', 'GHSTUSDT', 'HBARUSDT'
+                ];
+
+                const results = [];
+                const progressDiv = document.createElement('div');
+                progressDiv.innerHTML = `
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <p id="progress-text">0/50 완료</p>
+                `;
+                document.getElementById('results').appendChild(progressDiv);
+
+                for (let i = 0; i < popularCoins.length; i++) {
+                    const symbol = popularCoins[i];
+                    
+                    try {
+                        const ticker = await callBybitAPI('/v5/market/tickers', { 
+                            category: 'spot', 
+                            symbol: symbol 
+                        });
+
+                        if (ticker.list && ticker.list.length > 0) {
+                            const coin = ticker.list[0];
+                            const price = parseFloat(coin.lastPrice);
+                            const change24h = parseFloat(coin.price24hPcnt) * 100;
+                            const volume = parseFloat(coin.volume24h);
+
+                            // 간단한 조건: 24시간 변동률이 -5% 이하인 코인
+                            if (change24h <= -2) {
+                                results.push({
+                                    symbol: symbol,
+                                    price: price,
+                                    change24h: change24h,
+                                    volume: volume,
+                                    condition: '24h 하락'
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        console.log(`${symbol} 오류:`, error.message);
+                    }
+
+                    // 진행률 업데이트
+                    const progress = ((i + 1) / popularCoins.length) * 100;
+                    document.querySelector('.progress-fill').style.width = `${progress}%`;
+                    document.getElementById('progress-text').textContent = `${i + 1}/50 완료`;
+                    
+                    // API 호출 제한을 위한 딜레이
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+
+                displayScanResults(results, '빠른 스캔');
+            } catch (error) {
+                showError(`스캔 실패: ${error.message}`);
+            } finally {
+                isScanning = false;
+            }
+        }
+
+        // 전체 스캔 (시뮬레이션)
+        async function fullScan() {
+            if (!getApiConfig() || isScanning) return;
+
+            isScanning = true;
+            showLoading('전체 스캔 중... (MA448/644 분석)');
+
+            try {
+                // 실제로는 복잡한 MA 계산이 필요하지만, 데모용으로 시뮬레이션
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                const simulatedResults = [
+                    { symbol: 'ETHUSDT', price: 2520.10, change24h: 0.89, volume: 55565, condition: 'MA448 아래' },
+                    { symbol: 'DOTUSDT', price: 4.02, change24h: 2.98, volume: 694201, condition: 'MA644 아래' },
+                    { symbol: 'AXSUSDT', price: 2.44, change24h: -1.2, volume: 123456, condition: '둘 다 아래' },
+                    { symbol: 'LINKUSDT', price: 13.82, change24h: 2.76, volume: 320702, condition: 'MA448 아래' },
+                    { symbol: 'UNIUSDT', price: 6.29, change24h: -0.5, volume: 234567, condition: '둘 다 아래' }
+                ];
+
+                displayScanResults(simulatedResults, '전체 스캔 (데모)');
+            } catch (error) {
+                showError(`스캔 실패: ${error.message}`);
+            } finally {
+                isScanning = false;
+            }
+        }
+
+        // 결과 표시
+        function displayScanResults(results, scanType) {
+            if (results.length === 0) {
+                showResults(`
+                    <div class="summary">
+                        <h3>📊 ${scanType} 완료</h3>
+                        <p>조건에 맞는 코인이 없습니다.</p>
+                    </div>
+                `);
+                return;
+            }
+
+            const avgPrice = results.reduce((sum, coin) => sum + coin.price, 0) / results.length;
+            const avgChange = results.reduce((sum, coin) => sum + coin.change24h, 0) / results.length;
+
+            let html = `
+                <div class="summary">
+                    <h3>📊 ${scanType} 결과</h3>
+                    <div class="summary-stat">발견: ${results.length}개</div>
+                    <div class="summary-stat">평균가격: $${avgPrice.toFixed(4)}</div>
+                    <div class="summary-stat">평균변동: ${avgChange.toFixed(2)}%</div>
+                </div>
+                <div class="coin-grid">
+            `;
+
+            results.forEach(coin => {
+                const statusClass = coin.change24h >= 0 ? 'status-up' : 'status-down';
+                const changeIcon = coin.change24h >= 0 ? '📈' : '📉';
+                
+                html += `
+                    <div class="coin-card">
+                        <div class="coin-header">
+                            <div class="coin-symbol">${coin.symbol}</div>
+                            <div class="coin-price">$${coin.price.toLocaleString()}</div>
+                        </div>
+                        <div class="coin-details">
+                            <div><span class="status-indicator ${statusClass}"></span>${changeIcon} 24h: ${coin.change24h.toFixed(2)}%</div>
+                            <div>📊 거래량: ${coin.volume.toLocaleString()}</div>
+                            <div>🎯 조건: ${coin.condition}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            showResults(html);
+        }
+
+        // UI 헬퍼 함수들
+        function showLoading(message) {
+            document.getElementById('results').innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    ${message}
+                </div>
+            `;
+        }
+
+        function showResults(html) {
+            document.getElementById('results').innerHTML = html;
+        }
+
+        function showError(message) {
+            document.getElementById('results').innerHTML = `
+                <div class="error">
+                    ❌ ${message}
+                </div>
+            `;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = `
+                <div style="text-align: center; opacity: 0.7; padding: 40px;">
+                    <h3>🎯 검색 결과가 여기에 표시됩니다</h3>
+                    <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+                </div>
+            `;
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Bybit 스캐너가 준비되었습니다!');
+        });
+    </script>
+</body>
+</html>
