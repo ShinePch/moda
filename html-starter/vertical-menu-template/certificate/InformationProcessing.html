@@ -1,0 +1,2391 @@
+<!-- 소프트웨어공학 탭 -->
+<div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
+              
+    <div class="col-md">
+      <div class="accordion mt-3 accordion-bordered" id="accordionSoftware">
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-1"
+              aria-expanded="false">
+              응집도와 결합도
+            </button>
+          </h2>
+          <div id="accordionSoftware-1" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- 응집도 테이블 -->
+              <h6><strong>응집도 (Cohesion)</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>강도</th>
+                      <th>기호</th>
+                      <th>한글이름</th>
+                      <th>영어이름</th>
+                      <th>의미/주요기능</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="6">낮음</td>
+                      <td>우</td>
+                      <td>우연적</td>
+                      <td>Coincidental</td>
+                      <td>각 구성 요소들이 연관이 없음</td>
+                    </tr>
+                    <tr>
+                      <td>논</td>
+                      <td>논리적</td>
+                      <td>Logical</td>
+                      <td>유사한 성격, 특정 형태로 분류들이 한 모듈에서 처리</td>
+                    </tr>
+                    <tr>
+                      <td>시</td>
+                      <td>시간적</td>
+                      <td>Temporal</td>
+                      <td>특정 시간에 처리</td>
+                    </tr>
+                    <tr>
+                      <td>절</td>
+                      <td>절차적</td>
+                      <td>Procedural</td>
+                      <td>모듈 안 기능들이 순차적</td>
+                    </tr>
+                    <tr>
+                      <td>통</td>
+                      <td>통신적</td>
+                      <td>Communication</td>
+                      <td>동일한 입력과 출력을 사용하여 다른 기능을 수행</td>
+                    </tr>
+                    <tr>
+                      <td>순</td>
+                      <td>순차적</td>
+                      <td>Sequential</td>
+                      <td>출력값을 다른 활동이 사용</td>
+                    </tr>
+                    <tr>
+                      <td>높음</td>
+                      <td>기</td>
+                      <td>기능적</td>
+                      <td>Functional</td>
+                      <td>모듈 내의 기능이 단일한 목적을 위해 수행</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 결합도 테이블 -->
+              <h6><strong>결합도 (Coupling)</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>강도</th>
+                      <th>기호</th>
+                      <th>한글이름</th>
+                      <th>영어이름</th>
+                      <th>의미/주요기능</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="5">높음</td>
+                      <td>내</td>
+                      <td>내용</td>
+                      <td>Content</td>
+                      <td>다른 모듈 변수나 기능을 또 다른 모듈에서 사용</td>
+                    </tr>
+                    <tr>
+                      <td>공</td>
+                      <td>공통</td>
+                      <td>Common</td>
+                      <td>전역변수</td>
+                    </tr>
+                    <tr>
+                      <td>외</td>
+                      <td>외부</td>
+                      <td>External</td>
+                      <td>외부로 선언한 변수를 다른 모듈에서 참조</td>
+                    </tr>
+                    <tr>
+                      <td>제</td>
+                      <td>제어</td>
+                      <td>Control</td>
+                      <td>값뿐만 아니라 제어 요소까지</td>
+                    </tr>
+                    <tr>
+                      <td>스</td>
+                      <td>스탬프</td>
+                      <td>Stamp</td>
+                      <td>배열, 오브젝트, 스트럭처까지 전달</td>
+                    </tr>
+                    <tr>
+                      <td>낮음</td>
+                      <td>자</td>
+                      <td>자료</td>
+                      <td>Data</td>
+                      <td>모듈간의 자료(값)을 통해서만 모듈 상호 작용 발생</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 요구사항분석 및 프로토콜 -->
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-2"
+              aria-expanded="false">
+              요구사항분석 및 시스템 통합
+            </button>
+          </h2>
+          <div id="accordionSoftware-2" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- 프로토콜 구성요소 -->
+              <h6><strong>프로토콜 구성요소</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>구성요소</th>
+                      <th>영어명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>구문</td>
+                      <td>Syntax</td>
+                      <td>데이터 형식, 코딩, 신호 레벨 등을 규정</td>
+                    </tr>
+                    <tr>
+                      <td>타이밍</td>
+                      <td>Timing</td>
+                      <td>속도 조절과 순서 관리를 규정</td>
+                    </tr>
+                    <tr>
+                      <td>의미</td>
+                      <td>Semantic</td>
+                      <td>에러 제어와 동기화를 위한 제어 정보를 규정</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 시스템 통합 기술 -->
+              <h6><strong>시스템 통합 기술</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>분류</th>
+                      <th>기술명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="4">ESB</td>
+                      <td>BUS</td>
+                      <td>기업 안팎의 시스템 통합</td>
+                    </tr>
+                    <tr>
+                      <td>EAI</td>
+                      <td>Point to Point 방식의 기업 애플리케이션 통합</td>
+                    </tr>
+                    <tr>
+                      <td>Hub and Spoke</td>
+                      <td>중앙 허브를 통한 통합 방식</td>
+                    </tr>
+                    <tr>
+                      <td>Message Bus</td>
+                      <td>메시지 버스를 통한 통합 방식</td>
+                    </tr>
+                    <tr>
+                      <td>웹서비스</td>
+                      <td>SOAP</td>
+                      <td>XML 기반 메시지 교환 프로토콜</td>
+                    </tr>
+                    <tr>
+                      <td>서비스 레지스트리</td>
+                      <td>UDDI</td>
+                      <td>웹 서비스를 등록하고 검색하는 도서관 역할</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- SW 3R 및 개발 방법론 -->
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-3"
+              aria-expanded="false">
+              SW 3R 및 개발 방법론
+            </button>
+          </h2>
+          <div id="accordionSoftware-3" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- SW 3R -->
+              <h6><strong>SW 3R</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>한글명</th>
+                      <th>영어명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1R</td>
+                      <td>역공학</td>
+                      <td>Reverse Engineering</td>
+                      <td>기존 소프트웨어를 분석하여 설계도를 추출</td>
+                    </tr>
+                    <tr>
+                      <td>2R</td>
+                      <td>재공학</td>
+                      <td>Re-engineering</td>
+                      <td>기존 시스템을 개선하여 새로운 시스템으로 재구성</td>
+                    </tr>
+                    <tr>
+                      <td>3R</td>
+                      <td>재사용</td>
+                      <td>Reuse</td>
+                      <td>기존에 개발된 소프트웨어 자산을 새로운 개발에 활용</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- SW 개발 방법론 -->
+              <h6><strong>SW 개발 방법론</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>방법론</th>
+                      <th>특징</th>
+                      <th>주요 도구/기법</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>1. 구조적 방법론</strong></td>
+                      <td>하향식, 절차지향</td>
+                      <td>DFD(흐름도), DD(자료사전), MINI-SPEC(소단위 명세서), ERD(개체관계도), STD(상태전이도)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>2. 객체지향 방법론</strong></td>
+                      <td>상향식<br>캡슐화(정보은닉), 상속, 다형성, 추상화</td>
+                      <td>UML, 모델링</td>
+                    </tr>
+                    <tr>
+                      <td><strong>3. 애자일 방법론</strong></td>
+                      <td>반복적, 점진적 개발</td>
+                      <td>XP, SCRUM, FDD, CRYSTAL, LEAN</td>
+                    </tr>
+                    <tr>
+                      <td><strong>4. 정보공학 방법론</strong></td>
+                      <td>데이터 중심</td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td><strong>5. CBD 방법론</strong></td>
+                      <td>컴포넌트 기반</td>
+                      <td>-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 요구사항 분석 절차 -->
+              <h6><strong>요구사항 분석 절차 (절차지향)</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>순서</th>
+                      <th>단계</th>
+                      <th>영어명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>도출</td>
+                      <td>Elicitation</td>
+                      <td>요구사항을 찾아내고 수집</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>분석</td>
+                      <td>Analysis</td>
+                      <td>수집된 요구사항을 구체적으로 분석</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>명세</td>
+                      <td>Specification</td>
+                      <td>분석된 요구사항을 문서화</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>확인</td>
+                      <td>Validation</td>
+                      <td>명세된 요구사항이 올바른지 검증</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 명세 기반 -->
+              <h6><strong>명세 기반</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>특징</th>
+                      <th>예시</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>정형 명세</td>
+                      <td>수학, 논리 기반</td>
+                      <td>수학적 모델, 논리식</td>
+                    </tr>
+                    <tr>
+                      <td>비정형 명세</td>
+                      <td>자연어, 그림 기반</td>
+                      <td>자연어 문서, 다이어그램</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- XP 방법론 -->
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-4"
+              aria-expanded="false">
+              XP (eXtreme Programming) 방법론
+            </button>
+          </h2>
+          <div id="accordionSoftware-4" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- XP 5가지 핵심가치 -->
+              <h6><strong>XP 5가지 핵심가치</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>핵심가치</th>
+                      <th>영어명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>의사소통</td>
+                      <td>Communication</td>
+                      <td>팀원 간의 원활한 소통</td>
+                    </tr>
+                    <tr>
+                      <td>피드백</td>
+                      <td>Feedback</td>
+                      <td>빠르고 지속적인 피드백</td>
+                    </tr>
+                    <tr>
+                      <td>존중</td>
+                      <td>Respect</td>
+                      <td>팀원 상호간의 존중</td>
+                    </tr>
+                    <tr>
+                      <td>용기</td>
+                      <td>Courage</td>
+                      <td>변화와 도전에 대한 용기</td>
+                    </tr>
+                    <tr>
+                      <td>단순성</td>
+                      <td>Simplicity</td>
+                      <td>가장 간단한 해결책 추구</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- XP 12가지 실천사항 -->
+              <h6><strong>XP 12가지 실천사항</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>실천사항</th>
+                      <th>영어명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>계획 세우기</td>
+                      <td>Planning Game</td>
+                      <td>고객과 함께 계획 수립</td>
+                    </tr>
+                    <tr>
+                      <td>작은 릴리즈</td>
+                      <td>Small Releases</td>
+                      <td>짧은 주기로 소프트웨어 릴리즈</td>
+                    </tr>
+                    <tr>
+                      <td>메타포</td>
+                      <td>Metaphor</td>
+                      <td>시스템에 대한 공통된 이해</td>
+                    </tr>
+                    <tr>
+                      <td>단순한 디자인</td>
+                      <td>Simple Design</td>
+                      <td>가장 간단한 설계 추구</td>
+                    </tr>
+                    <tr>
+                      <td>테스트 주도 개발</td>
+                      <td>Test-Driven Development</td>
+                      <td>테스트를 먼저 작성하고 개발</td>
+                    </tr>
+                    <tr>
+                      <td>리팩토링</td>
+                      <td>Refactoring</td>
+                      <td>코드 개선 및 최적화</td>
+                    </tr>
+                    <tr>
+                      <td>짝 프로그래밍</td>
+                      <td>Pair Programming</td>
+                      <td>두 명이 함께 코딩</td>
+                    </tr>
+                    <tr>
+                      <td>공동 소유권</td>
+                      <td>Collective Ownership</td>
+                      <td>모든 코드를 공동 소유</td>
+                    </tr>
+                    <tr>
+                      <td>지속적인 통합</td>
+                      <td>Continuous Integration</td>
+                      <td>빈번한 코드 통합</td>
+                    </tr>
+                    <tr>
+                      <td>주 40시간 근무</td>
+                      <td>40-Hour Week</td>
+                      <td>지속 가능한 근무 환경</td>
+                    </tr>
+                    <tr>
+                      <td>현장 고객</td>
+                      <td>On-Site Customer</td>
+                      <td>고객이 개발팀과 함께 근무</td>
+                    </tr>
+                    <tr>
+                      <td>코딩 표준</td>
+                      <td>Coding Standards</td>
+                      <td>일관된 코딩 규칙 준수</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 요구사항 분석도구 -->
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-5"
+              aria-expanded="false">
+              요구사항 분석도구
+            </button>
+          </h2>
+          <div id="accordionSoftware-5" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- CASE 도구 -->
+              <h6><strong>CASE (Computer Aided Software Engineering)</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>적용단계</th>
+                      <th>포함도구</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>상위 CASE</td>
+                      <td>전반적, 계획, 요구분석, 설계단계</td>
+                      <td>DFD, STD, ERD, UML</td>
+                    </tr>
+                    <tr>
+                      <td>하위 CASE</td>
+                      <td>코드테스트, 문서화</td>
+                      <td>코드 생성기, 테스트 도구</td>
+                    </tr>
+                    <tr>
+                      <td>통합 CASE</td>
+                      <td>상위 + 하위 통합</td>
+                      <td>전 생명주기 지원 도구</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- HIPO -->
+              <h6><strong>HIPO (Hierarchy plus Input-Process-Output)</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>도표 유형</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>기능적 도표</td>
+                      <td>전체 흐름을 나타내는 하향식 SW위한 문서화 도구</td>
+                    </tr>
+                    <tr>
+                      <td>절차적 도표</td>
+                      <td>가입, 로그인 등 특정 기능의 처리 과정</td>
+                    </tr>
+                    <tr>
+                      <td>세부적 도표</td>
+                      <td>더 세분화된 상세 처리 과정</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- UML 모델링 -->
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-6"
+              aria-expanded="false">
+              UML 모델링 및 다이어그램
+            </button>
+          </h2>
+          <div id="accordionSoftware-6" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- UML 모델링 유형 -->
+              <h6><strong>UML 모델링 유형</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>모델링 유형</th>
+                      <th>목적</th>
+                      <th>주요 다이어그램</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>기능적 모델링</td>
+                      <td>기능들을 명세</td>
+                      <td>유스케이스 다이어그램</td>
+                    </tr>
+                    <tr>
+                      <td>정적 모델링</td>
+                      <td>UML로 구조 표현</td>
+                      <td>클래스, 컴포넌트, 배치, 패키지 다이어그램</td>
+                    </tr>
+                    <tr>
+                      <td>동적 모델링</td>
+                      <td>시스템 행위 표현</td>
+                      <td>순차, 통신, 활동, 상태 다이어그램</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 객체지향 방법론 학자들 -->
+              <h6><strong>객체지향 방법론 학자들</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>학자</th>
+                      <th>특징</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>럼바우 (Rumbaugh)</td>
+                      <td>객체(객체 다이어그램), 동적(상태 다이어그램), 기능(DFD)</td>
+                    </tr>
+                    <tr>
+                      <td>부치 (Booch)</td>
+                      <td>미시적, 거시적 관점</td>
+                    </tr>
+                    <tr>
+                      <td>Jacobson</td>
+                      <td>유즈케이스(Use Case) 도입</td>
+                    </tr>
+                    <tr>
+                      <td>Coad & Yourdon</td>
+                      <td>E-R 다이어그램 활용</td>
+                    </tr>
+                    <tr>
+                      <td>Wirfs-Brock</td>
+                      <td>분석과 설계만 중점</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- UML 다이어그램 -->
+              <h6><strong>UML 다이어그램</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>다이어그램</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="4"><strong>정적모델<br>(시스템구조)</strong></td>
+                      <td>클래스 다이어그램</td>
+                      <td>시스템의 클래스, 속성, 메서드 및 클래스 간의 관계를 보여줌</td>
+                    </tr>
+                    <tr>
+                      <td>컴포넌트 다이어그램</td>
+                      <td>시스템의 물리적 구성 요소와 그들 사이의 의존성을 보여줌</td>
+                    </tr>
+                    <tr>
+                      <td>배치 다이어그램</td>
+                      <td>시스템의 물리적 아키텍처를 나타냄</td>
+                    </tr>
+                    <tr>
+                      <td>패키지 다이어그램</td>
+                      <td>시스템의 패키지 구조와 그들 사이의 의존성을 보여줌</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="5"><strong>동적모델<br>(시스템행위)</strong></td>
+                      <td>유스케이스 다이어그램</td>
+                      <td>시스템과 사용자(액터) 간의 상호작용을 나타냄</td>
+                    </tr>
+                    <tr>
+                      <td>순차(시퀀스) 다이어그램</td>
+                      <td>객체 간의 상호작용을 시간 순서대로 보여줌</td>
+                    </tr>
+                    <tr>
+                      <td>통신 다이어그램</td>
+                      <td>객체 간의 상호작용을 구조적 관점에서 보여줌</td>
+                    </tr>
+                    <tr>
+                      <td>활동 다이어그램</td>
+                      <td>업무 프로세스나 알고리즘의 흐름을 나타냄</td>
+                    </tr>
+                    <tr>
+                      <td>상태 다이어그램</td>
+                      <td>객체의 상태 변화와 이벤트에 따른 전이를 보여줌</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- UI/UX 설계 -->
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-7"
+              aria-expanded="false">
+              UI/UX 설계
+            </button>
+          </h2>
+          <div id="accordionSoftware-7" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- UI/UX 개념 -->
+              <h6><strong>UI/UX 개념</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>전체명</th>
+                      <th>의미</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>UI</td>
+                      <td>User Interface</td>
+                      <td>화면 (사용자와 시스템 간의 상호작용 인터페이스)</td>
+                    </tr>
+                    <tr>
+                      <td>UX</td>
+                      <td>User Experience</td>
+                      <td>경험 (사용자가 제품/서비스를 사용하며 느끼는 전반적 경험)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- UI 설계 원칙 -->
+              <h6><strong>UI 설계 원칙</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>원칙</th>
+                      <th>영어명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>유연성</td>
+                      <td>Flexibility</td>
+                      <td>사용자의 요구사항에 맞게 상호작용할 수 있는 정도</td>
+                    </tr>
+                    <tr>
+                      <td>직관성</td>
+                      <td>Intuitiveness</td>
+                      <td>누구나 쉽게 이해하고 사용할 수 있는 정도</td>
+                    </tr>
+                    <tr>
+                      <td>유효성</td>
+                      <td>Effectiveness</td>
+                      <td>사용자가 목적을 정확하고 완전하게 달성할 수 있는 정도</td>
+                    </tr>
+                    <tr>
+                      <td>학습성</td>
+                      <td>Learnability</td>
+                      <td>사용자가 시스템을 배우고 익힐 수 있는 정도</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><div class="container-xxl flex-grow-1 container-p-y">
+<h4 class="py-3 mb-4">정보처리기사</h4>
+<!-- Autosize 하얀배경 전체 사이즈-->
+<div class="col-12">
+<div class="card mb-4">
+<!-- card-navbar -->
+<nav class="navbar navbar-example navbar-expand-lg">
+<div class="container-fluid ">
+<a class="navbar-brand" href="javascript:void(0)">정보처리기사</a>
+<button
+  class="navbar-toggler"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#navbar-ex-3">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbar-ex-3">
+  <div class="navbar-nav me-auto">
+    <a class="nav-item nav-link" href="javascript:void(0)">#정보처리기사</a>
+    <a class="nav-item nav-link" href="javascript:void(0)">#자격증</a>
+  </div>
+</div>
+</div>
+</nav> 
+<!-- card-navbar -->               
+
+
+<!-- 여기서부터 시작-->
+<div class="nav-align-top nav-tabs-shadow mb-4">
+<ul class="nav nav-tabs" role="tablist" style="width: 100%; margin-left: 0.01%;">
+  <li class="nav-item">
+    <button
+      type="button"
+      class="nav-link active"
+      role="tab"
+      data-bs-toggle="tab"
+      data-bs-target="#navs-top-home"
+      aria-controls="navs-top-home"
+      aria-selected="true">
+      GoF 디자인 패턴
+    </button>
+  </li>
+  <li class="nav-item">
+    <button
+      type="button"
+      class="nav-link"
+      role="tab"
+      data-bs-toggle="tab"
+      data-bs-target="#navs-top-profile"
+      aria-controls="navs-top-profile"
+      aria-selected="false">
+      소프트웨어공학
+    </button>
+  </li>
+  <li class="nav-item">
+    <button
+      type="button"
+      class="nav-link"
+      role="tab"
+      data-bs-toggle="tab"
+      data-bs-target="#navs-top-messages"
+      aria-controls="navs-top-messages"
+      aria-selected="false">
+      데이터베이스
+    </button>
+  </li>
+  <li class="nav-item">
+    <button
+      type="button"
+      class="nav-link"
+      role="tab"
+      data-bs-toggle="tab"
+      data-bs-target="#navs-top-word"
+      aria-controls="navs-top-word"
+      aria-selected="false">
+      네트워크
+    </button>
+  </li>
+  <li class="nav-item">
+    <button
+      type="button"
+      class="nav-link"
+      role="tab"
+      data-bs-toggle="tab"
+      data-bs-target="#navs-top-word2"
+      aria-controls="navs-top-word2"
+      aria-selected="false">
+      운영체제
+    </button>
+  </li>
+</ul>
+<!--tab-content-->
+<div class="tab-content">
+
+  <!-- GoF 디자인 패턴 탭 -->
+  <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
+    
+    <div class="col-md">
+      <div class="accordion mt-3 accordion-bordered" id="accordionGof">
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionGof-1"
+              aria-expanded="false">
+              GoF(디자인패턴)
+            </button>
+          </h2>
+          <div id="accordionGof-1" class="accordion-collapse collapse" data-bs-parent="#accordionGof">
+            <div class="accordion-body">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">분류</th>
+                      <th>기호</th>
+                      <th>한글이름</th>
+                      <th>영어이름</th>
+                      <th>의미/주요기능</th>
+                      <th>핵심단어</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="5">생성</td>
+                      <td>추</td>
+                      <td>추상팩토리</td>
+                      <td>Abstract Factory</td>
+                      <td>관련된 객체들의 집합을 생성하는 인터페이스 제공</td>
+                      <td>집합, 인터페이스</td>
+                    </tr>
+                    <tr>
+                      <td>빌</td>
+                      <td>빌더</td>
+                      <td>Builder</td>
+                      <td>복잡한 객체의 생성 과정과 표현 방법을 분리</td>
+                      <td>생성 과정, 표현 방법</td>
+                    </tr>
+                    <tr>
+                      <td>팩</td>
+                      <td>팩토리 메서드</td>
+                      <td>Factory Method</td>
+                      <td>객체 생성을 서브클래스에 위임</td>
+                      <td>서브클래스</td>
+                    </tr>
+                    <tr>
+                      <td>프</td>
+                      <td>프로토타입</td>
+                      <td>Prototype</td>
+                      <td>기존 객체를 복제하여 새 객체 생성</td>
+                      <td>복제</td>
+                    </tr>
+                    <tr>
+                      <td>싱</td>
+                      <td>싱글턴</td>
+                      <td>Singleton</td>
+                      <td>클래스의 인스턴스가 하나만 생성되도록 보장</td>
+                      <td>인스턴스가 하나</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="7">구조</td>
+                      <td>어</td>
+                      <td>어댑터</td>
+                      <td>Adapter</td>
+                      <td>호환되지 않는 인터페이스들을 연결</td>
+                      <td>인터페이스</td>
+                    </tr>
+                    <tr>
+                      <td>데</td>
+                      <td>데코레이터</td>
+                      <td>Decorator</td>
+                      <td>객체에 동적으로 새로운 책임 추가</td>
+                      <td>동적, 책임</td>
+                    </tr>
+                    <tr>
+                      <td>컴</td>
+                      <td>컴포지트</td>
+                      <td>Composite</td>
+                      <td>객체들을 트리 구조로 구성하여 부분-전체 계층 표현</td>
+                      <td>트리 구조, 부분-전체</td>
+                    </tr>
+                    <tr>
+                      <td>브</td>
+                      <td>브릿지</td>
+                      <td>Bridge</td>
+                      <td>추상화와 구현을 분리하여 독립적으로 변화 가능하게 함</td>
+                      <td>추상화, 구현</td>
+                    </tr>
+                    <tr>
+                      <td>퍼</td>
+                      <td>퍼사드</td>
+                      <td>Facade</td>
+                      <td>서브시스템에 대한 통합된 단순화된 인터페이스 제공</td>
+                      <td>통합된 단순화</td>
+                    </tr>
+                    <tr>
+                      <td>프</td>
+                      <td>프록시</td>
+                      <td>Proxy</td>
+                      <td>다른 객체에 대한 접근을 제어하는 대리자 객체 제공</td>
+                      <td>접근을 제어</td>
+                    </tr>
+                    <tr>
+                      <td>플</td>
+                      <td>플라이웨이트</td>
+                      <td>Flyweight</td>
+                      <td>작은 객체들을 공유하여 메모리 사용량 절감</td>
+                      <td>공유</td>
+                    </tr>
+                    <tr>
+                      <td rowspan="11">행위</td>
+                      <td>체</td>
+                      <td>책임연쇄</td>
+                      <td>Chain of Responsibility</td>
+                      <td>요청을 처리할 수 있는 기회를 하나 이상의 객체에게 부여</td>
+                      <td>하나 이상</td>
+                    </tr>
+                    <tr>
+                      <td>크</td>
+                      <td>커멘드</td>
+                      <td>Command</td>
+                      <td>요청을 객체로 캡슐화하여 매개변수화</td>
+                      <td>객체</td>
+                    </tr>
+                    <tr>
+                      <td>메</td>
+                      <td>메멘토</td>
+                      <td>Memento</td>
+                      <td>객체의 내부 상태를 저장하고 복원</td>
+                      <td>내부 상태 저장/복원</td>
+                    </tr>
+                    <tr>
+                      <td>이</td>
+                      <td>이터레이터</td>
+                      <td>Iterator</td>
+                      <td>집합 객체의 요소들을 순차적으로 접근</td>
+                      <td>순차적</td>
+                    </tr>
+                    <tr>
+                      <td>트</td>
+                      <td>템플릿메서드</td>
+                      <td>Template Method</td>
+                      <td>알고리즘의 골격을 정의하고 일부 단계를 서브클래스에서 구현</td>
+                      <td>골격</td>
+                    </tr>
+                    <tr>
+                      <td>옵</td>
+                      <td>옵서버</td>
+                      <td>Observer</td>
+                      <td>객체 상태 변화를 다른 객체에 통지</td>
+                      <td>통지</td>
+                    </tr>
+                    <tr>
+                      <td>스</td>
+                      <td>스테이트</td>
+                      <td>State</td>
+                      <td>객체의 내부 상태에 따라 행위를 변경</td>
+                      <td>내부 상태 행위/변경</td>
+                    </tr>
+                    <tr>
+                      <td>스!</td>
+                      <td>스트래테지</td>
+                      <td>Strategy</td>
+                      <td>알고리즘을 캡슐화하고 교체 가능하게 만듦</td>
+                      <td>알고리즘</td>
+                    </tr>
+                    <tr>
+                      <td>인</td>
+                      <td>인터프리터</td>
+                      <td>Interpreter</td>
+                      <td>언어의 문법 표현을 정의하고 해석</td>
+                      <td>문법</td>
+                    </tr>
+                    <tr>
+                      <td>마!</td>
+                      <td>미디에이터</td>
+                      <td>Mediator</td>
+                      <td>객체 간의 복잡한 통신과 제어를 캡슐화</td>
+                      <td>복잡한 통신</td>
+                    </tr>
+                    <tr>
+                      <td>비!!!</td>
+                      <td>비지터</td>
+                      <td>Visitor</td>
+                      <td>객체 구조를 변경하지 않고 새로운 동작 정의</td>
+                      <td>동작</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- SW 3R -->
+    <div class="accordion-item card">
+      <h2 class="accordion-header">
+        <button
+          type="button"
+          class="accordion-button collapsed"
+          data-bs-toggle="collapse"
+          data-bs-target="#accordionSoftware-3"
+          aria-expanded="false">
+          SW 3R 및 개발 방법론
+        </button>
+      </h2>
+      <div id="accordionSoftware-3" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+        <div class="accordion-body">
+          
+          <!-- SW 3R -->
+          <h6><strong>SW 3R</strong></h6>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>한글명</th>
+                  <th>영어명</th>
+                  <th>설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1R</td>
+                  <td>역공학</td>
+                  <td>Reverse Engineering</td>
+                  <td>기존 소프트웨어를 분석하여 설계도를 추출</td>
+                </tr>
+                <tr>
+                  <td>2R</td>
+                  <td>재공학</td>
+                  <td>Re-engineering</td>
+                  <td>기존 시스템을 개선하여 새로운 시스템으로 재구성</td>
+                </tr>
+                <tr>
+                  <td>3R</td>
+                  <td>재사용</td>
+                  <td>Reuse</td>
+                  <td>기존에 개발된 소프트웨어 자산을 새로운 개발에 활용</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SW 개발 방법론 -->
+          <h6><strong>SW 개발 방법론</strong></h6>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>방법론</th>
+                  <th>특징</th>
+                  <th>주요 도구/기법</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. 구조적 방법론</strong></td>
+                  <td>하향식, 절차지향</td>
+                  <td>DFD(흐름도), DD(자료사전), MINI-SPEC(소단위 명세서), ERD(개체관계도), STD(상태전이도)</td>
+                </tr>
+                <tr>
+                  <td><strong>2. 객체지향 방법론</strong></td>
+                  <td>상향식<br>캡슐화(정보은닉), 상속, 다형성, 추상화</td>
+                  <td>UML, 모델링</td>
+                </tr>
+                <tr>
+                  <td><strong>3. 애자일 방법론</strong></td>
+                  <td>반복적, 점진적 개발</td>
+                  <td>XP, SCRUM, FDD, CRYSTAL, LEAN</td>
+                </tr>
+                <tr>
+                  <td><strong>4. 정보공학 방법론</strong></td>
+                  <td>데이터 중심</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>5. CBD 방법론</strong></td>
+                  <td>컴포넌트 기반</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 요구사항 분석 절차 -->
+          <h6><strong>요구사항 분석 절차 (절차지향)</strong></h6>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>순서</th>
+                  <th>단계</th>
+                  <th>영어명</th>
+                  <th>설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>도출</td>
+                  <td>Elicitation</td>
+                  <td>요구사항을 찾아내고 수집</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>분석</td>
+                  <td>Analysis</td>
+                  <td>수집된 요구사항을 구체적으로 분석</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>명세</td>
+                  <td>Specification</td>
+                  <td>분석된 요구사항을 문서화</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>확인</td>
+                  <td>Validation</td>
+                  <td>명세된 요구사항이 올바른지 검증</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 명세 기반 -->
+          <h6><strong>명세 기반</strong></h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>특징</th>
+                  <th>예시</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>정형 명세</td>
+                  <td>수학, 논리 기반</td>
+                  <td>수학적 모델, 논리식</td>
+                </tr>
+                <tr>
+                  <td>비정형 명세</td>
+                  <td>자연어, 그림 기반</td>
+                  <td>자연어 문서, 다이어그램</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- XP 방법론 -->
+    <div class="accordion-item card">
+      <h2 class="accordion-header">
+        <button
+          type="button"
+          class="accordion-button collapsed"
+          data-bs-toggle="collapse"
+          data-bs-target="#accordionSoftware-4"
+          aria-expanded="false">
+          XP (eXtreme Programming) 방법론
+        </button>
+      </h2>
+      <div id="accordionSoftware-4" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+        <div class="accordion-body">
+          
+          <!-- XP 5가지 핵심가치 -->
+          <h6><strong>XP 5가지 핵심가치</strong></h6>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>핵심가치</th>
+                  <th>영어명</th>
+                  <th>설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>의사소통</td>
+                  <td>Communication</td>
+                  <td>팀원 간의 원활한 소통</td>
+                </tr>
+                <tr>
+                  <td>피드백</td>
+                  <td>Feedback</td>
+                  <td>빠르고 지속적인 피드백</td>
+                </tr>
+                <tr>
+                  <td>존중</td>
+                  <td>Respect</td>
+                  <td>팀원 상호간의 존중</td>
+                </tr>
+                <tr>
+                  <td>용기</td>
+                  <td>Courage</td>
+                  <td>변화와 도전에 대한 용기</td>
+                </tr>
+                <tr>
+                  <td>단순성</td>
+                  <td>Simplicity</td>
+                  <td>가장 간단한 해결책 추구</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- XP 12가지 실천사항 -->
+          <h6><strong>XP 12가지 실천사항</strong></h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>실천사항</th>
+                  <th>영어명</th>
+                  <th>설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>계획 세우기</td>
+                  <td>Planning Game</td>
+                  <td>고객과 함께 계획 수립</td>
+                </tr>
+                <tr>
+                  <td>작은 릴리즈</td>
+                  <td>Small Releases</td>
+                  <td>짧은 주기로 소프트웨어 릴리즈</td>
+                </tr>
+                <tr>
+                  <td>메타포</td>
+                  <td>Metaphor</td>
+                  <td>시스템에 대한 공통된 이해</td>
+                </tr>
+                <tr>
+                  <td>단순한 디자인</td>
+                  <td>Simple Design</td>
+                  <td>가장 간단한 설계 추구</td>
+                </tr>
+                <tr>
+                  <td>테스트 주도 개발</td>
+                  <td>Test-Driven Development</td>
+                  <td>테스트를 먼저 작성하고 개발</td>
+                </tr>
+                <tr>
+                  <td>리팩토링</td>
+                  <td>Refactoring</td>
+                  <td>코드 개선 및 최적화</td>
+                </tr>
+                <tr>
+                  <td>짝 프로그래밍</td>
+                  <td>Pair Programming</td>
+                  <td>두 명이 함께 코딩</td>
+                </tr>
+                <tr>
+                  <td>공동 소유권</td>
+                  <td>Collective Ownership</td>
+                  <td>모든 코드를 공동 소유</td>
+                </tr>
+                <tr>
+                  <td>지속적인 통합</td>
+                  <td>Continuous Integration</td>
+                  <td>빈번한 코드 통합</td>
+                </tr>
+                <tr>
+                  <td>주 40시간 근무</td>
+                  <td>40-Hour Week</td>
+                  <td>지속 가능한 근무 환경</td>
+                </tr>
+                <tr>
+                  <td>현장 고객</td>
+                  <td>On-Site Customer</td>
+                  <td>고객이 개발팀과 함께 근무</td>
+                </tr>
+                <tr>
+                  <td>코딩 표준</td>
+                  <td>Coding Standards</td>
+                  <td>일관된 코딩 규칙 준수</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 요구사항 분석도구 -->
+    <div class="accordion-item card">
+      <h2 class="accordion-header">
+        <button
+          type="button"
+          class="accordion-button collapsed"
+          data-bs-toggle="collapse"
+          data-bs-target="#accordionSoftware-5"
+          aria-expanded="false">
+          요구사항 분석도구
+        </button>
+      </h2>
+      <div id="accordionSoftware-5" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+        <div class="accordion-body">
+          
+          <!-- CASE 도구 -->
+          <h6><strong>CASE (Computer Aided Software Engineering)</strong></h6>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>적용단계</th>
+                  <th>포함도구</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>상위 CASE</td>
+                  <td>전반적, 계획, 요구분석, 설계단계</td>
+                  <td>DFD, STD, ERD, UML</td>
+                </tr>
+                <tr>
+                  <td>하위 CASE</td>
+                  <td>코드테스트, 문서화</td>
+                  <td>코드 생성기, 테스트 도구</td>
+                </tr>
+                <tr>
+                  <td>통합 CASE</td>
+                  <td>상위 + 하위 통합</td>
+                  <td>전 생명주기 지원 도구</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- HIPO -->
+          <h6><strong>HIPO (Hierarchy plus Input-Process-Output)</strong></h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>도표 유형</th>
+                  <th>설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>기능적 도표</td>
+                  <td>전체 흐름을 나타내는 하향식 SW위한 문서화 도구</td>
+                </tr>
+                <tr>
+                  <td>절차적 도표</td>
+                  <td>가입, 로그인 등 특정 기능의 처리 과정</td>
+                </tr>
+                <tr>
+                  <td>세부적 도표</td>
+                  <td>더 세분화된 상세 처리 과정</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- UML 모델링 -->
+    <div class="accordion-item card">
+      <h2 class="accordion-header">
+        <button
+          type="button"
+          class="accordion-button collapsed"
+          data-bs-toggle="collapse"
+          data-bs-target="#accordionSoftware-6"
+          aria-expanded="false">
+          UML 모델링 및 다이어그램
+        </button>
+      </h2>
+      <div id="accordionSoftware-6" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+        <div class="accordion-body">
+          
+          <!-- UML 모델링 유형 -->
+          <h6><strong>UML 모델링 유형</strong></h6>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>모델링 유형</th>
+                  <th>목적</th>
+                  <th>주요 다이어그램</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>기능적 모델링</td>
+                  <td>기능들을 명세</td>
+                  <td>유스케이스 다이어그램</td>
+                </tr>
+                <tr>
+                  <td>정적 모델링</td>
+                  <td>UML로 구조 표현</td>
+                  <td>클래스, 컴포넌트, 배치, 패키지 다이어그램</td>
+                </tr>
+                <tr>
+                  <td>동적 모델링</td>
+                  <td>시스템 행위 표현</td>
+                  <td>순차, 통신, 활동, 상태 다이어그램</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 객체지향 방법론 학자들 -->
+          <h6><strong>객체지향 방법론 학자들</strong></h6>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>학자</th>
+                  <th>특징</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>럼바우 (Rumbaugh)</td>
+                  <td>객체(객체 다이어그램), 동적(상태 다이어그램), 기능(DFD)</td>
+                </tr>
+                <tr>
+                  <td>부치 (Booch)</td>
+                  <td>미시적, 거시적 관점</td>
+                </tr>
+                <tr>
+                  <td>Jacobson</td>
+                  <td>유즈케이스(Use Case) 도입</td>
+                </tr>
+                <tr>
+                  <td>Coad & Yourdon</td>
+                  <td>E-R 다이어그램 활용</td>
+                </tr>
+                <tr>
+                  <td>Wirfs-Brock</td>
+                  <td>분석과 설계만 중점</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- UML 다이어그램 -->
+          <h6><strong>UML 다이어그램</strong></h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>다이어그램</th>
+                  <th>설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="4"><strong>정적모델<br>(시스템구조)</strong></td>
+                  <td>클래스 다이어그램</td>
+                  <td>시스템의 클래스, 속성, 메서드 및 클래스 간의 관계를 보여줌</td>
+                </tr>
+                <tr>
+                  <td>컴포넌트 다이어그램</td>
+                  <td>시스템의 물리적 구성 요소와 그들 사이의 의존성을 보여줌</td>
+                </tr>
+                <tr>
+                  <td>배치 다이어그램</td>
+                  <td>시스템의 물리적 아키텍처를 나타냄</td>
+                </tr>
+                <tr>
+                  <td>패키지 다이어그램</td>
+                  <td>시스템의 패키지 구조와 그들 사이의 의존성을 보여줌</td>
+                </tr>
+                <tr>
+                  <td rowspan="5"><strong>동적모델<br>(시스템행위)</strong></td>
+                  <td>유스케이스 다이어그램</td>
+                  <td>시스템과 사용자(액터) 간의 상호작용을 나타냄</td>
+                </tr>
+                <tr>
+                  <td>순차(시퀀스) 다이어그램</td>
+                  <td>객체 간의 상호작용을 시간 순서대로 보여줌</td>
+                </tr>
+                <tr>
+                  <td>통신 다이어그램</td>
+                  <td>객체 간의 상호작용을 구조적 관점에서 보여줌</td>
+                </tr>
+                <tr>
+                  <td>활동 다이어그램</td>
+                  <td>업무 프로세스나 알고리즘의 흐름을 나타냄</td>
+                </tr>
+                <tr>
+                  <td>상태 다이어그램</td>
+                  <td>객체의 상태 변화와 이벤트에 따른 전이를 보여줌</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- UI/UX 설계 -->
+    <div class="accordion-item card">
+      <h2 class="accordion-header">
+        <button
+          type="button"
+          class="accordion-button collapsed"
+          data-bs-toggle="collapse"
+          data-bs-target="#accordionSoftware-7"
+          aria-expanded="false">
+          UI/UX 설계
+        </button>
+      </h2>
+      <div id="accordionSoftware-7" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+        <div class="accordion-body">
+          
+          <!-- UI/UX 개념 -->
+          <h6><strong>UI/UX 개념</strong></h6>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>전체명</th>
+                  <th>의미</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>UI</td>
+                  <td>User Interface</td>
+                  <td>화면 (사용자와 시스템 간의 상호작용 인터페이스)</td>
+                </tr>
+                <tr>
+                  <td>UX</td>
+                  <td>User Experience</td>
+                  <td>경험 (사용자가 제품/서비스를 사용하며 느끼는 전반적 경험)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- UI 설계 원칙 -->
+          <h6><strong>UI 설계 원칙</strong></h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>원칙</th>
+                  <th>영어명</th>
+                  <th>설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>유연성</td>
+                  <td>Flexibility</td>
+                  <td>사용자의 요구사항에 맞게 상호작용할 수 있는 정도</td>
+                </tr>
+                <tr>
+                  <td>직관성</td>
+                  <td>Intuitiveness</td>
+                  <td>누구나 쉽게 이해하고 사용할 수 있는 정도</td>
+                </tr>
+                <tr>
+                  <td>유효성</td>
+                  <td>Effectiveness</td>
+                  <td>사용자가 목적을 정확하고 완전하게 달성할 수 있는 정도</td>
+                </tr>
+                <tr>
+                  <td>학습성</td>
+                  <td>Learnability</td>
+                  <td>사용자가 시스템을 배우고 익힐 수 있는 정도</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 소프트웨어공학 탭 -->
+  <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
+    
+    <div class="col-md">
+      <div class="accordion mt-3 accordion-bordered" id="accordionSoftware">
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-1"
+              aria-expanded="true">
+              응집도와 결합도
+            </button>
+          </h2>
+          <div id="accordionSoftware-1" class="accordion-collapse collapse show" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- 응집도 테이블 -->
+              <h6><strong>응집도 (Cohesion)</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>강도</th>
+                      <th>기호</th>
+                      <th>한글이름</th>
+                      <th>영어이름</th>
+                      <th>의미/주요기능</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="6">낮음</td>
+                      <td>우</td>
+                      <td>우연적</td>
+                      <td>Coincidental</td>
+                      <td>각 구성 요소들이 연관이 없음</td>
+                    </tr>
+                    <tr>
+                      <td>논</td>
+                      <td>논리적</td>
+                      <td>Logical</td>
+                      <td>유사한 성격, 특정 형태로 분류들이 한 모듈에서 처리</td>
+                    </tr>
+                    <tr>
+                      <td>시</td>
+                      <td>시간적</td>
+                      <td>Temporal</td>
+                      <td>특정 시간에 처리</td>
+                    </tr>
+                    <tr>
+                      <td>절</td>
+                      <td>절차적</td>
+                      <td>Procedural</td>
+                      <td>모듈 안 기능들이 순차적</td>
+                    </tr>
+                    <tr>
+                      <td>통</td>
+                      <td>통신적</td>
+                      <td>Communication</td>
+                      <td>동일한 입력과 출력을 사용하여 다른 기능을 수행</td>
+                    </tr>
+                    <tr>
+                      <td>순</td>
+                      <td>순차적</td>
+                      <td>Sequential</td>
+                      <td>출력값을 다른 활동이 사용</td>
+                    </tr>
+                    <tr>
+                      <td>높음</td>
+                      <td>기</td>
+                      <td>기능적</td>
+                      <td>Functional</td>
+                      <td>모듈 내의 기능이 단일한 목적을 위해 수행</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 결합도 테이블 -->
+              <h6><strong>결합도 (Coupling)</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>강도</th>
+                      <th>기호</th>
+                      <th>한글이름</th>
+                      <th>영어이름</th>
+                      <th>의미/주요기능</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="5">높음</td>
+                      <td>내</td>
+                      <td>내용</td>
+                      <td>Content</td>
+                      <td>다른 모듈 변수나 기능을 또 다른 모듈에서 사용</td>
+                    </tr>
+                    <tr>
+                      <td>공</td>
+                      <td>공통</td>
+                      <td>Common</td>
+                      <td>전역변수</td>
+                    </tr>
+                    <tr>
+                      <td>외</td>
+                      <td>외부</td>
+                      <td>External</td>
+                      <td>외부로 선언한 변수를 다른 모듈에서 참조</td>
+                    </tr>
+                    <tr>
+                      <td>제</td>
+                      <td>제어</td>
+                      <td>Control</td>
+                      <td>값뿐만 아니라 제어 요소까지</td>
+                    </tr>
+                    <tr>
+                      <td>스</td>
+                      <td>스탬프</td>
+                      <td>Stamp</td>
+                      <td>배열, 오브젝트, 스트럭처까지 전달</td>
+                    </tr>
+                    <tr>
+                      <td>낮음</td>
+                      <td>자</td>
+                      <td>자료</td>
+                      <td>Data</td>
+                      <td>모듈간의 자료(값)을 통해서만 모듈 상호 작용 발생</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 요구사항분석 및 프로토콜 -->
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionSoftware-2"
+              aria-expanded="false">
+              요구사항분석 및 시스템 통합
+            </button>
+          </h2>
+          <div id="accordionSoftware-2" class="accordion-collapse collapse" data-bs-parent="#accordionSoftware">
+            <div class="accordion-body">
+              
+              <!-- 프로토콜 구성요소 -->
+              <h6><strong>프로토콜 구성요소</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>구성요소</th>
+                      <th>영어명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>구문</td>
+                      <td>Syntax</td>
+                      <td>데이터 형식, 코딩, 신호 레벨 등을 규정</td>
+                    </tr>
+                    <tr>
+                      <td>타이밍</td>
+                      <td>Timing</td>
+                      <td>속도 조절과 순서 관리를 규정</td>
+                    </tr>
+                    <tr>
+                      <td>의미</td>
+                      <td>Semantic</td>
+                      <td>에러 제어와 동기화를 위한 제어 정보를 규정</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 시스템 통합 기술 -->
+              <h6><strong>시스템 통합 기술</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>분류</th>
+                      <th>기술명</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="4">ESB</td>
+                      <td>BUS</td>
+                      <td>기업 안팎의 시스템 통합</td>
+                    </tr>
+                    <tr>
+                      <td>EAI</td>
+                      <td>Point to Point 방식의 기업 애플리케이션 통합</td>
+                    </tr>
+                    <tr>
+                      <td>Hub and Spoke</td>
+                      <td>중앙 허브를 통한 통합 방식</td>
+                    </tr>
+                    <tr>
+                      <td>Message Bus</td>
+                      <td>메시지 버스를 통한 통합 방식</td>
+                    </tr>
+                    <tr>
+                      <td>웹서비스</td>
+                      <td>SOAP</td>
+                      <td>XML 기반 메시지 교환 프로토콜</td>
+                    </tr>
+                    <tr>
+                      <td>서비스 레지스트리</td>
+                      <td>UDDI</td>
+                      <td>웹 서비스를 등록하고 검색하는 도서관 역할</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 데이터베이스 탭 -->
+  <div class="tab-pane fade" id="navs-top-messages" role="tabpanel">
+    
+    <div class="col-md">
+      <div class="accordion mt-3 accordion-bordered" id="accordionDatabase">
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionDatabase-1"
+              aria-expanded="false">
+              관계대수 연산자
+            </button>
+          </h2>
+          <div id="accordionDatabase-1" class="accordion-collapse collapse" data-bs-parent="#accordionDatabase">
+            <div class="accordion-body">
+              
+              <!-- 순수관계연산자 -->
+              <h6><strong>순수관계연산자</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>연산자명</th>
+                      <th>기호</th>
+                      <th>영어명</th>
+                      <th>기능</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>셀렉트</td>
+                      <td>σ</td>
+                      <td>SELECT</td>
+                      <td>조건에 맞는 행(튜플)을 선택</td>
+                    </tr>
+                    <tr>
+                      <td>프로젝트</td>
+                      <td>π</td>
+                      <td>PROJECT</td>
+                      <td>특정 열(속성)을 선택</td>
+                    </tr>
+                    <tr>
+                      <td>조인</td>
+                      <td>▷◁</td>
+                      <td>JOIN</td>
+                      <td>공통 속성을 기준으로 두 릴레이션을 결합</td>
+                    </tr>
+                    <tr>
+                      <td>디비전</td>
+                      <td>÷</td>
+                      <td>DIVISION</td>
+                      <td>나누기 연산, 모든 조건을 만족하는 튜플 선택</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 일반관계연산자 -->
+              <h6><strong>일반관계연산자</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>연산자명</th>
+                      <th>기호</th>
+                      <th>영어명</th>
+                      <th>기능</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>합집합</td>
+                      <td>∪</td>
+                      <td>UNION</td>
+                      <td>두 릴레이션의 모든 튜플을 합침 (중복 제거)</td>
+                    </tr>
+                    <tr>
+                      <td>교집합</td>
+                      <td>∩</td>
+                      <td>INTERSECTION</td>
+                      <td>두 릴레이션에 공통으로 존재하는 튜플</td>
+                    </tr>
+                    <tr>
+                      <td>차집합</td>
+                      <td>-</td>
+                      <td>DIFFERENCE</td>
+                      <td>첫 번째 릴레이션에만 존재하는 튜플</td>
+                    </tr>
+                    <tr>
+                      <td>카티션 프로덕트</td>
+                      <td>×</td>
+                      <td>CARTESIAN PRODUCT</td>
+                      <td>두 릴레이션의 모든 튜플을 조합</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 키 (Key) -->
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionDatabase-2"
+              aria-expanded="false">
+              키 (Key)
+            </button>
+          </h2>
+          <div id="accordionDatabase-2" class="accordion-collapse collapse" data-bs-parent="#accordionDatabase">
+            <div class="accordion-body">
+              
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>키 종류</th>
+                      <th>영어명</th>
+                      <th>특성</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>슈퍼키</td>
+                      <td>Super Key</td>
+                      <td>유일성</td>
+                      <td>튜플을 유일하게 식별할 수 있는 속성 집합 (중복 허용)</td>
+                    </tr>
+                    <tr>
+                      <td>후보키</td>
+                      <td>Candidate Key</td>
+                      <td>유일성 + 최소성</td>
+                      <td>슈퍼키 중에서 최소성을 만족하는 키</td>
+                    </tr>
+                    <tr>
+                      <td>기본키</td>
+                      <td>Primary Key</td>
+                      <td>유일성 + 최소성</td>
+                      <td>후보키 중에서 선택된 대표 키 (NULL 불허)</td>
+                    </tr>
+                    <tr>
+                      <td>대체키</td>
+                      <td>Alternate Key</td>
+                      <td>유일성 + 최소성</td>
+                      <td>후보키 중에서 기본키로 선택되지 않은 나머지 키</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 네트워크 탭 -->
+  <div class="tab-pane fade" id="navs-top-word" role="tabpanel">
+    
+    <div class="col-md">
+      <div class="accordion mt-3 accordion-bordered" id="accordionNetwork">
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionNetwork-1"
+              aria-expanded="false">
+              악성코드 및 보안
+            </button>
+          </h2>
+          <div id="accordionNetwork-1" class="accordion-collapse collapse" data-bs-parent="#accordionNetwork">
+            <div class="accordion-body">
+              
+              <!-- 악성코드 종류 -->
+              <h6><strong>악성코드 종류</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>악성코드</th>
+                      <th>자기복제</th>
+                      <th>자가전파</th>
+                      <th>전영성</th>
+                      <th>숙주필요</th>
+                      <th>주요 전파경로</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>바이러스</td>
+                      <td>O</td>
+                      <td>X</td>
+                      <td>O</td>
+                      <td>O</td>
+                      <td>이동식 저장장치, 컴퓨터 프로그램</td>
+                    </tr>
+                    <tr>
+                      <td>웜</td>
+                      <td>O</td>
+                      <td>O</td>
+                      <td>O</td>
+                      <td>X</td>
+                      <td>인터넷, 네트워크</td>
+                    </tr>
+                    <tr>
+                      <td>트로이목마</td>
+                      <td>X</td>
+                      <td>X</td>
+                      <td>X</td>
+                      <td>X</td>
+                      <td>웹페이지, 이메일, P2P</td>
+                    </tr>
+                    <tr>
+                      <td>랜섬웨어</td>
+                      <td colspan="4">-</td>
+                      <td>돈내놔라 (파일 암호화 후 금전 요구)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 네트워크 공격 -->
+              <h6><strong>네트워크 공격</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>공격명</th>
+                      <th>공격 방식</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Smurf (ICMP Flooding)</td>
+                      <td>정상: A(잘갔니?) → B(잘왔어)<br>공격: A(잘갔니?) → 내가 보낸게 나한테 다시 옴 (IP 스푸핑)</td>
+                    </tr>
+                    <tr>
+                      <td>Ping of Death</td>
+                      <td>핑의 크기를 키워서 시스템 마비 유발</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 접근제어 모델 -->
+              <h6><strong>접근제어 모델</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>모델명</th>
+                      <th>전체명</th>
+                      <th>특징</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>MAC</td>
+                      <td>Mandatory Access Control</td>
+                      <td>중앙집권적 (규칙 기반)</td>
+                    </tr>
+                    <tr>
+                      <td>DAC</td>
+                      <td>Discretionary Access Control</td>
+                      <td>임의적 (신분 기반)</td>
+                    </tr>
+                    <tr>
+                      <td>RBAC</td>
+                      <td>Role-Based Access Control</td>
+                      <td>역할 기반 (직책 기반)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 운영체제 탭 -->
+  <div class="tab-pane fade" id="navs-top-word2" role="tabpanel">
+    
+    <div class="col-md">
+      <div class="accordion mt-3 accordion-bordered" id="accordionOS">
+        <div class="accordion-item card">
+          <h2 class="accordion-header">
+            <button
+              type="button"
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#accordionOS-1"
+              aria-expanded="false">
+              프로세스 스케줄링
+            </button>
+          </h2>
+          <div id="accordionOS-1" class="accordion-collapse collapse" data-bs-parent="#accordionOS">
+            <div class="accordion-body">
+              
+              <!-- 선점형 기법 -->
+              <h6><strong>선점형 기법 (강제)</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>알고리즘</th>
+                      <th>영어명</th>
+                      <th>특징</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Round Robin</td>
+                      <td>RR</td>
+                      <td>시간 슬라이스 단위로 순환 할당</td>
+                    </tr>
+                    <tr>
+                      <td>SRT</td>
+                      <td>Shortest Remaining Time</td>
+                      <td>실행시간이 짧은 것부터 우선 처리</td>
+                    </tr>
+                    <tr>
+                      <td>다단계 큐</td>
+                      <td>Multi-level Queue</td>
+                      <td>하나 끝나고 다음 큐로 이동</td>
+                    </tr>
+                    <tr>
+                      <td>다단계 피드백 큐</td>
+                      <td>Multi-level Feedback Queue</td>
+                      <td>시간 슬라이스와 유사하게 동작</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 비선점형 기법 -->
+              <h6><strong>비선점형 기법 (비강제)</strong></h6>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>알고리즘</th>
+                      <th>영어명</th>
+                      <th>특징</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>FCFS</td>
+                      <td>First Come First Served</td>
+                      <td>먼저 온 놈 먼저 처리</td>
+                    </tr>
+                    <tr>
+                      <td>SJF</td>
+                      <td>Shortest Job First</td>
+                      <td>실행시간 빠른 것부터 처리</td>
+                    </tr>
+                    <tr>
+                      <td>HRN</td>
+                      <td>Highest Response-ratio Next</td>
+                      <td>(대기시간+실행시간)/실행시간 비율이 높은 것부터</td>
+                    </tr>
+                    <tr>
+                      <td>우선순위</td>
+                      <td>Priority</td>
+                      <td>프로세스 우선순위에 따라 처리</td>
+                    </tr>
+                    <tr>
+                      <td>기한부</td>
+                      <td>Deadline</td>
+                      <td>시간 정해놓고 못하면 컷</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 기아현상 -->
+              <h6><strong>기아현상 (Starvation)</strong></h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>기아현상 발생 알고리즘</strong></td>
+                      <td>SRT, 다단계큐, SJF, 우선순위</td>
+                    </tr>
+                    <tr>
+                      <td><strong>기아현상 해결방법</strong></td>
+                      <td>에이징(Aging) - 기아현상을 방지하는 기법</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
