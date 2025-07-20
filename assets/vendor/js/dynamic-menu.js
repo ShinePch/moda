@@ -6,28 +6,6 @@
 function initializeMenu() {
   console.log(window.location.pathname);
   
-  // 메뉴 토글 이벤트 바인딩 추가
-  function initMenuToggle() {
-    let menuToggler = document.querySelectorAll('.layout-menu-toggle');
-    console.log('메뉴 토글러 초기화:', menuToggler.length);
-    
-    menuToggler.forEach(item => {
-      // 기존 이벤트 제거 (중복 방지)
-      item.removeEventListener('click', handleMenuToggle);
-      // 새 이벤트 추가
-      item.addEventListener('click', handleMenuToggle);
-    });
-  }
-  
-  function handleMenuToggle(event) {
-    event.preventDefault();
-    console.log('메뉴 토글 클릭됨!');
-    window.Helpers.toggleCollapsed();
-  }
-  
-  // 메뉴 토글 초기화 실행
-  initMenuToggle();
-  
   // 메뉴 토글 기능 (상위 메뉴 클릭 시 하위 메뉴 표시/숨김)
   $(document).on('click', '.menu-toggle, a[href="javascript:void(0);"]', function(e) {
     e.preventDefault();
@@ -65,6 +43,15 @@ function initializeMenu() {
         setTimeout(function() {
           initializeClipboard();
         }, 100);
+        
+        // 도구 페이지인 경우 다운로드 기능 초기화 추가
+        if (href.includes('tool.html')) {
+          setTimeout(function() {
+            if (typeof initializeToolDownload === 'function') {
+              initializeToolDownload();
+            }
+          }, 200);
+        }
         
         // 모든 메뉴 항목에서 active 클래스 제거
         $('#menuBox .menu-item').removeClass('active');
@@ -193,6 +180,9 @@ function activateCurrentMenuItem() {
   } else if (currentPath.includes('powerShell.html')) {
     $('#powerShell').addClass('active');
     $('#powerShell').closest('.menu-sub').parent('.menu-item').addClass('active open');
+  } else if (currentPath.includes('tool.html')) {
+    $('#tool').addClass('active');
+    $('#tool').closest('.menu-sub').parent('.menu-item').addClass('active open');
   } else if (currentPath.includes('infraDashboard.html') || currentPath.endsWith('/') || currentPath.includes('layout.html')) {
     $('#modaInfraDashboard').addClass('active');
     $('#modaInfraDashboard').closest('.menu-sub').parent('.menu-item').addClass('active open');

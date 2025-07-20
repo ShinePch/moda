@@ -1,0 +1,457 @@
+<!-- Content Tool-->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="py-3 mb-4">Tool</h4>
+    <!-- Autosize 하얀배경 전체 사이즈-->
+    <div class="col-12">
+  
+      <!-- 유용한 도구들 -->
+      <div class="card mb-4">
+        <!-- card-navbar -->
+        <nav class="navbar navbar-example navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="javascript:void(0)">기타 유용한 도구들</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbar-ex-tools">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-ex-tools">
+              <div class="navbar-nav me-auto">
+                <a class="nav-item nav-link" href="javascript:void(0)">#개발도구</a>
+                <a class="nav-item nav-link" href="javascript:void(0)">#유틸리티</a>
+                <a class="nav-item nav-link" href="javascript:void(0)">#도구</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- card-navbar -->
+  
+        <div class="row">
+          <!-- 개발도구 카드들 -->
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="ti ti-brand-visual-studio me-2"></i>VS Code</h6>
+                <button class="btn btn-sm btn-outline-primary" onclick="window.open('https://code.visualstudio.com/download', '_blank')">
+                  <i class="ti ti-external-link me-1"></i>다운로드
+                </button>
+              </div>
+              <div class="card-body">
+                <small class="text-muted">무료 소스 코드 에디터</small>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="ti ti-brand-github me-2"></i>Git</h6>
+                <button class="btn btn-sm btn-outline-primary" onclick="window.open('https://git-scm.com/download/win', '_blank')">
+                  <i class="ti ti-external-link me-1"></i>다운로드
+                </button>
+              </div>
+              <div class="card-body">
+                <small class="text-muted">분산 버전 관리 시스템</small>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="ti ti-terminal-2 me-2"></i>PowerShell</h6>
+                <button class="btn btn-sm btn-outline-primary" onclick="window.open('https://github.com/PowerShell/PowerShell/releases', '_blank')">
+                  <i class="ti ti-external-link me-1"></i>다운로드
+                </button>
+              </div>
+              <div class="card-body">
+                <small class="text-muted">고급 명령줄 인터페이스</small>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="ti ti-brand-chrome me-2"></i>Chrome</h6>
+                <button class="btn btn-sm btn-outline-primary" onclick="window.open('https://www.google.com/chrome/', '_blank')">
+                  <i class="ti ti-external-link me-1"></i>다운로드
+                </button>
+              </div>
+              <div class="card-body">
+                <small class="text-muted">웹 브라우저</small>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="ti ti-file-zip me-2"></i>7-Zip</h6>
+                <button class="btn btn-sm btn-outline-primary" onclick="window.open('https://www.7-zip.org/download.html', '_blank')">
+                  <i class="ti ti-external-link me-1"></i>다운로드
+                </button>
+              </div>
+              <div class="card-body">
+                <small class="text-muted">파일 압축 프로그램</small>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="ti ti-notes me-2"></i>Notepad++</h6>
+                <button class="btn btn-sm btn-outline-primary" onclick="window.open('https://notepad-plus-plus.org/downloads/', '_blank')">
+                  <i class="ti ti-external-link me-1"></i>다운로드
+                </button>
+              </div>
+              <div class="card-body">
+                <small class="text-muted">고급 텍스트 에디터</small>
+              </div>
+            </div>
+          </div>
+  
+          <!-- 파섹 카드 - 로컬 파일 다운로드 버전 -->
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><i class="ti ti-device-gamepad-2 me-2"></i>Parsec</h6>
+                <button id="downloadParsec" class="btn btn-sm btn-outline-primary">
+                  <i class="ti ti-download me-1"></i>다운로드
+                </button>
+              </div>
+              <div class="card-body">
+                <small class="text-muted">원격 데스크톱 프로그램</small>
+                
+                <div class="download-info mt-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <span class="status-indicator status-ready" id="statusIndicator"></span>
+                      <span id="downloadStatus">로컬 파일 다운로드 준비완료</span>
+                    </div>
+                    <div>
+                      <small id="fileSize">파일: parsec-windows.exe</small>
+                    </div>
+                  </div>
+                  
+                  <div class="progress-bar-custom" id="progressContainer" style="display: none;">
+                    <div class="progress-fill" id="progressFill"></div>
+                  </div>
+                  <div class="text-center mt-2" id="progressText" style="display: none;">
+                    <small>다운로드 중... <span id="progressPercent">0%</span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+    <!-- /Autosize -->
+  </div>
+  
+  <!-- 커스텀 스타일 -->
+  <style>
+    .download-section {
+      background: linear-gradient(45deg, #7367f0, #5a52d5);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 15px 0;
+    }
+    .download-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+      color: white;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 8px;
+    }
+    .download-btn:hover {
+      background: white;
+      color: #7367f0;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .download-info {
+      background: rgba(115, 103, 240, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+    .status-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    .status-ready { background-color: #28a745; }
+    .status-downloading { background-color: #ffc107; }
+    .status-complete { background-color: #17a2b8; }
+    .status-error { background-color: #dc3545; }
+    
+    .progress-bar-custom {
+      background-color: rgba(115, 103, 240, 0.3);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    .progress-fill {
+      background: linear-gradient(90deg, #7367f0, #5a52d5);
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 4px;
+    }
+  
+    .card-header {
+      background-color: rgba(115, 103, 240, 0.1);
+      border-bottom: 1px solid rgba(115, 103, 240, 0.2);
+    }
+  
+    .alert-info {
+      background-color: rgba(54, 162, 235, 0.1);
+      border-color: rgba(54, 162, 235, 0.2);
+      color: #2c5aa0;
+    }
+  
+    .alert-warning {
+      background-color: rgba(255, 193, 7, 0.1);
+      border-color: rgba(255, 193, 7, 0.2);
+      color: #856404;
+    }
+  
+    .alert-success {
+      background-color: rgba(40, 167, 69, 0.1);
+      border-color: rgba(40, 167, 69, 0.2);
+      color: #155724;
+    }
+  
+    .btn-success.download-btn {
+      background: #28a745 !important;
+      border-color: #28a745 !important;
+      color: white !important;
+    }
+  
+    .btn-success.download-btn:hover {
+      background: #218838 !important;
+      border-color: #218838 !important;
+      transform: translateY(-2px);
+    }
+
+    /* 토스트 애니메이션 */
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    .toast-notification {
+      animation: slideInRight 0.3s ease-out;
+    }
+
+    .toast-notification.fade-out {
+      animation: fadeOut 0.3s ease-out;
+    }
+  </style>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- 파섹 다운로드 스크립트 - 로컬 파일 다운로드 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const downloadBtn = document.getElementById('downloadParsec');
+      const statusIndicator = document.getElementById('statusIndicator');
+      const downloadStatus = document.getElementById('downloadStatus');
+      const progressContainer = document.getElementById('progressContainer');
+      const progressFill = document.getElementById('progressFill');
+      const progressText = document.getElementById('progressText');
+      const progressPercent = document.getElementById('progressPercent');
+
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', function() {
+          // 로컬 파일 다운로드 시작
+          downloadLocalFile();
+        });
+      }
+
+      function downloadLocalFile() {
+        try {
+          // 상태 업데이트
+          statusIndicator.className = 'status-indicator status-downloading';
+          downloadStatus.textContent = '로컬 파일 다운로드 중...';
+          downloadBtn.disabled = true;
+          downloadBtn.innerHTML = '<i class="ti ti-loader ti-spin me-1"></i>다운로드 중...';
+          
+          // 진행률 표시
+          progressContainer.style.display = 'block';
+          progressText.style.display = 'block';
+
+          // 실제 파일 다운로드 (작동하는 코드와 동일한 방식)
+          const link = document.createElement('a');
+          link.href = '../../assets/vendor/tool/parsec-windows.exe';
+          link.download = 'parsec-windows.exe';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          // 진행률 시뮬레이션
+          simulateProgress(() => {
+            downloadComplete();
+          });
+
+        } catch (error) {
+          console.error('다운로드 오류:', error);
+          downloadError();
+        }
+      }
+
+      function simulateProgress(callback) {
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += Math.random() * 15 + 5; // 5-20% 씩 증가
+          if (progress > 100) progress = 100;
+          
+          progressFill.style.width = progress + '%';
+          progressPercent.textContent = Math.round(progress) + '%';
+
+          if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+              callback();
+            }, 500);
+          }
+        }, 200);
+      }
+
+      function downloadComplete() {
+        statusIndicator.className = 'status-indicator status-complete';
+        downloadStatus.textContent = '로컬 파일 다운로드 완료!';
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = '<i class="ti ti-check me-1"></i>다운로드 완료';
+        downloadBtn.classList.add('btn-success');
+        
+        progressContainer.style.display = 'none';
+        progressText.style.display = 'none';
+
+        // 성공 토스트 알림
+        showToast('Parsec 파일이 로컬에서 다운로드되었습니다!', 'success');
+
+        // 3초 후 원래 상태로 복원
+        setTimeout(() => {
+          resetDownloadState();
+        }, 3000);
+      }
+
+      function downloadError() {
+        statusIndicator.className = 'status-indicator status-error';
+        downloadStatus.textContent = '다운로드 실패';
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = '<i class="ti ti-x me-1"></i>재시도';
+        
+        progressContainer.style.display = 'none';
+        progressText.style.display = 'none';
+
+        // 에러 토스트 알림
+        showToast('파일 다운로드에 실패했습니다. 파일 경로를 확인해주세요.', 'error');
+
+        // 3초 후 원래 상태로 복원
+        setTimeout(() => {
+          resetDownloadState();
+        }, 3000);
+      }
+
+      function resetDownloadState() {
+        statusIndicator.className = 'status-indicator status-ready';
+        downloadStatus.textContent = '로컬 파일 다운로드 준비완료';
+        downloadBtn.innerHTML = '<i class="ti ti-download me-1"></i>다운로드';
+        downloadBtn.classList.remove('btn-success');
+        progressFill.style.width = '0%';
+        progressPercent.textContent = '0%';
+      }
+
+      // 토스트 알림 함수
+      function showToast(message, type = 'success') {
+        // 기존 토스트 제거
+        const existingToast = document.querySelector('.toast-notification');
+        if (existingToast) {
+          existingToast.remove();
+        }
+
+        // 토스트 타입별 아이콘 설정
+        const iconMap = {
+          'success': 'check',
+          'info': 'info-circle',
+          'warning': 'alert-triangle',
+          'error': 'x'
+        };
+
+        const toast = document.createElement('div');
+        toast.className = `toast-notification alert alert-${type} alert-dismissible fade show`;
+        toast.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          z-index: 9999;
+          min-width: 350px;
+          max-width: 400px;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          border: none;
+          border-radius: 10px;
+        `;
+        
+        // 메시지를 여러 줄로 처리
+        const formattedMessage = message.replace(/\n/g, '<br>');
+        
+        toast.innerHTML = `
+          <div class="d-flex align-items-start">
+            <i class="ti ti-${iconMap[type]} me-2 fs-5 mt-1"></i>
+            <div class="flex-grow-1">${formattedMessage}</div>
+            <button type="button" class="btn-close ms-2" onclick="this.parentElement.parentElement.remove()"></button>
+          </div>
+        `;
+
+        document.body.appendChild(toast);
+
+        // 5초 후 자동 제거
+        setTimeout(() => {
+          if (toast && toast.parentNode) {
+            toast.classList.add('fade-out');
+            setTimeout(() => {
+              if (toast.parentNode) {
+                toast.remove();
+              }
+            }, 300);
+          }
+        }, 5000);
+      }
+
+      // 에러 처리
+      window.addEventListener('error', function(e) {
+        console.error('스크립트 오류:', e.error);
+        showToast('스크립트 실행 중 오류가 발생했습니다.', 'error');
+      });
+    });
+  </script>
