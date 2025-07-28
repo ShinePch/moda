@@ -257,8 +257,8 @@
                           class="nav-link"
                           role="tab"
                           data-bs-toggle="tab"
-                          data-bs-target="#navs-identifier"
-                          aria-controls="navs-identifier"
+                          data-bs-target="#navs-entity"
+                          aria-controls="navs-entity"
                           aria-selected="false">
                           SQL 기본 및 활용 (SQLD)
                         </button>
@@ -269,8 +269,8 @@
                           class="nav-link"
                           role="tab"
                           data-bs-toggle="tab"
-                          data-bs-target="#navs-normalization"
-                          aria-controls="navs-normalization"
+                          data-bs-target="#navs-entity"
+                          aria-controls="navs-entity"
                           aria-selected="false">
                           📐 SQL 고급활용 및 튜닝 (SQLP)
                         </button>
@@ -282,26 +282,248 @@
                       <!-- 엔터티 & 속성 탭 -->
                       <div class="tab-pane fade show active" id="navs-entity" role="tabpanel">
                         <div class="col-md">
-                          <div class="accordion mt-3 accordion-bordered" id="accordionEntity">
-                            
-                            <!-- 엔터티 분류 -->
-                            <div class="card bg-label-info mb-3">
-                              <div class="card-header">
-                                <h5 class="mb-0">🏷️ 엔터티 & 속성</h5>
-                              </div>
-                            </div>
+                          <div class="accordion mt-3 accordion-bordered" id="accordionSqld-1">
+
+                            <!-- 모델링 -->
                             <div class="accordion-item card">
+                              <div class="card bg-label-info mb-3">
+                                <div class="card-header">
+                                  <h5 class="mb-0"> 모델링</h5>
+                                </div>
+                              </div>
                               <h2 class="accordion-header">
                                 <button
                                   type="button"
-                                  class="accordion-button"
+                                  class="accordion-button collapsed"
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#accordionModeling-1"
+                                  aria-expanded="true">
+                                  모델링
+                                </button>
+                              </h2>                              
+                              <div id="accordionModeling-1" class="accordion-collapse collapse" data-bs-parent="#accordionModeling">
+                                <div class="accordion-body">
+                                  
+                                  <!-- 모델링의 특징 -->
+                                  <h6 class="mb-3">1-1. 모델링의 특징</h6>
+                                  <div class="table-responsive mb-4">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>분류</th>
+                                          <th>암기</th>
+                                          <th>정의</th>
+                                          <th>EVC 시스템 예시</th>
+                                          <th>설명</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>단순</strong></td>
+                                          <td><strong>단</strong></td>
+                                          <td>물리적으로 존재하는 객체</td>
+                                          <td>evc_member (회원), evc_member_card (충전카드)</td>
+                                          <td><span class="badge bg-label-primary">"손으로 만질 수 있는 실체가 있는 녀석들!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>추상</strong></td>
+                                          <td><strong>추</strong></td>
+                                          <td>논리적으로 존재하는 개념</td>
+                                          <td>evc_member_group (회원그룹)</td>
+                                          <td><span class="badge bg-label-info">"머릿속 개념이지만 관리가 필요한 놈들!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>명확</strong></td>
+                                          <td><strong>명</strong></td>
+                                          <td>시간에 따라 발생하는 이벤트</td>
+                                          <td>charging_transaction, charging_payment</td>
+                                          <td><span class="badge bg-label-warning">"뭔가 일어났을 때만 생기는 기록들!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  <!-- 모델링의 유의사항 -->
+                                  <h6 class="mb-3">1-2. 모델링의 유의사항</h6>
+                                  <div class="table-responsive mb-4">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>분류</th>
+                                          <th>암기</th>
+                                          <th>정의</th>
+                                          <th>EVC 시스템 예시</th>
+                                          <th>특징</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>유연성</strong></td>
+                                          <td><strong>유</strong></td>
+                                          <td>독립적으로 생성 가능</td>
+                                          <td>evc_member, evc_member_group</td>
+                                          <td><span class="badge bg-label-success">"혼자서도 당당하게 살 수 있는 독립적인 놈!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>유일성</strong></td>
+                                          <td><strong>유</strong></td>
+                                          <td>기본 엔터티 간 관계 표현</td>
+                                          <td>evc_member_card</td>
+                                          <td><span class="badge bg-label-primary">"둘 사이를 이어주는 다리 역할!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>명확성</strong></td>
+                                          <td><strong>명</strong></td>
+                                          <td>행위나 이벤트 저장</td>
+                                          <td>charging_transaction, charging_payment</td>
+                                          <td><span class="badge bg-label-danger">"뭔가 액션이 일어나면 기록하는 일기장!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  <!-- 모델링의 관점 -->
+                                  <h6 class="mb-3">1-3. 모델링의 관점</h6>
+                                  <div class="table-responsive mb-4">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>분류</th>
+                                          <th>암기</th>
+                                          <th>정의</th>
+                                          <th>EVC 시스템 예시</th>
+                                          <th>특징</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>Creat</strong></td>
+                                          <td><strong>C</strong></td>
+                                          <td>독립적으로 생성 가능</td>
+                                          <td>evc_member, evc_member_group</td>
+                                          <td><span class="badge bg-label-success">"혼자서도 당당하게 살 수 있는 독립적인 놈!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>Read</strong></td>
+                                          <td><strong>R</strong></td>
+                                          <td>기본 엔터티 간 관계 표현</td>
+                                          <td>evc_member_card</td>
+                                          <td><span class="badge bg-label-primary">"둘 사이를 이어주는 다리 역할!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>Upadate</strong></td>
+                                          <td><strong>U</strong></td>
+                                          <td>행위나 이벤트 저장</td>
+                                          <td>charging_transaction, charging_payment</td>
+                                          <td><span class="badge bg-label-danger">"뭔가 액션이 일어나면 기록하는 일기장!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>Delete</strong></td>
+                                          <td><strong>D</strong></td>
+                                          <td>행위나 이벤트 저장</td>
+                                          <td>charging_transaction, charging_payment</td>
+                                          <td><span class="badge bg-label-danger">"뭔가 액션이 일어나면 기록하는 일기장!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  <!-- 모델링의 단계 -->
+                                  <h6 class="mb-3">1-4. 모델링의 단계</h6>
+                                  <div class="table-responsive mb-4">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>분류</th>
+                                          <th>암기</th>
+                                          <th>정의</th>
+                                          <th>EVC 시스템 예시</th>
+                                          <th>특징</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>개념적 모델링</strong></td>
+                                          <td><strong>개</strong></td>
+                                          <td>독립적으로 생성 가능</td>
+                                          <td>evc_member, evc_member_group</td>
+                                          <td><span class="badge bg-label-success">"혼자서도 당당하게 살 수 있는 독립적인 놈!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>논리적 모델링</strong></td>
+                                          <td><strong>논</strong></td>
+                                          <td>기본 엔터티 간 관계 표현</td>
+                                          <td>evc_member_card</td>
+                                          <td><span class="badge bg-label-primary">"둘 사이를 이어주는 다리 역할!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>물리적 모델링</strong></td>
+                                          <td><strong>물</strong></td>
+                                          <td>행위나 이벤트 저장</td>
+                                          <td>charging_transaction, charging_payment</td>
+                                          <td><span class="badge bg-label-danger">"뭔가 액션이 일어나면 기록하는 일기장!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  <!-- 모델 트렌젝션 -->
+                                  <h6 class="mb-3">1-5. 모델 트렌젝션</h6>
+                                  <div class="table-responsive mb-4">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>분류</th>
+                                          <th>암기</th>
+                                          <th>정의</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>원자성(Atomicity)</strong></td>
+                                          <td><strong>원</strong></td>
+                                          <td>모두 수정되거나 말거나</td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>일관성(consistency)</strong></td>
+                                          <td><strong>일</strong></td>
+                                          <td>전 후로 일관</td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>고립성(Isolation)</strong></td>
+                                          <td><strong>고</strong></td>
+                                          <td>노 관섭</td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>지속성(Durability)</strong></td>
+                                          <td><strong>지</strong></td>
+                                          <td>영구적 저장</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- 엔터티 분류 -->
+                            <div class="accordion-item card">
+                              <div class="card bg-label-info mb-3">
+                                <div class="card-header">
+                                  <h5 class="mb-0">🏷️ 엔터티 & 속성</h5>
+                                </div>
+                              </div>
+                              <h2 class="accordion-header">
+                                <button
+                                  type="button"
+                                  class="accordion-button collapsed"
                                   data-bs-toggle="collapse"
                                   data-bs-target="#accordionEntity-1"
                                   aria-expanded="true">
-                                  🏷️ 엔터티(Entity) 분류
+                                  엔터티(Entity) 분류
                                 </button>
                               </h2>
-                              <div id="accordionEntity-1" class="accordion-collapse collapse" data-bs-parent="#accordionEntity">
+                              <div id="accordionEntity-1" class="accordion-collapse collapse" data-bs-parent="#accordionModeling">
                                 <div class="accordion-body">
                                   
                                   <!-- 유형과 무형에 따른 엔터티 -->
@@ -311,6 +533,7 @@
                                       <thead style="background-color: #f8f9fa;">
                                         <tr>
                                           <th>분류</th>
+                                          <th>암기</th>
                                           <th>정의</th>
                                           <th>EVC 시스템 예시</th>
                                           <th>설명</th>
@@ -318,22 +541,25 @@
                                       </thead>
                                       <tbody>
                                         <tr>
-                                          <td><strong>유형 엔터티</strong></td>
-                                          <td>물리적으로 존재하는 객체</td>
-                                          <td>evc_member (회원), evc_member_card (충전카드)</td>
-                                          <td><span class="badge bg-label-primary">"손으로 만질 수 있는 실체가 있는 녀석들!"</span></td>
-                                        </tr>
-                                        <tr>
                                           <td><strong>개념 엔터티</strong></td>
+                                          <td><strong>개</strong></td>
                                           <td>논리적으로 존재하는 개념</td>
                                           <td>evc_member_group (회원그룹)</td>
                                           <td><span class="badge bg-label-info">"머릿속 개념이지만 관리가 필요한 놈들!"</span></td>
                                         </tr>
                                         <tr>
                                           <td><strong>사건 엔터티</strong></td>
+                                          <td><strong>사</strong></td>
                                           <td>시간에 따라 발생하는 이벤트</td>
                                           <td>charging_transaction, charging_payment</td>
                                           <td><span class="badge bg-label-warning">"뭔가 일어났을 때만 생기는 기록들!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>유형 엔터티</strong></td>
+                                          <td><strong>유</strong></td>
+                                          <td>물리적으로 존재하는 객체</td>
+                                          <td>evc_member (회원), evc_member_card (충전카드)</td>
+                                          <td><span class="badge bg-label-primary">"손으로 만질 수 있는 실체가 있는 녀석들!"</span></td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -346,6 +572,7 @@
                                       <thead style="background-color: #f8f9fa;">
                                         <tr>
                                           <th>분류</th>
+                                          <th>암기</th>
                                           <th>정의</th>
                                           <th>EVC 시스템 예시</th>
                                           <th>특징</th>
@@ -354,18 +581,21 @@
                                       <tbody>
                                         <tr>
                                           <td><strong>기본 엔터티</strong></td>
+                                          <td><strong>기</strong></td>
                                           <td>독립적으로 생성 가능</td>
                                           <td>evc_member, evc_member_group</td>
                                           <td><span class="badge bg-label-success">"혼자서도 당당하게 살 수 있는 독립적인 놈!"</span></td>
                                         </tr>
                                         <tr>
                                           <td><strong>중심 엔터티</strong></td>
+                                          <td><strong>중</strong></td>
                                           <td>기본 엔터티 간 관계 표현</td>
                                           <td>evc_member_card</td>
                                           <td><span class="badge bg-label-primary">"둘 사이를 이어주는 다리 역할!"</span></td>
                                         </tr>
                                         <tr>
                                           <td><strong>행위 엔터티</strong></td>
+                                          <td><strong>행</strong></td>
                                           <td>행위나 이벤트 저장</td>
                                           <td>charging_transaction, charging_payment</td>
                                           <td><span class="badge bg-label-danger">"뭔가 액션이 일어나면 기록하는 일기장!"</span></td>
@@ -386,14 +616,90 @@
                                   data-bs-toggle="collapse"
                                   data-bs-target="#accordionEntity-2"
                                   aria-expanded="false">
-                                  🔍 속성(Attribute) 분류
+                                  속성(Attribute) 분류
                                 </button>
                               </h2>
                               <div id="accordionEntity-2" class="accordion-collapse collapse" data-bs-parent="#accordionEntity">
                                 <div class="accordion-body">
-                                  
+
+                                  <!-- 특성에 따른 속성 -->
+                                  <h6 class="mb-3">2-1. 특성에 따른 속성 종류</h6>
+                                  <div class="table-responsive">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>분류</th>
+                                          <th>암기</th>
+                                          <th>정의</th>
+                                          <th>EVC 예시</th>
+                                          <th>설명</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>기본 속성</strong></td>
+                                          <td><strong>기</strong></td>
+                                          <td>업무로부터 추출한 속성</td>
+                                          <td>member_name, mobile, email</td>
+                                          <td><span class="badge bg-label-success">"현실에서 바로 가져온 날것 그대로!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>설계 속성</strong></td>
+                                          <td><strong>설</strong></td>
+                                          <td>설계 과정에서 도출된 속성</td>
+                                          <td>member_id, charging_transaction_id</td>
+                                          <td><span class="badge bg-label-primary">"개발자가 편의를 위해 만든 인공적인 놈!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>파생 속성</strong></td>
+                                          <td><strong>파</strong></td>
+                                          <td>다른 속성으로부터 계산되는 속성</td>
+                                          <td>charging_fee (charging_kwh × transaction_cost)</td>
+                                          <td><span class="badge bg-label-danger">"다른 놈들을 조합해서 계산으로 만든 놈!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>                                  
                                   <!-- 분해 여부에 따른 속성 -->
-                                  <h6 class="mb-3">2-1. 분해 여부에 따른 속성 종류</h6>
+                                  <h6 class="mb-3">2-2. 분해 여부에 따른 속성 종류</h6>
+                                  <div class="table-responsive mb-4">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>분류</th>
+                                          <th>암기</th>
+                                          <th>정의</th>
+                                          <th>EVC 예시</th>
+                                          <th>설명</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>다중값 속성</strong></td>
+                                          <td><strong>다</strong></td>
+                                          <td>여러 개의 값을 가질 수 있는 속성</td>
+                                          <td>email_yn + sms_yn (여러 수신동의 설정)</td>
+                                          <td><span class="badge bg-label-warning">"하나가 아니라 여러 개 값을 담을 수 있어!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>단일 속성</strong></td>
+                                          <td><strong>단</strong></td>
+                                          <td>더 이상 분해되지 않는 속성</td>
+                                          <td>member_name (회원명), mobile (핸드폰번호)</td>
+                                          <td><span class="badge bg-label-primary">"더 쪼갤 수 없는 최소 단위!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>복합 속성</strong></td>
+                                          <td><strong>복</strong></td>
+                                          <td>여러 개의 의미 있는 단위로 분해 가능</td>
+                                          <td>addr + addr_detail (주소 = 기본주소+상세주소)</td>
+                                          <td><span class="badge bg-label-info">"큰 덩어리를 의미별로 나눌 수 있는 놈!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <!-- 구성 방식에 여부에 따른 분류 -->
+                                  <h6 class="mb-3">2-3. 구성 방식에 여부에 따른 분류</h6>
                                   <div class="table-responsive mb-4">
                                     <table class="table">
                                       <thead style="background-color: #f8f9fa;">
@@ -406,57 +712,22 @@
                                       </thead>
                                       <tbody>
                                         <tr>
-                                          <td><strong>단일 속성</strong></td>
+                                          <td><strong>기본키</strong></td>
+                                          <td>여러 개의 값을 가질 수 있는 속성</td>
+                                          <td>email_yn + sms_yn (여러 수신동의 설정)</td>
+                                          <td><span class="badge bg-label-warning">"하나가 아니라 여러 개 값을 담을 수 있어!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>외래키</strong></td>
                                           <td>더 이상 분해되지 않는 속성</td>
                                           <td>member_name (회원명), mobile (핸드폰번호)</td>
                                           <td><span class="badge bg-label-primary">"더 쪼갤 수 없는 최소 단위!"</span></td>
                                         </tr>
                                         <tr>
-                                          <td><strong>복합 속성</strong></td>
+                                          <td><strong>일반속성</strong></td>
                                           <td>여러 개의 의미 있는 단위로 분해 가능</td>
                                           <td>addr + addr_detail (주소 = 기본주소+상세주소)</td>
                                           <td><span class="badge bg-label-info">"큰 덩어리를 의미별로 나눌 수 있는 놈!"</span></td>
-                                        </tr>
-                                        <tr>
-                                          <td><strong>다중값 속성</strong></td>
-                                          <td>여러 개의 값을 가질 수 있는 속성</td>
-                                          <td>email_yn + sms_yn (여러 수신동의 설정)</td>
-                                          <td><span class="badge bg-label-warning">"하나가 아니라 여러 개 값을 담을 수 있어!"</span></td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-
-                                  <!-- 특성에 따른 속성 -->
-                                  <h6 class="mb-3">2-2. 특성에 따른 속성 종류</h6>
-                                  <div class="table-responsive">
-                                    <table class="table">
-                                      <thead style="background-color: #f8f9fa;">
-                                        <tr>
-                                          <th>분류</th>
-                                          <th>정의</th>
-                                          <th>EVC 예시</th>
-                                          <th>설명</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                          <td><strong>기본 속성</strong></td>
-                                          <td>업무로부터 추출한 속성</td>
-                                          <td>member_name, mobile, email</td>
-                                          <td><span class="badge bg-label-success">"현실에서 바로 가져온 날것 그대로!"</span></td>
-                                        </tr>
-                                        <tr>
-                                          <td><strong>설계 속성</strong></td>
-                                          <td>설계 과정에서 도출된 속성</td>
-                                          <td>member_id, charging_transaction_id</td>
-                                          <td><span class="badge bg-label-primary">"개발자가 편의를 위해 만든 인공적인 놈!"</span></td>
-                                        </tr>
-                                        <tr>
-                                          <td><strong>파생 속성</strong></td>
-                                          <td>다른 속성으로부터 계산되는 속성</td>
-                                          <td>charging_fee (charging_kwh × transaction_cost)</td>
-                                          <td><span class="badge bg-label-danger">"다른 놈들을 조합해서 계산으로 만든 놈!"</span></td>
                                         </tr>
                                       </tbody>
                                     </table>
@@ -465,20 +736,20 @@
                               </div>
                             </div>
                             <!-- 식별자 분류 -->
-                            <div class="card bg-label-info mb-3">
-                              <div class="card-header">
-                                <h5 class="mb-0">식별자 & 관계 </h5>
-                              </div>
-                            </div>
                             <div class="accordion-item card">
+                              <div class="card bg-label-info mb-3">
+                                <div class="card-header">
+                                  <h5 class="mb-0">🔑 식별자 & 관계 </h5>
+                                </div>
+                              </div>
                               <h2 class="accordion-header">
                                 <button
                                   type="button"
-                                  class="accordion-button"
+                                  class="accordion-button collapsed"
                                   data-bs-toggle="collapse"
                                   data-bs-target="#accordionIdentifier-1"
                                   aria-expanded="true">
-                                  🔑 식별자(Identifier) 분류
+                                  식별자(Identifier) 분류
                                 </button>
                               </h2>
                               <div id="accordionIdentifier-1" class="accordion-collapse collapse" data-bs-parent="#accordionIdentifier">
@@ -611,7 +882,7 @@
                                   data-bs-toggle="collapse"
                                   data-bs-target="#accordionIdentifier-2"
                                   aria-expanded="false">
-                                  🔗 관계(Relationship) 분류
+                                  관계(Relationship) 분류
                                 </button>
                               </h2>
                               <div id="accordionIdentifier-2" class="accordion-collapse collapse" data-bs-parent="#accordionIdentifier">
@@ -638,7 +909,7 @@
                                         </tr>
                                         <tr>
                                           <td><strong>행위 관계</strong></td>
-                                          <td>행위에 의한 관계</td>
+                                          <td>행위에 의한 관계(행위,동작,사건)</td>
                                           <td>회원카드 - 충전내역 (카드로 충전행위 발생)</td>
                                           <td><span class="badge bg-label-warning">"뭔가 액션이 일어나면서 생기는 관계!"</span></td>
                                         </tr>
@@ -680,6 +951,44 @@
                                       </tbody>
                                     </table>
                                   </div>
+                                  <!-- 관계 구성 -->
+                                  <h6 class="mb-3">4-3. 관계 구성</h6>
+                                  <div class="table-responsive">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>차수</th>
+                                          <th>암기</th>
+                                          <th>정의</th>
+                                          <th>EVC 예시</th>
+                                          <th>설명</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>관계명</strong></td>
+                                          <td><strong>관</strong></td>
+                                          <td>일대일 관계</td>
+                                          <td>회원 : 회원그룹 (한 회원은 한 그룹에만)</td>
+                                          <td><span class="badge bg-label-success">"나는 너만 봐, 너도 나만 봐!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>차수(Cadinality)</strong></td>
+                                          <td><strong>차</strong></td>
+                                          <td>일대다 관계</td>
+                                          <td>회원 : 충전내역 (한 회원이 여러 번 충전)</td>
+                                          <td><span class="badge bg-label-primary">"나는 하나, 너희는 여럿!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>선택사항</strong></td>
+                                          <td><strong>선</strong></td>
+                                          <td>다대다 관계</td>
+                                          <td>회원 : 카드 (한 회원이 여러 카드, 한 카드를 여러 회원 공유 가능)</td>
+                                          <td><span class="badge bg-label-danger">"우리 모두 자유롭게 연결돼!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -692,11 +1001,12 @@
                                   data-bs-toggle="collapse"
                                   data-bs-target="#accordionIdentifier-3"
                                   aria-expanded="false">
-                                  📏 식별자의 특성
+                                  식별자의 특성
                                 </button>
                               </h2>
                               <div id="accordionIdentifier-3" class="accordion-collapse collapse" data-bs-parent="#accordionIdentifier">
                                 <div class="accordion-body">
+                                  <!--식별자 특성-->
                                   <div class="table-responsive">
                                     <table class="table">
                                       <thead style="background-color: #f8f9fa;">
@@ -741,24 +1051,114 @@
                                       </tbody>
                                     </table>
                                   </div>
+                                  <!-- 식별자, 비식별자-->
+                                  <div class="table-responsive">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>특성</th>
+                                          <th>정의</th>
+                                          <th>설명</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>식별자</strong></td>
+                                          <td>생명주기, Not Null, 필수</td>
+                                          <td><span class="badge bg-label-primary">"절대 겹치면 안 되는 고유함!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>비식별자</strong></td>
+                                          <td>다른 생명주기, Null 허용, 선택, 일반속성</td>
+                                          <td><span class="badge bg-label-info">"군더더기 없이 딱 필요한 것만!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <!-- 키(key)-->
+                                  <div class="table-responsive">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>특성</th>
+                                          <th>정의</th>
+                                          <th>EVC 예시</th>
+                                          <th>설명</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>후보키</strong></td>
+                                          <td>학번, 주민번호</td>
+                                          <td>member_id는 모든 회원마다 다름</td>
+                                          <td><span class="badge bg-label-primary">"유일성, 최소성 만족!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>기본키</strong></td>
+                                          <td>학번</td>
+                                          <td>PK는 꼭 필요한 것만 포함</td>
+                                          <td><span class="badge bg-label-info">"후보키중 대표성, 개체 무결성!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>대체키</strong></td>
+                                          <td>주민번호</td>
+                                          <td>member_id는 계속 동일</td>
+                                          <td><span class="badge bg-label-warning">"기본키를 제외한 키!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>슈퍼키</strong></td>
+                                          <td>학번+주민번호 but 굳이?</td>
+                                          <td>PK는 NULL 불가</td>
+                                          <td><span class="badge bg-label-danger">"유일성은 만족 최소성은 불만족!"</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>외래키</strong></td>
+                                          <td>다른 키를 참조</td>
+                                          <td>member_id로 회원 전체를 대표</td>
+                                          <td><span class="badge bg-label-success">"참조 무결성!"</span></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <!-- 개체무결성, 참조무결성-->
+                                  <div class="table-responsive">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>특성</th>
+                                          <th>정의</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>개체무결성</strong></td>
+                                          <td>Not Null</td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>참조무결성</strong></td>
+                                          <td>참조 없는 외래키는 없음</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                             <!-- 정규화 -->
-                            <div class="card bg-label-info mb-3">
-                              <div class="card-header">
-                                <h5 class="mb-0">정규화 & 최적화 </h5>
-                              </div>
-                            </div>
                             <div class="accordion-item card">
+                              <div class="card bg-label-info mb-3">
+                                <div class="card-header">
+                                  <h5 class="mb-0">📐 정규화 & 최적화 </h5>
+                                </div>
+                              </div>
                               <h2 class="accordion-header">
                                 <button
                                   type="button"
-                                  class="accordion-button"
+                                  class="accordion-button collapsed"
                                   data-bs-toggle="collapse"
                                   data-bs-target="#accordionNormalization-1"
                                   aria-expanded="true">
-                                  📐 정규화 (Normalization)
+                                  정규화 (Normalization)
                                 </button>
                               </h2>
                               <div id="accordionNormalization-1" class="accordion-collapse collapse" data-bs-parent="#accordionNormalization">
@@ -768,6 +1168,36 @@
                                     <p class="mb-0">데이터의 중복을 제거하고 데이터 무결성을 유지하기 위해 테이블을 분할하는 과정이야! <strong>"깔끔하게 정리정돈 하는 것!"</strong></p>
                                   </div>
                                   
+                                  <!-- 이상현상 -->
+                                  <h6 class="mb-3">1-1. 이상현상</h6>
+                                  <div class="table-responsive mb-4">
+                                    <table class="table">
+                                      <thead style="background-color: #f8f9fa;">
+                                        <tr>
+                                          <th>분류</th>
+                                          <th>정의</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td><strong>삽입이상</strong></td>
+                                          <td>의도치 않은 삽입</td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>삭제이상</strong></td>
+                                          <td>의도치 않은 삭제</td>
+                                        </tr>
+                                        <tr>
+                                          <td><strong>갱신이상</strong></td>
+                                          <td>의도치 않은 갱신</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <!-- 정규화 -->
+                                  <h6 class="mb-3">1-2. 정규화</h6>
+                                  <h7 class="mb-3">함수적 종속 (A 속성에 의해 B가 유일하게 결정 A > B)</h7><br>
+                                  <h7 class="mb-3">A: 결정자 B: 종속자</h7>
                                   <div class="table-responsive">
                                     <table class="table">
                                       <thead style="background-color: #f8f9fa;">
@@ -782,13 +1212,13 @@
                                         <tr>
                                           <td><strong>1NF</strong><br><small>(제1정규형)</small></td>
                                           <td>반복 그룹 제거</td>
-                                          <td>회원 테이블에서 여러 전화번호를 별도 테이블로 분리</td>
+                                          <td>* 회원 테이블에서 여러 전화번호를 별도 테이블로 분리<br>* 종속자가 기본키의 모든 속성에 종속적인 경우</td>
                                           <td><span class="badge bg-label-primary">"한 칸에 여러 값 넣지 마!"</span></td>
                                         </tr>
                                         <tr>
                                           <td><strong>2NF</strong><br><small>(제2정규형)</small></td>
                                           <td>부분 함수 종속 제거</td>
-                                          <td>복합키에서 일부분에만 종속된 속성 분리</td>
+                                          <td>* 복합키에서 일부분에만 종속된 속성 분리<br>* 종속자가 기본키의 일부 속성에 종속적인 경우</td>
                                           <td><span class="badge bg-label-info">"반쪽짜리 의존은 안 돼!"</span></td>
                                         </tr>
                                         <tr>
@@ -848,7 +1278,7 @@
                                   data-bs-toggle="collapse"
                                   data-bs-target="#accordionNormalization-2"
                                   aria-expanded="false">
-                                  🚀 데이터베이스 성능 최적화
+                                  데이터베이스 성능 최적화
                                 </button>
                               </h2>
                               <div id="accordionNormalization-2" class="accordion-collapse collapse" data-bs-parent="#accordionNormalization">
@@ -981,40 +1411,13 @@
                                 </div>
                               </div>
                             </div>
-
                           </div>
                         </div>
                       </div>
-
-                      <!-- 식별자 & 관계 탭 -->
-                      <div class="tab-pane fade" id="navs-identifier" role="tabpanel">
-                        <div class="col-md">
-                          <div class="accordion mt-3 accordion-bordered" id="accordionIdentifier">
-                            
-
-
-
-
-
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- 정규화 & 최적화 탭 -->
-                      <div class="tab-pane fade" id="navs-normalization" role="tabpanel">
-                        <div class="col-md">
-                          <div class="accordion mt-3 accordion-bordered" id="accordionNormalization">
-                            
-
-
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </div> <!-- 탭 콘텐츠 -->
+                  </div> <!-- 탭 네비게이션-->
+                </div> <!-- 카드네비 -->
+              </div> <!-- 전체 카드네이션 -->
             </div>
             <!-- / Content -->
 
