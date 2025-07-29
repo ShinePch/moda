@@ -1,0 +1,636 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="py-3 mb-4">Bybit API</h4>
+  <!-- Autosize 하얀배경 전체 사이즈-->
+  <div class="col-12">
+    <div class="card mb-4">
+    <!-- card-navbar -->
+    <nav class="navbar navbar-example navbar-expand-lg">
+      <div class="container-fluid ">
+        <a class="navbar-brand" href="javascript:void(0)">Bybit API</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbar-ex-bybit">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-ex-bybit">
+          <div class="navbar-nav me-auto">
+            <a class="nav-item nav-link" href="javascript:void(0)">#암호화폐 스캐너</a>
+            <a class="nav-item nav-link" href="javascript:void(0)">#API 트레이딩</a>
+          </div>
+        </div>
+      </div>
+    </nav> 
+    <!-- card-navbar -->               
+     
+    
+    <!-- 여기서부터 시작-->
+    <div class="nav-align-top nav-tabs-shadow mb-4">
+        <ul class="nav nav-tabs" role="tablist" style="width: 100%; margin-left: 0.01%;">
+          <li class="nav-item">
+            <button
+              type="button"
+              class="nav-link active"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#navs-bybit-scanner"
+              aria-controls="navs-bybit-scanner"
+              aria-selected="true">
+              암호화폐 스캐너
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              type="button"
+              class="nav-link"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#navs-bybit-trading"
+              aria-controls="navs-bybit-trading"
+              aria-selected="false">
+              API 트레이딩 도구
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              type="button"
+              class="nav-link"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#navs-bybit-setup"
+              aria-controls="navs-bybit-setup"
+              aria-selected="false">
+              API 설정 가이드
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              type="button"
+              class="nav-link"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#navs-bybit-reference"
+              aria-controls="navs-bybit-reference"
+              aria-selected="false">
+              API 레퍼런스
+            </button>
+          </li>
+        </ul>
+        <!--tab-content-->
+        <div class="tab-content">
+
+          <div class="tab-pane fade show active" id="navs-bybit-scanner" role="tabpanel">
+            <!--accordion-->
+            <div class="col-md">
+              <div class="accordion mt-3 accordion-bordered" id="accordionBybitScanner">
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionBybit-1"
+                      aria-expanded="false">
+                      🚀 Bybit 암호화폐 스캐너 (MA448/644 분석)
+                    </button>
+                  </h2>
+                  <div id="accordionBybit-1" class="accordion-collapse collapse" data-bs-parent="#accordionBybitScanner">
+                    <div class="accordion-body">
+                      <!-- API 설정 섹션 -->
+                      <div class="api-config mb-4" style="background: rgba(13, 110, 253, 0.1); border-radius: 10px; padding: 20px;">
+                        <h5>🔑 API 설정</h5>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label for="bybitApiKey" class="form-label">API Key:</label>
+                              <input type="password" class="form-control" id="bybitApiKey" placeholder="Bybit API Key를 입력하세요">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label for="bybitApiSecret" class="form-label">API Secret:</label>
+                              <input type="password" class="form-control" id="bybitApiSecret" placeholder="Bybit API Secret을 입력하세요">
+                            </div>
+                          </div>
+                        </div>
+                        <small class="text-muted">* API 키는 브라우저에 저장되지 않습니다 (Read-Only 권한만 필요)</small>
+                      </div>
+
+                      <!-- 컨트롤 버튼들 -->
+                      <div class="row mb-4">
+                        <div class="col-md-3">
+                          <button class="btn btn-primary w-100" onclick="testBybitConnection()">🔍 연결 테스트</button>
+                        </div>
+                        <div class="col-md-3">
+                          <button class="btn btn-warning w-100" onclick="quickBybitScan()">⚡ 빠른 스캔</button>
+                        </div>
+                        <div class="col-md-3">
+                          <button class="btn btn-success w-100" onclick="fullBybitScan()">🎯 전체 스캔</button>
+                        </div>
+                        <div class="col-md-3">
+                          <button class="btn btn-secondary w-100" onclick="clearBybitResults()">🗑️ 결과 지우기</button>
+                        </div>
+                      </div>
+
+                      <!-- 결과 표시 영역 -->
+                      <div class="card">
+                        <div class="card-header">
+                          <h5 class="card-title mb-0">📊 스캔 결과</h5>
+                        </div>
+                        <div class="card-body" id="bybitResults">
+                          <div class="text-center text-muted" style="padding: 40px;">
+                            <h5>🎯 검색 결과가 여기에 표시됩니다</h5>
+                            <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 사용법 안내 -->
+                      <div class="alert alert-info mt-3">
+                        <h6><i class="ti ti-info-circle me-2"></i>사용 방법:</h6>
+                        <ol class="mb-0">
+                          <li><strong>API 키 설정:</strong> Bybit 계정에서 Read-Only API 키 발급</li>
+                          <li><strong>연결 테스트:</strong> API 키가 정상 작동하는지 확인</li>
+                          <li><strong>빠른 스캔:</strong> 인기 코인 50개 대상으로 빠른 분석</li>
+                          <li><strong>전체 스캔:</strong> MA448/644 기준으로 전체 분석</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!--accordion-->
+          </div>
+
+          <div class="tab-pane fade" id="navs-bybit-trading" role="tabpanel">
+            <!--accordion-->
+            <div class="col-md">
+              <div class="accordion mt-3 accordion-bordered" id="accordionBybitTrading">
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionBybit-2"
+                      aria-expanded="false">
+                      📈 자동매매 도구 (개발중)
+                    </button>
+                  </h2>
+                  <div id="accordionBybit-2" class="accordion-collapse collapse" data-bs-parent="#accordionBybitTrading">
+                    <div class="accordion-body">
+                      <div class="alert alert-warning">
+                        <h6><i class="ti ti-alert-triangle me-2"></i>주의사항:</h6>
+                        <p class="mb-0">자동매매 기능은 현재 개발 중입니다. 실제 거래 시 충분한 테스트 후 사용하세요.</p>
+                      </div>
+                      
+                      <ul>
+                        <li>🔄 자동 매수/매도 전략</li>
+                        <li>📊 실시간 가격 모니터링</li>
+                        <li>⚠️ 리스크 관리 도구</li>
+                        <li>📱 알림 시스템</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!--accordion-->
+          </div>
+
+          <div class="tab-pane fade" id="navs-bybit-setup" role="tabpanel">
+            <!--accordion-->
+            <div class="col-md">
+              <div class="accordion mt-3 accordion-bordered" id="accordionBybitSetup">
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionBybit-3"
+                      aria-expanded="false">
+                      🔧 Bybit API 설정 가이드
+                    </button>
+                  </h2>
+                  <div id="accordionBybit-3" class="accordion-collapse collapse" data-bs-parent="#accordionBybitSetup">
+                    <div class="accordion-body">
+                      <h6>1. Bybit 계정 준비</h6>
+                      <ul>
+                        <li><a href="https://www.bybit.com" target="_blank">Bybit 공식 사이트</a>에서 계정 생성</li>
+                        <li>본인인증 완료 (KYC)</li>
+                        <li>2단계 인증(2FA) 설정 필수</li>
+                      </ul>
+
+                      <h6 class="mt-3">2. API 키 발급</h6>
+                      <ul>
+                        <li>계정 설정 → API Management 이동</li>
+                        <li>"Create New Key" 클릭</li>
+                        <li><strong>권한 설정:</strong> Read Only만 체크 (보안상 권장)</li>
+                        <li>IP 화이트리스트 설정 (선택사항)</li>
+                      </ul>
+
+                      <h6 class="mt-3">3. 보안 주의사항</h6>
+                      <div class="alert alert-danger">
+                        <ul class="mb-0">
+                          <li>API 키를 절대 다른 사람과 공유하지 마세요</li>
+                          <li>처음에는 Read-Only 권한만 사용하세요</li>
+                          <li>정기적으로 API 키를 갱신하세요</li>
+                          <li>의심스러운 활동 발견 시 즉시 키를 비활성화하세요</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!--accordion-->
+          </div>
+
+          <div class="tab-pane fade" id="navs-bybit-reference" role="tabpanel">
+            <!--accordion-->
+            <div class="col-md">
+              <div class="accordion mt-3 accordion-bordered" id="accordionBybitRef">
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionBybit-4"
+                      aria-expanded="false">
+                      📚 API 레퍼런스 & 예제
+                    </button>
+                  </h2>
+                  <div id="accordionBybit-4" class="accordion-collapse collapse" data-bs-parent="#accordionBybitRef">
+                    <div class="accordion-body">
+                      <h6>주요 API 엔드포인트</h6>
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>용도</th>
+                              <th>엔드포인트</th>
+                              <th>설명</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>서버 시간</td>
+                              <td>/v5/market/time</td>
+                              <td>Bybit 서버의 현재 시간 조회</td>
+                            </tr>
+                            <tr>
+                              <td>티커 정보</td>
+                              <td>/v5/market/tickers</td>
+                              <td>코인별 가격, 거래량 등 기본 정보</td>
+                            </tr>
+                            <tr>
+                              <td>K라인 데이터</td>
+                              <td>/v5/market/kline</td>
+                              <td>차트 데이터 (OHLCV)</td>
+                            </tr>
+                            <tr>
+                              <td>계좌 정보</td>
+                              <td>/v5/account/wallet-balance</td>
+                              <td>보유 자산 조회</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <h6 class="mt-3">참고 링크</h6>
+                      <ul>
+                        <li><a href="https://bybit-exchange.github.io/docs/" target="_blank">Bybit API 공식 문서</a></li>
+                        <li><a href="https://testnet.bybit.com/" target="_blank">Bybit 테스트넷</a></li>
+                        <li><a href="https://github.com/bybit-exchange" target="_blank">Bybit GitHub</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!--accordion-->
+          </div>
+
+        </div>
+        <!-- card-navbar -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / Content -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script>
+// Bybit API 관련 JavaScript 함수들
+let bybitApiKey = '';
+let bybitApiSecret = '';
+let isBybitScanning = false;
+
+// 전역 함수로 등록 (동적 로딩 대응)
+window.testBybitConnection = testBybitConnection;
+window.quickBybitScan = quickBybitScan;
+window.fullBybitScan = fullBybitScan;
+window.clearBybitResults = clearBybitResults;
+
+// API 설정 가져오기
+function getBybitApiConfig() {
+  bybitApiKey = document.getElementById('bybitApiKey').value.trim();
+  bybitApiSecret = document.getElementById('bybitApiSecret').value.trim();
+  
+  if (!bybitApiKey || !bybitApiSecret) {
+      showBybitError('API Key와 Secret을 입력해주세요');
+      return false;
+  }
+
+// 페이지 로드 완료 후 초기화
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 Bybit API 모듈이 준비되었습니다!');
+  
+  // 전역 함수로 등록 (동적 로딩 환경 대응)
+  if (typeof window !== 'undefined') {
+      window.testBybitConnection = testBybitConnection;
+      window.quickBybitScan = quickBybitScan;
+      window.fullBybitScan = fullBybitScan;
+      window.clearBybitResults = clearBybitResults;
+      window.getBybitApiConfig = getBybitApiConfig;
+      window.callBybitAPI = callBybitAPI;
+      console.log('✅ Bybit API 함수들이 전역으로 등록되었습니다.');
+  }
+});
+
+// 동적 로딩 감지 및 재초기화
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initBybitAPI);
+} else {
+  initBybitAPI();
+}
+
+function initBybitAPI() {
+  // 함수들을 즉시 전역으로 등록
+  window.testBybitConnection = testBybitConnection;
+  window.quickBybitScan = quickBybitScan;
+  window.fullBybitScan = fullBybitScan;
+  window.clearBybitResults = clearBybitResults;
+  
+  // 이벤트 리스너 등록 (더 안전한 방식)
+  const testBtn = document.getElementById('testBybitConnectionBtn');
+  const quickBtn = document.getElementById('quickBybitScanBtn');
+  const fullBtn = document.getElementById('fullBybitScanBtn');
+  const clearBtn = document.getElementById('clearBybitResultsBtn');
+  
+  if (testBtn) testBtn.addEventListener('click', testBybitConnection);
+  if (quickBtn) quickBtn.addEventListener('click', quickBybitScan);
+  if (fullBtn) fullBtn.addEventListener('click', fullBybitScan);
+  if (clearBtn) clearBtn.addEventListener('click', clearBybitResults);
+  
+  console.log('🔧 Bybit API 동적 초기화 및 이벤트 리스너 등록 완료');
+}
+  return true;
+}
+
+// Bybit API 서명 생성
+function generateBybitSignature(timestamp, params) {
+  const queryString = new URLSearchParams(params).toString();
+  const payload = timestamp + bybitApiKey + '5000' + queryString;
+  return CryptoJS.HmacSHA256(payload, bybitApiSecret).toString();
+}
+
+// API 호출 함수
+async function callBybitAPI(endpoint, params = {}) {
+  if (!getBybitApiConfig()) return null;
+
+  const timestamp = Date.now().toString();
+  const signature = generateBybitSignature(timestamp, params);
+  
+  const queryString = new URLSearchParams(params).toString();
+  const url = `https://api.bybit.com${endpoint}?${queryString}`;
+
+  try {
+      const response = await fetch(url, {
+          headers: {
+              'X-BAPI-API-KEY': bybitApiKey,
+              'X-BAPI-SIGN': signature,
+              'X-BAPI-SIGN-TYPE': '2',
+              'X-BAPI-TIMESTAMP': timestamp,
+              'X-BAPI-RECV-WINDOW': '5000'
+          }
+      });
+
+      const data = await response.json();
+      if (data.retCode !== 0) {
+          throw new Error(data.retMsg || 'API 오류');
+      }
+      return data.result;
+  } catch (error) {
+      console.error('API 호출 오류:', error);
+      throw error;
+  }
+}
+
+// 연결 테스트
+async function testBybitConnection() {
+  if (!getBybitApiConfig()) return;
+
+  showBybitLoading('API 연결을 테스트하는 중...');
+  
+  try {
+      const serverTime = await callBybitAPI('/v5/market/time');
+      const tickers = await callBybitAPI('/v5/market/tickers', { category: 'spot', symbol: 'BTCUSDT' });
+      
+      const btcPrice = parseFloat(tickers.list[0].lastPrice);
+      
+      showBybitResults(`
+          <div class="alert alert-success">
+              <h5>✅ 연결 성공!</h5>
+              <p class="mb-1">비트코인 현재가: $${btcPrice.toLocaleString()}</p>
+              <p class="mb-0">서버 시간: ${new Date(parseInt(serverTime.timeSecond) * 1000).toLocaleString()}</p>
+          </div>
+      `);
+  } catch (error) {
+      showBybitError(`연결 실패: ${error.message}`);
+  }
+}
+
+// 빠른 스캔
+async function quickBybitScan() {
+  if (!getBybitApiConfig() || isBybitScanning) return;
+
+  isBybitScanning = true;
+  showBybitLoading('빠른 스캔 중... (50개 코인 검사)');
+
+  try {
+      const popularCoins = [
+          'BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'ADAUSDT', 'SOLUSDT', 'DOTUSDT', 'LINKUSDT', 'AVAXUSDT',
+          'MATICUSDT', 'ATOMUSDT', 'NEARUSDT', 'ALGOUSDT', 'VETUSDT', 'ICPUSDT', 'FILUSDT',
+          'TRXUSDT', 'ETCUSDT', 'XLMUSDT', 'AAVEUSDT', 'UNIUSDT', 'LTCUSDT', 'BCHUSDT',
+          'DOGEUSDT', 'SHIBUSDT', 'PEPEUSDT', 'FLOKIUSDT', 'BONKUSDT', 'WIFUSDT', 'NOTUSDT',
+          'THETAUSDT', 'CHZUSDT', 'MANAUSDT', 'SANDUSDT', 'AXSUSDT', 'ENJUSDT', 'GALAUSDT',
+          'FLOWUSDT', 'GRTUSDT', 'YGGUSDT', 'SLPUSDT', 'TLMUSDT', 'ALICEUSDT', 'CHROUSDT',
+          'COTIUSDT', 'CTSIUSDT', 'CVCUSDT', 'DIAUSDT', 'FIDAUSDT', 'FORMUSDT', 'GHSTUSDT', 'HBARUSDT'
+      ];
+
+      const results = [];
+      let progressHtml = `
+          <div class="progress mb-3">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" id="bybitProgressBar"></div>
+          </div>
+          <p class="text-center" id="bybitProgressText">0/50 완료</p>
+      `;
+      document.getElementById('bybitResults').innerHTML = progressHtml;
+
+      for (let i = 0; i < popularCoins.length; i++) {
+          const symbol = popularCoins[i];
+          
+          try {
+              const ticker = await callBybitAPI('/v5/market/tickers', { 
+                  category: 'spot', 
+                  symbol: symbol 
+              });
+
+              if (ticker.list && ticker.list.length > 0) {
+                  const coin = ticker.list[0];
+                  const price = parseFloat(coin.lastPrice);
+                  const change24h = parseFloat(coin.price24hPcnt) * 100;
+                  const volume = parseFloat(coin.volume24h);
+
+                  if (change24h <= -2) {
+                      results.push({
+                          symbol: symbol,
+                          price: price,
+                          change24h: change24h,
+                          volume: volume,
+                          condition: '24h 하락'
+                      });
+                  }
+              }
+          } catch (error) {
+              console.log(`${symbol} 오류:`, error.message);
+          }
+
+          // 진행률 업데이트
+          const progress = ((i + 1) / popularCoins.length) * 100;
+          document.getElementById('bybitProgressBar').style.width = `${progress}%`;
+          document.getElementById('bybitProgressText').textContent = `${i + 1}/50 완료`;
+          
+          await new Promise(resolve => setTimeout(resolve, 100));
+      }
+
+      displayBybitScanResults(results, '빠른 스캔');
+  } catch (error) {
+      showBybitError(`스캔 실패: ${error.message}`);
+  } finally {
+      isBybitScanning = false;
+  }
+}
+
+// 전체 스캔 (시뮬레이션)
+async function fullBybitScan() {
+  if (!getBybitApiConfig() || isBybitScanning) return;
+
+  isBybitScanning = true;
+  showBybitLoading('전체 스캔 중... (MA448/644 분석)');
+
+  try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      const simulatedResults = [
+          { symbol: 'ETHUSDT', price: 2520.10, change24h: 0.89, volume: 55565, condition: 'MA448 아래' },
+          { symbol: 'DOTUSDT', price: 4.02, change24h: 2.98, volume: 694201, condition: 'MA644 아래' },
+          { symbol: 'AXSUSDT', price: 2.44, change24h: -1.2, volume: 123456, condition: '둘 다 아래' },
+          { symbol: 'LINKUSDT', price: 13.82, change24h: 2.76, volume: 320702, condition: 'MA448 아래' },
+          { symbol: 'UNIUSDT', price: 6.29, change24h: -0.5, volume: 234567, condition: '둘 다 아래' }
+      ];
+
+      displayBybitScanResults(simulatedResults, '전체 스캔 (데모)');
+  } catch (error) {
+      showBybitError(`스캔 실패: ${error.message}`);
+  } finally {
+      isBybitScanning = false;
+  }
+}
+
+// 결과 표시
+function displayBybitScanResults(results, scanType) {
+  if (results.length === 0) {
+      showBybitResults(`
+          <div class="alert alert-info">
+              <h5>📊 ${scanType} 완료</h5>
+              <p class="mb-0">조건에 맞는 코인이 없습니다.</p>
+          </div>
+      `);
+      return;
+  }
+
+  const avgPrice = results.reduce((sum, coin) => sum + coin.price, 0) / results.length;
+  const avgChange = results.reduce((sum, coin) => sum + coin.change24h, 0) / results.length;
+
+  let html = `
+      <div class="alert alert-primary">
+          <h5>📊 ${scanType} 결과</h5>
+          <div class="row text-center">
+              <div class="col-md-4">발견: ${results.length}개</div>
+              <div class="col-md-4">평균가격: $${avgPrice.toFixed(4)}</div>
+              <div class="col-md-4">평균변동: ${avgChange.toFixed(2)}%</div>
+          </div>
+      </div>
+      <div class="row">
+  `;
+
+  results.forEach(coin => {
+      const badgeClass = coin.change24h >= 0 ? 'bg-success' : 'bg-danger';
+      const changeIcon = coin.change24h >= 0 ? '📈' : '📉';
+      
+      html += `
+          <div class="col-md-6 col-lg-4 mb-3">
+              <div class="card">
+                  <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                          <h6 class="card-title mb-0">${coin.symbol}</h6>
+                          <span class="badge ${badgeClass}">${changeIcon} ${coin.change24h.toFixed(2)}%</span>
+                      </div>
+                      <p class="card-text mb-1">가격: $${coin.price.toLocaleString()}</p>
+                      <p class="card-text mb-1">거래량: ${coin.volume.toLocaleString()}</p>
+                      <p class="card-text mb-0"><small class="text-muted">조건: ${coin.condition}</small></p>
+                  </div>
+              </div>
+          </div>
+      `;
+  });
+
+  html += '</div>';
+  showBybitResults(html);
+}
+
+// UI 헬퍼 함수들
+function showBybitLoading(message) {
+  document.getElementById('bybitResults').innerHTML = `
+      <div class="text-center">
+          <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-2">${message}</p>
+      </div>
+  `;
+}
+
+function showBybitResults(html) {
+  document.getElementById('bybitResults').innerHTML = html;
+}
+
+function showBybitError(message) {
+  document.getElementById('bybitResults').innerHTML = `
+      <div class="alert alert-danger">
+          ❌ ${message}
+      </div>
+  `;
+}
+
+function clearBybitResults() {
+  document.getElementById('bybitResults').innerHTML = `
+      <div class="text-center text-muted" style="padding: 40px;">
+          <h5>🎯 검색 결과가 여기에 표시됩니다</h5>
+          <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+      </div>
+  `;
+}
+</script>
