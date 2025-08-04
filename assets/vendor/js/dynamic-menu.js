@@ -6,14 +6,34 @@
 function initializeMenu() {
   console.log(window.location.pathname);
   
-  // 메뉴 토글 기능 (상위 메뉴 클릭 시 하위 메뉴 표시/숨김)
-  $(document).on('click', '.menu-toggle, a[href="javascript:void(0);"]', function(e) {
+  // 메뉴 토글 기능 개선 (Bootstrap 아코디언과 호환)
+  $(document).on('click', '.menu-toggle', function(e) {
     e.preventDefault();
+    e.stopPropagation();
     
-    // 메뉴 토글 버튼인 경우 하위 메뉴 표시/숨김 처리
-    const $menuItem = $(this).closest('.menu-item');
-    $menuItem.toggleClass('open');
-    console.log("메뉴 토글됨");
+    const $clickedMenuItem = $(this).closest('.menu-item');
+    const $menuSub = $clickedMenuItem.find('.menu-sub').first();
+    
+    // 현재 메뉴가 열려있는지 확인
+    const isCurrentlyOpen = $clickedMenuItem.hasClass('open');
+    
+    if (isCurrentlyOpen) {
+      // 현재 메뉴 닫기
+      $clickedMenuItem.removeClass('open');
+      $menuSub.slideUp(300);
+    } else {
+      // 같은 레벨의 다른 메뉴들 모두 닫기 (아코디언 효과)
+      $clickedMenuItem.siblings().each(function() {
+        $(this).removeClass('open');
+        $(this).find('.menu-sub').first().slideUp(300);
+      });
+      
+      // 현재 메뉴 열기
+      $clickedMenuItem.addClass('open');
+      $menuSub.slideDown(300);
+    }
+    
+    console.log("메뉴 아코디언 토글됨:", $clickedMenuItem.find('[data-i18n]').text());
   });
   
   // 메뉴 항목 클릭 이벤트 (페이지 로드)
