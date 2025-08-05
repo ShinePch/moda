@@ -228,31 +228,73 @@
             <div class="container-xxl flex-grow-1 container-p-y">
               <h4 class="py-3 mb-4">🚀 Bybit API 스캐너</h4>
               
-              <!-- API 설정 카드 -->
+              <!-- 1. 실시간 차트 카드 (최상위) -->
+              <div class="card mb-4" id="chartCard">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="card-title mb-0" id="chartTitle">📊 BTCUSDT 실시간 차트</h5>
+                  <div class="d-flex gap-2">
+                    <select class="form-select form-select-sm" id="chartTimeframe" onchange="updateChart()" style="width: 120px;">
+                      <option value="5">5분</option>
+                      <option value="15">15분</option>
+                      <option value="60" selected>1시간</option>
+                      <option value="240">4시간</option>
+                      <option value="D">1일</option>
+                    </select>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="updateChart()">
+                      <i class="ti ti-refresh"></i>
+                    </button>
+                    <div class="spinner-border spinner-border-sm" role="status" id="chartLoading" style="display: none;">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <canvas id="priceChart" style="height: 350px;"></canvas>
+                </div>
+              </div>
+
+              <!-- 2. API 설정 + 연결 테스트 통합 카드 -->
               <div class="card mb-4">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">🔑 API 설정</h5>
+                  <h5 class="card-title mb-0">🔑 API 설정 & 연결</h5>
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="mb-3">
                         <label for="apiKey" class="form-label">API Key</label>
                         <input type="password" class="form-control" id="apiKey" placeholder="Bybit API Key를 입력하세요">
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="mb-3">
                         <label for="apiSecret" class="form-label">API Secret</label>
                         <input type="password" class="form-control" id="apiSecret" placeholder="Bybit API Secret을 입력하세요">
                       </div>
                     </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label class="form-label">연결 상태</label>
+                        <div class="d-grid">
+                          <button class="btn btn-primary" onclick="testConnection()">
+                            <i class="ti ti-search me-1"></i>연결 테스트
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <small class="text-muted">* API 키는 브라우저에 저장되지 않습니다 (Read-Only 권한만 필요)</small>
+                  
+                  <!-- 연결 상태 표시 영역 -->
+                  <div id="connectionStatus" style="display: none;"></div>
+                  
+                  <small class="text-muted">
+                    <i class="ti ti-info-circle me-1"></i>
+                    API 키는 브라우저에 저장되지 않습니다 (Read-Only 권한만 필요)
+                  </small>
                 </div>
               </div>
 
-              <!-- MA 설정 카드 (업그레이드: 2개 조건) -->
+              <!-- 3. MA 설정 카드 (기존 그대로) -->
               <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                   <h5 class="card-title mb-0">📊 MA(이동평균선) 설정</h5>
@@ -334,7 +376,7 @@
                         <div class="mb-3">
                           <label class="form-label">연산자</label>
                           <select class="form-select" id="logicalOperator">
-                            <option value="AND" selected">그리고 (AND)</option>
+                            <option value="AND" selected>그리고 (AND)</option>
                             <option value="OR">또는 (OR)</option>
                           </select>
                         </div>
@@ -357,56 +399,26 @@
                 </div>
               </div>
 
-              <!-- 컨트롤 버튼들 -->
+              <!-- 4. 컨트롤 버튼들 -->
               <div class="row mb-4">
-                <div class="col-md-3">
-                  <button class="btn btn-primary w-100" onclick="testConnection()">
-                    <i class="ti ti-search me-1"></i>연결 테스트
-                  </button>
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <button class="btn btn-warning w-100" onclick="quickScan()">
                     <i class="ti ti-bolt me-1"></i>빠른 스캔
                   </button>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <button class="btn btn-success w-100" onclick="customMAScan()">
                     <i class="ti ti-target me-1"></i>MA 기준 스캔
                   </button>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <button class="btn btn-secondary w-100" onclick="clearResults()">
                     <i class="ti ti-trash me-1"></i>결과 지우기
                   </button>
                 </div>
               </div>
 
-              <!-- 실시간 차트 카드 -->
-              <div class="card mb-4" id="chartCard" style="display: none;">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                  <h5 class="card-title mb-0" id="chartTitle">📊 BTCUSDT 실시간 차트</h5>
-                  <div class="d-flex gap-2">
-                    <select class="form-select form-select-sm" id="chartTimeframe" onchange="updateChart()" style="width: 120px;">
-                      <option value="5">5분</option>
-                      <option value="15">15분</option>
-                      <option value="60" selected>1시간</option>
-                      <option value="240">4시간</option>
-                      <option value="D">1일</option>
-                    </select>
-                    <button class="btn btn-outline-secondary btn-sm" onclick="updateChart()">
-                      <i class="ti ti-refresh"></i>
-                    </button>
-                    <div class="spinner-border spinner-border-sm" role="status" id="chartLoading" style="display: none;">
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <canvas id="priceChart" style="height: 300px;"></canvas>
-                </div>
-              </div>
-
-              <!-- 결과 표시 카드 -->
+              <!-- 5. 스캔 결과 카드 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title mb-0">📊 스캔 결과</h5>
@@ -424,10 +436,11 @@
               <div class="alert alert-info mt-4">
                 <h6><i class="ti ti-info-circle me-2"></i>사용 방법:</h6>
                 <ol class="mb-0">
-                  <li><strong>API 키 설정:</strong> Bybit 계정에서 Read-Only API 키 발급</li>
+                  <li><strong>API 키 설정:</strong> Bybit 계정에서 Read-Only API 키 발급 후 연결 테스트</li>
+                  <li><strong>차트 확인:</strong> 실시간 차트로 시장 상황 파악</li>
                   <li><strong>MA 설정:</strong> 원하는 이동평균선 값과 조건 선택</li>
-                  <li><strong>연결 테스트:</strong> API 키가 정상 작동하는지 확인</li>
-                  <li><strong>스캔 실행:</strong> 빠른 스캔 또는 MA 기준 스캔 선택</li>
+                  <li><strong>스캔 실행:</strong> 빠른 스캔 또는 MA 기준 스캔으로 코인 발굴</li>
+                  <li><strong>차트 분석:</strong> 검색된 코인 클릭으로 상세 차트 분석</li>
                 </ol>
               </div>
 
@@ -548,7 +561,17 @@
         async function testConnection() {
             if (!getApiConfig()) return;
 
-            showLoading('API 연결을 테스트하는 중...');
+            // 연결 상태 영역 표시
+            const statusDiv = document.getElementById('connectionStatus');
+            statusDiv.style.display = 'block';
+            statusDiv.innerHTML = `
+                <div class="alert alert-info mt-3">
+                    <div class="d-flex align-items-center">
+                        <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+                        <span>API 연결을 테스트하는 중...</span>
+                    </div>
+                </div>
+            `;
             
             try {
                 const serverTime = await callBybitAPI('/v5/market/time');
@@ -556,15 +579,23 @@
                 
                 const btcPrice = parseFloat(tickers.list[0].lastPrice);
                 
-                showResults(`
-                    <div class="alert alert-success">
-                        <h5><i class="ti ti-check-circle me-2"></i>연결 성공!</h5>
-                        <p class="mb-1">비트코인 현재가: $${btcPrice.toLocaleString()}</p>
-                        <p class="mb-0">서버 시간: ${new Date(parseInt(serverTime.timeSecond) * 1000).toLocaleString()}</p>
+                // 성공 메시지를 API 카드 내부에 표시
+                statusDiv.innerHTML = `
+                    <div class="alert alert-success mt-3">
+                        <h6><i class="ti ti-check-circle me-2"></i>연결 성공!</h6>
+                        <div class="row text-center">
+                            <div class="col-md-6"><strong>비트코인 현재가:</strong> $${btcPrice.toLocaleString()}</div>
+                            <div class="col-md-6"><strong>서버 시간:</strong> ${new Date(parseInt(serverTime.timeSecond) * 1000).toLocaleString()}</div>
+                        </div>
                     </div>
-                `);
+                `;
             } catch (error) {
-                showError(`연결 실패: ${error.message}`);
+                // 실패 메시지도 API 카드 내부에 표시
+                statusDiv.innerHTML = `
+                    <div class="alert alert-danger mt-3">
+                        <i class="ti ti-alert-circle me-2"></i>연결 실패: ${error.message}
+                    </div>
+                `;
             }
         }
 
