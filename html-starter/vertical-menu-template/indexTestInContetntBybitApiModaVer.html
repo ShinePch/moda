@@ -50,6 +50,9 @@
     <script src="../../assets/vendor/js/helpers.js"></script>
     <script src="../../assets/vendor/js/template-customizer.js"></script>
     <script src="../../assets/js/config.js"></script>
+    <!-- RSI 계산용 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/technicalindicators@3.1.0/dist/browser/technicalindicators.min.js"></script>
+
   </head>
 
   <body>
@@ -295,6 +298,60 @@
               </div>
 
               <!-- 3. MA 설정 카드 (기존 그대로) -->
+               <!-- 3.5 RSI 조건 카드 -->
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h5 class="card-title mb-0">📈 RSI 조건</h5>
+                  <!-- 3.6 MACD 조건 카드 -->
+                  <div class="card mb-4">
+                    <div class="card-header">
+                      <h5 class="card-title mb-0">📉 MACD 조건</h5>
+                      <div class="form-check form-switch mt-2">
+                        <input class="form-check-input" type="checkbox" id="enableMACD">
+                        <label class="form-check-label" for="enableMACD">MACD 조건 사용</label>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <label class="form-label">Fast EMA</label>
+                          <input type="number" class="form-control" id="macdFast" value="12">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Slow EMA</label>
+                          <input type="number" class="form-control" id="macdSlow" value="26">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Signal</label>
+                          <input type="number" class="form-control" id="macdSignal" value="9">
+                        </div>
+                      </div>
+                      <div class="mt-3">
+                        <select class="form-select" id="macdCondition">
+                          <option value="golden" selected>MACD > Signal (골든크로스)</option>
+                          <option value="dead">MACD < Signal (데드크로스)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" id="enableRSI" checked>
+                    <label class="form-check-label" for="enableRSI">RSI 조건 사용</label>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="rsiValue" class="form-label">RSI 값 이하</label>
+                      <input type="number" class="form-control" id="rsiValue" value="30">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="rsiPeriod" class="form-label">RSI 기간</label>
+                      <input type="number" class="form-control" id="rsiPeriod" value="14">
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                   <h5 class="card-title mb-0">📊 MA(이동평균선) 설정</h5>
@@ -641,6 +698,54 @@
                             const change24h = parseFloat(coin.price24hPcnt) * 100;
                             const volume = parseFloat(coin.volume24h);
 
+                            // RSI 조건 가져오기
+                            const isRSIEnabled = document.getElementById('enableRSI').checked;
+                            const rsiValue = parseFloat(document.getElementById('rsiValue').value || 30);
+                            const rsiPeriod = parseInt(document.getElementById('rsiPeriod').value || 14);
+
+                            // K라인 데이터 가져오기
+                            const kline = await getKlineData(symbol, '60', 100);
+                            const closes = kline.map(k => parseFloat(k[4]));
+                            const rsi = calculateRSI(closes, rsiPeriod);
+
+                            if (!isRSIEnabled || (isRSIEnabled && rsi < rsiValue)) {
+                                results.push({
+                                    symbol: symbol,
+                                    price: price,
+                                    change24h: change24h,
+                                    volume: volume,
+                                    rsi: rsi.toFixed(2),
+                                    condition: isRSIEnabled ? `RSI ${rsi.toFixed(2)} < ${rsiValue}` : 'RSI 조건 없음'
+                                });
+                            }
+
+                            const isMACDEnabled = document.getElementById('enableMACD').checked;
+
+                            if (isMACDEnabled) {
+                              const fast = parseInt(document.getElementById('macdFast').value || 12);
+                              const slow = parseInt(document.getElementById('macdSlow').value || 26);
+                              const signal = parseInt(document.getElementById('macdSignal').value || 9);
+                              const condition = document.getElementById('macdCondition').value;
+
+                              const macdData = calculateMACD(closes, fast, slow, signal);
+                              if (!macdData) continue; // 데이터 부족 시 건너뜀
+
+                              const { MACD, signal: signalLine } = macdData;
+                              const isGolden = MACD > signalLine;
+                              const isDead = MACD < signalLine;
+
+                              const macdPass = (condition === 'golden' && isGolden) || (condition === 'dead' && isDead);
+                              if (!macdPass) continue;
+
+                              // 조건 통과한 경우 추가 정보 붙이기
+                              results[results.length - 1].macd = MACD.toFixed(4);
+                              results[results.length - 1].macdSignal = signalLine.toFixed(4);
+                              results[results.length - 1].condition += ` + MACD(${MACD.toFixed(2)} / ${signalLine.toFixed(2)})`;
+                            }
+
+
+
+
                             if (change24h <= -2) {
                                 results.push({
                                     symbol: symbol,
@@ -811,6 +916,29 @@
             // 초기 미리보기 업데이트
             updateConditionPreview();
         });
+        // RSI 계산 함수
+        function calculateRSI(closes, period = 14) {
+          const rsi = technicalindicators.RSI.calculate({
+            values: closes,
+            period: period
+          });
+          return rsi[rsi.length - 1]; // 가장 최근 RSI 값 반환
+        }
+        // MACD 계산 함수
+        function calculateMACD(closes, fastPeriod = 12, slowPeriod = 26, signalPeriod = 9) {
+          const macdResult = technicalindicators.MACD.calculate({
+            values: closes,
+            fastPeriod,
+            slowPeriod,
+            signalPeriod,
+            SimpleMAOscillator: false,
+            SimpleMASignal: false
+          });
+
+          return macdResult.length ? macdResult[macdResult.length - 1] : null;
+        }
+
+
 
         // 결과 표시
         function displayScanResults(results, scanType) {
@@ -852,6 +980,8 @@
                                     <span class="badge ${badgeClass}">${changeIcon} ${coin.change24h.toFixed(2)}%</span>
                                 </div>
                                 <p class="card-text mb-1"><strong>가격:</strong> ${coin.price.toLocaleString()}</p>
+                                ${coin.rsi ? `<p class="card-text mb-1"><strong>RSI:</strong> ${coin.rsi}</p>` : ''}
+                                ${coin.macd ? `<p class="card-text mb-1"><strong>MACD:</strong> ${coin.macd} / Signal ${coin.macdSignal}</p>` : ''}
                                 <p class="card-text mb-1"><strong>거래량:</strong> ${coin.volume.toLocaleString()}</p>
                                 <p class="card-text mb-2"><small class="text-muted"><strong>조건:</strong> ${coin.condition}</small></p>
                                 <button class="btn btn-outline-primary btn-sm w-100" onclick="showChart('${coin.symbol}')">
