@@ -1207,934 +1207,934 @@
             <div class="col-md">
               <div class="accordion mt-3 accordion-bordered" id="accordionSqld-2">
                 <!-- 데이터 분석 함수 -->
-<div class="accordion-item card">
-  <div class="card bg-label-success mb-3">
-    <div class="card-header">
-      <h5 class="mb-0">📊 데이터 분석 함수</h5>
-    </div>
-  </div>
-  <h2 class="accordion-header">
-    <button
-      type="button"
-      class="accordion-button collapsed"
-      data-bs-toggle="collapse"
-      data-bs-target="#accordionAnalysis-1"
-      aria-expanded="true">
-      데이터 분석 함수
-    </button>
-  </h2>
-  <div id="accordionAnalysis-1" class="accordion-collapse collapse" data-bs-parent="#accordionSql">
-    <div class="accordion-body">
-      
-      <!-- 집계 함수 -->
-      <h6 class="mb-3">1. 집계 함수</h6>
-      <div class="table-responsive mb-4">
-        <table class="table">
-          <thead style="background-color: #f8f9fa;">
-            <tr>
-              <th>함수명</th>
-              <th>용도</th>
-              <th>설명</th>
-              <th>예시</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>COUNT</strong></td>
-              <td>갯수 세기</td>
-              <td><span class="badge bg-label-primary">"야, 이 테이블에 몇 개 행이 있는지 세어봐!"</span></td>
-              <td>COUNT(*), COUNT(column_name)</td>
-            </tr>
-            <tr>
-              <td><strong>SUM</strong></td>
-              <td>합계 구하기</td>
-              <td><span class="badge bg-label-info">"모든 숫자를 다 더해줘!"</span></td>
-              <td>SUM(charging_fee)</td>
-            </tr>
-            <tr>
-              <td><strong>AVG</strong></td>
-              <td>평균 구하기</td>
-              <td><span class="badge bg-label-success">"전체의 평균이 얼마인지 알려줘!"</span></td>
-              <td>AVG(charging_kwh)</td>
-            </tr>
-            <tr>
-              <td><strong>MAX</strong></td>
-              <td>최댓값 찾기</td>
-              <td><span class="badge bg-label-warning">"제일 큰 놈이 누구야?"</span></td>
-              <td>MAX(payment_amount)</td>
-            </tr>
-            <tr>
-              <td><strong>MIN</strong></td>
-              <td>최솟값 찾기</td>
-              <td><span class="badge bg-label-danger">"제일 작은 놈이 누구야?"</span></td>
-              <td>MIN(payment_amount)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                <div class="accordion-item card">
+                  <div class="card bg-label-success mb-3">
+                    <div class="card-header">
+                      <h5 class="mb-0">📊 데이터 분석 함수</h5>
+                    </div>
+                  </div>
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionAnalysis-1"
+                      aria-expanded="true">
+                      데이터 분석 함수
+                    </button>
+                  </h2>
+                  <div id="accordionAnalysis-1" class="accordion-collapse collapse" data-bs-parent="#accordionSql">
+                    <div class="accordion-body">
+                      
+                      <!-- 집계 함수 -->
+                      <h6 class="mb-3">1. 집계 함수</h6>
+                      <div class="table-responsive mb-4">
+                        <table class="table">
+                          <thead style="background-color: #f8f9fa;">
+                            <tr>
+                              <th>함수명</th>
+                              <th>용도</th>
+                              <th>설명</th>
+                              <th>예시</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><strong>COUNT</strong></td>
+                              <td>갯수 세기</td>
+                              <td><span class="badge bg-label-primary">"야, 이 테이블에 몇 개 행이 있는지 세어봐!"</span></td>
+                              <td>COUNT(*), COUNT(column_name)</td>
+                            </tr>
+                            <tr>
+                              <td><strong>SUM</strong></td>
+                              <td>합계 구하기</td>
+                              <td><span class="badge bg-label-info">"모든 숫자를 다 더해줘!"</span></td>
+                              <td>SUM(charging_fee)</td>
+                            </tr>
+                            <tr>
+                              <td><strong>AVG</strong></td>
+                              <td>평균 구하기</td>
+                              <td><span class="badge bg-label-success">"전체의 평균이 얼마인지 알려줘!"</span></td>
+                              <td>AVG(charging_kwh)</td>
+                            </tr>
+                            <tr>
+                              <td><strong>MAX</strong></td>
+                              <td>최댓값 찾기</td>
+                              <td><span class="badge bg-label-warning">"제일 큰 놈이 누구야?"</span></td>
+                              <td>MAX(payment_amount)</td>
+                            </tr>
+                            <tr>
+                              <td><strong>MIN</strong></td>
+                              <td>최솟값 찾기</td>
+                              <td><span class="badge bg-label-danger">"제일 작은 놈이 누구야?"</span></td>
+                              <td>MIN(payment_amount)</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
-      <!-- 집계 함수 실전 예시 -->
-      <div class="alert alert-light border mb-4">
-        <h6 class="mb-2">💻 집계 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
-        <pre class="python-code-block">
-          <code class="language-sql">-- 직원 테이블 기본 통계 한눈에 보기
-SELECT 
-    COUNT(*) as 총직원수,           -- "야, 직원이 몇 명이야?"
-    SUM(salary) as 총급여합계,      -- "전체 급여 다 더하면 얼마야?"
-    AVG(salary) as 평균급여,       -- "평균 급여는 얼마야?"
-    MAX(salary) as 최고급여,       -- "제일 많이 받는 사람 급여는?"
-    MIN(salary) as 최저급여        -- "제일 적게 받는 사람 급여는?"
-FROM employees;
+                      <!-- 집계 함수 실전 예시 -->
+                      <div class="alert alert-light border mb-4">
+                        <h6 class="mb-2">💻 집계 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
+                        <pre class="python-code-block">
+                          <code class="language-sql">-- 직원 테이블 기본 통계 한눈에 보기
+                SELECT 
+                    COUNT(*) as 총직원수,           -- "야, 직원이 몇 명이야?"
+                    SUM(salary) as 총급여합계,      -- "전체 급여 다 더하면 얼마야?"
+                    AVG(salary) as 평균급여,       -- "평균 급여는 얼마야?"
+                    MAX(salary) as 최고급여,       -- "제일 많이 받는 사람 급여는?"
+                    MIN(salary) as 최저급여        -- "제일 적게 받는 사람 급여는?"
+                FROM employees;
 
--- 부서별 집계 함수 활용
-SELECT 
-    d.dept_name as 부서명,
-    COUNT(*) as 직원수,
-    SUM(e.salary) as 부서급여총합,
-    AVG(e.salary) as 부서평균급여,
-    MAX(e.salary) as 부서최고급여,
-    MIN(e.salary) as 부서최저급여
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-GROUP BY d.dept_name
-ORDER BY 부서평균급여 DESC;</code>
-        </pre>
-      </div>
+                -- 부서별 집계 함수 활용
+                SELECT 
+                    d.dept_name as 부서명,
+                    COUNT(*) as 직원수,
+                    SUM(e.salary) as 부서급여총합,
+                    AVG(e.salary) as 부서평균급여,
+                    MAX(e.salary) as 부서최고급여,
+                    MIN(e.salary) as 부서최저급여
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                GROUP BY d.dept_name
+                ORDER BY 부서평균급여 DESC;</code>
+                        </pre>
+                      </div>
 
-      <!-- 그룹 함수 -->
-      <h6 class="mb-3">2. 그룹 함수</h6>
-      <div class="table-responsive mb-4">
-        <table class="table">
-          <thead style="background-color: #f8f9fa;">
-            <tr>
-              <th>함수명</th>
-              <th>용도</th>
-              <th>특징</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>ROLLUP</strong></td>
-              <td>소그룹 간의 소계 및 총계</td>
-              <td>부분적 계산</td>
-              <td><span class="badge bg-label-primary">"단계별로 소계를 만들어줘! (계층적)"</span></td>
-            </tr>
-            <tr>
-              <td><strong>CUBE</strong></td>
-              <td>다차원적 소계 및 총계</td>
-              <td>총 계산</td>
-              <td><span class="badge bg-label-info">"모든 조합의 소계를 다 만들어줘! (전방위)"</span></td>
-            </tr>
-            <tr>
-              <td><strong>GROUPING</strong></td>
-              <td>소계행 구분</td>
-              <td>NULL 대신 원하는 텍스트 표시</td>
-              <td><span class="badge bg-label-success">"소계행인지 일반행인지 구분해줘!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>GROUPING SETS</strong></td>
-              <td>특정 소계 계산</td>
-              <td>원하는 조합만 선택적 계산</td>
-              <td><span class="badge bg-label-warning">"내가 원하는 소계만 골라서 만들어줘!"</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                      <!-- 그룹 함수 -->
+                      <h6 class="mb-3">2. 그룹 함수</h6>
+                      <div class="table-responsive mb-4">
+                        <table class="table">
+                          <thead style="background-color: #f8f9fa;">
+                            <tr>
+                              <th>함수명</th>
+                              <th>용도</th>
+                              <th>특징</th>
+                              <th>설명</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><strong>ROLLUP</strong></td>
+                              <td>소그룹 간의 소계 및 총계</td>
+                              <td>부분적 계산</td>
+                              <td><span class="badge bg-label-primary">"단계별로 소계를 만들어줘! (계층적)"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>CUBE</strong></td>
+                              <td>다차원적 소계 및 총계</td>
+                              <td>총 계산</td>
+                              <td><span class="badge bg-label-info">"모든 조합의 소계를 다 만들어줘! (전방위)"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>GROUPING</strong></td>
+                              <td>소계행 구분</td>
+                              <td>NULL 대신 원하는 텍스트 표시</td>
+                              <td><span class="badge bg-label-success">"소계행인지 일반행인지 구분해줘!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>GROUPING SETS</strong></td>
+                              <td>특정 소계 계산</td>
+                              <td>원하는 조합만 선택적 계산</td>
+                              <td><span class="badge bg-label-warning">"내가 원하는 소계만 골라서 만들어줘!"</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
-      <!-- 그룹 함수 실전 예시 -->
-      <div class="alert alert-light border mb-4">
-        <h6 class="mb-2">💻 그룹 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
-        <pre class="python-code-block">
-          <code class="language-sql">-- ROLLUP: 부서별, 직급별 급여 소계를 계층적으로!
-SELECT 
-    d.dept_name as 부서, 
-    p.pos_name as 직급, 
-    SUM(e.salary) as 급여합계
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-GROUP BY ROLLUP(d.dept_name, p.pos_name)
-ORDER BY d.dept_name, p.pos_name;
--- 결과: 각 부서의 직급별 소계 + 부서별 총계 + 전체 총계
+                      <!-- 그룹 함수 실전 예시 -->
+                      <div class="alert alert-light border mb-4">
+                        <h6 class="mb-2">💻 그룹 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
+                        <pre class="python-code-block">
+                          <code class="language-sql">-- ROLLUP: 부서별, 직급별 급여 소계를 계층적으로!
+                SELECT 
+                    d.dept_name as 부서, 
+                    p.pos_name as 직급, 
+                    SUM(e.salary) as 급여합계
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                GROUP BY ROLLUP(d.dept_name, p.pos_name)
+                ORDER BY d.dept_name, p.pos_name;
+                -- 결과: 각 부서의 직급별 소계 + 부서별 총계 + 전체 총계
 
--- CUBE: 모든 가능한 조합으로 소계를 내줘 (더 자세한 분석)
-SELECT 
-    d.dept_name as 부서, 
-    p.pos_name as 직급, 
-    SUM(e.salary) as 급여합계
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-GROUP BY CUBE(d.dept_name, p.pos_name)
-ORDER BY d.dept_name, p.pos_name;
--- 결과: 부서별, 직급별, 부서+직급별, 전체 - 모든 조합!
+                -- CUBE: 모든 가능한 조합으로 소계를 내줘 (더 자세한 분석)
+                SELECT 
+                    d.dept_name as 부서, 
+                    p.pos_name as 직급, 
+                    SUM(e.salary) as 급여합계
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                GROUP BY CUBE(d.dept_name, p.pos_name)
+                ORDER BY d.dept_name, p.pos_name;
+                -- 결과: 부서별, 직급별, 부서+직급별, 전체 - 모든 조합!
 
--- GROUPING: NULL 대신 예쁜 텍스트로 보여줘!
-SELECT 
-    CASE WHEN GROUPING(d.dept_name) = 1 THEN '전체부서' ELSE d.dept_name END as 부서,
-    CASE WHEN GROUPING(p.pos_name) = 1 THEN '전체직급' ELSE p.pos_name END as 직급,
-    SUM(e.salary) as 급여합계
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-GROUP BY ROLLUP(d.dept_name, p.pos_name)
-ORDER BY d.dept_name, p.pos_name;
+                -- GROUPING: NULL 대신 예쁜 텍스트로 보여줘!
+                SELECT 
+                    CASE WHEN GROUPING(d.dept_name) = 1 THEN '전체부서' ELSE d.dept_name END as 부서,
+                    CASE WHEN GROUPING(p.pos_name) = 1 THEN '전체직급' ELSE p.pos_name END as 직급,
+                    SUM(e.salary) as 급여합계
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                GROUP BY ROLLUP(d.dept_name, p.pos_name)
+                ORDER BY d.dept_name, p.pos_name;
 
--- GROUPING SETS: 부서별 합계와 직급별 합계만 따로 보고 싶어!
-SELECT 
-    d.dept_name as 부서, 
-    p.pos_name as 직급, 
-    SUM(e.salary) as 급여합계
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-GROUP BY GROUPING SETS((d.dept_name), (p.pos_name), ())
-ORDER BY d.dept_name, p.pos_name;</code>
-        </pre>
-      </div>
+                -- GROUPING SETS: 부서별 합계와 직급별 합계만 따로 보고 싶어!
+                SELECT 
+                    d.dept_name as 부서, 
+                    p.pos_name as 직급, 
+                    SUM(e.salary) as 급여합계
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                GROUP BY GROUPING SETS((d.dept_name), (p.pos_name), ())
+                ORDER BY d.dept_name, p.pos_name;</code>
+                        </pre>
+                      </div>
 
-      <!-- 윈도우 함수 - 집계 함수 -->
-      <h6 class="mb-3">3. 윈도우 함수 - 집계 함수</h6>
-      <div class="table-responsive mb-4">
-        <table class="table">
-          <thead style="background-color: #f8f9fa;">
-            <tr>
-              <th>함수명</th>
-              <th>용도</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>COUNT() OVER()</strong></td>
-              <td>윈도우 내 갯수</td>
-              <td><span class="badge bg-label-primary">"파티션별로 갯수 세어줘!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>SUM() OVER()</strong></td>
-              <td>윈도우 내 합계</td>
-              <td><span class="badge bg-label-info">"파티션별로 누적 합계 만들어줘!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>AVG() OVER()</strong></td>
-              <td>윈도우 내 평균</td>
-              <td><span class="badge bg-label-success">"파티션별로 이동 평균 구해줘!"</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                      <!-- 윈도우 함수 - 집계 함수 -->
+                      <h6 class="mb-3">3. 윈도우 함수 - 집계 함수</h6>
+                      <div class="table-responsive mb-4">
+                        <table class="table">
+                          <thead style="background-color: #f8f9fa;">
+                            <tr>
+                              <th>함수명</th>
+                              <th>용도</th>
+                              <th>설명</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><strong>COUNT() OVER()</strong></td>
+                              <td>윈도우 내 갯수</td>
+                              <td><span class="badge bg-label-primary">"파티션별로 갯수 세어줘!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>SUM() OVER()</strong></td>
+                              <td>윈도우 내 합계</td>
+                              <td><span class="badge bg-label-info">"파티션별로 누적 합계 만들어줘!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>AVG() OVER()</strong></td>
+                              <td>윈도우 내 평균</td>
+                              <td><span class="badge bg-label-success">"파티션별로 이동 평균 구해줘!"</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
-      <!-- 윈도우 집계 함수 실전 예시 -->
-      <div class="alert alert-light border mb-4">
-        <h6 class="mb-2">💻 윈도우 집계 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
-        <pre class="python-code-block">
-          <code class="language-sql">-- 각 직원의 급여와 함께 부서별 통계도 보임!
-SELECT 
-    e.name as 이름,
-    d.dept_name as 부서,
-    p.pos_name as 직급,
-    e.salary as 개인급여,
-    AVG(e.salary) OVER(PARTITION BY d.dept_name) as 부서평균급여,
-    COUNT(*) OVER(PARTITION BY d.dept_name) as 부서인원수,
-    SUM(e.salary) OVER(PARTITION BY d.dept_name) as 부서급여총합,
-    SUM(e.salary) OVER() as 전체급여총합
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-ORDER BY d.dept_name, e.salary DESC;
--- 각 행마다 자기 부서의 통계가 함께 나와!</code>
-        </pre>
-      </div>
+                      <!-- 윈도우 집계 함수 실전 예시 -->
+                      <div class="alert alert-light border mb-4">
+                        <h6 class="mb-2">💻 윈도우 집계 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
+                        <pre class="python-code-block">
+                          <code class="language-sql">-- 각 직원의 급여와 함께 부서별 통계도 보임!
+                SELECT 
+                    e.name as 이름,
+                    d.dept_name as 부서,
+                    p.pos_name as 직급,
+                    e.salary as 개인급여,
+                    AVG(e.salary) OVER(PARTITION BY d.dept_name) as 부서평균급여,
+                    COUNT(*) OVER(PARTITION BY d.dept_name) as 부서인원수,
+                    SUM(e.salary) OVER(PARTITION BY d.dept_name) as 부서급여총합,
+                    SUM(e.salary) OVER() as 전체급여총합
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                ORDER BY d.dept_name, e.salary DESC;
+                -- 각 행마다 자기 부서의 통계가 함께 나와!</code>
+                        </pre>
+                      </div>
 
-      <!-- 윈도우 함수 - 순위 함수 -->
-      <h6 class="mb-3">4. 윈도우 함수 - 순위 함수</h6>
-      <div class="table-responsive mb-4">
-        <table class="table">
-          <thead style="background-color: #f8f9fa;">
-            <tr>
-              <th>함수명</th>
-              <th>순위 매기는 방식</th>
-              <th>동점자 처리</th>
-              <th>예시 결과</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>RANK</strong></td>
-              <td>일반적인 순위</td>
-              <td>같은 순위면 존재하는 수만큼 건너뜀</td>
-              <td>1, 2, 3, 3, 5...</td>
-              <td><span class="badge bg-label-primary">"공동 3등이 2명이면 다음은 5등!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>DENSE_RANK</strong></td>
-              <td>밀집된 순위</td>
-              <td>같은 순위더라도 건너뛰지 않음</td>
-              <td>1, 2, 3, 3, 4, 5...</td>
-              <td><span class="badge bg-label-info">"공동 3등이 있어도 다음은 4등!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>ROW_NUMBER</strong></td>
-              <td>강제 고유 순위</td>
-              <td>동일한 값이라도 각기 다른 순위</td>
-              <td>1, 2, 3, 4, 5...</td>
-              <td><span class="badge bg-label-success">"무조건 다른 번호를 줘!"</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                      <!-- 윈도우 함수 - 순위 함수 -->
+                      <h6 class="mb-3">4. 윈도우 함수 - 순위 함수</h6>
+                      <div class="table-responsive mb-4">
+                        <table class="table">
+                          <thead style="background-color: #f8f9fa;">
+                            <tr>
+                              <th>함수명</th>
+                              <th>순위 매기는 방식</th>
+                              <th>동점자 처리</th>
+                              <th>예시 결과</th>
+                              <th>설명</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><strong>RANK</strong></td>
+                              <td>일반적인 순위</td>
+                              <td>같은 순위면 존재하는 수만큼 건너뜀</td>
+                              <td>1, 2, 3, 3, 5...</td>
+                              <td><span class="badge bg-label-primary">"공동 3등이 2명이면 다음은 5등!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>DENSE_RANK</strong></td>
+                              <td>밀집된 순위</td>
+                              <td>같은 순위더라도 건너뛰지 않음</td>
+                              <td>1, 2, 3, 3, 4, 5...</td>
+                              <td><span class="badge bg-label-info">"공동 3등이 있어도 다음은 4등!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>ROW_NUMBER</strong></td>
+                              <td>강제 고유 순위</td>
+                              <td>동일한 값이라도 각기 다른 순위</td>
+                              <td>1, 2, 3, 4, 5...</td>
+                              <td><span class="badge bg-label-success">"무조건 다른 번호를 줘!"</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
-      <!-- 순위 함수 실전 예시 -->
-      <div class="alert alert-light border mb-4">
-        <h6 class="mb-2">💻 순위 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
-        <pre class="python-code-block">
-          <code class="language-sql">-- 급여 순위를 3가지 방법으로 매김!
-SELECT 
-    e.name as 이름,
-    d.dept_name as 부서,
-    p.pos_name as 직급,
-    e.salary as 급여,
-    RANK() OVER(ORDER BY e.salary DESC) as 전체순위_건너뜀,        -- 1,2,3,3,5,6
-    DENSE_RANK() OVER(ORDER BY e.salary DESC) as 전체순위_연속,    -- 1,2,3,3,4,5  
-    ROW_NUMBER() OVER(ORDER BY e.salary DESC) as 행번호           -- 1,2,3,4,5,6
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-ORDER BY e.salary DESC;
+                      <!-- 순위 함수 실전 예시 -->
+                      <div class="alert alert-light border mb-4">
+                        <h6 class="mb-2">💻 순위 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
+                        <pre class="python-code-block">
+                          <code class="language-sql">-- 급여 순위를 3가지 방법으로 매김!
+                SELECT 
+                    e.name as 이름,
+                    d.dept_name as 부서,
+                    p.pos_name as 직급,
+                    e.salary as 급여,
+                    RANK() OVER(ORDER BY e.salary DESC) as 전체순위_건너뜀,        -- 1,2,3,3,5,6
+                    DENSE_RANK() OVER(ORDER BY e.salary DESC) as 전체순위_연속,    -- 1,2,3,3,4,5  
+                    ROW_NUMBER() OVER(ORDER BY e.salary DESC) as 행번호           -- 1,2,3,4,5,6
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                ORDER BY e.salary DESC;
 
--- 부서별로 급여 순위 매기기
-SELECT 
-    e.name as 이름,
-    d.dept_name as 부서,
-    p.pos_name as 직급,
-    e.salary as 급여,
-    RANK() OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 부서내순위,
-    DENSE_RANK() OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 부서내밀집순위
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-ORDER BY d.dept_name, e.salary DESC;</code>
-        </pre>
-      </div>
+                -- 부서별로 급여 순위 매기기
+                SELECT 
+                    e.name as 이름,
+                    d.dept_name as 부서,
+                    p.pos_name as 직급,
+                    e.salary as 급여,
+                    RANK() OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 부서내순위,
+                    DENSE_RANK() OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 부서내밀집순위
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                ORDER BY d.dept_name, e.salary DESC;</code>
+                        </pre>
+                      </div>
 
-      <!-- 윈도우 함수 - 행순서 함수 -->
-      <h6 class="mb-3">5. 윈도우 함수 - 행순서 함수</h6>
-      <div class="table-responsive mb-4">
-        <table class="table">
-          <thead style="background-color: #f8f9fa;">
-            <tr>
-              <th>함수명</th>
-              <th>용도</th>
-              <th>참조 방향</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>FIRST_VALUE</strong></td>
-              <td>파티션별 첫 번째 데이터</td>
-              <td>맨 앞</td>
-              <td><span class="badge bg-label-primary">"이 그룹에서 제일 앞에 있는 놈 데려와!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>LAST_VALUE</strong></td>
-              <td>파티션별 마지막 데이터</td>
-              <td>맨 뒤</td>
-              <td><span class="badge bg-label-info">"이 그룹에서 제일 뒤에 있는 놈 데려와!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>LAG</strong></td>
-              <td>특정 수만큼 앞선 데이터</td>
-              <td>이전</td>
-              <td><span class="badge bg-label-warning">"n번째 앞에 있던 놈의 값 가져와!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>LEAD</strong></td>
-              <td>특정 수만큼 뒤의 데이터</td>
-              <td>이후</td>
-              <td><span class="badge bg-label-danger">"n번째 뒤에 있을 놈의 값 가져와!"</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                      <!-- 윈도우 함수 - 행순서 함수 -->
+                      <h6 class="mb-3">5. 윈도우 함수 - 행순서 함수</h6>
+                      <div class="table-responsive mb-4">
+                        <table class="table">
+                          <thead style="background-color: #f8f9fa;">
+                            <tr>
+                              <th>함수명</th>
+                              <th>용도</th>
+                              <th>참조 방향</th>
+                              <th>설명</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><strong>FIRST_VALUE</strong></td>
+                              <td>파티션별 첫 번째 데이터</td>
+                              <td>맨 앞</td>
+                              <td><span class="badge bg-label-primary">"이 그룹에서 제일 앞에 있는 놈 데려와!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>LAST_VALUE</strong></td>
+                              <td>파티션별 마지막 데이터</td>
+                              <td>맨 뒤</td>
+                              <td><span class="badge bg-label-info">"이 그룹에서 제일 뒤에 있는 놈 데려와!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>LAG</strong></td>
+                              <td>특정 수만큼 앞선 데이터</td>
+                              <td>이전</td>
+                              <td><span class="badge bg-label-warning">"n번째 앞에 있던 놈의 값 가져와!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>LEAD</strong></td>
+                              <td>특정 수만큼 뒤의 데이터</td>
+                              <td>이후</td>
+                              <td><span class="badge bg-label-danger">"n번째 뒤에 있을 놈의 값 가져와!"</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
-      <!-- 행순서 함수 실전 예시 -->
-      <div class="alert alert-light border mb-4">
-        <h6 class="mb-2">💻 행순서 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
-        <pre class="python-code-block">
-          <code class="language-sql">-- 부서별 1등, 꼴등 그리고 앞뒤 사람 급여 비교!
-SELECT 
-    e.name as 이름,
-    d.dept_name as 부서,
-    p.pos_name as 직급,
-    e.salary as 급여,
-    FIRST_VALUE(e.name) OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 부서최고급여자,
-    LAST_VALUE(e.name) OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC 
-                          ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) as 부서최저급여자,
-    LAG(e.salary, 1) OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 바로앞사람급여,
-    LEAD(e.salary, 1) OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 바로뒤사람급여
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-ORDER BY d.dept_name, e.salary DESC;
+                      <!-- 행순서 함수 실전 예시 -->
+                      <div class="alert alert-light border mb-4">
+                        <h6 class="mb-2">💻 행순서 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
+                        <pre class="python-code-block">
+                          <code class="language-sql">-- 부서별 1등, 꼴등 그리고 앞뒤 사람 급여 비교!
+                SELECT 
+                    e.name as 이름,
+                    d.dept_name as 부서,
+                    p.pos_name as 직급,
+                    e.salary as 급여,
+                    FIRST_VALUE(e.name) OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 부서최고급여자,
+                    LAST_VALUE(e.name) OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC 
+                                          ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) as 부서최저급여자,
+                    LAG(e.salary, 1) OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 바로앞사람급여,
+                    LEAD(e.salary, 1) OVER(PARTITION BY d.dept_name ORDER BY e.salary DESC) as 바로뒤사람급여
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                ORDER BY d.dept_name, e.salary DESC;
 
--- 월별 매출 증감률 구하기 (매출 테이블 활용)
-SELECT 
-    d.dept_name as 부서명,
-    DATE_FORMAT(s.sale_month, '%Y-%m') as 월,
-    s.amount as 당월매출,
-    LAG(s.amount, 1) OVER(PARTITION BY d.dept_name ORDER BY s.sale_month) as 전월매출,
-    s.amount - LAG(s.amount, 1) OVER(PARTITION BY d.dept_name ORDER BY s.sale_month) as 증감액,
-    ROUND((s.amount - LAG(s.amount, 1) OVER(PARTITION BY d.dept_name ORDER BY s.sale_month)) 
-          / LAG(s.amount, 1) OVER(PARTITION BY d.dept_name ORDER BY s.sale_month) * 100, 2) as 증감률
-FROM sales s
-JOIN departments d ON s.dept_id = d.dept_id
-WHERE s.amount > 0  -- 수익 부서만
-ORDER BY d.dept_name, s.sale_month;</code>
-        </pre>
-      </div>
+                -- 월별 매출 증감률 구하기 (매출 테이블 활용)
+                SELECT 
+                    d.dept_name as 부서명,
+                    DATE_FORMAT(s.sale_month, '%Y-%m') as 월,
+                    s.amount as 당월매출,
+                    LAG(s.amount, 1) OVER(PARTITION BY d.dept_name ORDER BY s.sale_month) as 전월매출,
+                    s.amount - LAG(s.amount, 1) OVER(PARTITION BY d.dept_name ORDER BY s.sale_month) as 증감액,
+                    ROUND((s.amount - LAG(s.amount, 1) OVER(PARTITION BY d.dept_name ORDER BY s.sale_month)) 
+                          / LAG(s.amount, 1) OVER(PARTITION BY d.dept_name ORDER BY s.sale_month) * 100, 2) as 증감률
+                FROM sales s
+                JOIN departments d ON s.dept_id = d.dept_id
+                WHERE s.amount > 0  -- 수익 부서만
+                ORDER BY d.dept_name, s.sale_month;</code>
+                        </pre>
+                      </div>
 
-      <!-- 윈도우 함수 - 비율 함수 -->
-      <h6 class="mb-3">6. 윈도우 함수 - 비율 함수</h6>
-      <div class="table-responsive mb-4">
-        <table class="table">
-          <thead style="background-color: #f8f9fa;">
-            <tr>
-              <th>함수명</th>
-              <th>용도</th>
-              <th>결과 범위</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>RATIO_TO_REPORT</strong></td>
-              <td>파티션별 합계 대비 비율</td>
-              <td>0 ~ 1</td>
-              <td><span class="badge bg-label-primary">"전체에서 내가 차지하는 비율이 얼마야?"</span></td>
-            </tr>
-            <tr>
-              <td><strong>PERCENT_RANK</strong></td>
-              <td>백분위 순위</td>
-              <td>0 ~ 1 (맨 위=0, 맨 아래=1)</td>
-              <td><span class="badge bg-label-info">"내가 상위 몇 %에 있는지 알려줘!"</span></td>
-            </tr>
-            <tr>
-              <td><strong>CUME_DIST</strong></td>
-              <td>누적 백분율</td>
-              <td>0보다 크고 1보다 작은 값</td>
-              <td><span class="badge bg-label-success">"나보다 작거나 같은 놈이 전체의 몇 %야?"</span></td>
-            </tr>
-            <tr>
-              <td><strong>NTILE</strong></td>
-              <td>n등분 후 등급 부여</td>
-              <td>1 ~ n</td>
-              <td><span class="badge bg-label-warning">"전체를 n등분해서 몇 등급에 속하는지 알려줘!"</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                      <!-- 윈도우 함수 - 비율 함수 -->
+                      <h6 class="mb-3">6. 윈도우 함수 - 비율 함수</h6>
+                      <div class="table-responsive mb-4">
+                        <table class="table">
+                          <thead style="background-color: #f8f9fa;">
+                            <tr>
+                              <th>함수명</th>
+                              <th>용도</th>
+                              <th>결과 범위</th>
+                              <th>설명</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><strong>RATIO_TO_REPORT</strong></td>
+                              <td>파티션별 합계 대비 비율</td>
+                              <td>0 ~ 1</td>
+                              <td><span class="badge bg-label-primary">"전체에서 내가 차지하는 비율이 얼마야?"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>PERCENT_RANK</strong></td>
+                              <td>백분위 순위</td>
+                              <td>0 ~ 1 (맨 위=0, 맨 아래=1)</td>
+                              <td><span class="badge bg-label-info">"내가 상위 몇 %에 있는지 알려줘!"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>CUME_DIST</strong></td>
+                              <td>누적 백분율</td>
+                              <td>0보다 크고 1보다 작은 값</td>
+                              <td><span class="badge bg-label-success">"나보다 작거나 같은 놈이 전체의 몇 %야?"</span></td>
+                            </tr>
+                            <tr>
+                              <td><strong>NTILE</strong></td>
+                              <td>n등분 후 등급 부여</td>
+                              <td>1 ~ n</td>
+                              <td><span class="badge bg-label-warning">"전체를 n등분해서 몇 등급에 속하는지 알려줘!"</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
 
-      <!-- 비율 함수 실전 예시 -->
-      <div class="alert alert-light border mb-4">
-        <h6 class="mb-2">💻 비율 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
-        <pre class="python-code-block">
-          <code class="language-sql">-- 급여 비율과 순위를 다각도로 분석!
-SELECT 
-    e.name as 이름,
-    d.dept_name as 부서,
-    p.pos_name as 직급,
-    e.salary as 급여,
-    ROUND(RATIO_TO_REPORT(e.salary) OVER() * 100, 2) as 전체급여대비비율,
-    ROUND(PERCENT_RANK() OVER(ORDER BY e.salary) * 100, 2) as 백분위순위,
-    ROUND(CUME_DIST() OVER(ORDER BY e.salary) * 100, 2) as 누적백분율,
-    NTILE(4) OVER(ORDER BY e.salary) as 사분위등급  -- 1등급(상위25%), 2등급, 3등급, 4등급(하위25%)
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-ORDER BY e.salary DESC;
+                      <!-- 비율 함수 실전 예시 -->
+                      <div class="alert alert-light border mb-4">
+                        <h6 class="mb-2">💻 비율 함수 실전 예시</h6><span><i>mariaDB DBeaver 안먹힘</i></span><span><i>mariaDB DBeaver 안먹힘</i></span>
+                        <pre class="python-code-block">
+                          <code class="language-sql">-- 급여 비율과 순위를 다각도로 분석!
+                SELECT 
+                    e.name as 이름,
+                    d.dept_name as 부서,
+                    p.pos_name as 직급,
+                    e.salary as 급여,
+                    ROUND(RATIO_TO_REPORT(e.salary) OVER() * 100, 2) as 전체급여대비비율,
+                    ROUND(PERCENT_RANK() OVER(ORDER BY e.salary) * 100, 2) as 백분위순위,
+                    ROUND(CUME_DIST() OVER(ORDER BY e.salary) * 100, 2) as 누적백분율,
+                    NTILE(4) OVER(ORDER BY e.salary) as 사분위등급  -- 1등급(상위25%), 2등급, 3등급, 4등급(하위25%)
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                ORDER BY e.salary DESC;
 
--- 부서별 급여 비율 분석
-SELECT 
-    e.name as 이름,
-    d.dept_name as 부서,
-    p.pos_name as 직급,
-    e.salary as 급여,
-    ROUND(RATIO_TO_REPORT(e.salary) OVER(PARTITION BY d.dept_name) * 100, 2) as 부서내급여비율,
-    NTILE(3) OVER(PARTITION BY d.dept_name ORDER BY e.salary) as 부서내등급,  -- 상/중/하
-    ROUND(PERCENT_RANK() OVER(PARTITION BY d.dept_name ORDER BY e.salary) * 100, 2) as 부서내백분위
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-JOIN positions p ON e.pos_id = p.pos_id
-ORDER BY d.dept_name, e.salary DESC;
+                -- 부서별 급여 비율 분석
+                SELECT 
+                    e.name as 이름,
+                    d.dept_name as 부서,
+                    p.pos_name as 직급,
+                    e.salary as 급여,
+                    ROUND(RATIO_TO_REPORT(e.salary) OVER(PARTITION BY d.dept_name) * 100, 2) as 부서내급여비율,
+                    NTILE(3) OVER(PARTITION BY d.dept_name ORDER BY e.salary) as 부서내등급,  -- 상/중/하
+                    ROUND(PERCENT_RANK() OVER(PARTITION BY d.dept_name ORDER BY e.salary) * 100, 2) as 부서내백분위
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                JOIN positions p ON e.pos_id = p.pos_id
+                ORDER BY d.dept_name, e.salary DESC;
 
--- 부서별 매출 기여도 분석
-SELECT 
-    d.dept_name as 부서명,
-    SUM(s.amount) as 연간매출,
-    ROUND(RATIO_TO_REPORT(SUM(s.amount)) OVER() * 100, 2) as 전체매출기여도,
-    RANK() OVER(ORDER BY SUM(s.amount) DESC) as 매출순위
-FROM sales s
-JOIN departments d ON s.dept_id = d.dept_id
-WHERE s.amount > 0  -- 수익 부서만
-GROUP BY d.dept_name
-ORDER BY 연간매출 DESC;</code>
-        </pre>
-      </div>
+                -- 부서별 매출 기여도 분석
+                SELECT 
+                    d.dept_name as 부서명,
+                    SUM(s.amount) as 연간매출,
+                    ROUND(RATIO_TO_REPORT(SUM(s.amount)) OVER() * 100, 2) as 전체매출기여도,
+                    RANK() OVER(ORDER BY SUM(s.amount) DESC) as 매출순위
+                FROM sales s
+                JOIN departments d ON s.dept_id = d.dept_id
+                WHERE s.amount > 0  -- 수익 부서만
+                GROUP BY d.dept_name
+                ORDER BY 연간매출 DESC;</code>
+                        </pre>
+                      </div>
 
-      <!-- 함수별 활용 팁 -->
-      <div class="alert alert-info">
-        <h6 class="mb-2">💡 함수 활용 팁</h6>
-        <ul class="mb-0">
-          <li><strong>집계 함수</strong>: GROUP BY와 함께 사용해서 그룹별 통계!</li>
-          <li><strong>ROLLUP vs CUBE</strong>: ROLLUP은 계층적, CUBE는 모든 조합!</li>
-          <li><strong>윈도우 함수</strong>: OVER() 절이 핵심! PARTITION BY로 그룹 나누기!</li>
-          <li><strong>순위 함수</strong>: 동점자 처리 방식이 다르니 상황에 맞게 선택!</li>
-          <li><strong>LAG/LEAD</strong>: 시계열 데이터 분석할 때 엄청 유용해!</li>
-          <li><strong>비율 함수</strong>: 상대적 위치나 비율 분석할 때 필수!</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+                      <!-- 함수별 활용 팁 -->
+                      <div class="alert alert-info">
+                        <h6 class="mb-2">💡 함수 활용 팁</h6>
+                        <ul class="mb-0">
+                          <li><strong>집계 함수</strong>: GROUP BY와 함께 사용해서 그룹별 통계!</li>
+                          <li><strong>ROLLUP vs CUBE</strong>: ROLLUP은 계층적, CUBE는 모든 조합!</li>
+                          <li><strong>윈도우 함수</strong>: OVER() 절이 핵심! PARTITION BY로 그룹 나누기!</li>
+                          <li><strong>순위 함수</strong>: 동점자 처리 방식이 다르니 상황에 맞게 선택!</li>
+                          <li><strong>LAG/LEAD</strong>: 시계열 데이터 분석할 때 엄청 유용해!</li>
+                          <li><strong>비율 함수</strong>: 상대적 위치나 비율 분석할 때 필수!</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-<!-- 실습용 데이터베이스 예시 코드 -->
-<div class="accordion-item card">
-  <div class="card bg-label-warning mb-3">
-    <div class="card-header">
-      <h5 class="mb-0">🗄️ 실습용 데이터베이스</h5>
-    </div>
-  </div>
-  <h2 class="accordion-header">
-    <button
-      type="button"
-      class="accordion-button collapsed"
-      data-bs-toggle="collapse"
-      data-bs-target="#accordionDatabase-1"
-      aria-expanded="false">
-      실습용 데이터베이스 & 예시 코드
-    </button>
-  </h2>
-  <div id="accordionDatabase-1" class="accordion-collapse collapse" data-bs-parent="#accordionSql">
-    <div class="accordion-body">
-      
-      <div class="alert alert-primary mb-4">
-        <h6 class="mb-2">🎯 실습 안내</h6>
-        <p class="mb-0">아래 코드들을 복사해서 **MariaDB나 MySQL**에서 실행하면 바로 데이터 분석 함수를 연습할 수 있어요!</p>
-      </div>
+                <!-- 실습용 데이터베이스 예시 코드 -->
+                <div class="accordion-item card">
+                  <div class="card bg-label-warning mb-3">
+                    <div class="card-header">
+                      <h5 class="mb-0">🗄️ 실습용 데이터베이스</h5>
+                    </div>
+                  </div>
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionDatabase-1"
+                      aria-expanded="false">
+                      실습용 데이터베이스 & 예시 코드
+                    </button>
+                  </h2>
+                  <div id="accordionDatabase-1" class="accordion-collapse collapse" data-bs-parent="#accordionSql">
+                    <div class="accordion-body">
+                      
+                      <div class="alert alert-primary mb-4">
+                        <h6 class="mb-2">🎯 실습 안내</h6>
+                        <p class="mb-0">아래 코드들을 복사해서 **MariaDB나 MySQL**에서 실행하면 바로 데이터 분석 함수를 연습할 수 있어요!</p>
+                      </div>
 
-      <!-- 테이블 생성 스크립트 -->
-      <h6 class="mb-3">1. 테이블 생성 스크립트</h6>
-      <div class="row mb-4">
-        <div class="col-md-8">
-          <pre class="python-code-block" style="max-height: 400px; overflow-y: auto;">
-            <code class="language-sql" id="create-tables-code">-- ========================================
--- SQL 데이터 분석 함수 실습용 테이블 생성
--- MariaDB 버전
--- ========================================
+                      <!-- 테이블 생성 스크립트 -->
+                      <h6 class="mb-3">1. 테이블 생성 스크립트</h6>
+                      <div class="row mb-4">
+                        <div class="col-md-8">
+                          <pre class="python-code-block" style="max-height: 400px; overflow-y: auto;">
+                            <code class="language-sql" id="create-tables-code">-- ========================================
+                -- SQL 데이터 분석 함수 실습용 테이블 생성
+                -- MariaDB 버전
+                -- ========================================
 
--- 1. 부서 테이블
-CREATE TABLE departments (
-    dept_id INT PRIMARY KEY AUTO_INCREMENT,
-    dept_name VARCHAR(50) NOT NULL,
-    location VARCHAR(50)
-);
+                -- 1. 부서 테이블
+                CREATE TABLE departments (
+                    dept_id INT PRIMARY KEY AUTO_INCREMENT,
+                    dept_name VARCHAR(50) NOT NULL,
+                    location VARCHAR(50)
+                );
 
--- 2. 직급 테이블  
-CREATE TABLE positions (
-    pos_id INT PRIMARY KEY AUTO_INCREMENT,
-    pos_name VARCHAR(30) NOT NULL,
-    base_salary INT
-);
+                -- 2. 직급 테이블  
+                CREATE TABLE positions (
+                    pos_id INT PRIMARY KEY AUTO_INCREMENT,
+                    pos_name VARCHAR(30) NOT NULL,
+                    base_salary INT
+                );
 
--- 3. 직원 테이블
-CREATE TABLE employees (
-    emp_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    dept_id INT,
-    pos_id INT,
-    salary INT,
-    hire_date DATE,
-    age INT,
-    performance_score DECIMAL(3,2), -- 1.00 ~ 5.00 점수
-    FOREIGN KEY (dept_id) REFERENCES departments(dept_id),
-    FOREIGN KEY (pos_id) REFERENCES positions(pos_id)
-);
+                -- 3. 직원 테이블
+                CREATE TABLE employees (
+                    emp_id INT PRIMARY KEY AUTO_INCREMENT,
+                    name VARCHAR(50) NOT NULL,
+                    dept_id INT,
+                    pos_id INT,
+                    salary INT,
+                    hire_date DATE,
+                    age INT,
+                    performance_score DECIMAL(3,2), -- 1.00 ~ 5.00 점수
+                    FOREIGN KEY (dept_id) REFERENCES departments(dept_id),
+                    FOREIGN KEY (pos_id) REFERENCES positions(pos_id)
+                );
 
--- 4. 매출 테이블 (월별 부서 매출)
-CREATE TABLE sales (
-    sale_id INT PRIMARY KEY AUTO_INCREMENT,
-    dept_id INT,
-    sale_month DATE,
-    amount BIGINT,
-    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
-);</code>
-          </pre>
-        </div>
-        <div class="col-md-4">
-          <div class="d-grid gap-2">
-            <button 
-              class="clipboard-btn btn btn-primary"
-              data-clipboard-action="copy"
-              data-clipboard-target="#create-tables-code">
-              📋 테이블 생성 코드 복사
-            </button>
-            <div class="alert alert-info p-2">
-              <small><strong>💡 테이블 구조</strong><br>
-              • departments (부서)<br>
-              • positions (직급)<br>
-              • employees (직원)<br>
-              • sales (매출)</small>
-            </div>
-          </div>
-        </div>
-      </div>
+                -- 4. 매출 테이블 (월별 부서 매출)
+                CREATE TABLE sales (
+                    sale_id INT PRIMARY KEY AUTO_INCREMENT,
+                    dept_id INT,
+                    sale_month DATE,
+                    amount BIGINT,
+                    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+                );</code>
+                          </pre>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="d-grid gap-2">
+                            <button 
+                              class="clipboard-btn btn btn-primary"
+                              data-clipboard-action="copy"
+                              data-clipboard-target="#create-tables-code">
+                              📋 테이블 생성 코드 복사
+                            </button>
+                            <div class="alert alert-info p-2">
+                              <small><strong>💡 테이블 구조</strong><br>
+                              • departments (부서)<br>
+                              • positions (직급)<br>
+                              • employees (직원)<br>
+                              • sales (매출)</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-      <!-- 기본 데이터 입력 -->
-      <h6 class="mb-3">2. 기본 데이터 입력</h6>
-      <div class="row mb-4">
-        <div class="col-md-8">
-          <pre class="python-code-block" style="max-height: 400px; overflow-y: auto;">
-            <code class="language-sql" id="insert-basic-data-code">-- ========================================
--- 기본 데이터 입력
--- ========================================
+                      <!-- 기본 데이터 입력 -->
+                      <h6 class="mb-3">2. 기본 데이터 입력</h6>
+                      <div class="row mb-4">
+                        <div class="col-md-8">
+                          <pre class="python-code-block" style="max-height: 400px; overflow-y: auto;">
+                            <code class="language-sql" id="insert-basic-data-code">-- ========================================
+                -- 기본 데이터 입력
+                -- ========================================
 
--- 부서 데이터
-INSERT INTO departments (dept_name, location) VALUES
-('개발팀', '서울'),
-('영업팀', '서울'), 
-('마케팅팀', '부산'),
-('인사팀', '서울'),
-('재무팀', '대구');
+                -- 부서 데이터
+                INSERT INTO departments (dept_name, location) VALUES
+                ('개발팀', '서울'),
+                ('영업팀', '서울'), 
+                ('마케팅팀', '부산'),
+                ('인사팀', '서울'),
+                ('재무팀', '대구');
 
--- 직급 데이터
-INSERT INTO positions (pos_name, base_salary) VALUES
-('사원', 3000),
-('주임', 3500),
-('대리', 4000),
-('과장', 5000),
-('차장', 6000),
-('부장', 7000);</code>
-          </pre>
-        </div>
-        <div class="col-md-4">
-          <div class="d-grid gap-2">
-            <button 
-              class="clipboard-btn btn btn-success"
-              data-clipboard-action="copy"
-              data-clipboard-target="#insert-basic-data-code">
-              📋 기본 데이터 복사
-            </button>
-            <div class="alert alert-success p-2">
-              <small><strong>📊 포함 데이터</strong><br>
-              • 5개 부서<br>
-              • 6개 직급<br>
-              • 기본 급여 정보</small>
-            </div>
-          </div>
-        </div>
-      </div>
+                -- 직급 데이터
+                INSERT INTO positions (pos_name, base_salary) VALUES
+                ('사원', 3000),
+                ('주임', 3500),
+                ('대리', 4000),
+                ('과장', 5000),
+                ('차장', 6000),
+                ('부장', 7000);</code>
+                          </pre>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="d-grid gap-2">
+                            <button 
+                              class="clipboard-btn btn btn-success"
+                              data-clipboard-action="copy"
+                              data-clipboard-target="#insert-basic-data-code">
+                              📋 기본 데이터 복사
+                            </button>
+                            <div class="alert alert-success p-2">
+                              <small><strong>📊 포함 데이터</strong><br>
+                              • 5개 부서<br>
+                              • 6개 직급<br>
+                              • 기본 급여 정보</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-      <!-- 직원 데이터 입력 -->
-      <h6 class="mb-3">3. 직원 데이터 입력</h6>
-      <div class="row mb-4">
-        <div class="col-md-8">
-          <pre class="python-code-block" style="max-height: 500px; overflow-y: auto;">
-            <code class="language-sql" id="insert-employees-code">-- 직원 데이터 
-INSERT INTO employees (name, dept_id, pos_id, salary, hire_date, age, performance_score) VALUES
--- 개발팀 (dept_id = 1)
-('김개발', 1, 4, 5200, '2020-03-15', 32, 4.2),
-('이코딩', 1, 3, 4300, '2021-07-20', 29, 3.8),
-('박프로그래머', 1, 3, 4100, '2021-11-10', 28, 4.5),
-('최데이터', 1, 2, 3700, '2022-01-25', 26, 3.9),
-('홍알고리즘', 1, 1, 3200, '2023-05-12', 24, 4.1),
-('임백엔드', 1, 3, 4000, '2021-09-05', 30, 3.7),
-('조프론트', 1, 2, 3600, '2022-08-18', 25, 4.3),
+                      <!-- 직원 데이터 입력 -->
+                      <h6 class="mb-3">3. 직원 데이터 입력</h6>
+                      <div class="row mb-4">
+                        <div class="col-md-8">
+                          <pre class="python-code-block" style="max-height: 500px; overflow-y: auto;">
+                            <code class="language-sql" id="insert-employees-code">-- 직원 데이터 
+                INSERT INTO employees (name, dept_id, pos_id, salary, hire_date, age, performance_score) VALUES
+                -- 개발팀 (dept_id = 1)
+                ('김개발', 1, 4, 5200, '2020-03-15', 32, 4.2),
+                ('이코딩', 1, 3, 4300, '2021-07-20', 29, 3.8),
+                ('박프로그래머', 1, 3, 4100, '2021-11-10', 28, 4.5),
+                ('최데이터', 1, 2, 3700, '2022-01-25', 26, 3.9),
+                ('홍알고리즘', 1, 1, 3200, '2023-05-12', 24, 4.1),
+                ('임백엔드', 1, 3, 4000, '2021-09-05', 30, 3.7),
+                ('조프론트', 1, 2, 3600, '2022-08-18', 25, 4.3),
 
--- 영업팀 (dept_id = 2)  
-('강영업', 2, 5, 6200, '2018-02-10', 38, 4.8),
-('오세일즈', 2, 4, 5100, '2019-06-22', 35, 4.0),
-('윤고객', 2, 3, 4200, '2020-12-03', 31, 3.6),
-('서제안', 2, 3, 4400, '2021-04-18', 29, 4.4),
-('노계약', 2, 2, 3800, '2022-10-15', 27, 3.8),
-('도영업왕', 2, 1, 3100, '2023-03-08', 23, 3.5),
+                -- 영업팀 (dept_id = 2)  
+                ('강영업', 2, 5, 6200, '2018-02-10', 38, 4.8),
+                ('오세일즈', 2, 4, 5100, '2019-06-22', 35, 4.0),
+                ('윤고객', 2, 3, 4200, '2020-12-03', 31, 3.6),
+                ('서제안', 2, 3, 4400, '2021-04-18', 29, 4.4),
+                ('노계약', 2, 2, 3800, '2022-10-15', 27, 3.8),
+                ('도영업왕', 2, 1, 3100, '2023-03-08', 23, 3.5),
 
--- 마케팅팀 (dept_id = 3)
-('전마케터', 3, 4, 4900, '2019-08-14', 33, 4.1),
-('남광고', 3, 3, 3900, '2021-01-30', 28, 3.9),
-('류브랜드', 3, 2, 3500, '2022-05-25', 26, 4.0),
-('문소셜', 3, 1, 3000, '2023-07-10', 24, 3.7),
+                -- 마케팅팀 (dept_id = 3)
+                ('전마케터', 3, 4, 4900, '2019-08-14', 33, 4.1),
+                ('남광고', 3, 3, 3900, '2021-01-30', 28, 3.9),
+                ('류브랜드', 3, 2, 3500, '2022-05-25', 26, 4.0),
+                ('문소셜', 3, 1, 3000, '2023-07-10', 24, 3.7),
 
--- 인사팀 (dept_id = 4)
-('심인사', 4, 6, 7200, '2015-04-20', 42, 4.5),
-('유채용', 4, 3, 4100, '2020-09-12', 30, 4.2),
-('마교육', 4, 2, 3400, '2022-11-28', 25, 3.8),
+                -- 인사팀 (dept_id = 4)
+                ('심인사', 4, 6, 7200, '2015-04-20', 42, 4.5),
+                ('유채용', 4, 3, 4100, '2020-09-12', 30, 4.2),
+                ('마교육', 4, 2, 3400, '2022-11-28', 25, 3.8),
 
--- 재무팀 (dept_id = 5)
-('재회계', 5, 5, 5800, '2017-12-05', 39, 4.3),
-('돈관리', 5, 4, 4800, '2019-10-18', 34, 3.9),
-('원예산', 5, 3, 3800, '2021-06-30', 27, 4.0);</code>
-          </pre>
-        </div>
-        <div class="col-md-4">
-          <div class="d-grid gap-2">
-            <button 
-              class="clipboard-btn btn btn-info"
-              data-clipboard-action="copy"
-              data-clipboard-target="#insert-employees-code">
-              📋 직원 데이터 복사
-            </button>
-            <div class="alert alert-info p-2">
-              <small><strong>👥 직원 현황</strong><br>
-              • 총 22명<br>
-              • 부서별 분포<br>
-              • 다양한 직급/급여<br>
-              • 성과점수 포함</small>
-            </div>
-          </div>
-        </div>
-      </div>
+                -- 재무팀 (dept_id = 5)
+                ('재회계', 5, 5, 5800, '2017-12-05', 39, 4.3),
+                ('돈관리', 5, 4, 4800, '2019-10-18', 34, 3.9),
+                ('원예산', 5, 3, 3800, '2021-06-30', 27, 4.0);</code>
+                          </pre>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="d-grid gap-2">
+                            <button 
+                              class="clipboard-btn btn btn-info"
+                              data-clipboard-action="copy"
+                              data-clipboard-target="#insert-employees-code">
+                              📋 직원 데이터 복사
+                            </button>
+                            <div class="alert alert-info p-2">
+                              <small><strong>👥 직원 현황</strong><br>
+                              • 총 22명<br>
+                              • 부서별 분포<br>
+                              • 다양한 직급/급여<br>
+                              • 성과점수 포함</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-      <!-- 매출 데이터 입력 -->
-      <h6 class="mb-3">4. 매출 데이터 입력 (2023년 월별)</h6>
-      <div class="row mb-4">
-        <div class="col-md-8">
-          <pre class="python-code-block" style="max-height: 400px; overflow-y: auto;">
-            <code class="language-sql" id="insert-sales-code">-- 매출 데이터 (2023년 월별)
-INSERT INTO sales (dept_id, sale_month, amount) VALUES
--- 개발팀 (제품 라이선스 수익)
-(1, '2023-01-01', 850000000), (1, '2023-02-01', 920000000),
-(1, '2023-03-01', 780000000), (1, '2023-04-01', 1100000000),
-(1, '2023-05-01', 950000000), (1, '2023-06-01', 1200000000),
-(1, '2023-07-01', 1050000000), (1, '2023-08-01', 980000000),
-(1, '2023-09-01', 1150000000), (1, '2023-10-01', 1300000000),
-(1, '2023-11-01', 1250000000), (1, '2023-12-01', 1400000000),
+                      <!-- 매출 데이터 입력 -->
+                      <h6 class="mb-3">4. 매출 데이터 입력 (2023년 월별)</h6>
+                      <div class="row mb-4">
+                        <div class="col-md-8">
+                          <pre class="python-code-block" style="max-height: 400px; overflow-y: auto;">
+                            <code class="language-sql" id="insert-sales-code">-- 매출 데이터 (2023년 월별)
+                INSERT INTO sales (dept_id, sale_month, amount) VALUES
+                -- 개발팀 (제품 라이선스 수익)
+                (1, '2023-01-01', 850000000), (1, '2023-02-01', 920000000),
+                (1, '2023-03-01', 780000000), (1, '2023-04-01', 1100000000),
+                (1, '2023-05-01', 950000000), (1, '2023-06-01', 1200000000),
+                (1, '2023-07-01', 1050000000), (1, '2023-08-01', 980000000),
+                (1, '2023-09-01', 1150000000), (1, '2023-10-01', 1300000000),
+                (1, '2023-11-01', 1250000000), (1, '2023-12-01', 1400000000),
 
--- 영업팀 (직접 매출)
-(2, '2023-01-01', 2200000000), (2, '2023-02-01', 1950000000),
-(2, '2023-03-01', 2400000000), (2, '2023-04-01', 2100000000),
-(2, '2023-05-01', 2750000000), (2, '2023-06-01', 2850000000),
-(2, '2023-07-01', 2650000000), (2, '2023-08-01', 2300000000),
-(2, '2023-09-01', 2900000000), (2, '2023-10-01', 3100000000),
-(2, '2023-11-01', 2800000000), (2, '2023-12-01', 3200000000),
+                -- 영업팀 (직접 매출)
+                (2, '2023-01-01', 2200000000), (2, '2023-02-01', 1950000000),
+                (2, '2023-03-01', 2400000000), (2, '2023-04-01', 2100000000),
+                (2, '2023-05-01', 2750000000), (2, '2023-06-01', 2850000000),
+                (2, '2023-07-01', 2650000000), (2, '2023-08-01', 2300000000),
+                (2, '2023-09-01', 2900000000), (2, '2023-10-01', 3100000000),
+                (2, '2023-11-01', 2800000000), (2, '2023-12-01', 3200000000),
 
--- 마케팅팀 (광고 효과로 인한 매출 기여분)
-(3, '2023-01-01', 450000000), (3, '2023-02-01', 520000000),
-(3, '2023-03-01', 480000000), (3, '2023-04-01', 600000000),
-(3, '2023-05-01', 580000000), (3, '2023-06-01', 650000000),
-(3, '2023-07-01', 620000000), (3, '2023-08-01', 550000000),
-(3, '2023-09-01', 700000000), (3, '2023-10-01', 750000000),
-(3, '2023-11-01', 680000000), (3, '2023-12-01', 800000000),
+                -- 마케팅팀 (광고 효과로 인한 매출 기여분)
+                (3, '2023-01-01', 450000000), (3, '2023-02-01', 520000000),
+                (3, '2023-03-01', 480000000), (3, '2023-04-01', 600000000),
+                (3, '2023-05-01', 580000000), (3, '2023-06-01', 650000000),
+                (3, '2023-07-01', 620000000), (3, '2023-08-01', 550000000),
+                (3, '2023-09-01', 700000000), (3, '2023-10-01', 750000000),
+                (3, '2023-11-01', 680000000), (3, '2023-12-01', 800000000),
 
--- 인사팀, 재무팀은 비용부서 (음수로 비용 표현)
-(4, '2023-01-01', -150000000), (4, '2023-02-01', -140000000),
-(4, '2023-03-01', -160000000), (4, '2023-04-01', -155000000),
-(4, '2023-05-01', -170000000), (4, '2023-06-01', -165000000),
-(4, '2023-07-01', -150000000), (4, '2023-08-01', -145000000),
-(4, '2023-09-01', -175000000), (4, '2023-10-01', -180000000),
-(4, '2023-11-01', -160000000), (4, '2023-12-01', -170000000),
+                -- 인사팀, 재무팀은 비용부서 (음수로 비용 표현)
+                (4, '2023-01-01', -150000000), (4, '2023-02-01', -140000000),
+                (4, '2023-03-01', -160000000), (4, '2023-04-01', -155000000),
+                (4, '2023-05-01', -170000000), (4, '2023-06-01', -165000000),
+                (4, '2023-07-01', -150000000), (4, '2023-08-01', -145000000),
+                (4, '2023-09-01', -175000000), (4, '2023-10-01', -180000000),
+                (4, '2023-11-01', -160000000), (4, '2023-12-01', -170000000),
 
-(5, '2023-01-01', -120000000), (5, '2023-02-01', -115000000),
-(5, '2023-03-01', -125000000), (5, '2023-04-01', -130000000),
-(5, '2023-05-01', -125000000), (5, '2023-06-01', -135000000),
-(5, '2023-07-01', -120000000), (5, '2023-08-01', -110000000),
-(5, '2023-09-01', -140000000), (5, '2023-10-01', -145000000),
-(5, '2023-11-01', -130000000), (5, '2023-12-01', -135000000);</code>
-          </pre>
-        </div>
-        <div class="col-md-4">
-          <div class="d-grid gap-2">
-            <button 
-              class="clipboard-btn btn btn-warning"
-              data-clipboard-action="copy"
-              data-clipboard-target="#insert-sales-code">
-              📋 매출 데이터 복사
-            </button>
-            <div class="alert alert-warning p-2">
-              <small><strong>💰 매출 정보</strong><br>
-              • 2023년 전체<br>
-              • 부서별 월별 매출<br>
-              • 비용부서는 음수<br>
-              • 시계열 분석 가능</small>
-            </div>
-          </div>
-        </div>
-      </div>
+                (5, '2023-01-01', -120000000), (5, '2023-02-01', -115000000),
+                (5, '2023-03-01', -125000000), (5, '2023-04-01', -130000000),
+                (5, '2023-05-01', -125000000), (5, '2023-06-01', -135000000),
+                (5, '2023-07-01', -120000000), (5, '2023-08-01', -110000000),
+                (5, '2023-09-01', -140000000), (5, '2023-10-01', -145000000),
+                (5, '2023-11-01', -130000000), (5, '2023-12-01', -135000000);</code>
+                          </pre>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="d-grid gap-2">
+                            <button 
+                              class="clipboard-btn btn btn-warning"
+                              data-clipboard-action="copy"
+                              data-clipboard-target="#insert-sales-code">
+                              📋 매출 데이터 복사
+                            </button>
+                            <div class="alert alert-warning p-2">
+                              <small><strong>💰 매출 정보</strong><br>
+                              • 2023년 전체<br>
+                              • 부서별 월별 매출<br>
+                              • 비용부서는 음수<br>
+                              • 시계열 분석 가능</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-      <!-- 확인용 쿼리 -->
-      <h6 class="mb-3">5. 확인용 기본 쿼리</h6>
-      <div class="row mb-4">
-        <div class="col-md-8">
-          <pre class="python-code-block">
-            <code class="language-sql" id="check-query-code">-- 전체 직원 현황 보기
-SELECT 
-    e.name as 이름,
-    d.dept_name as 부서,
-    p.pos_name as 직급,
-    e.salary as 급여,
-    e.age as 나이,
-    e.performance_score as 평가점수
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id  
-JOIN positions p ON e.pos_id = p.pos_id
-ORDER BY d.dept_name, e.salary DESC;
+                      <!-- 확인용 쿼리 -->
+                      <h6 class="mb-3">5. 확인용 기본 쿼리</h6>
+                      <div class="row mb-4">
+                        <div class="col-md-8">
+                          <pre class="python-code-block">
+                            <code class="language-sql" id="check-query-code">-- 전체 직원 현황 보기
+                SELECT 
+                    e.name as 이름,
+                    d.dept_name as 부서,
+                    p.pos_name as 직급,
+                    e.salary as 급여,
+                    e.age as 나이,
+                    e.performance_score as 평가점수
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id  
+                JOIN positions p ON e.pos_id = p.pos_id
+                ORDER BY d.dept_name, e.salary DESC;
 
--- 부서별 직원 수와 평균 급여
-SELECT 
-    d.dept_name as 부서명,
-    COUNT(*) as 직원수,
-    AVG(e.salary) as 평균급여,
-    MAX(e.salary) as 최고급여,
-    MIN(e.salary) as 최저급여
-FROM employees e
-JOIN departments d ON e.dept_id = d.dept_id
-GROUP BY d.dept_name
-ORDER BY 평균급여 DESC;</code>
-          </pre>
-        </div>
-        <div class="col-md-4">
-          <div class="d-grid gap-2">
-            <button 
-              class="clipboard-btn btn btn-secondary"
-              data-clipboard-action="copy"
-              data-clipboard-target="#check-query-code">
-              📋 확인 쿼리 복사
-            </button>
-            <div class="alert alert-secondary p-2">
-              <small><strong>✅ 확인 사항</strong><br>
-              • 데이터 입력 확인<br>
-              • 테이블 조인 테스트<br>
-              • 기본 집계 함수</small>
-            </div>
-          </div>
-        </div>
-      </div>
+                -- 부서별 직원 수와 평균 급여
+                SELECT 
+                    d.dept_name as 부서명,
+                    COUNT(*) as 직원수,
+                    AVG(e.salary) as 평균급여,
+                    MAX(e.salary) as 최고급여,
+                    MIN(e.salary) as 최저급여
+                FROM employees e
+                JOIN departments d ON e.dept_id = d.dept_id
+                GROUP BY d.dept_name
+                ORDER BY 평균급여 DESC;</code>
+                          </pre>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="d-grid gap-2">
+                            <button 
+                              class="clipboard-btn btn btn-secondary"
+                              data-clipboard-action="copy"
+                              data-clipboard-target="#check-query-code">
+                              📋 확인 쿼리 복사
+                            </button>
+                            <div class="alert alert-secondary p-2">
+                              <small><strong>✅ 확인 사항</strong><br>
+                              • 데이터 입력 확인<br>
+                              • 테이블 조인 테스트<br>
+                              • 기본 집계 함수</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-      <!-- 전체 스크립트 한번에 복사 -->
-      <div class="alert alert-success">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-            <h6 class="mb-2">🚀 전체 스크립트 한번에 실행하기</h6>
-            <p class="mb-0">위의 모든 코드를 순서대로 실행하면 완전한 실습 환경이 구성됩니다!</p>
-          </div>
-          <div class="col-md-4">
-            <button 
-              class="clipboard-btn btn btn-success btn-lg w-100"
-              data-clipboard-action="copy"
-              data-clipboard-target="#all-scripts-code">
-              📋 전체 스크립트 복사
-            </button>
-          </div>
-        </div>
-      </div>
+                      <!-- 전체 스크립트 한번에 복사 -->
+                      <div class="alert alert-success">
+                        <div class="row align-items-center">
+                          <div class="col-md-8">
+                            <h6 class="mb-2">🚀 전체 스크립트 한번에 실행하기</h6>
+                            <p class="mb-0">위의 모든 코드를 순서대로 실행하면 완전한 실습 환경이 구성됩니다!</p>
+                          </div>
+                          <div class="col-md-4">
+                            <button 
+                              class="clipboard-btn btn btn-success btn-lg w-100"
+                              data-clipboard-action="copy"
+                              data-clipboard-target="#all-scripts-code">
+                              📋 전체 스크립트 복사
+                            </button>
+                          </div>
+                        </div>
+                      </div>
 
-      <!-- 숨겨진 전체 스크립트 (복사용) -->
-      <div style="position: absolute; left: -9999px;">
-        <textarea id="all-scripts-code">-- ========================================
--- SQL 데이터 분석 함수 실습용 테이블 생성
--- MariaDB 버전
--- ========================================
+                      <!-- 숨겨진 전체 스크립트 (복사용) -->
+                      <div style="position: absolute; left: -9999px;">
+                        <textarea id="all-scripts-code">-- ========================================
+                -- SQL 데이터 분석 함수 실습용 테이블 생성
+                -- MariaDB 버전
+                -- ========================================
 
--- 1. 부서 테이블
-CREATE TABLE departments (
-    dept_id INT PRIMARY KEY AUTO_INCREMENT,
-    dept_name VARCHAR(50) NOT NULL,
-    location VARCHAR(50)
-);
+                -- 1. 부서 테이블
+                CREATE TABLE departments (
+                    dept_id INT PRIMARY KEY AUTO_INCREMENT,
+                    dept_name VARCHAR(50) NOT NULL,
+                    location VARCHAR(50)
+                );
 
--- 2. 직급 테이블  
-CREATE TABLE positions (
-    pos_id INT PRIMARY KEY AUTO_INCREMENT,
-    pos_name VARCHAR(30) NOT NULL,
-    base_salary INT
-);
+                -- 2. 직급 테이블  
+                CREATE TABLE positions (
+                    pos_id INT PRIMARY KEY AUTO_INCREMENT,
+                    pos_name VARCHAR(30) NOT NULL,
+                    base_salary INT
+                );
 
--- 3. 직원 테이블
-CREATE TABLE employees (
-    emp_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    dept_id INT,
-    pos_id INT,
-    salary INT,
-    hire_date DATE,
-    age INT,
-    performance_score DECIMAL(3,2),
-    FOREIGN KEY (dept_id) REFERENCES departments(dept_id),
-    FOREIGN KEY (pos_id) REFERENCES positions(pos_id)
-);
+                -- 3. 직원 테이블
+                CREATE TABLE employees (
+                    emp_id INT PRIMARY KEY AUTO_INCREMENT,
+                    name VARCHAR(50) NOT NULL,
+                    dept_id INT,
+                    pos_id INT,
+                    salary INT,
+                    hire_date DATE,
+                    age INT,
+                    performance_score DECIMAL(3,2),
+                    FOREIGN KEY (dept_id) REFERENCES departments(dept_id),
+                    FOREIGN KEY (pos_id) REFERENCES positions(pos_id)
+                );
 
--- 4. 매출 테이블 (월별 부서 매출)
-CREATE TABLE sales (
-    sale_id INT PRIMARY KEY AUTO_INCREMENT,
-    dept_id INT,
-    sale_month DATE,
-    amount BIGINT,
-    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
-);
+                -- 4. 매출 테이블 (월별 부서 매출)
+                CREATE TABLE sales (
+                    sale_id INT PRIMARY KEY AUTO_INCREMENT,
+                    dept_id INT,
+                    sale_month DATE,
+                    amount BIGINT,
+                    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
+                );
 
--- 부서 데이터
-INSERT INTO departments (dept_name, location) VALUES
-('개발팀', '서울'),('영업팀', '서울'),('마케팅팀', '부산'),('인사팀', '서울'),('재무팀', '대구');
+                -- 부서 데이터
+                INSERT INTO departments (dept_name, location) VALUES
+                ('개발팀', '서울'),('영업팀', '서울'),('마케팅팀', '부산'),('인사팀', '서울'),('재무팀', '대구');
 
--- 직급 데이터
-INSERT INTO positions (pos_name, base_salary) VALUES
-('사원', 3000),('주임', 3500),('대리', 4000),('과장', 5000),('차장', 6000),('부장', 7000);
+                -- 직급 데이터
+                INSERT INTO positions (pos_name, base_salary) VALUES
+                ('사원', 3000),('주임', 3500),('대리', 4000),('과장', 5000),('차장', 6000),('부장', 7000);
 
--- 직원 데이터
-INSERT INTO employees (name, dept_id, pos_id, salary, hire_date, age, performance_score) VALUES
-('김개발', 1, 4, 5200, '2020-03-15', 32, 4.2),('이코딩', 1, 3, 4300, '2021-07-20', 29, 3.8),
-('박프로그래머', 1, 3, 4100, '2021-11-10', 28, 4.5),('최데이터', 1, 2, 3700, '2022-01-25', 26, 3.9),
-('홍알고리즘', 1, 1, 3200, '2023-05-12', 24, 4.1),('임백엔드', 1, 3, 4000, '2021-09-05', 30, 3.7),
-('조프론트', 1, 2, 3600, '2022-08-18', 25, 4.3),('강영업', 2, 5, 6200, '2018-02-10', 38, 4.8),
-('오세일즈', 2, 4, 5100, '2019-06-22', 35, 4.0),('윤고객', 2, 3, 4200, '2020-12-03', 31, 3.6),
-('서제안', 2, 3, 4400, '2021-04-18', 29, 4.4),('노계약', 2, 2, 3800, '2022-10-15', 27, 3.8),
-('도영업왕', 2, 1, 3100, '2023-03-08', 23, 3.5),('전마케터', 3, 4, 4900, '2019-08-14', 33, 4.1),
-('남광고', 3, 3, 3900, '2021-01-30', 28, 3.9),('류브랜드', 3, 2, 3500, '2022-05-25', 26, 4.0),
-('문소셜', 3, 1, 3000, '2023-07-10', 24, 3.7),('심인사', 4, 6, 7200, '2015-04-20', 42, 4.5),
-('유채용', 4, 3, 4100, '2020-09-12', 30, 4.2),('마교육', 4, 2, 3400, '2022-11-28', 25, 3.8),
-('재회계', 5, 5, 5800, '2017-12-05', 39, 4.3),('돈관리', 5, 4, 4800, '2019-10-18', 34, 3.9),
-('원예산', 5, 3, 3800, '2021-06-30', 27, 4.0);
+                -- 직원 데이터
+                INSERT INTO employees (name, dept_id, pos_id, salary, hire_date, age, performance_score) VALUES
+                ('김개발', 1, 4, 5200, '2020-03-15', 32, 4.2),('이코딩', 1, 3, 4300, '2021-07-20', 29, 3.8),
+                ('박프로그래머', 1, 3, 4100, '2021-11-10', 28, 4.5),('최데이터', 1, 2, 3700, '2022-01-25', 26, 3.9),
+                ('홍알고리즘', 1, 1, 3200, '2023-05-12', 24, 4.1),('임백엔드', 1, 3, 4000, '2021-09-05', 30, 3.7),
+                ('조프론트', 1, 2, 3600, '2022-08-18', 25, 4.3),('강영업', 2, 5, 6200, '2018-02-10', 38, 4.8),
+                ('오세일즈', 2, 4, 5100, '2019-06-22', 35, 4.0),('윤고객', 2, 3, 4200, '2020-12-03', 31, 3.6),
+                ('서제안', 2, 3, 4400, '2021-04-18', 29, 4.4),('노계약', 2, 2, 3800, '2022-10-15', 27, 3.8),
+                ('도영업왕', 2, 1, 3100, '2023-03-08', 23, 3.5),('전마케터', 3, 4, 4900, '2019-08-14', 33, 4.1),
+                ('남광고', 3, 3, 3900, '2021-01-30', 28, 3.9),('류브랜드', 3, 2, 3500, '2022-05-25', 26, 4.0),
+                ('문소셜', 3, 1, 3000, '2023-07-10', 24, 3.7),('심인사', 4, 6, 7200, '2015-04-20', 42, 4.5),
+                ('유채용', 4, 3, 4100, '2020-09-12', 30, 4.2),('마교육', 4, 2, 3400, '2022-11-28', 25, 3.8),
+                ('재회계', 5, 5, 5800, '2017-12-05', 39, 4.3),('돈관리', 5, 4, 4800, '2019-10-18', 34, 3.9),
+                ('원예산', 5, 3, 3800, '2021-06-30', 27, 4.0);
 
--- 매출 데이터 (간략 버전)
-INSERT INTO sales (dept_id, sale_month, amount) VALUES
-(1, '2023-01-01', 850000000),(1, '2023-02-01', 920000000),(1, '2023-03-01', 780000000),(1, '2023-04-01', 1100000000),
-(2, '2023-01-01', 2200000000),(2, '2023-02-01', 1950000000),(2, '2023-03-01', 2400000000),(2, '2023-04-01', 2100000000),
-(3, '2023-01-01', 450000000),(3, '2023-02-01', 520000000),(3, '2023-03-01', 480000000),(3, '2023-04-01', 600000000);
-        </textarea>
-      </div>
+                -- 매출 데이터 (간략 버전)
+                INSERT INTO sales (dept_id, sale_month, amount) VALUES
+                (1, '2023-01-01', 850000000),(1, '2023-02-01', 920000000),(1, '2023-03-01', 780000000),(1, '2023-04-01', 1100000000),
+                (2, '2023-01-01', 2200000000),(2, '2023-02-01', 1950000000),(2, '2023-03-01', 2400000000),(2, '2023-04-01', 2100000000),
+                (3, '2023-01-01', 450000000),(3, '2023-02-01', 520000000),(3, '2023-03-01', 480000000),(3, '2023-04-01', 600000000);
+                        </textarea>
+                      </div>
 
-      <!-- 핵심 요약 카드 -->
-      <div class="row mt-4">
-        <div class="col-md-4">
-          <div class="card bg-label-primary mb-3">
-            <div class="card-body text-center">
-              <h6 class="card-title">📊 집계 & 그룹</h6>
-              <p class="card-text small">COUNT, SUM, AVG<br>ROLLUP, CUBE, GROUPING</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-label-info mb-3">
-            <div class="card-body text-center">
-              <h6 class="card-title">🏆 순위 & 행순서</h6>
-              <p class="card-text small">RANK, DENSE_RANK<br>LAG, LEAD, FIRST_VALUE</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card bg-label-success mb-3">
-            <div class="card-body text-center">
-              <h6 class="card-title">📈 비율 & 분석</h6>
-              <p class="card-text small">RATIO_TO_REPORT<br>PERCENT_RANK, NTILE</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                      <!-- 핵심 요약 카드 -->
+                      <div class="row mt-4">
+                        <div class="col-md-4">
+                          <div class="card bg-label-primary mb-3">
+                            <div class="card-body text-center">
+                              <h6 class="card-title">📊 집계 & 그룹</h6>
+                              <p class="card-text small">COUNT, SUM, AVG<br>ROLLUP, CUBE, GROUPING</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card bg-label-info mb-3">
+                            <div class="card-body text-center">
+                              <h6 class="card-title">🏆 순위 & 행순서</h6>
+                              <p class="card-text small">RANK, DENSE_RANK<br>LAG, LEAD, FIRST_VALUE</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card bg-label-success mb-3">
+                            <div class="card-body text-center">
+                              <h6 class="card-title">📈 비율 & 분석</h6>
+                              <p class="card-text small">RATIO_TO_REPORT<br>PERCENT_RANK, NTILE</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
