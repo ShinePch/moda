@@ -3,8 +3,46 @@
  */
 
 // 메뉴 초기화 함수
+/**
+ * 메뉴 초기화 함수 - 반응형 포함 완전 버전
+ */
 function initializeMenu() {
-  console.log(window.location.pathname);
+  
+  // 🚀 모바일 햄버거 메뉴 토글 기능
+  $(document).on('click', '.layout-menu-toggle', function(e) {
+    e.preventDefault();
+    
+    const $body = $('body');
+    const $layoutMenu = $('#layout-menu');
+    const $overlay = $('.layout-overlay');
+
+    // 메뉴가 열려있는지 확인
+    if ($body.hasClass('layout-menu-expanded')) {
+      // 메뉴 닫기
+      $body.removeClass('layout-menu-expanded');
+      $overlay.removeClass('show');
+
+      $layoutMenu.css({
+        'display': 'block !important',
+        'visibility': 'visible !important',
+        'left': '0px !important',
+        'z-index': '9999'
+      });
+      
+    } else {
+      // 메뉴 열기
+      $body.addClass('layout-menu-expanded');
+      $layoutMenu.addClass('show');
+      $overlay.addClass('show');
+    }
+  });
+  
+  // 🚀 오버레이 클릭 시 메뉴 닫기
+  $(document).on('click', '.layout-overlay', function() {
+    $('body').removeClass('layout-menu-expanded');
+    $('#layout-menu').removeClass('show');
+    $(this).removeClass('show');
+  });
   
   // 메뉴 토글 기능 개선 (Bootstrap 아코디언과 호환)
   $(document).on('click', '.menu-toggle', function(e) {
@@ -33,7 +71,6 @@ function initializeMenu() {
       $menuSub.slideDown(300);
     }
     
-    console.log("메뉴 아코디언 토글됨:", $clickedMenuItem.find('[data-i18n]').text());
   });
   
   // 메뉴 항목 클릭 이벤트 (페이지 로드)
@@ -45,24 +82,28 @@ function initializeMenu() {
     
     // javascript:void(0) 링크는 처리하지 않음
     if (href === 'javascript:void(0);' || href.indexOf('javascript:void(0)') !== -1) {
-      console.log("javascript:void(0) 링크 - 컨텐츠 로드 안함");
       return;
     }
-    
-    console.log("컨텐츠 로드 경로:", href);
     
     // 컨텐츠 영역에 해당 페이지 내용 로드 - base 태그 덕분에 경로 변환 불필요
     $("#infraDashboard").load(href + ' .container-xxl', function(response, status, xhr) {
       if (status == "error") {
-        console.error("컨텐츠 로드 실패: " + xhr.status + " " + xhr.statusText);
         $("#infraDashboard").html("<p>컨텐츠를 로드할 수 없습니다.</p>");
       } else {
-        console.log("컨텐츠 로드 완료");
 
         // 클립보드 초기화 코드 추가 - 이 부분이 중요합니다!
         setTimeout(function() {
           initializeClipboard();
         }, 100);
+        
+        // 🚀 모바일에서 메뉴 항목 클릭 시 메뉴 닫기
+        if ($(window).width() < 1200) { // xl breakpoint
+          setTimeout(function() {
+            $('body').removeClass('layout-menu-expanded');
+            $('#layout-menu').removeClass('show');
+            $('.layout-overlay').removeClass('show');
+          }, 100);
+        }
         
         // 도구 페이지인 경우 다운로드 기능 초기화 추가
         if (href.includes('tool.html')) {
@@ -104,7 +145,6 @@ function initializeMenu() {
   // PerfectScrollbar 초기화
   setTimeout(initializePerfectScrollbar, 500);
   
-  console.log("메뉴 초기화 완료");
 }
 
 /**
@@ -128,7 +168,6 @@ function initializeClipboard() {
         
         clipboard.on('success', function (e) {
           if (e.action == 'copy') {
-            console.log('복사 성공!');
             if (typeof toastr !== 'undefined') {
               toastr['success']('', 'Copied to Clipboard!!');
             } else {
@@ -142,7 +181,6 @@ function initializeClipboard() {
           alert('복사에 실패했습니다. 수동으로 복사해주세요.');
         });
       });
-      console.log('클립보드 초기화 완료 - 클립보드 버튼 수:', clipboardList.length);
     } else {
       console.warn('ClipboardJS 라이브러리가 로드되지 않았습니다.');
       // 대체 경고 표시
@@ -165,7 +203,6 @@ function loadInfraDashboard() {
     if (status == "error") {
       console.error("기본 대시보드 로드 실패: " + xhr.status + " " + xhr.statusText);
     } else {
-      console.log("기본 대시보드 로드 완료");
       
       // 대시보드 메뉴 항목 활성화
       $('#modaInfraDashboard').addClass('active');
@@ -225,7 +262,6 @@ function initializePerfectScrollbar() {
         wheelPropagation: false,
         suppressScrollX: true
       });
-      console.log('PerfectScrollbar 초기화 완료');
     }
   } catch (error) {
     console.warn('PerfectScrollbar 초기화 실패:', error);
