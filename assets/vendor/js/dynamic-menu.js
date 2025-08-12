@@ -85,8 +85,10 @@ function initializeMenu() {
           $parentMenuItem.addClass('active open');
         }
         
-        // URL 히스토리 업데이트
-        history.pushState(null, null, href);
+        // URL 히스토리 업데이트 (해시 기반으로 변경)
+        const pageName = href.replace(/.*\//, '').replace('.html', '');
+        const menuId = $(e.target).closest('.menu-item').attr('id');
+        history.pushState({page: pageName, menuId: menuId}, null, window.location.pathname + '#' + menuId);
       }
     });
   });
@@ -95,7 +97,9 @@ function initializeMenu() {
   activateCurrentMenuItem();
   
   // 초기 페이지로 infraDashboard 로드
-  loadInfraDashboard();
+  if (!window.location.hash) {
+    loadInfraDashboard();
+  }
   
   // PerfectScrollbar 초기화
   setTimeout(initializePerfectScrollbar, 500);
