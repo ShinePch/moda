@@ -231,6 +231,35 @@
             <div class="container-xxl flex-grow-1 container-p-y">
               <h4 class="py-3 mb-4">🚀 Bybit API 스캐너</h4>
               
+              <!-- 김치프리미엄 모니터링 카드 (새로 추가) -->
+              <div class="card mb-4" id="kimchiPremiumCard">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="card-title mb-0">🌶️ 김치프리미엄 모니터링</h5>
+                  <div class="d-flex gap-2">
+                    <span class="badge bg-info" id="kimchiLastUpdate">마지막 업데이트: -</span>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="updateKimchiPremium()">
+                      <i class="ti ti-refresh"></i>
+                    </button>
+                    <div class="spinner-border spinner-border-sm" role="status" id="kimchiLoading" style="display: none;">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="row" id="kimchiPremiumData">
+                    <div class="col-12 text-center text-muted">
+                      <p>김치프리미엄 데이터를 불러오는 중...</p>
+                    </div>
+                  </div>
+                  <div class="alert alert-light mt-3">
+                    <small>
+                      <i class="ti ti-info-circle me-1"></i>
+                      <strong>김치프리미엄:</strong> 한국 거래소(업비트)와 해외 거래소(바이낸스) 간의 가격 차이를 나타냅니다. 10분마다 자동 업데이트됩니다.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
               <!-- 1. 실시간 차트 카드 (최상위) -->
               <div class="card mb-4" id="chartCard">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -328,7 +357,7 @@
                       </div>
                       <div class="mt-3">
                         <select class="form-select" id="macdCondition">
-                          <option value="golden" selected>MACD > Signal (골든크로스)</option>
+                          <option value="golden" selected>MACD > Signal (골든 크로스)</option>
                           <option value="dead">MACD < Signal (데드크로스)</option>
                         </select>
                       </div>
@@ -493,6 +522,7 @@
               <div class="alert alert-info mt-4">
                 <h6><i class="ti ti-info-circle me-2"></i>사용 방법:</h6>
                 <ol class="mb-0">
+                  <li><strong>김치프리미엄:</strong> 한국과 해외 거래소 가격 차이를 10분마다 자동 모니터링</li>
                   <li><strong>API 키 설정:</strong> Bybit 계정에서 Read-Only API 키 발급 후 연결 테스트</li>
                   <li><strong>차트 확인:</strong> 실시간 차트로 시장 상황 파악</li>
                   <li><strong>MA 설정:</strong> 원하는 이동평균선 값과 조건 선택</li>
@@ -562,6 +592,146 @@
         let apiKey = '';
         let apiSecret = '';
         let isScanning = false;
+        let kimchiUpdateInterval = null;
+
+        // 김치프리미엄 관련 변수들
+        const kimchiCoins = ['BTC', 'ETH', 'XRP', 'ADA', 'SOL', 'DOT', 'LINK', 'AVAX'];
+
+        // 김치프리미엄 업데이트 함수
+        async function updateKimchiPremium() {
+            const kimchiData = document.getElementById('kimchiPremiumData');
+            const kimchiLoading = document.getElementById('kimchiLoading');
+            const lastUpdate = document.getElementById('kimchiLastUpdate');
+            
+            kimchiLoading.style.display = 'inline-block';
+            
+            try {
+                const premiumData = [];
+                
+                for (const coin of kimchiCoins) {
+                    try {
+                        // 업비트 가격 가져오기 (KRW)
+                        const upbitResponse = await fetch(`https://api.upbit.com/v1/ticker?markets=KRW-${coin}`);
+                        const upbitData = await upbitResponse.json();
+                        
+                        // 바이낸스 가격 가져오기 (USDT)
+                        const binanceResponse = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${coin}USDT`);
+                        const binanceData = await binanceResponse.json();
+                        
+                        // 달러-원 환율 가져오기 (예시: 1300원 고정, 실제로는 실시간 환율 API 사용)
+                        const exchangeRate = 1300; // 실제로는 환율 API에서 가져와야 함
+                        
+                        if (upbitData[0] && binanceData.price) {
+                            const upbitPrice = parseFloat(upbitData[0].trade_price);
+                            const binancePrice = parseFloat(binanceData.price) * exchangeRate;
+                            
+                            const premium = ((upbitPrice - binancePrice) / binancePrice * 100);
+                            const change24h = parseFloat(upbitData[0].change_rate) * 100;
+                            
+                            premiumData.push({
+                                symbol: coin,
+                                upbitPrice: upbitPrice,
+                                binancePrice: binancePrice,
+                                premium: premium,
+                                change24h: change24h
+                            });
+                        }
+                    } catch (error) {
+                        console.log(`${coin} 김치프리미엄 계산 실패:`, error);
+                    }
+                }
+                
+                // 김치프리미엄 데이터 표시
+                displayKimchiPremium(premiumData);
+                
+                // 마지막 업데이트 시간 표시
+                const now = new Date();
+                lastUpdate.textContent = `마지막 업데이트: ${now.toLocaleTimeString()}`;
+                
+            } catch (error) {
+                kimchiData.innerHTML = `
+                    <div class="col-12">
+                        <div class="alert alert-danger">
+                            <i class="ti ti-alert-circle me-2"></i>김치프리미엄 데이터 로드 실패: ${error.message}
+                        </div>
+                    </div>
+                `;
+            } finally {
+                kimchiLoading.style.display = 'none';
+            }
+        }
+
+        // 김치프리미엄 데이터 표시 함수
+        function displayKimchiPremium(data) {
+            const kimchiData = document.getElementById('kimchiPremiumData');
+            
+            if (data.length === 0) {
+                kimchiData.innerHTML = `
+                    <div class="col-12 text-center text-muted">
+                        <p>김치프리미엄 데이터가 없습니다.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            
+            data.forEach(coin => {
+                const premiumBadge = coin.premium >= 0 ? 'bg-success' : 'bg-danger';
+                const premiumIcon = coin.premium >= 0 ? '🔥' : '❄️';
+                const changeBadge = coin.change24h >= 0 ? 'text-success' : 'text-danger';
+                const changeIcon = coin.change24h >= 0 ? '📈' : '📉';
+                
+                html += `
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">${coin.symbol}/KRW</h6>
+                                <div class="mb-2">
+                                    <span class="badge ${premiumBadge}">
+                                        ${premiumIcon} ${coin.premium.toFixed(2)}%
+                                    </span>
+                                </div>
+                                <p class="card-text mb-1">
+                                    <small class="text-muted">업비트:</small> 
+                                    <strong>₩${coin.upbitPrice.toLocaleString()}</strong>
+                                </p>
+                                <p class="card-text mb-1">
+                                    <small class="text-muted">바이낸스:</small> 
+                                    <strong>₩${coin.binancePrice.toLocaleString()}</strong>
+                                </p>
+                                <p class="card-text">
+                                    <small class="${changeBadge}">
+                                        ${changeIcon} 24h: ${coin.change24h.toFixed(2)}%
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            kimchiData.innerHTML = html;
+        }
+
+        // 10분마다 김치프리미엄 자동 업데이트 시작
+        function startKimchiAutoUpdate() {
+            // 즉시 한 번 업데이트
+            updateKimchiPremium();
+            
+            // 10분(600초)마다 자동 업데이트
+            kimchiUpdateInterval = setInterval(updateKimchiPremium, 600000);
+            console.log('김치프리미엄 자동 업데이트 시작 (10분 간격)');
+        }
+
+        // 자동 업데이트 중지
+        function stopKimchiAutoUpdate() {
+            if (kimchiUpdateInterval) {
+                clearInterval(kimchiUpdateInterval);
+                kimchiUpdateInterval = null;
+                console.log('김치프리미엄 자동 업데이트 중지');
+            }
+        }
 
         // API 설정 가져오기
         function getApiConfig() {
@@ -618,7 +788,6 @@
         async function testConnection() {
             if (!getApiConfig()) return;
 
-            // 연결 상태 영역 표시
             const statusDiv = document.getElementById('connectionStatus');
             statusDiv.style.display = 'block';
             statusDiv.innerHTML = `
@@ -636,18 +805,16 @@
                 
                 const btcPrice = parseFloat(tickers.list[0].lastPrice);
                 
-                // 성공 메시지를 API 카드 내부에 표시
                 statusDiv.innerHTML = `
                     <div class="alert alert-success mt-3">
                         <h6><i class="ti ti-check-circle me-2"></i>연결 성공!</h6>
                         <div class="row text-center">
-                            <div class="col-md-6"><strong>비트코인 현재가:</strong> $${btcPrice.toLocaleString()}</div>
+                            <div class="col-md-6"><strong>비트코인 현재가:</strong> ${btcPrice.toLocaleString()}</div>
                             <div class="col-md-6"><strong>서버 시간:</strong> ${new Date(parseInt(serverTime.timeSecond) * 1000).toLocaleString()}</div>
                         </div>
                     </div>
                 `;
             } catch (error) {
-                // 실패 메시지도 API 카드 내부에 표시
                 statusDiv.innerHTML = `
                     <div class="alert alert-danger mt-3">
                         <i class="ti ti-alert-circle me-2"></i>연결 실패: ${error.message}
@@ -698,12 +865,10 @@
                             const change24h = parseFloat(coin.price24hPcnt) * 100;
                             const volume = parseFloat(coin.volume24h);
 
-                            // RSI 조건 가져오기
                             const isRSIEnabled = document.getElementById('enableRSI').checked;
                             const rsiValue = parseFloat(document.getElementById('rsiValue').value || 30);
                             const rsiPeriod = parseInt(document.getElementById('rsiPeriod').value || 14);
 
-                            // K라인 데이터 가져오기
                             const kline = await getKlineData(symbol, '60', 100);
                             const closes = kline.map(k => parseFloat(k[4]));
                             const rsi = calculateRSI(closes, rsiPeriod);
@@ -728,7 +893,7 @@
                               const condition = document.getElementById('macdCondition').value;
 
                               const macdData = calculateMACD(closes, fast, slow, signal);
-                              if (!macdData) continue; // 데이터 부족 시 건너뜀
+                              if (!macdData) continue;
 
                               const { MACD, signal: signalLine } = macdData;
                               const isGolden = MACD > signalLine;
@@ -737,14 +902,10 @@
                               const macdPass = (condition === 'golden' && isGolden) || (condition === 'dead' && isDead);
                               if (!macdPass) continue;
 
-                              // 조건 통과한 경우 추가 정보 붙이기
                               results[results.length - 1].macd = MACD.toFixed(4);
                               results[results.length - 1].macdSignal = signalLine.toFixed(4);
                               results[results.length - 1].condition += ` + MACD(${MACD.toFixed(2)} / ${signalLine.toFixed(2)})`;
                             }
-
-
-
 
                             if (change24h <= -2) {
                                 results.push({
@@ -781,7 +942,6 @@
         async function customMAScan() {
             if (!getApiConfig() || isScanning) return;
 
-            // 첫 번째 조건 체크
             const maValue1 = document.getElementById('maValue1').value;
             const maCondition1 = document.getElementById('maCondition1').value;
             const timeframe = document.getElementById('timeframe').value;
@@ -791,7 +951,6 @@
                 return;
             }
 
-            // 두 번째 조건 체크 (활성화된 경우)
             const isDualMA = document.getElementById('enableDualMA').checked;
             let maValue2, maCondition2, logicalOperator;
             
@@ -808,7 +967,6 @@
 
             isScanning = true;
             
-            // 조건 텍스트 생성
             let conditionText = `MA${maValue1} ${maCondition1 === 'above' ? '위에' : '아래'}`;
             if (isDualMA) {
                 const operatorText = logicalOperator === 'AND' ? '그리고' : '또는';
@@ -818,21 +976,17 @@
             showLoading(`${conditionText} 있는 코인 검색 중...`);
 
             try {
-                // 시뮬레이션 데이터 (실제로는 K라인 데이터 분석 필요)
                 await new Promise(resolve => setTimeout(resolve, 3000));
 
-                // 조건에 따른 시뮬레이션 결과 생성
                 let simulatedResults = [];
                 
                 if (isDualMA) {
                     if (logicalOperator === 'AND') {
-                        // 두 조건을 모두 만족하는 경우 (더 까다로운 조건이므로 적은 결과)
                         simulatedResults = [
                             { symbol: 'ETHUSDT', price: 2520.10, change24h: 1.25, volume: 55565, condition: conditionText },
                             { symbol: 'LINKUSDT', price: 13.82, change24h: 0.76, volume: 320702, condition: conditionText }
                         ];
                     } else {
-                        // OR 조건 (더 많은 결과)
                         simulatedResults = [
                             { symbol: 'ETHUSDT', price: 2520.10, change24h: 1.25, volume: 55565, condition: conditionText },
                             { symbol: 'DOTUSDT', price: 4.02, change24h: 2.98, volume: 694201, condition: conditionText },
@@ -842,7 +996,6 @@
                         ];
                     }
                 } else {
-                    // 단일 조건
                     simulatedResults = [
                         { symbol: 'ETHUSDT', price: 2520.10, change24h: 0.89, volume: 55565, condition: conditionText },
                         { symbol: 'DOTUSDT', price: 4.02, change24h: 2.98, volume: 694201, condition: conditionText },
@@ -900,30 +1053,15 @@
             }
         }
 
-        // 입력값 변경 이벤트 리스너 추가
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Bybit 스캐너가 준비되었습니다!');
-            
-            // 모든 입력 필드에 이벤트 리스너 추가
-            ['maValue1', 'maCondition1', 'maValue2', 'maCondition2', 'logicalOperator'].forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('change', updateConditionPreview);
-                    element.addEventListener('input', updateConditionPreview);
-                }
-            });
-            
-            // 초기 미리보기 업데이트
-            updateConditionPreview();
-        });
         // RSI 계산 함수
         function calculateRSI(closes, period = 14) {
           const rsi = technicalindicators.RSI.calculate({
             values: closes,
             period: period
           });
-          return rsi[rsi.length - 1]; // 가장 최근 RSI 값 반환
+          return rsi[rsi.length - 1];
         }
+
         // MACD 계산 함수
         function calculateMACD(closes, fastPeriod = 12, slowPeriod = 26, signalPeriod = 9) {
           const macdResult = technicalindicators.MACD.calculate({
@@ -937,8 +1075,6 @@
 
           return macdResult.length ? macdResult[macdResult.length - 1] : null;
         }
-
-
 
         // 결과 표시
         function displayScanResults(results, scanType) {
@@ -1020,12 +1156,10 @@
 
         // K라인 데이터를 Chart.js 형식으로 변환
         function formatKlineData(klineData) {
-            // Bybit K라인 데이터: [시간, 시가, 고가, 저가, 종가, 거래량, 거래대금]
             const labels = [];
             const priceData = [];
             const volumeData = [];
             
-            // 데이터를 시간순으로 정렬 (Bybit은 최신순으로 제공)
             const sortedData = klineData.reverse();
             
             sortedData.forEach(candle => {
@@ -1036,7 +1170,6 @@
                 const close = parseFloat(candle[4]);
                 const volume = parseFloat(candle[5]);
                 
-                // 시간 포맷팅
                 const date = new Date(timestamp);
                 const timeLabel = date.toLocaleString('ko-KR', {
                     month: '2-digit',
@@ -1244,7 +1377,7 @@
             }
         }
 
-        // 새로운 DOMContentLoaded 이벤트
+        // 페이지 로드시 실행
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 Bybit 스캐너가 준비되었습니다!');
             
@@ -1261,6 +1394,14 @@
             
             // 기본 비트코인 차트 로드
             loadDefaultChart();
+            
+            // 김치프리미엄 자동 업데이트 시작
+            startKimchiAutoUpdate();
+        });
+
+        // 페이지 언로드시 자동 업데이트 중지
+        window.addEventListener('beforeunload', function() {
+            stopKimchiAutoUpdate();
         });
     </script>
 
