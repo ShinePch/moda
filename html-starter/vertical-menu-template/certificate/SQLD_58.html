@@ -1,0 +1,394 @@
+<!-- Content SQLD 58회-->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="py-3 mb-4">58회 SQLD 시험 문제 복기</h4>
+    <!-- Autosize 하얀배경 전체 사이즈-->
+    <div class="col-12">
+      <div class="card mb-4">
+        <!-- card-navbar -->
+        <nav class="navbar navbar-example navbar-expand-lg">
+          <div class="container-fluid ">
+            <a class="navbar-brand" href="javascript:void(0)">58회 SQLD 문제 복기 통합 정리</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbar-ex-3">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-ex-3">
+              <div class="navbar-nav me-auto">
+                <a class="nav-item nav-link" href="javascript:void(0)">#SQLD</a>
+                <a class="nav-item nav-link" href="javascript:void(0)">#58회</a>
+              </div>
+              <button
+                class="clipboard-btn btn btn-primary me-2"
+                data-clipboard-action="copy"
+                data-clipboard-target="#sqld-table">
+                Copy
+              </button>
+              <button
+                class="clipboard-btn btn btn-primary"
+                data-clipboard-action="cut"
+                data-clipboard-target="#sqld-table">
+                Cut
+              </button>
+            </div>
+          </div>
+        </nav>  
+        <!-- card-navbar -->
+        <div class="card-body">
+          <div id="sqld-table">
+            <table class="table table-striped table-bordered">
+              <thead class="table-dark">
+                <tr>
+                  <th style="width: 8%;">문항</th>
+                  <th style="width: 50%;">문제 내용</th>
+                  <th style="width: 15%;">정답</th>
+                  <th style="width: 27%;">해설</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1</strong></td>
+                  <td><strong>엔터티로 적합하지 않은 것은?</strong><br>선지: 회사, 사원, 프로젝트 참여</td>
+                  <td><strong>프로젝트 참여</strong></td>
+                  <td>관계 엔터티로 많은 선이 연결됨. 독립적인 실체가 아닌 관계를 나타내는 엔터티</td>
+                </tr>
+                <tr>
+                  <td><strong>2</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>3</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>4</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>5</strong></td>
+                  <td><strong>바커 표기법</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>6</strong></td>
+                  <td><strong>비식별자 관계에 의해 속성을 생성하는 경우로 가장 적절하지 않은 경우는?</strong></td>
+                  <td><strong>2번</strong></td>
+                  <td>비식별자 관계는 생명주기가 반드시 동일할 필요가 없다</td>
+                </tr>
+                <tr>
+                  <td><strong>7</strong></td>
+                  <td><strong>제3정규형을 만족하는 데이터 모델로 올바르지 않은 것은?</strong></td>
+                  <td><strong>1번</strong></td>
+                  <td>이행 종속을 배제하지 않아야 한다 (3정규형은 이행종속을 제거해야 함)</td>
+                </tr>
+                <tr>
+                  <td><strong>8</strong></td>
+                  <td><strong>상호배타적인 관계는?</strong></td>
+                  <td><strong>2번</strong></td>
+                  <td>자동차는 법인 차와 개인 차 중 하나만 가능하다</td>
+                </tr>
+                <tr>
+                  <td><strong>9</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>10</strong></td>
+                  <td><strong>트랜잭션에 대한 설명으로 틀린 것은?</strong></td>
+                  <td><strong>틀린 선지</strong></td>
+                  <td>부분실행 부분취소가 가능하다 (트랜잭션은 전체 단위로 처리)</td>
+                </tr>
+                <tr>
+                  <td><strong>11</strong></td>
+                  <td><strong>4개 중 결과가 다른 것</strong><br>RTRIM('SQLXX', 'X')<br>LTRIM('XXSQL', 'X')<br>REPLACE('XXSQLXX', 'X')<br>TRIM('XXSQLXX', 'X')</td>
+                  <td><strong>3번 REPLACE</strong></td>
+                  <td>REPLACE는 모든 'X'를 제거하여 'SQL'이 되지만, 나머지는 양쪽 끝의 'X'만 제거</td>
+                </tr>
+                <tr>
+                  <td><strong>12</strong></td>
+                  <td><strong>SQL 실행 결과</strong><br>TAB COL: {ABC, ACD, ABD, ABCD, A_C, EA_CD}<br>SELECT COUNT(*) FROM (<br>SELECT COL FROM TAB WHERE COL LIKE '%A_C%'<br>UNION ALL<br>SELECT COL FROM TAB WHERE COL LIKE '%A₩_C%' ESCAPE '₩')</td>
+                  <td><strong>6개</strong></td>
+                  <td>첫번째 조건에 4개(ABC,ACD,ABCD,A_C) + 두번째 조건에 2개(A_C,EA_CD) = 총 6개</td>
+                </tr>
+                <tr>
+                  <td><strong>13</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>14</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>15</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>16</strong></td>
+                  <td><strong>월별 총급여 구하기</strong><br>20170401 날짜를 월별 매출 도출하지 못하는 것?</td>
+                  <td><strong>2번</strong></td>
+                  <td>TO_CHAR('YYYYMM') - DATE를 DATE로 변환하는 선지가 부적절</td>
+                </tr>
+                <tr>
+                  <td><strong>17</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>18</strong></td>
+                  <td><strong>SQL 결과를 바르게 나열한 것</strong><br>TAB_1 COL1,COL2,COL3: {30,NULL,20}, {NULL,40,0}, {0,10,NULL}<br>SELECT AVG(COL3) 각 조건별</td>
+                  <td><strong>2번</strong></td>
+                  <td>10, 20, 20 (NULL값 제외하고 평균 계산)</td>
+                </tr>
+                <tr>
+                  <td><strong>19</strong></td>
+                  <td><strong>빈칸에 들어갈 JOIN</strong><br>T1: {A,B,C,D} T2: {B,C,E}<br>결과에서 E만 나오는 경우</td>
+                  <td><strong>RIGHT OUTER JOIN</strong></td>
+                  <td>T2의 모든 데이터(E 포함)를 가져오는 RIGHT OUTER JOIN</td>
+                </tr>
+                <tr>
+                  <td><strong>20</strong></td>
+                  <td><strong>맞지 않는 것</strong><br>student (sno, sname), enrol (sno, eno)</td>
+                  <td><strong>2번</strong></td>
+                  <td>조인에 필요한 조건 부족</td>
+                </tr>
+                <tr>
+                  <td><strong>21</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>22</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>23</strong></td>
+                  <td><strong>어떤 조인을 사용했는가?</strong><br>A={1,2,3}, B={6,7}<br>결과: C={(1,6),(1,7),(2,6),(2,7),(3,6),(3,7)}</td>
+                  <td><strong>1번 CROSS JOIN</strong></td>
+                  <td>두 테이블의 모든 조합을 생성하는 카티션 곱</td>
+                </tr>
+                <tr>
+                  <td><strong>24</strong></td>
+                  <td><strong>실행결과가 다른 것</strong><br>T1 COL: {A, B}<br>T2 COL: {A, A, B, C}</td>
+                  <td><strong>1번</strong></td>
+                  <td>SELECT * FROM T1 NATURAL INNER JOIN T2</td>
+                </tr>
+                <tr>
+                  <td><strong>25</strong></td>
+                  <td><strong>SQL 실행 결과</strong><br>SELECT COUNT(*) FROM (<br>SELECT DISTINCT A, B FROM Tbl_A<br>WHERE C IN (SELECT D FROM Tbl_B WHERE UPPER(E) = 'E')) X</td>
+                  <td><strong>2</strong></td>
+                  <td>서브쿼리 조건을 만족하는 DISTINCT한 행의 수</td>
+                </tr>
+                <tr>
+                  <td><strong>26</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>27</strong></td>
+                  <td><strong>빈칸에 들어갈 것</strong><br>팀명이 K09면서 포지션이 MF인 선수 출력<br>두 개의 SELECT문 사이</td>
+                  <td><strong>INTERSECT</strong></td>
+                  <td>두 조건을 모두 만족하는 교집합</td>
+                </tr>
+                <tr>
+                  <td><strong>28</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>29</strong></td>
+                  <td><strong>집합 연산 결과</strong><br>A, B, C 테이블로 UNION, MINUS 사용</td>
+                  <td><strong>3번</strong></td>
+                  <td>null null null 100 100 200 200 200</td>
+                </tr>
+                <tr>
+                  <td><strong>30</strong></td>
+                  <td><strong>집계함수 사용으로 옳지 않은 것</strong><br>- NULL값은 제외하고 계산한다<br>- WHERE절에 사용 가능하다<br>- SELECT절에 사용 가능하다<br>- HAVING절에 사용 가능하다</td>
+                  <td><strong>WHERE절에 사용 가능하다</strong></td>
+                  <td>집계함수는 WHERE절에 직접 사용할 수 없고 HAVING절에서 사용</td>
+                </tr>
+                <tr>
+                  <td><strong>31</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>32</strong></td>
+                  <td><strong>결과는?</strong><br>TBL: {1,2,3,4}<br>SELECT COUNT(*) FROM tbl<br>HAVING COUNT(*) > 4</td>
+                  <td><strong>공집합</strong></td>
+                  <td>전체 행 수가 4개이므로 HAVING 조건(>4)을 만족하지 않음</td>
+                </tr>
+                <tr>
+                  <td><strong>33</strong></td>
+                  <td><strong>WITH절 SQL 설명으로 적절한 것</strong><br>선수, 팀, 소속 테이블로 팀별 총급여 최고팀 구하기</td>
+                  <td><strong>1번</strong></td>
+                  <td>소속팀의 선수들의 총급여가 제일 높은 팀명 반환</td>
+                </tr>
+                <tr>
+                  <td><strong>34</strong></td>
+                  <td><strong>ROLLUP 결과</strong><br>SELECT ID,TYPE,SUM(AMT)<br>FROM tbl GROUP BY ROLLUP(ID,TYPE)<br>HAVING GROUPING(ID) + GROUPING(TYPE) != 1</td>
+                  <td>-</td>
+                  <td>GROUPING 함수로 소계 행 제외</td>
+                </tr>
+                <tr>
+                  <td><strong>35</strong></td>
+                  <td><strong>GROUPING SETS에 대해 적절하지 않은 것</strong></td>
+                  <td><strong>2번</strong></td>
+                  <td>인수 순서가 달라지면 결과가 달라진다 (실제로는 순서 무관)</td>
+                </tr>
+                <tr>
+                  <td><strong>36</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>37</strong></td>
+                  <td><strong>데이터조작어(DML)이 아닌 것은?</strong></td>
+                  <td><strong>3번</strong></td>
+                  <td>GRANT는 DCL(Data Control Language)</td>
+                </tr>
+                <tr>
+                  <td><strong>38</strong></td>
+                  <td><strong>SQL 실행 결과로 적절한 것</strong></td>
+                  <td><strong>3번</strong></td>
+                  <td>ID순으로 2개 그룹으로 나눈 후 그 그룹 내에서 MIN과 MAX 구함</td>
+                </tr>
+                <tr>
+                  <td><strong>39</strong></td>
+                  <td><strong>결과는?</strong><br>SELECT COUNT(*) FROM Table<br>CONNECT BY LEVEL <= 2</td>
+                  <td><strong>2</strong></td>
+                  <td>CONNECT BY LEVEL로 2개 행 생성</td>
+                </tr>
+                <tr>
+                  <td><strong>40</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>41</strong></td>
+                  <td><strong>결과는?</strong><br>SELECT REGEXP_INSTR('12312312312', '312')<br>FROM DUAL</td>
+                  <td><strong>3</strong></td>
+                  <td>'312' 패턴이 처음 나타나는 위치(3번째)</td>
+                </tr>
+                <tr>
+                  <td><strong>42</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>43</strong></td>
+                  <td><strong>결과는?</strong><br>SELECT 'A'''' R1 FROM DUAL</td>
+                  <td><strong>'A''</strong></td>
+                  <td>작은따옴표 이스케이프 처리 결과</td>
+                </tr>
+                <tr>
+                  <td><strong>44</strong></td>
+                  <td><strong>DROP TABLE t1 CASCADE CONSTRAINT 설명</strong></td>
+                  <td>-</td>
+                  <td>테이블 삭제 시 관련 제약조건도 함께 삭제</td>
+                </tr>
+                <tr>
+                  <td><strong>45</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>46</strong></td>
+                  <td><strong>트랜잭션 실행 결과</strong><br>SAVEPOINT sv1 두 번 설정 후<br>ROLLBACK TO sv1<br>최종 SELECT MAX(no) 결과</td>
+                  <td><strong>4</strong></td>
+                  <td>두 번째 sv1로 rollback되어 최종값 4</td>
+                </tr>
+                <tr>
+                  <td><strong>47</strong></td>
+                  <td><strong>제약조건 설명으로 맞지 않은 것</strong></td>
+                  <td><strong>1번</strong></td>
+                  <td>기본키는 널값이 가능하다 (기본키는 NULL 불가)</td>
+                </tr>
+                <tr>
+                  <td><strong>48</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>49</strong></td>
+                  <td><strong>외래키 참조</strong></td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><strong>50</strong></td>
+                  <td><strong>오류가 발생하지 않는 것</strong><br>C1: NUMBER, PRIMARY KEY, DEFAULT 9<br>C2: VARCHAR, NOT NULL</td>
+                  <td><strong>3번</strong></td>
+                  <td>INSERT INTO TBL (C2) VALUES ('d') - C1은 DEFAULT값 사용</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <hr>
+            
+            <h5>📊 기타 복기된 문제들</h5>
+            <ul>
+              <li><strong>COUNT(*) 4보다 큰 값</strong>: 칼럼 {1,2,3,4}에서 > 4 조건 → <strong>공집합</strong></li>
+              <li><strong>LEVEL >= 2 결과</strong>: 계층 쿼리 → <strong>2개</strong></li>
+              <li><strong>정규표현식</strong>: ^₩w*$로 해당안되는 것 → <strong>대시(-) 있는 것</strong></li>
+              <li><strong>PIVOT 문제</strong>: PLACE별 JAN,FEB,MAR 칼럼 변환 → <strong>NULL값 없는 선지</strong></li>
+              <li><strong>ERD 실선 관계</strong>: 계약-사용자 관계 해석 → <strong>사용자-계약 관계 선지</strong></li>
+              <li><strong>GRANT 권한</strong>: D→user1,2,3 후 user2 REVOKE → <strong>D, user1, user3</strong></li>
+              <li><strong>정렬 NULL</strong>: 여러 정렬 조건에서 NULL 처리 → <strong>NULL을 최대로 정렬</strong></li>
+            </ul>
+            
+            <h5>📈 출제 경향 분석</h5>
+            <p><strong>복기율: 약 40문항/50문항 (80%)</strong></p>
+            
+            <p><strong>주요 특징:</strong></p>
+            <ul>
+              <li><strong>실무 중심</strong>: 실제 업무에서 자주 사용하는 SQL 함수와 구문</li>
+              <li><strong>함정 문제</strong>: WHERE절 집계함수, 기본키 NULL 허용 등 개념 혼동 유도</li>
+              <li><strong>복합 문제</strong>: 여러 개념을 조합한 문제 증가 (WITH + 서브쿼리 등)</li>
+              <li><strong>최신 기능</strong>: 정규표현식, 윈도우함수, CTE 등 고급 기능 출제</li>
+            </ul>
+            
+            <p><strong>학습 포인트:</strong></p>
+            <ol>
+              <li><strong>기본 개념 확실히</strong>: 엔터티, 정규화, 제약조건의 정확한 이해</li>
+              <li><strong>함수별 결과</strong>: 문자열, 날짜, 집계함수의 미묘한 차이점 숙지</li>
+              <li><strong>JOIN 완벽 이해</strong>: 각 JOIN 타입별 결과값 정확히 구분</li>
+              <li><strong>예외 상황</strong>: NULL 처리, 오류 조건, 권한 관리 등</li>
+            </ol>
+          </div>
+          <textarea rows="1" class="form-control" value="test"></textarea>
+          <br>
+          <textarea rows="1" class="card-body form-control" value="test"></textarea>
+        </div>
+      </div>
+      
+    </div>
+    <!-- /Autosize -->
+  </div>

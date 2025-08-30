@@ -1,0 +1,505 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="py-3 mb-4">정보처리기사 실기</h4>
+    <!-- Autosize 하얀배경 전체 사이즈-->
+    <div class="col-12">
+      <div class="card mb-4">
+      <!-- card-navbar -->
+      <nav class="navbar navbar-example navbar-expand-lg">
+        <div class="container-fluid ">
+          <a class="navbar-brand" href="javascript:void(0)">정보처리기사 실기</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-ex-3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-ex-3">
+            <div class="navbar-nav me-auto">
+              <a class="nav-item nav-link" href="javascript:void(0)">#문제풀이</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#실기시험</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#계산문제</a>
+            </div>
+          </div>
+        </div>
+      </nav> 
+      <!-- card-navbar -->               
+       
+      
+      <!-- 여기서부터 시작-->
+      <div class="nav-align-top nav-tabs-shadow mb-4">
+          <ul class="nav nav-tabs" role="tablist" style="width: 100%; margin-left: 0.01%;">
+            <li class="nav-item">
+              <button
+                type="button"
+                class="nav-link active"
+                role="tab"
+                data-bs-toggle="tab"
+                data-bs-target="#navs-top-problems"
+                aria-controls="navs-top-problems"
+                aria-selected="true">
+                문제 풀이
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                type="button"
+                class="nav-link"
+                role="tab"
+                data-bs-toggle="tab"
+                data-bs-target="#navs-top-theory"
+                aria-controls="navs-top-theory"
+                aria-selected="false">
+                이론 정리
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                type="button"
+                class="nav-link"
+                role="tab"
+                data-bs-toggle="tab"
+                data-bs-target="#navs-top-tips"
+                aria-controls="navs-top-tips"
+                aria-selected="false">
+                출제 경향
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                type="button"
+                class="nav-link"
+                role="tab"
+                data-bs-toggle="tab"
+                data-bs-target="#navs-top-mock"
+                aria-controls="navs-top-mock"
+                aria-selected="false">
+                모의시험
+              </button>
+            </li>
+          </ul>
+          <!--tab-content-->
+          <div class="tab-content">
+
+            <div class="tab-pane fade show active" id="navs-top-problems" role="tabpanel">
+              <!--accordion for problem categories-->
+              <div class="col-md">
+                <div class="accordion mt-3 accordion-bordered" id="accordionProblemTypes">
+                  
+                  <!-- 서브넷마스크 계산 문제 카테고리 -->
+                  <div class="accordion-item card">
+                    <h2 class="accordion-header">
+                      <button
+                        type="button"
+                        class="accordion-button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSubnetMask"
+                        aria-expanded="true">
+                        서브넷마스크 계산 (3개 문제)
+                      </button>
+                    </h2>
+                    <div id="accordionSubnetMask" class="accordion-collapse collapse show" data-bs-parent="#accordionProblemTypes">
+                      <div class="accordion-body">
+                        
+                        <!-- 슬라이드 컨테이너 -->
+                        <div class="position-relative">
+                          <!-- 네비게이션 버튼 -->
+                          <div class="d-flex justify-content-between align-items-center mb-3">
+                            <button id="prevBtn" class="btn btn-outline-secondary" onclick="changeSlide(-1)">
+                              < 이전 문제
+                            </button>
+                            <div>
+                              <span id="currentSlide" class="badge bg-primary">1</span> / 
+                              <span class="badge bg-secondary">3</span>
+                            </div>
+                            <button id="nextBtn" class="btn btn-outline-secondary" onclick="changeSlide(1)">
+                              다음 문제 >
+                            </button>
+                          </div>
+                          
+                          <!-- 슬라이드 1: 서브넷마스크 문제 1 -->
+                          <div id="slide1" class="problem-slide">
+                            <div class="card">
+                              <div class="card-header">
+                                <h6 class="mb-0">문제 1: FLSM 네트워크 분할 - 브로드캐스트 주소 (2022년 3회)</h6>
+                              </div>
+                              <div class="card-body">
+                                <div class="alert alert-primary">
+                                  <strong>문제:</strong> 192.168.1.0/24인 네트워크를 FLSM 4개로 분할하였다.<br>
+                                  두번째 네트워크의 브로드캐스트 IP를 10진수로 변환한 값을 작성하시오.
+                                </div>
+                                
+                                <div class="mb-3">
+                                  <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#solution1" aria-expanded="false">
+                                    풀이 과정 보기
+                                  </button>
+                                  <button class="btn btn-outline-success btn-sm ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#answer1" aria-expanded="false">
+                                    정답 보기
+                                  </button>
+                                </div>
+                                
+                                <div class="collapse" id="solution1">
+                                  <div class="card card-body mb-3">
+                                    <h6>풀이 과정</h6>
+                                    <ol>
+                                      <li><strong>원래 네트워크:</strong> 192.168.1.0/24 (호스트 256개)</li>
+                                      <li><strong>4개로 분할:</strong> 256 ÷ 4 = 64개씩</li>
+                                      <li><strong>각 서브넷:</strong>
+                                        <ul>
+                                          <li>1번: 192.168.1.0/26 (0~63)</li>
+                                          <li>2번: 192.168.1.64/26 (64~127)</li>
+                                          <li>3번: 192.168.1.128/26 (128~191)</li>
+                                          <li>4번: 192.168.1.192/26 (192~255)</li>
+                                        </ul>
+                                      </li>
+                                    </ol>
+                                  </div>
+                                </div>
+                                
+                                <div class="collapse" id="answer1">
+                                  <div class="alert alert-success">
+                                    <strong>정답:</strong> 192.168.1.127
+                                  </div>
+                                </div>
+                                
+                                <div class="mt-3">
+                                  <span class="badge bg-primary">서브넷마스크</span>
+                                  <span class="badge bg-success">FLSM</span>
+                                  <span class="badge bg-info">중급</span>
+                                </div>
+                                
+                                <div class="mt-2">
+                                  <small class="text-muted">출처: <a href="https://newbt.kr/문제/27204" target="_blank">원문 보기</a></small>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- 슬라이드 2: 서브넷마스크 문제 2 -->
+                          <div id="slide2" class="problem-slide" style="display: none;">
+                            <div class="card">
+                              <div class="card-header">
+                                <h6 class="mb-0">문제 2: 네트워크 주소 및 호스트 개수 계산 (2022년 2회)</h6>
+                              </div>
+                              <div class="card-body">
+                                <div class="alert alert-primary">
+                                  <strong>문제:</strong> IP 주소가 139.127.19.132이고 서브넷마스크 255.255.255.192일 때<br>
+                                  (1) 괄호안에 들어갈 네트워크 주소: 139.127.19.( )<br>
+                                  (2) 해당 네트워크 주소와 브로드캐스트 주소를 제외한 호스트 개수
+                                </div>
+                                
+                                <div class="mb-3">
+                                  <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#solution2" aria-expanded="false">
+                                    풀이 과정 보기
+                                  </button>
+                                  <button class="btn btn-outline-success btn-sm ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#answer2" aria-expanded="false">
+                                    정답 보기
+                                  </button>
+                                </div>
+                                
+                                <div class="collapse" id="solution2">
+                                  <div class="card card-body mb-3">
+                                    <h6>풀이 과정</h6>
+                                    <ol>
+                                      <li><strong>서브넷마스크 분석:</strong> 255.255.255.192 = /26</li>
+                                      <li><strong>192를 2진수로:</strong> 11000000 (상위 2비트가 네트워크)</li>
+                                      <li><strong>IP 주소 132를 2진수로:</strong> 10000100</li>
+                                      <li><strong>네트워크 부분:</strong> 10000000 = 128 (AND 연산)</li>
+                                      <li><strong>호스트 비트:</strong> 6비트 = 2⁶ = 64개</li>
+                                      <li><strong>실제 호스트:</strong> 64 - 2 = 62개</li>
+                                    </ol>
+                                  </div>
+                                </div>
+                                
+                                <div class="collapse" id="answer2">
+                                  <div class="alert alert-success">
+                                    <strong>정답:</strong><br>
+                                    (1) 128<br>
+                                    (2) 62
+                                  </div>
+                                </div>
+                                
+                                <div class="mt-3">
+                                  <span class="badge bg-primary">서브넷마스크</span>
+                                  <span class="badge bg-success">네트워크주소</span>
+                                  <span class="badge bg-warning">고급</span>
+                                </div>
+                                
+                                <div class="mt-2">
+                                  <small class="text-muted">출처: <a href="https://newbt.kr/문제/27075" target="_blank">원문 보기</a></small>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- 슬라이드 3: 서브넷마스크 문제 3 -->
+                          <div id="slide3" class="problem-slide" style="display: none;">
+                            <div class="card">
+                              <div class="card-header">
+                                <h6 class="mb-0">문제 3: CIDR 라우팅 네트워크 할당 (2024년 1회)</h6>
+                              </div>
+                              <div class="card-body">
+                                <div class="alert alert-primary">
+                                  <strong>문제:</strong> 네트워크에서 라우터을 통한 할당 가능한 2번, 4번, 5번의 IP를 작성하시오.<br><br>
+                                  주어진 정보:<br>
+                                  1) 192.168.35.3/24<br>
+                                  3) 129.200.10.16/22<br>
+                                  6) 192.168.36.24/24
+                                </div>
+                                
+                                <div class="mb-3">
+                                  <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#solution3" aria-expanded="false">
+                                    풀이 과정 보기
+                                  </button>
+                                  <button class="btn btn-outline-success btn-sm ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#answer3" aria-expanded="false">
+                                    정답 보기
+                                  </button>
+                                </div>
+                                
+                                <div class="collapse" id="solution3">
+                                  <div class="card card-body mb-3">
+                                    <h6>풀이 과정</h6>
+                                    <ol>
+                                      <li><strong>각 네트워크 분석:</strong>
+                                        <ul>
+                                          <li>192.168.35.3/24 → 네트워크: 192.168.35.0</li>
+                                          <li>129.200.10.16/22 → 네트워크: 129.200.8.0</li>
+                                          <li>192.168.36.24/24 → 네트워크: 192.168.36.0</li>
+                                        </ul>
+                                      </li>
+                                      <li><strong>라우팅 테이블 매칭:</strong>
+                                        <ul>
+                                          <li>2번: 35 네트워크 범위 → 192.168.35.72</li>
+                                          <li>4번: 129.200.8.0/22 범위 → 129.200.8.249</li>
+                                          <li>5번: 36 네트워크 범위 → 192.168.36.249</li>
+                                        </ul>
+                                      </li>
+                                    </ol>
+                                  </div>
+                                </div>
+                                
+                                <div class="collapse" id="answer3">
+                                  <div class="alert alert-success">
+                                    <strong>정답:</strong><br>
+                                    2) 192.168.35.72<br>
+                                    4) 129.200.8.249<br>
+                                    5) 192.168.36.249
+                                  </div>
+                                </div>
+                                
+                                <div class="mt-3">
+                                  <span class="badge bg-primary">서브넷마스크</span>
+                                  <span class="badge bg-danger">CIDR</span>
+                                  <span class="badge bg-info">라우팅</span>
+                                  <span class="badge bg-dark">최고급</span>
+                                </div>
+                                
+                                <div class="mt-2">
+                                  <small class="text-muted">출처: <a href="https://newbt.kr/문제/74572" target="_blank">원문 보기</a></small>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- JavaScript for slide functionality -->
+                        <script>
+                          let currentSlideIndex = 1;
+                          const totalSlides = 3;
+                          
+                          function showSlide(slideIndex) {
+                            // Hide all slides
+                            for (let i = 1; i <= totalSlides; i++) {
+                              document.getElementById('slide' + i).style.display = 'none';
+                            }
+                            
+                            // Show current slide
+                            document.getElementById('slide' + slideIndex).style.display = 'block';
+                            
+                            // Update current slide indicator
+                            document.getElementById('currentSlide').textContent = slideIndex;
+                            
+                            // Update button states
+                            document.getElementById('prevBtn').disabled = (slideIndex === 1);
+                            document.getElementById('nextBtn').disabled = (slideIndex === totalSlides);
+                            
+                            // Close any open collapse elements in previous slides
+                            if (slideIndex !== currentSlideIndex) {
+                              const collapseElements = document.querySelectorAll('.collapse.show');
+                              collapseElements.forEach(element => {
+                                const bsCollapse = new bootstrap.Collapse(element, {toggle: false});
+                                bsCollapse.hide();
+                              });
+                            }
+                            
+                            currentSlideIndex = slideIndex;
+                          }
+                          
+                          function changeSlide(direction) {
+                            const newIndex = currentSlideIndex + direction;
+                            if (newIndex >= 1 && newIndex <= totalSlides) {
+                              showSlide(newIndex);
+                            }
+                          }
+                          
+                          // Initialize first slide
+                          showSlide(1);
+                        </script>
+                        
+                        <!-- 서브넷마스크 학습 팁 -->
+                        <div class="alert alert-info mt-3">
+                          <h6>서브넷마스크 계산 핵심 공식</h6>
+                          <ul class="mb-0">
+                            <li><strong>CIDR:</strong> /24 = 255.255.255.0, /26 = 255.255.255.192</li>
+                            <li><strong>호스트 수:</strong> 2^(32-서브넷비트) - 2</li>
+                            <li><strong>네트워크 주소:</strong> IP AND 서브넷마스크</li>
+                            <li><strong>브로드캐스트:</strong> 네트워크 범위의 마지막 주소</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Java 문제 카테고리 -->
+                  <div class="accordion-item card">
+                    <h2 class="accordion-header">
+                      <button
+                        type="button"
+                        class="accordion-button collapsed"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionJava"
+                        aria-expanded="false">
+                        Java 문제 (184개 문제)
+                      </button>
+                    </h2>
+                    <div id="accordionJava" class="accordion-collapse collapse" data-bs-parent="#accordionProblemTypes">
+                      <div class="accordion-body">
+                        <div class="alert alert-warning">
+                          <h6>Java 프로그래밍 계산 문제</h6>
+                          <p>코드 실행 결과, 변수 값 추적, 반복문/조건문 흐름 문제들이 추가될 예정입니다.</p>
+                          <ul>
+                            <li>배열 처리 문제</li>
+                            <li>메소드 호출 결과</li>
+                            <li>반복문 실행 추적</li>
+                            <li>조건문 분기 처리</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Python 문제 카테고리 -->
+                  <div class="accordion-item card">
+                    <h2 class="accordion-header">
+                      <button
+                        type="button"
+                        class="accordion-button collapsed"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionPython"
+                        aria-expanded="false">
+                        Python 문제 (4개 문제)
+                      </button>
+                    </h2>
+                    <div id="accordionPython" class="accordion-collapse collapse" data-bs-parent="#accordionProblemTypes">
+                      <div class="accordion-body">
+                        <div class="alert alert-warning">
+                          <h6>Python 프로그래밍 계산 문제</h6>
+                          <p>Python 코드 실행 결과 및 데이터 처리 문제들이 추가될 예정입니다.</p>
+                          <ul>
+                            <li>리스트 처리</li>
+                            <li>딕셔너리 조작</li>
+                            <li>함수 정의 및 호출</li>
+                            <li>반복문과 조건문</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SQL/데이터베이스 문제 카테고리 -->
+                  <div class="accordion-item card">
+                    <h2 class="accordion-header">
+                      <button
+                        type="button"
+                        class="accordion-button collapsed"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionSQL"
+                        aria-expanded="false">
+                        SQL/데이터베이스 문제 (101개 문제)
+                      </button>
+                    </h2>
+                    <div id="accordionSQL" class="accordion-collapse collapse" data-bs-parent="#accordionProblemTypes">
+                      <div class="accordion-body">
+                        <div class="alert alert-warning">
+                          <h6>데이터베이스 계산 문제</h6>
+                          <p>SQL 쿼리 결과, 정규화, 관계 연산 문제들이 추가될 예정입니다.</p>
+                          <ul>
+                            <li>SELECT 쿼리 실행 결과</li>
+                            <li>JOIN 연산 결과</li>
+                            <li>집계함수 계산</li>
+                            <li>정규화 단계</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 운영체제 문제 카테고리 -->
+                  <div class="accordion-item card">
+                    <h2 class="accordion-header">
+                      <button
+                        type="button"
+                        class="accordion-button collapsed"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordionOS"
+                        aria-expanded="false">
+                        운영체제 문제 (20개 문제)
+                      </button>
+                    </h2>
+                    <div id="accordionOS" class="accordion-collapse collapse" data-bs-parent="#accordionProblemTypes">
+                      <div class="accordion-body">
+                        <div class="alert alert-warning">
+                          <h6>운영체제 알고리즘 계산 문제</h6>
+                          <p>페이지 교체, 스케줄링, 메모리 관리 문제들이 추가될 예정입니다.</p>
+                          <ul>
+                            <li>페이지 교체 알고리즘 (LRU, FIFO, OPT)</li>
+                            <li>CPU 스케줄링 (FCFS, SJF, RR)</li>
+                            <li>메모리 관리</li>
+                            <li>교착상태 해결</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div><!--main accordion end-->
+            </div>
+
+            <!-- 다른 탭들 -->
+            <div class="tab-pane fade" id="navs-top-theory" role="tabpanel">
+              <div class="alert alert-info">
+                <h5>이론 정리</h5>
+                <p>각 문제 유형별 핵심 이론과 공식들을 정리한 섹션입니다.</p>
+              </div>
+            </div>
+            
+            <div class="tab-pane fade" id="navs-top-tips" role="tabpanel">
+              <div class="alert alert-info">
+                <h5>출제 경향</h5>
+                <p>최근 출제 경향과 빈출 문제 유형 분석 자료입니다.</p>
+              </div>
+            </div>
+            
+            <div class="tab-pane fade" id="navs-top-mock" role="tabpanel">
+              <div class="alert alert-info">
+                <h5>모의시험</h5>
+                <p>실제 시험과 동일한 형태의 모의시험을 제공합니다.</p>
+              </div>
+            </div>
+
+          </div><!--tab-content-->
+        </div>
+      </div>
+    </div>
+  </div>
