@@ -76,10 +76,10 @@ function initializeMenu() {
   // 메뉴 항목 클릭 이벤트 (페이지 로드)
   $(document).on('click', '#menuBox .menu-item a:not(.menu-toggle)', function(e) {
     e.preventDefault();
-    
+    console.log('메뉴 클릭됨');
     // 클릭된 메뉴 링크의 href 속성 가져오기
     const href = $(this).attr('href');
-    
+    console.log('href:', href); // 여기도 추가
     // javascript:void(0) 링크는 처리하지 않음
     if (href === 'javascript:void(0);' || href.indexOf('javascript:void(0)') !== -1) {
       return;
@@ -90,11 +90,36 @@ function initializeMenu() {
       if (status == "error") {
         $("#infraDashboard").html("<p>컨텐츠를 로드할 수 없습니다.</p>");
       } else {
-
+        console.log('페이지 로드 완료')
         // 클립보드 초기화 코드 추가 - 이 부분이 중요합니다!
         setTimeout(function() {
           initializeClipboard();
         }, 100);
+
+         // 🚀 Swiper 초기화 추가 (여기!)
+         setTimeout(function() {
+          console.log('Swiper 초기화 시도 중...');
+          const swiperElement = document.querySelector('#swiper-subnet-problems');
+          console.log('Swiper 요소:', swiperElement); // 실제 요소 확인
+          
+          if (swiperElement) {
+            console.log('Swiper 요소 찾음!');
+            const swiper = new Swiper('#swiper-subnet-problems', {
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+              },
+              slidesPerView: 1,
+              spaceBetween: 10,
+              loop: false,
+              autoHeight: false,
+              height: 500
+            });
+            console.log('Swiper 인스턴스:', swiper);
+          } else {
+            console.log('Swiper 요소를 찾을 수 없음');
+          }
+        }, 1000);
         
         // 🚀 모바일에서 메뉴 항목 클릭 시 메뉴 닫기
         if ($(window).width() < 1200) { // xl breakpoint
