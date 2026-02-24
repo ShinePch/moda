@@ -3,32 +3,27 @@
   <!-- Autosize 하얀배경 전체 사이즈-->
   <div class="col-12">
     <div class="card mb-4">
-    <!-- card-navbar -->
-    <nav class="navbar navbar-example navbar-expand-lg">
-      <div class="container-fluid ">
-        <a class="navbar-brand" href="javascript:void(0)">정보처리기사 실기</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbar-ex-3">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar-ex-3">
-          <div class="navbar-nav me-auto">
-            <a class="nav-item nav-link" href="javascript:void(0)">#문제풀이</a>
-            <a class="nav-item nav-link" href="javascript:void(0)">#실기시험</a>
-            <a class="nav-item nav-link" href="javascript:void(0)">#계산문제</a>
+      <!-- card-navbar -->
+      <nav class="navbar navbar-example navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="javascript:void(0)">정보처리기사 실기</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-ex-3">
+            <div class="navbar-nav me-auto">
+              <a class="nav-item nav-link" href="javascript:void(0)">#문제풀이</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#실기시험</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#계산문제</a>
+            </div>
           </div>
         </div>
-      </div>
-    </nav> 
-    <!-- card-navbar -->               
-     
-    
-    <!-- 여기서부터 시작-->
-    <div class="nav-align-top nav-tabs-shadow mb-4">
-        <ul class="nav nav-tabs" role="tablist" style="width: 100%; margin-left: 0.01%;">
+      </nav>
+      <!-- card-navbar -->
+
+      <!-- 여기서부터 시작-->
+      <div class="nav-align-top nav-tabs-shadow mb-4">
+        <ul class="nav nav-tabs" role="tablist" style="width: 100%; margin-left: 0.01%">
           <li class="nav-item">
             <button
               type="button"
@@ -80,12 +75,10 @@
         </ul>
         <!--tab-content-->
         <div class="tab-content">
-
           <div class="tab-pane fade show active" id="navs-top-problems" role="tabpanel">
             <!--accordion for problem categories-->
             <div class="col-md">
               <div class="accordion mt-3 accordion-bordered" id="accordionProblemTypes">
-                
                 <!-- 서브넷마스크 계산 문제 카테고리 -->
                 <div class="accordion-item card">
                   <h2 class="accordion-header">
@@ -98,14 +91,15 @@
                       서브넷마스크 계산 (3개 문제)
                     </button>
                   </h2>
-                  <div id="accordionSubnetMask" class="accordion-collapse collapse show" data-bs-parent="#accordionProblemTypes">
+                  <div
+                    id="accordionSubnetMask"
+                    class="accordion-collapse collapse show"
+                    data-bs-parent="#accordionProblemTypes">
                     <div class="accordion-body">
-                      
                       <!-- Swiper 슬라이드 -->
                       <h6 class="text-muted mb-3">서브넷마스크 계산 문제</h6>
                       <div class="swiper" id="swiper-subnet-problems">
                         <div class="swiper-wrapper">
-                          
                           <!-- 슬라이드 1 -->
                           <div class="swiper-slide">
                             <div class="card">
@@ -114,26 +108,37 @@
                               </div>
                               <div class="card-body">
                                 <div class="alert alert-primary">
-                                  <strong>문제:</strong> 192.168.1.0/24인 네트워크를 FLSM 4개로 분할하였다.<br>
+                                  <strong>문제:</strong> 192.168.1.0/24인 네트워크를 FLSM 4개로 분할하였다.<br />
                                   두번째 네트워크의 브로드캐스트 IP를 10진수로 변환한 값을 작성하시오.
                                 </div>
-                                
+
                                 <div class="mb-3">
-                                  <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#solution1" aria-expanded="false">
+                                  <button
+                                    class="btn btn-outline-info btn-sm"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#solution1"
+                                    aria-expanded="false">
                                     풀이 과정 보기
                                   </button>
-                                  <button class="btn btn-outline-success btn-sm ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#answer1" aria-expanded="false">
+                                  <button
+                                    class="btn btn-outline-success btn-sm ms-2"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#answer1"
+                                    aria-expanded="false">
                                     정답 보기
                                   </button>
                                 </div>
-                                
+
                                 <div class="collapse" id="solution1">
                                   <div class="card card-body mb-3">
                                     <h6>풀이 과정</h6>
                                     <ol>
                                       <li><strong>원래 네트워크:</strong> 192.168.1.0/24 (호스트 256개)</li>
                                       <li><strong>4개로 분할:</strong> 256 ÷ 4 = 64개씩</li>
-                                      <li><strong>각 서브넷:</strong>
+                                      <li>
+                                        <strong>각 서브넷:</strong>
                                         <ul>
                                           <li>1번: 192.168.1.0/26 (0~63)</li>
                                           <li>2번: 192.168.1.64/26 (64~127)</li>
@@ -144,13 +149,11 @@
                                     </ol>
                                   </div>
                                 </div>
-                                
+
                                 <div class="collapse" id="answer1">
-                                  <div class="alert alert-success">
-                                    <strong>정답:</strong> 192.168.1.127
-                                  </div>
+                                  <div class="alert alert-success"><strong>정답:</strong> 192.168.1.127</div>
                                 </div>
-                                
+
                                 <div class="mt-3">
                                   <span class="badge bg-primary">서브넷마스크</span>
                                   <span class="badge bg-success">FLSM</span>
@@ -168,20 +171,31 @@
                               </div>
                               <div class="card-body">
                                 <div class="alert alert-primary">
-                                  <strong>문제:</strong> IP 주소가 139.127.19.132이고 서브넷마스크 255.255.255.192일 때<br>
-                                  (1) 괄호안에 들어갈 네트워크 주소: 139.127.19.( )<br>
+                                  <strong>문제:</strong> IP 주소가 139.127.19.132이고 서브넷마스크 255.255.255.192일
+                                  때<br />
+                                  (1) 괄호안에 들어갈 네트워크 주소: 139.127.19.( )<br />
                                   (2) 해당 네트워크 주소와 브로드캐스트 주소를 제외한 호스트 개수
                                 </div>
-                                
+
                                 <div class="mb-3">
-                                  <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#solution2" aria-expanded="false">
+                                  <button
+                                    class="btn btn-outline-info btn-sm"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#solution2"
+                                    aria-expanded="false">
                                     풀이 과정 보기
                                   </button>
-                                  <button class="btn btn-outline-success btn-sm ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#answer2" aria-expanded="false">
+                                  <button
+                                    class="btn btn-outline-success btn-sm ms-2"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#answer2"
+                                    aria-expanded="false">
                                     정답 보기
                                   </button>
                                 </div>
-                                
+
                                 <div class="collapse" id="solution2">
                                   <div class="card card-body mb-3">
                                     <h6>풀이 과정</h6>
@@ -195,15 +209,15 @@
                                     </ol>
                                   </div>
                                 </div>
-                                
+
                                 <div class="collapse" id="answer2">
                                   <div class="alert alert-success">
-                                    <strong>정답:</strong><br>
-                                    (1) 128<br>
+                                    <strong>정답:</strong><br />
+                                    (1) 128<br />
                                     (2) 62
                                   </div>
                                 </div>
-                                
+
                                 <div class="mt-3">
                                   <span class="badge bg-primary">서브넷마스크</span>
                                   <span class="badge bg-warning">고급</span>
@@ -220,34 +234,47 @@
                               </div>
                               <div class="card-body">
                                 <div class="alert alert-primary">
-                                  <strong>문제:</strong> 네트워크에서 라우터을 통한 할당 가능한 2번, 4번, 5번의 IP를 작성하시오.<br><br>
-                                  주어진 정보:<br>
-                                  1) 192.168.35.3/24<br>
-                                  3) 129.200.10.16/22<br>
+                                  <strong>문제:</strong> 네트워크에서 라우터을 통한 할당 가능한 2번, 4번, 5번의 IP를
+                                  작성하시오.<br /><br />
+                                  주어진 정보:<br />
+                                  1) 192.168.35.3/24<br />
+                                  3) 129.200.10.16/22<br />
                                   6) 192.168.36.24/24
                                 </div>
-                                
+
                                 <div class="mb-3">
-                                  <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#solution3" aria-expanded="false">
+                                  <button
+                                    class="btn btn-outline-info btn-sm"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#solution3"
+                                    aria-expanded="false">
                                     풀이 과정 보기
                                   </button>
-                                  <button class="btn btn-outline-success btn-sm ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#answer3" aria-expanded="false">
+                                  <button
+                                    class="btn btn-outline-success btn-sm ms-2"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#answer3"
+                                    aria-expanded="false">
                                     정답 보기
                                   </button>
                                 </div>
-                                
+
                                 <div class="collapse" id="solution3">
                                   <div class="card card-body mb-3">
                                     <h6>풀이 과정</h6>
                                     <ol>
-                                      <li><strong>각 네트워크 분석:</strong>
+                                      <li>
+                                        <strong>각 네트워크 분석:</strong>
                                         <ul>
                                           <li>192.168.35.3/24 → 네트워크: 192.168.35.0</li>
                                           <li>129.200.10.16/22 → 네트워크: 129.200.8.0</li>
                                           <li>192.168.36.24/24 → 네트워크: 192.168.36.0</li>
                                         </ul>
                                       </li>
-                                      <li><strong>라우팅 테이블 매칭:</strong>
+                                      <li>
+                                        <strong>라우팅 테이블 매칭:</strong>
                                         <ul>
                                           <li>2번: 35 네트워크 범위 → 192.168.35.72</li>
                                           <li>4번: 129.200.8.0/22 범위 → 129.200.8.249</li>
@@ -257,16 +284,16 @@
                                     </ol>
                                   </div>
                                 </div>
-                                
+
                                 <div class="collapse" id="answer3">
                                   <div class="alert alert-success">
-                                    <strong>정답:</strong><br>
-                                    2) 192.168.35.72<br>
-                                    4) 129.200.8.249<br>
+                                    <strong>정답:</strong><br />
+                                    2) 192.168.35.72<br />
+                                    4) 129.200.8.249<br />
                                     5) 192.168.36.249
                                   </div>
                                 </div>
-                                
+
                                 <div class="mt-3">
                                   <span class="badge bg-primary">서브넷마스크</span>
                                   <span class="badge bg-danger">CIDR</span>
@@ -275,11 +302,9 @@
                               </div>
                             </div>
                           </div>
-
                         </div>
                         <div class="swiper-pagination"></div>
                       </div>
-                      
                     </div>
                   </div>
                 </div>
@@ -305,9 +330,9 @@
                     </div>
                   </div>
                 </div>
-
               </div>
-            </div><!--main accordion end-->
+            </div>
+            <!--main accordion end-->
           </div>
 
           <!-- 다른 탭들 -->
@@ -317,8 +342,8 @@
               <p>각 문제 유형별 핵심 이론과 공식들을 정리한 섹션입니다.</p>
             </div>
           </div>
-
-        </div><!--tab-content-->
+        </div>
+        <!--tab-content-->
       </div>
     </div>
   </div>
