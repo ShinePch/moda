@@ -279,6 +279,392 @@
                   </div>
                 </div>
                 <!-- / KOSPI/KOSDAQ MA10 스캐너 -->
+                <!-- MA448/644 분봉/일봉 스캐너 -->
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionMA644-scanner"
+                      aria-expanded="false">
+                      📊 국내주식/코인 분봉·일봉 MA448/644 스캐너
+                    </button>
+                  </h2>
+                  <div
+                    id="accordionMA644-scanner"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionBybitScanner">
+                    <div class="accordion-body">
+                      <!-- 타임프레임 선택 -->
+                      <div class="mb-4">
+                        <label class="form-label fw-semibold">타임프레임 선택</label><br />
+                        <div class="btn-group" role="group">
+                          <input
+                            type="radio"
+                            class="btn-check"
+                            name="ma644Timeframe"
+                            id="tf1m"
+                            value="1m"
+                            autocomplete="off" />
+                          <label class="btn btn-outline-secondary btn-sm" for="tf1m">1분</label>
+
+                          <input
+                            type="radio"
+                            class="btn-check"
+                            name="ma644Timeframe"
+                            id="tf5m"
+                            value="5m"
+                            autocomplete="off" />
+                          <label class="btn btn-outline-secondary btn-sm" for="tf5m">5분</label>
+
+                          <input
+                            type="radio"
+                            class="btn-check"
+                            name="ma644Timeframe"
+                            id="tf15m"
+                            value="15m"
+                            autocomplete="off" />
+                          <label class="btn btn-outline-secondary btn-sm" for="tf15m">15분</label>
+
+                          <input
+                            type="radio"
+                            class="btn-check"
+                            name="ma644Timeframe"
+                            id="tf60m"
+                            value="60m"
+                            autocomplete="off" />
+                          <label class="btn btn-outline-secondary btn-sm" for="tf60m">60분</label>
+
+                          <input
+                            type="radio"
+                            class="btn-check"
+                            name="ma644Timeframe"
+                            id="tf240m"
+                            value="240m"
+                            autocomplete="off" />
+                          <label class="btn btn-outline-secondary btn-sm" for="tf240m">240분</label>
+
+                          <input
+                            type="radio"
+                            class="btn-check"
+                            name="ma644Timeframe"
+                            id="tf1d"
+                            value="1d"
+                            autocomplete="off"
+                            checked />
+                          <label class="btn btn-outline-secondary btn-sm" for="tf1d">일봉</label>
+                        </div>
+                      </div>
+
+                      <!-- 종목 수 입력 -->
+                      <div class="row mb-3">
+                        <div class="col-md-4">
+                          <label class="form-label">KOSPI200 (최대 200)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="ma644KospiCount"
+                            value="200"
+                            min="0"
+                            max="200"
+                            placeholder="0 입력 시 제외" />
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">KOSDAQ150 (최대 150)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="ma644KosdaqCount"
+                            value="0"
+                            min="0"
+                            max="150"
+                            placeholder="0 입력 시 제외" />
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">COIN (최대 50)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="ma644CoinCount"
+                            value="0"
+                            min="0"
+                            max="50"
+                            placeholder="0 입력 시 제외" />
+                        </div>
+                      </div>
+
+                      <!-- 버튼 -->
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <button class="btn btn-success w-100" onclick="startMA644Scan()">🎯 스캔 시작</button>
+                        </div>
+                        <div class="col-md-6">
+                          <button class="btn btn-secondary w-100" onclick="clearMA644Results()">🗑️ 결과 지우기</button>
+                        </div>
+                      </div>
+
+                      <!-- 진행상황 -->
+                      <div id="ma644Progress" style="display: none" class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                          <small id="ma644ProgressText">스캔 중...</small>
+                          <small id="ma644ProgressCount">0 / 0</small>
+                        </div>
+                        <div class="progress">
+                          <div
+                            id="ma644ProgressBar"
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            style="width: 0%"></div>
+                        </div>
+                      </div>
+
+                      <!-- 결과 -->
+                      <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                          <h5 class="card-title mb-0">📊 스캔 결과</h5>
+                          <small id="ma644ResultSummary" class="text-muted"></small>
+                        </div>
+                        <div class="card-body" id="ma644Results">
+                          <div class="text-center text-muted" style="padding: 40px">
+                            <h5>검색 결과가 여기에 표시됩니다</h5>
+                            <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 안내 -->
+                      <div class="alert alert-info mt-3">
+                        <h6><i class="ti ti-info-circle me-2"></i>분석 기준</h6>
+                        <ul class="mb-0">
+                          <li><strong>데이터:</strong> Yahoo Finance (무료, API 키 불필요)</li>
+                          <li><strong>기준:</strong> 선택한 타임프레임의 MA448 / MA644 ±3% 이내 접근 종목</li>
+                          <li><strong>240분봉:</strong> 60분봉 4개 묶음으로 집계하여 계산</li>
+                          <li><strong>괴리율 양수:</strong> MA 위 / <strong>음수:</strong> MA 아래</li>
+                          <li>
+                            <strong>1분봉 주의:</strong> Yahoo Finance 1분봉은 최대 7일치 데이터만 제공 (MA448 이상에서
+                            데이터 부족 가능)
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / MA448/644 분봉/일봉 스캐너 -->
+                <!-- 동적 MA 스캐너 -->
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionDynamic-scanner"
+                      aria-expanded="false">
+                      동적 MA 스캐너 (타임프레임 · MA · 괴리율 직접 설정)
+                    </button>
+                  </h2>
+                  <div
+                    id="accordionDynamic-scanner"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionBybitScanner">
+                    <div class="accordion-body">
+                      <!-- 타임프레임 -->
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <label class="form-label fw-semibold">분봉 직접 입력 (분 단위)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="dynamicMinuteInput"
+                            placeholder="예: 1, 5, 15, 60, 240"
+                            min="1"
+                            oninput="onDynamicMinuteInput()"
+                            onfocus="onDynamicMinuteFocus()" />
+                          <small class="text-muted">지원: 1, 2, 5, 15, 30, 60, 90분 / 그 외는 60분봉 집계 처리</small>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label fw-semibold">봉 선택 (선택 시 분봉 비활성화)</label>
+                          <div class="d-flex gap-3 flex-wrap mt-1">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="dynamicCandleType"
+                                id="dynamicDay"
+                                value="1d"
+                                onchange="onDynamicCandleSelect()" />
+                              <label class="form-check-label" for="dynamicDay">일봉</label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="dynamicCandleType"
+                                id="dynamicWeek"
+                                value="1wk"
+                                onchange="onDynamicCandleSelect()" />
+                              <label class="form-check-label" for="dynamicWeek">주봉</label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="dynamicCandleType"
+                                id="dynamicMonth"
+                                value="1mo"
+                                onchange="onDynamicCandleSelect()" />
+                              <label class="form-check-label" for="dynamicMonth">월봉</label>
+                            </div>
+                          </div>
+                          <small class="text-muted">분봉 입력창 클릭 시 봉 선택 자동 해제</small>
+                        </div>
+                      </div>
+
+                      <!-- MA · 괴리율 -->
+                      <div class="row mb-4">
+                        <div class="col-md-4">
+                          <label class="form-label fw-semibold">MA 기간</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="dynamicMAPeriod"
+                            value="10"
+                            min="1"
+                            placeholder="예: 10, 56, 644" />
+                        </div>
+                        <div class="col-md-4">
+                          <div class="d-flex align-items-center mb-1">
+                            <label class="form-label fw-semibold mb-0 me-2">괴리율 최솟값 (%)</label>
+                            <div class="form-check form-switch mb-0">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="dynamicMinGapToggle"
+                                onchange="toggleGapInput('min')" />
+                              <label class="form-check-label small" for="dynamicMinGapToggle">직접 설정</label>
+                            </div>
+                          </div>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="dynamicMinGap"
+                            value="-3"
+                            min="-100"
+                            max="100"
+                            step="0.1"
+                            disabled />
+                          <small class="text-muted">기본값 -3% / 직접 설정 시 토글 ON</small>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="d-flex align-items-center mb-1">
+                            <label class="form-label fw-semibold mb-0 me-2">괴리율 최댓값 (%)</label>
+                            <div class="form-check form-switch mb-0">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="dynamicMaxGapToggle"
+                                onchange="toggleGapInput('max')" />
+                              <label class="form-check-label small" for="dynamicMaxGapToggle">직접 설정</label>
+                            </div>
+                          </div>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="dynamicMaxGap"
+                            value="3"
+                            min="-100"
+                            max="100"
+                            step="0.1"
+                            disabled />
+                          <small class="text-muted">기본값 +3% / 직접 설정 시 토글 ON</small>
+                        </div>
+                      </div>
+
+                      <!-- 종목 수 -->
+                      <div class="row mb-3">
+                        <div class="col-md-4">
+                          <label class="form-label">KOSPI200 (최대 200)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="dynamicKospiCount"
+                            value="200"
+                            min="0"
+                            max="200" />
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">KOSDAQ150 (최대 150)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="dynamicKosdaqCount"
+                            value="0"
+                            min="0"
+                            max="150" />
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">COIN (최대 50)</label>
+                          <input type="number" class="form-control" id="dynamicCoinCount" value="0" min="0" max="50" />
+                        </div>
+                      </div>
+
+                      <!-- 버튼 -->
+                      <div class="row mb-4">
+                        <div class="col-md-6">
+                          <button class="btn btn-success w-100" onclick="startDynamicScan()">스캔 시작</button>
+                        </div>
+                        <div class="col-md-6">
+                          <button class="btn btn-secondary w-100" onclick="clearDynamicResults()">결과 지우기</button>
+                        </div>
+                      </div>
+
+                      <!-- 진행상황 -->
+                      <div id="dynamicProgress" style="display: none" class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                          <small id="dynamicProgressText">스캔 중...</small>
+                          <small id="dynamicProgressCount">0 / 0</small>
+                        </div>
+                        <div class="progress">
+                          <div
+                            id="dynamicProgressBar"
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            style="width: 0%"></div>
+                        </div>
+                      </div>
+
+                      <!-- 결과 -->
+                      <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                          <h5 class="card-title mb-0">스캔 결과</h5>
+                          <small id="dynamicResultSummary" class="text-muted"></small>
+                        </div>
+                        <div class="card-body" id="dynamicResults">
+                          <div class="text-center text-muted" style="padding: 40px">
+                            <h5>검색 결과가 여기에 표시됩니다</h5>
+                            <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 안내 -->
+                      <div class="alert alert-info mt-3">
+                        <h6><i class="ti ti-info-circle me-2"></i>분석 기준</h6>
+                        <ul class="mb-0">
+                          <li><strong>데이터:</strong> Yahoo Finance (무료, API 키 불필요)</li>
+                          <li><strong>타임프레임:</strong> 분봉 직접 입력 또는 일봉/주봉/월봉 선택</li>
+                          <li><strong>MA 기간:</strong> 직접 입력 (예: 10, 56, 644)</li>
+                          <li>
+                            <strong>괴리율 최솟값~최댓값:</strong> 방향 구분 가능 (예: 0~+3% → MA 위 접근만 / -3~0% → MA
+                            아래 접근만)
+                          </li>
+                          <li>
+                            <strong>괴리율 양수:</strong> 현재가가 MA 위 / <strong>음수:</strong> 현재가가 MA 아래
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / 동적 MA 스캐너 -->
               </div>
             </div>
             <!--accordion-->
