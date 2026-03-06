@@ -69,7 +69,7 @@ const CONDITION_TREE = [
           { id: 'pa_period_ratio', label: '구간별 주가등락률간 비율' },
           { id: 'pa_daily_high_break', label: '당일 전고점 돌파' },
           { id: 'pa_daily_high_compare', label: '당일 전고점 비교' },
-          { id: 'pa_morning_gold_change', label: '문룡 금일 첫봉대비 주가등락' }
+          { id: 'pa_morning_gold_change', label: '분봉 금일 첫봉대비 주가등락' }
         ]
       },
       {
@@ -135,10 +135,21 @@ const CONDITION_TREE = [
           { id: 'pa_amt_avg_period', label: '기간별 평균거래대금' },
           { id: 'pa_amt_accum', label: '기간별 누적거래대금' },
           { id: 'pa_amt_compare', label: '거래대금 비교' },
-          { id: 'pa_amt_morning_gold', label: '문룡 금일 첫봉대비 거래량비율' }
+          { id: 'pa_amt_morning_gold', label: '분봉 금일 첫봉대비 거래량비율' }
         ]
       },
-      { id: 'pa_expected', label: '예상체결' },
+      {
+        id: 'pa_expected_grp',
+        label: '예상체결',
+        children: [
+          { id: 'pa_expected_price', label: '예상체결가' },
+          { id: 'pa_expected_vol', label: '예상체결량' },
+          { id: 'pa_expected_vol_rate', label: '예상체결량비율' },
+          { id: 'pa_expected_amt', label: '예상체결금액' },
+          { id: 'pa_expected_rate', label: '예상체결가등락률' },
+          { id: 'pa_expected_ma_diff', label: '예상체결가-이동평균비교' }
+        ]
+      },
       {
         id: 'pa_foreign_grp',
         label: '외국인',
@@ -233,10 +244,10 @@ const CONDITION_TREE = [
         label: '당일분봉',
         children: [
           { id: 'pa_intra_first_rate', label: '당일 첫 분봉 주가등락률' },
-          { id: 'pa_intra_gold_rate', label: '문룡 금일 첫봉대비 주가등락률' },
+          { id: 'pa_intra_gold_rate', label: '분봉 금일 첫봉대비 주가등락률' },
           { id: 'pa_intra_candle_consec', label: '당일 첫 분봉 캔들연속발생' },
           { id: 'pa_intra_first_vol', label: '당일 첫 분봉 거래량비율' },
-          { id: 'pa_intra_gold_vol', label: '문룡 금일 첫봉대비 거래량비율' },
+          { id: 'pa_intra_gold_vol', label: '분봉 금일 첫봉대비 거래량비율' },
           { id: 'pa_intra_base_break', label: '당일분봉 기준봉대비 주가돌파' },
           { id: 'pa_intra_base_compare', label: '당일분봉 기준봉대비 주가비교' },
           { id: 'pa_intra_position', label: '당일분봉 주가위치' },
@@ -251,37 +262,129 @@ const CONDITION_TREE = [
     id: 'technical',
     label: '기술적분석',
     children: [
-      { id: 'ta_ma', label: '주가이동평균' },
-      { id: 'ta_vol_ma', label: '거래량이동평균' },
+      {
+        id: 'ta_ma_grp',
+        label: '주가이동평균',
+        children: [
+          { id: 'ta_ma_break', label: '주가이동평균돌파' },
+          { id: 'ta_ma_break_det', label: '상세이동평균돌파' },
+          { id: 'ta_ma_array3', label: '주가이동평균배열(3개)' },
+          { id: 'ta_ma_array4', label: '주가이동평균배열(4개)' },
+          { id: 'ta_ma_compare', label: '주가이동평균비교' },
+          { id: 'ta_ma_compare_det', label: '상세이동평균비교' },
+          { id: 'ta_ma_compare2', label: '주가이동평균비교(2개)' },
+          { id: 'ta_ma_compare3', label: '주가이동평균비교(3개)' },
+          { id: 'ta_ma_rate', label: '주가이동평균등락률' },
+          { id: 'ta_ma_gap', label: '이동평균이격도' },
+          { id: 'ta_ma_price_diff', label: '가격-이동평균비교' },
+          { id: 'ta_ma_trend', label: '주가이동평균추세' }
+        ]
+      },
+      {
+        id: 'ta_vol_ma_grp',
+        label: '거래량이동평균',
+        children: [
+          { id: 'ta_vol_ma_break', label: '거래량이동평균돌파' },
+          { id: 'ta_vol_ma_array', label: '거래량이동평균배열' },
+          { id: 'ta_vol_ma_trend', label: '거래량이동평균추세' },
+          { id: 'ta_vol_ma_rate', label: '거래량이동평균등락률' }
+        ]
+      },
       {
         id: 'ta_trend',
         label: '추세지표',
         children: [
           { id: 'ta_macd', label: 'MACD' },
-          { id: 'ta_dmi', label: 'DMI' },
-          { id: 'ta_cci', label: 'CCI' }
+          { id: 'ta_macd_signal', label: 'MACD Signal' },
+          { id: 'ta_macd_osc', label: 'MACD OSC' },
+          { id: 'ta_price_osc', label: 'Price Oscillator' },
+          { id: 'ta_gmnet', label: '그물망차트' },
+          { id: 'ta_lrs', label: 'LRS/LRL' },
+          { id: 'ta_tsf', label: 'TSF' },
+          { id: 'ta_eom', label: 'EOM(Ease of Movement)' },
+          { id: 'ta_parabolic', label: 'Parabolic' },
+          { id: 'ta_vhf', label: 'VHF' }
         ]
       },
       {
         id: 'ta_momentum',
         label: '모멘텀지표',
         children: [
-          { id: 'ta_rsi', label: 'RSI' },
-          { id: 'ta_stoch', label: 'Stochastic' },
-          { id: 'ta_momentum_idx', label: 'Momentum' }
+          { id: 'ta_gap_idx', label: '이격도' },
+          { id: 'ta_ab_ratio', label: 'AB Ratio' },
+          { id: 'ta_band_b', label: 'Band %b' },
+          { id: 'ta_cci', label: 'CCI' },
+          { id: 'ta_co', label: "CO(Chaikin's Osc)" },
+          { id: 'ta_momentum_idx', label: 'Momentum' },
+          { id: 'ta_psychology', label: '심리도' },
+          { id: 'ta_new_psych', label: '신심리도' },
+          { id: 'ta_stoch', label: 'Stochastic(fast)' },
+          { id: 'ta_stoch_slow', label: 'Stochastic(slow)' },
+          { id: 'ta_roc', label: 'ROC' },
+          { id: 'ta_williams', label: "William's %R" },
+          { id: 'ta_sonar', label: 'Sonar' },
+          { id: 'ta_trix', label: 'TRIX' },
+          { id: 'ta_vroc', label: 'VROC' },
+          { id: 'ta_mass_idx', label: 'Mass Index' }
         ]
       },
       {
         id: 'ta_channel',
         label: '채널지표',
         children: [
-          { id: 'ta_bollinger', label: 'Bollinger Bands' },
-          { id: 'ta_envelope', label: 'Envelope' }
+          { id: 'ta_envelope', label: 'Envelope' },
+          { id: 'ta_bollinger', label: 'Bollinger Band' },
+          { id: 'ta_band_width', label: 'Band Width' },
+          { id: 'ta_pivot', label: 'Pivot' },
+          { id: 'ta_pivot_min', label: 'Pivot 분봉' },
+          { id: 'ta_ichimoku', label: '일목균형표' },
+          { id: 'ta_price_ch', label: 'Price Channel' }
         ]
       },
-      { id: 'ta_volatility', label: '변동성지표' },
-      { id: 'ta_vol_indicator', label: '거래량지표' },
-      { id: 'ta_pricebox', label: '가격박스' }
+      {
+        id: 'ta_volatility_grp',
+        label: '변동성지표',
+        children: [
+          { id: 'ta_dmi', label: 'DMI' },
+          { id: 'ta_dmi_dx', label: 'DMI DX' },
+          { id: 'ta_adx', label: 'ADX' },
+          { id: 'ta_adx_dmi', label: 'ADX DMI' },
+          { id: 'ta_rsi', label: 'RSI' },
+          { id: 'ta_stddev', label: 'Standard Deviation' },
+          { id: 'ta_sigma', label: 'Sigma' },
+          { id: 'ta_true_range', label: 'True Range' }
+        ]
+      },
+      {
+        id: 'ta_vol_grp',
+        label: '거래량지표',
+        children: [
+          { id: 'ta_ad', label: 'A/D선' },
+          { id: 'ta_mfi', label: 'MFI' },
+          { id: 'ta_dvi', label: 'Daily Volume Index' },
+          { id: 'ta_vr', label: 'VR' },
+          { id: 'ta_vol_osc', label: 'Volume Oscillator' },
+          { id: 'ta_obv', label: 'OBV' },
+          { id: 'ta_pvi', label: 'Positive Volume Index' }
+        ]
+      },
+      {
+        id: 'ta_other_grp',
+        label: '기타지표',
+        children: [
+          { id: 'ta_demark', label: 'Demark' },
+          { id: 'ta_sansei', label: '삼선전환도' },
+          { id: 'ta_binary', label: 'Binary Wave' }
+        ]
+      },
+      {
+        id: 'ta_pricebox_grp',
+        label: '가격박스',
+        children: [
+          { id: 'ta_pricebox_break', label: '가격기준선 돌파' },
+          { id: 'ta_pricebox_rate', label: '가격기준선 등락률' }
+        ]
+      }
     ]
   },
   {
@@ -289,24 +392,207 @@ const CONDITION_TREE = [
     label: '패턴분석',
     children: [
       { id: 'pat_definition', label: '패턴정의' },
-      { id: 'pat_basic', label: '기본적인 캔들' },
-      { id: 'pat_up_reversal', label: '상승반전형' },
-      { id: 'pat_up_continue', label: '상승지속형' },
-      { id: 'pat_down_reversal', label: '하락반전형' },
-      { id: 'pat_down_continue', label: '하락지속형' }
+      {
+        id: 'pat_basic_grp',
+        label: '기본적인 캔들',
+        children: [
+          { id: 'pat_basic_longbody_yang', label: '롱바디(양봉)' },
+          { id: 'pat_basic_longbody_eum', label: '롱바디(음봉)' },
+          { id: 'pat_basic_shortbody_yang', label: '숏바디(양봉)' },
+          { id: 'pat_basic_shortbody_eum', label: '숏바디(음봉)' },
+          { id: 'pat_basic_doji_cross', label: '도지(십자)' },
+          { id: 'pat_basic_gravestone', label: '그레이브스톤 도지(비석형 십자)' },
+          { id: 'pat_basic_dragonfly', label: '드래곤플라이 도지(잠자리형 십자)' },
+          { id: 'pat_basic_rickshaw', label: '릭슈맨 도지' },
+          { id: 'pat_basic_fourprice', label: '포 프라이스 도지' },
+          { id: 'pat_basic_white_marubozu', label: '화이트 마루보즈(장대양봉)' },
+          { id: 'pat_basic_black_marubozu', label: '블랙 마루보즈(장대음봉)' },
+          { id: 'pat_basic_opening_white_marubozu', label: '오프닝 화이트 마루보즈(윗꼬리 장대양봉)' },
+          { id: 'pat_basic_opening_black_marubozu', label: '오프닝 블랙 마루보즈(아랫꼬리 장대음봉)' },
+          { id: 'pat_basic_closing_white_marubozu', label: '클로징 화이트 마루보즈(아랫꼬리 장대양봉)' },
+          { id: 'pat_basic_closing_black_marubozu', label: '클로징 블랙 마루보즈(윗꼬리 장대음봉)' },
+          { id: 'pat_basic_highwave', label: '하이웨이브 캔들(스피닝 탑스)' },
+          { id: 'pat_basic_star', label: '스타(별형)' },
+          { id: 'pat_basic_shooting', label: '슈팅스타(음봉 역망치형)' },
+          { id: 'pat_basic_inside_day', label: '인사이드데이' },
+          { id: 'pat_basic_outside_day', label: '아웃사이드데이' }
+        ]
+      },
+      {
+        id: 'pat_up_reversal_grp',
+        label: '상승반전형',
+        children: [
+          { id: 'pat_up_rev_inv_hammer', label: '인버티드 해머(역망치형)' },
+          { id: 'pat_up_rev_hammer', label: '해머(망치형)' },
+          { id: 'pat_up_rev_belt_hold', label: '불리쉬 벨트 홀드(하락추세)' },
+          { id: 'pat_up_rev_engulfing', label: '불리쉬 인걸핑(상승장악형)' },
+          { id: 'pat_up_rev_harami', label: '하라미(상승잉태형)' },
+          { id: 'pat_up_rev_harami_cross', label: '하라미 크로스(하락십자잉태형)' },
+          { id: 'pat_up_rev_counter', label: '불리쉬 카운터어택 라인(상승접선형)' },
+          { id: 'pat_up_rev_piercing', label: '피어싱라인(관통형)' },
+          { id: 'pat_up_rev_morning_star', label: '모닝스타(샛별형)' },
+          { id: 'pat_up_rev_morning_doji', label: '모닝 도지 스타(샛별도지형)' },
+          { id: 'pat_up_rev_abandoned', label: '어밴던드 베이비(하락추세)' },
+          { id: 'pat_up_rev_3inside_up', label: '쓰리 인사이드 업(상승추세)' },
+          { id: 'pat_up_rev_3outside_up', label: '쓰리 아웃사이드 업(하락추세)' },
+          { id: 'pat_up_rev_upside_gap', label: '업사이드 갭 투 크로우즈 다운(하락추세 까마귀형)' },
+          { id: 'pat_up_rev_bullish_doji', label: '불리쉬 도지 스타' },
+          { id: 'pat_up_rev_tweezer_bot', label: '트위저즈 보텀(바닥형 집게)' }
+        ]
+      },
+      {
+        id: 'pat_up_continue_grp',
+        label: '상승지속형',
+        children: [
+          { id: 'pat_up_con_3soldiers', label: '쓰리 화이트 솔저(적삼병)' },
+          { id: 'pat_up_con_advance_block', label: '어드밴스 블럭(Advance Block)' },
+          { id: 'pat_up_con_stalled', label: '스톨드 패턴(Stalled Pattern, 정체적삼병)' },
+          { id: 'pat_up_con_upside_tasuki', label: '업사이드 갭 태스키(상승돌파 갭형)' },
+          { id: 'pat_up_con_3methods', label: '업사이드 갭 쓰리 메쎄즈(상승추세)' }
+        ]
+      },
+      {
+        id: 'pat_down_reversal_grp',
+        label: '하락반전형',
+        children: [
+          { id: 'pat_dn_rev_hanging_man', label: '행잉맨(음봉망치형)' },
+          { id: 'pat_dn_rev_belt_hold', label: '베어리쉬 벨트 홀드(상승추세)' },
+          { id: 'pat_dn_rev_engulfing', label: '베어리쉬 인걸핑(하락장악형)' },
+          { id: 'pat_dn_rev_harami', label: '하라미(하락잉태형)' },
+          { id: 'pat_dn_rev_harami_cross', label: '하라미크로스(상승십자잉태형)' },
+          { id: 'pat_dn_rev_counter', label: '베어리쉬 카운터어택 라인(하락접선형)' },
+          { id: 'pat_dn_rev_dark_cloud', label: '다크 크라우드커버(흑운형)' },
+          { id: 'pat_dn_rev_evening_star', label: '이브닝스타(석별형)' },
+          { id: 'pat_dn_rev_evening_doji', label: '이브닝 도지 스타(석별도지형)' },
+          { id: 'pat_dn_rev_abandoned', label: '어밴던드 베이비(상승추세)' },
+          { id: 'pat_dn_rev_3inside_down', label: '쓰리 인사이드 다운(하락추세)' },
+          { id: 'pat_dn_rev_3outside_down', label: '쓰리 아웃사이드 다운(상승추세)' },
+          { id: 'pat_dn_rev_upside_gap', label: '업사이드 갭 투 크로우즈(상승추세 까마귀형)' },
+          { id: 'pat_dn_rev_bearish_doji', label: '베어리쉬 도지 스타' },
+          { id: 'pat_dn_rev_tweezer_top', label: '트위저즈 탑(천장형 집게)' }
+        ]
+      },
+      {
+        id: 'pat_down_continue_grp',
+        label: '하락지속형',
+        children: [
+          { id: 'pat_dn_con_3crows', label: '쓰리 블랙 솔저(흑삼병)' },
+          { id: 'pat_dn_con_identical', label: '아이덴티컬 쓰리 크로우즈' },
+          { id: 'pat_dn_con_downside_tasuki', label: '다운사이드 갭 태스키(하락돌파 갭형)' },
+          { id: 'pat_dn_con_3methods', label: '다운사이드 갭 쓰리 메쎄즈(하락추세)' }
+        ]
+      }
     ]
   },
   {
     id: 'financial',
     label: '재무분석',
     children: [
-      { id: 'fin_price_index', label: '주가지표' },
-      { id: 'fin_profit', label: '수익성분석' },
-      { id: 'fin_growth', label: '성장성분석' },
-      { id: 'fin_stability', label: '안정성분석' },
-      { id: 'fin_pl', label: 'P/L재무항목' },
-      { id: 'fin_bs', label: 'B/S재무항목' },
-      { id: 'fin_cashflow', label: '현금흐름표재무항목' }
+      {
+        id: 'fin_price_index_grp',
+        label: '주가지표',
+        children: [
+          { id: 'fin_pi_per', label: 'PER' },
+          { id: 'fin_pi_pbr', label: 'PBR' },
+          { id: 'fin_pi_psr', label: 'PSR' },
+          { id: 'fin_pi_ev_ebitda', label: 'EV/EBITDA' },
+          { id: 'fin_pi_pcr', label: 'PCR' },
+          { id: 'fin_pi_peg', label: 'PEG' },
+          { id: 'fin_pi_div_yield', label: '전년배당시배당수익률' },
+          { id: 'fin_pi_eps', label: 'EPS' },
+          { id: 'fin_pi_bps', label: 'BPS' },
+          { id: 'fin_pi_sps', label: 'SPS' },
+          { id: 'fin_pi_cfps', label: 'CFPS' },
+          { id: 'fin_pi_mktcap', label: '시가총액' },
+          { id: 'fin_pi_capital', label: '자본금' },
+          { id: 'fin_pi_gap_ratio', label: '주가괴리율(우선주/보통주)' }
+        ]
+      },
+      {
+        id: 'fin_profit_grp',
+        label: '수익성분석',
+        children: [
+          { id: 'fin_pf_op_margin', label: '영업이익률' },
+          { id: 'fin_pf_pretax_margin', label: '세전계속사업이익률' },
+          { id: 'fin_pf_net_margin', label: '순이익률' },
+          { id: 'fin_pf_roe', label: 'ROE' },
+          { id: 'fin_pf_roa', label: 'ROA' },
+          { id: 'fin_pf_ebitda_margin', label: 'EBITDA마진율' },
+          { id: 'fin_pf_asset_turnover', label: '총자산회전율' },
+          { id: 'fin_pf_retention', label: '유보율' },
+          { id: 'fin_pf_mktcap_op', label: '시총대비 영업이익' }
+        ]
+      },
+      {
+        id: 'fin_growth_grp',
+        label: '성장성분석',
+        children: [
+          { id: 'fin_gr_sales', label: '매출액증감률' },
+          { id: 'fin_gr_op_income', label: '영업이익증감률' },
+          { id: 'fin_gr_pretax', label: '세전계속사업이익증가율' },
+          { id: 'fin_gr_net', label: '순이익증감률' },
+          { id: 'fin_gr_eps', label: 'EPS증감률' },
+          { id: 'fin_gr_ebitda', label: 'EBITDA증감률' },
+          { id: 'fin_gr_capital', label: '자본금증감률' },
+          { id: 'fin_gr_assets', label: '총자산증감률' },
+          { id: 'fin_gr_equity', label: '총자본증감률' },
+          { id: 'fin_gr_debt', label: '총부채증감률' }
+        ]
+      },
+      {
+        id: 'fin_stability_grp',
+        label: '안정성분석',
+        children: [
+          { id: 'fin_st_debt_ratio', label: '부채비율' },
+          { id: 'fin_st_fin_cost', label: '금융비용부담율' },
+          { id: 'fin_st_current', label: '유동비율' },
+          { id: 'fin_st_short_debt', label: '단기차입비율' },
+          { id: 'fin_st_debt_dep', label: '차입금의존도' },
+          { id: 'fin_st_recv_ratio', label: '매출채권/매출액비율' },
+          { id: 'fin_st_inv_ratio', label: '재고자산/매출액비율' },
+          { id: 'fin_st_interest_cov', label: '이자보상배율' },
+          { id: 'fin_st_avg_int', label: '차입금평균이자율' },
+          { id: 'fin_st_net_debt', label: '순차입금' },
+          { id: 'fin_st_short_borrow', label: '단기성차입금' }
+        ]
+      },
+      {
+        id: 'fin_pl_grp',
+        label: 'P/L재무항목',
+        children: [
+          { id: 'fin_pl_sales', label: '매출액' },
+          { id: 'fin_pl_op_income', label: '영업이익' },
+          { id: 'fin_pl_pretax', label: '세전계속사업이익' },
+          { id: 'fin_pl_net', label: '순이익' },
+          { id: 'fin_pl_dep', label: '감가상각비' },
+          { id: 'fin_pl_ebitda', label: 'EBITDA' },
+          { id: 'fin_pl_int_exp', label: '이자비용' },
+          { id: 'fin_pl_int_inc', label: '이자수익' },
+          { id: 'fin_pl_equity_gain', label: '지분법평가이익' },
+          { id: 'fin_pl_equity_pl', label: '지분법평가손익' },
+          { id: 'fin_pl_export', label: '수출비율' }
+        ]
+      },
+      {
+        id: 'fin_bs_grp',
+        label: 'B/S재무항목',
+        children: [
+          { id: 'fin_bs_assets', label: '자산총계' },
+          { id: 'fin_bs_equity', label: '자본총계' },
+          { id: 'fin_bs_debt', label: '부채총계' },
+          { id: 'fin_bs_foreign_debt', label: '외환부채' },
+          { id: 'fin_bs_foreign_asset', label: '외화자산' }
+        ]
+      },
+      {
+        id: 'fin_cashflow_grp',
+        label: '현금흐름표재무항목',
+        children: [
+          { id: 'fin_cf_operating', label: '영업현금흐름' },
+          { id: 'fin_cf_investing', label: '투자현금흐름' },
+          { id: 'fin_cf_financing', label: '재무현금흐름' }
+        ]
+      }
     ]
   },
   {
@@ -317,13 +603,33 @@ const CONDITION_TREE = [
         id: 'rank_price',
         label: '시세 순위',
         children: [
-          { id: 'rank_price_change', label: '전일대비 주가등락' },
-          { id: 'rank_intraday_change', label: '시가대비 주가등락' },
-          { id: 'rank_5day', label: '5일간 주가변동률' },
-          { id: 'rank_52high', label: '52주 최고가 대비' },
-          { id: 'rank_52low', label: '52주 최저가 대비' },
+          { id: 'rank_price_change', label: '전일대비 주가등락률 순위' },
+          { id: 'rank_intraday_change', label: '시가대비 주가등락률 순위' },
+          { id: 'rank_5day', label: '5일간 주가변동폭 비율 순위' },
+          { id: 'rank_52high', label: '52주 최고가 대비 등락률 순위' },
+          { id: 'rank_52low', label: '52주 최저가 대비 등락률 순위' },
+          { id: 'rank_net_buy', label: '순매수잔량 순위' },
+          { id: 'rank_bid_ask_ratio', label: '매도매수잔량비 순위' },
+          { id: 'rank_best_ask_ratio', label: '총매도잔량대비 우선매도호가잔량비 순위' },
+          { id: 'rank_best_bid_ratio', label: '총매수잔량대비 우선매수호가잔량비 순위' },
           { id: 'rank_volume_rank', label: '거래량 순위' },
-          { id: 'rank_vol_rate', label: '거래량회전율 순위' }
+          { id: 'rank_prev_volume', label: '전일거래량 순위' },
+          { id: 'rank_avg_volume', label: '평균거래량 순위' },
+          { id: 'rank_exec_strength', label: '체결강도 순위' },
+          { id: 'rank_vol_chg', label: '전일대비 거래량 증감률 순위' },
+          { id: 'rank_vol_intraday', label: '전일 동시간대 대비 거래량 증감률 순위' },
+          { id: 'rank_vol_rate', label: '거래량회전율 순위' },
+          { id: 'rank_amt', label: '거래대금 순위' },
+          { id: 'rank_avg_amt', label: '평균거래대금 순위' },
+          { id: 'rank_prev_amt', label: '전일거래대금 순위' },
+          { id: 'rank_expected_vol', label: '예상체결량 순위' },
+          { id: 'rank_for_ratio', label: '외국인지분율 순위' },
+          { id: 'rank_for_ratio_chg', label: '외국인지분율 변동 순위' },
+          { id: 'rank_for_net_buy', label: '외국인순매수 순위' },
+          { id: 'rank_inst_buy', label: '전기기관매수 순위' },
+          { id: 'rank_foreign_vol_chg', label: '외국계증권사 거래량증감 순위' },
+          { id: 'rank_foreign_amt_chg', label: '외국계증권사 거래비중증감 순위' },
+          { id: 'rank_listed_shares', label: '상장주식수 순위' }
         ]
       },
       {
@@ -331,10 +637,15 @@ const CONDITION_TREE = [
         label: '기술적지표 순위',
         children: [
           { id: 'rank_macd', label: 'MACD(12,26,9) 순위' },
+          { id: 'rank_gap_idx', label: '이격도(20) 순위' },
           { id: 'rank_cci_rank', label: 'CCI(9) 순위' },
           { id: 'rank_momentum_r', label: 'Momentum(9,9) 순위' },
-          { id: 'rank_rsi_rank', label: '심리도(10) 순위' },
-          { id: 'rank_stoch_fast', label: 'Stochastic Fast' }
+          { id: 'rank_rsi_rank', label: 'RSI(14) 순위' },
+          { id: 'rank_stoch_fast', label: 'Stochastic Fast(5,3) 순위' },
+          { id: 'rank_stoch_slow', label: 'Stochastic Slow(7,3,5) 순위' },
+          { id: 'rank_roc', label: 'ROC(12) 순위' },
+          { id: 'rank_trix', label: 'TRIX(12,9) 순위' },
+          { id: 'rank_obv', label: 'OBV(12) 순위' }
         ]
       }
     ]

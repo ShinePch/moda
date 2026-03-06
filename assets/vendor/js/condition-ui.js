@@ -17,9 +17,9 @@ function buildTreeNode(node, depth) {
     const childrenHtml = node.children.map(child => buildTreeNode(child, depth + 1)).join('');
     return `
       <div>
-        <div class="cs-tree-folder d-flex align-items-center gap-1 px-2 py-1 border-bottom text-body-secondary"
+        <div class="cs-tree-folder d-flex align-items-center gap-1 py-1 border-bottom text-body-secondary"
              onclick="toggleTreeFolder(this)"
-             style="padding-left:${paddingLeft}px; font-size:0.8rem;">
+             style="padding-left:${paddingLeft}px; padding-right:8px; font-size:0.8rem;">
           <span class="cs-tree-arrow text-muted" style="font-size:0.6rem">▶</span>
           <i class="ti ti-folder" style="font-size:0.85rem"></i>
           <span>${node.label}</span>
@@ -32,8 +32,8 @@ function buildTreeNode(node, depth) {
 
   const hasField = !!CONDITION_FIELDS[node.id];
   return `
-    <div class="cs-tree-leaf d-flex align-items-center gap-1 px-2 py-1 border-bottom ${hasField ? '' : 'cs-tree-disabled text-muted'}"
-         style="padding-left:${paddingLeft}px; font-size:0.79rem;"
+    <div class="cs-tree-leaf d-flex align-items-center gap-1 py-1 border-bottom ${hasField ? '' : 'cs-tree-disabled text-muted'}"
+         style="padding-left:${paddingLeft}px; padding-right:8px; font-size:0.79rem;"
          onclick="${hasField ? `selectConditionItem('${node.id}', '${node.label}')` : ''}">
       <i class="ti ti-file-description" style="font-size:0.8rem"></i>
       <span>${node.label}</span>
