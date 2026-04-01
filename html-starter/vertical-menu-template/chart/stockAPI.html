@@ -665,6 +665,197 @@
                   </div>
                 </div>
                 <!-- / 동적 MA 스캐너 -->
+                <!-- 전월 거래량 최고 스캐너 -->
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionVolPrevMonth"
+                      aria-expanded="false">
+                      📊 전월 거래량 최고 스캐너
+                    </button>
+                  </h2>
+                  <div
+                    id="accordionVolPrevMonth"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionBybitScanner">
+                    <div class="accordion-body">
+                      <!-- 조회 일수 입력 -->
+                      <div class="row mb-3">
+                        <div class="col-md-3">
+                          <label class="form-label fw-semibold">조회 기간 (일)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="volPrevMonthDays"
+                            value="180"
+                            min="60"
+                            max="365" />
+                          <small class="text-muted">이번달 제외, 최근 N일 중 저번달 거래량이 최고인 종목</small>
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">KOSPI200 종목수</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="volPrevMonthKospiCount"
+                            value="200"
+                            min="0"
+                            max="200" />
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">KOSDAQ150 종목수</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="volPrevMonthKosdaqCount"
+                            value="150"
+                            min="0"
+                            max="150" />
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">COIN 종목수</label>
+                          <input type="number" class="form-control" id="volPrevMonthCoinCount" value="0" min="0" />
+                        </div>
+                      </div>
+
+                      <!-- MA 조건 옵션 -->
+                      <div class="row mb-3">
+                        <div class="col-12">
+                          <div class="form-check mb-2">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="volPrevMonthUseMA"
+                              onchange="toggleVolPrevMonthMA()" />
+                            <label class="form-check-label fw-semibold" for="volPrevMonthUseMA">
+                              월봉 MA 조건 추가
+                            </label>
+                          </div>
+                          <div id="volPrevMonthMAOptions" style="display: none">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <label class="form-label">MA 기간</label>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="volPrevMonthMAPeriod"
+                                  value="10"
+                                  min="1" />
+                                <small class="text-muted">예: 10 → 월봉 MA10</small>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-1">
+                                  <label class="form-label fw-semibold mb-0 me-2">괴리율 최솟값 (%)</label>
+                                  <div class="form-check form-switch mb-0">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="volPrevMonthMinGapToggle"
+                                      onchange="toggleVolPrevMonthGap('min')" />
+                                    <label class="form-check-label small" for="volPrevMonthMinGapToggle"
+                                      >직접 설정</label
+                                    >
+                                  </div>
+                                </div>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="volPrevMonthMinGap"
+                                  value="-3"
+                                  step="0.1"
+                                  disabled />
+                                <small class="text-muted">기본값 -3% / 직접 설정 시 토글 ON</small>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-1">
+                                  <label class="form-label fw-semibold mb-0 me-2">괴리율 최댓값 (%)</label>
+                                  <div class="form-check form-switch mb-0">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="volPrevMonthMaxGapToggle"
+                                      onchange="toggleVolPrevMonthGap('max')" />
+                                    <label class="form-check-label small" for="volPrevMonthMaxGapToggle"
+                                      >직접 설정</label
+                                    >
+                                  </div>
+                                </div>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="volPrevMonthMaxGap"
+                                  value="3"
+                                  step="0.1"
+                                  disabled />
+                                <small class="text-muted">기본값 +3% / 직접 설정 시 토글 ON</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 저번달 양봉 조건 -->
+                        <div class="form-check mt-2">
+                          <input class="form-check-input" type="checkbox" id="volPrevMonthBullish" />
+                          <label class="form-check-label fw-semibold" for="volPrevMonthBullish">
+                            저번달 양봉 조건 (저번달 시가 &lt; 종가)
+                          </label>
+                        </div>
+                        <!-- / 저번달 양봉 조건 -->
+                      </div>
+                      <!-- / MA 조건 옵션 -->
+
+                      <!-- 버튼 -->
+                      <div class="row mb-4">
+                        <div class="col-md-3">
+                          <button class="btn btn-primary w-100" onclick="startVolPrevMonthScan()">🔍 스캔 시작</button>
+                        </div>
+                        <div class="col-md-3">
+                          <button class="btn btn-secondary w-100" onclick="clearVolPrevMonthResults()">
+                            🗑️ 결과 지우기
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- 진행바 -->
+                      <div id="volPrevMonthProgress" style="display: none" class="mb-3">
+                        <div class="progress mb-1" style="height: 20px">
+                          <div
+                            id="volPrevMonthProgressBar"
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            style="width: 0%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted">
+                          <span id="volPrevMonthProgressText">분석 중...</span>
+                          <span id="volPrevMonthProgressCount"></span>
+                        </div>
+                      </div>
+
+                      <!-- 요약 -->
+                      <div id="volPrevMonthResultSummary" class="text-muted small mb-2"></div>
+
+                      <!-- 결과 -->
+                      <div id="volPrevMonthResults">
+                        <div class="text-center text-muted" style="padding: 40px">
+                          <h5>검색 결과가 여기에 표시됩니다</h5>
+                          <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+                        </div>
+                      </div>
+
+                      <!-- 안내 -->
+                      <div class="alert alert-info mt-3">
+                        <h6><i class="ti ti-info-circle me-2"></i>분석 기준</h6>
+                        <ul class="mb-0">
+                          <li><strong>데이터:</strong> Yahoo Finance 일봉 기준 월별 거래량 합산</li>
+                          <li><strong>조건:</strong> 최근 N일 중, 이번달 제외 → 저번달 거래량 합계가 가장 높은 종목</li>
+                          <li><strong>기본값:</strong> 180일 (약 6개월)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / 전월 거래량 최고 스캐너 -->
                 <!-- 조건검색기 -->
                 <div class="accordion-item card">
                   <h2 class="accordion-header">
@@ -692,68 +883,53 @@
 
                         <!-- 오른쪽: 메인 패널 -->
                         <div class="d-flex flex-column flex-grow-1 overflow-hidden">
-                          <!-- 봉 설정 바 -->
+                          <!-- 상단 대상 설정 바 -->
                           <div class="d-flex align-items-center flex-wrap gap-2 px-3 py-2 bg-light border-bottom">
-                            <label class="mb-0 small">주기</label>
-                            <select class="form-select form-select-sm" id="cs-period-type" style="width: 65px">
-                              <option>일</option>
-                              <option>주</option>
-                              <option>월</option>
-                              <option>분</option>
-                            </select>
-                            <label class="mb-0 small ms-1">봉전기준</label>
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              id="cs-prev-candle"
-                              value="0"
-                              min="0"
-                              style="width: 55px" />
-                            <label class="mb-0 small ms-1">이평1</label>
-                            <select class="form-select form-select-sm" id="cs-ma-type1" style="width: 65px">
-                              <option>종가</option>
-                              <option>시가</option>
-                              <option>고가</option>
-                              <option>저가</option>
-                            </select>
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              id="cs-ma-period1"
-                              value="1"
-                              min="1"
-                              style="width: 50px" />
-                            <select class="form-select form-select-sm" id="cs-ma-avg1" style="width: 80px">
-                              <option>이평</option>
-                              <option>지수이평</option>
-                              <option>가중이평</option>
-                            </select>
-                            <label class="mb-0 small ms-1">이평2</label>
-                            <select class="form-select form-select-sm" id="cs-ma-type2" style="width: 65px">
-                              <option>종가</option>
-                              <option>시가</option>
-                              <option>고가</option>
-                              <option>저가</option>
-                            </select>
-                            <input
-                              type="number"
-                              class="form-control form-control-sm"
-                              id="cs-ma-period2"
-                              value="20"
-                              min="1"
-                              style="width: 50px" />
-                            <select class="form-select form-select-sm" id="cs-ma-avg2" style="width: 80px">
-                              <option>이평</option>
-                              <option>지수이평</option>
-                              <option>가중이평</option>
-                            </select>
-                            <select class="form-select form-select-sm ms-1" id="cs-cross-type" style="width: 75px">
-                              <option>골든</option>
-                              <option>데드</option>
-                              <option>위</option>
-                              <option>아래</option>
-                            </select>
-                            <span class="small text-muted">크로스</span>
+                            <button class="btn btn-sm btn-outline-secondary" id="cs-target-btn">대상변경</button>
+                            <span class="small text-muted ms-1" id="cs-target-label"
+                              >&lt;업종대상(전체)&gt;&lt;재외없음&gt;&lt;전체월결산&gt;</span
+                            >
+                            <div class="d-flex align-items-center gap-1 ms-auto">
+                              <input
+                                type="number"
+                                class="form-control form-control-sm text-center"
+                                id="cs-prev-candle"
+                                value="0"
+                                min="0"
+                                style="width: 55px" />
+                              <label class="mb-0 small">봉전기준</label>
+                              <button
+                                class="btn btn-sm btn-outline-secondary py-0 px-2"
+                                onclick="document.getElementById('cs-prev-candle').stepUp()">
+                                +
+                              </button>
+                              <button
+                                class="btn btn-sm btn-outline-secondary py-0 px-2"
+                                onclick="document.getElementById('cs-prev-candle').stepDown()">
+                                -
+                              </button>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 ms-2">
+                              <div class="form-check form-check-inline mb-0">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="cs-trade-dir"
+                                  id="cs-buy"
+                                  value="매수"
+                                  checked />
+                                <label class="form-check-label small" for="cs-buy">매수</label>
+                              </div>
+                              <div class="form-check form-check-inline mb-0">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="cs-trade-dir"
+                                  id="cs-sell"
+                                  value="매도" />
+                                <label class="form-check-label small" for="cs-sell">매도</label>
+                              </div>
+                            </div>
                           </div>
 
                           <!-- 파라미터 입력 패널 -->

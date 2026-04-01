@@ -879,10 +879,715 @@ async function fetchAndCheckDynamic(stock, config) {
   };
 }
 
+// 전월 거래량 최고 스캐너 - MA 옵션 토글
+function toggleVolPrevMonthMA() {
+  const checked = document.getElementById('volPrevMonthUseMA').checked;
+  document.getElementById('volPrevMonthMAOptions').style.display = checked ? 'block' : 'none';
+}
+
+function toggleVolPrevMonthGap(type) {
+  if (type === 'min') {
+    const toggle = document.getElementById('volPrevMonthMinGapToggle');
+    const input = document.getElementById('volPrevMonthMinGap');
+    input.disabled = !toggle.checked;
+    if (!toggle.checked) input.value = '-3';
+  } else {
+    const toggle = document.getElementById('volPrevMonthMaxGapToggle');
+    const input = document.getElementById('volPrevMonthMaxGap');
+    input.disabled = !toggle.checked;
+    if (!toggle.checked) input.value = '3';
+  }
+}
+
+function startVolPrevMonthScan() {
+  const days = parseInt(document.getElementById('volPrevMonthDays').value) || 180;
+  let kospiCount = parseInt(document.getElementById('volPrevMonthKospiCount').value) || 0;
+  let kosdaqCount = parseInt(document.getElementById('volPrevMonthKosdaqCount').value) || 0;
+  let coinCount = parseInt(document.getElementById('volPrevMonthCoinCount').value) || 0;
+
+  if (kospiCount === 0 && kosdaqCount === 0 && coinCount === 0) {
+    alert('스캔 수량을 하나 이상 입력해주세요.');
+    return;
+  }
+
+  const useMA = document.getElementById('volPrevMonthUseMA').checked;
+  let maConfig = null;
+
+  if (useMA) {
+    const maPeriod = parseInt(document.getElementById('volPrevMonthMAPeriod').value);
+    const minGap = parseFloat(document.getElementById('volPrevMonthMinGap').value);
+    const maxGap = parseFloat(document.getElementById('volPrevMonthMaxGap').value);
+
+    if (!maPeriod || maPeriod < 1) {
+      alert('MA 기간을 입력해주세요.');
+      return;
+    }
+    if (isNaN(minGap) || isNaN(maxGap)) {
+      alert('괴리율 범위를 입력해주세요.');
+      return;
+    }
+    if (minGap >= maxGap) {
+      alert('괴리율 최솟값은 최댓값보다 작아야 합니다.');
+      return;
+    }
+    maConfig = { maPeriod, minGap, maxGap };
+  }
+
+  kospiCount = Math.min(kospiCount, KOSPI200_LIST.length);
+  kosdaqCount = Math.min(kosdaqCount, KOSDAQ150_LIST.length);
+  coinCount = Math.min(coinCount, COIN_LIST.length);
+
+  const stockList = [
+    ...KOSPI200_LIST.slice(0, kospiCount),
+    ...KOSDAQ150_LIST.slice(0, kosdaqCount),
+    ...COIN_LIST.slice(0, coinCount)
+  ];
+
+  const useBullish = document.getElementById('volPrevMonthBullish').checked;
+  runVolPrevMonthScan(stockList, days, maConfig, useBullish);
+}
+
+// 전월 거래량 최고 스캐너 - 결과 지우기
+function clearVolPrevMonthResults() {
+  document.getElementById('volPrevMonthResults').innerHTML = `
+    <div class="text-center text-muted" style="padding: 40px;">
+      <h5>검색 결과가 여기에 표시됩니다</h5>
+      <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+    </div>`;
+  document.getElementById('volPrevMonthResultSummary').textContent = '';
+  document.getElementById('volPrevMonthProgress').style.display = 'none';
+}
+
+// 전월 거래량 최고 스캐너 - 메인 스캔
+async function runVolPrevMonthScan(stockList, days, maConfig, useBullish) {
+  const progressEl = document.getElementById('volPrevMonthProgress');
+  const progressBar = document.getElementById('volPrevMonthProgressBar');
+  const progressText = document.getElementById('volPrevMonthProgressText');
+  const progressCount = document.getElementById('volPrevMonthProgressCount');
+  const resultsEl = document.getElementById('volPrevMonthResults');
+  const summaryEl = document.getElementById('volPrevMonthResultSummary');
+
+  progressEl.style.display = 'block';
+
+  resultsEl.innerHTML = `
+    <div class="mb-4">
+      <h6 class="px-3 pt-3"><span class="badge bg-success me-2">KOSPI200</span><span id="volPrevMonthKospiMatchCount">0</span>개 종목</h6>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr><th>#</th><th>종목코드</th><th>종목명</th><th>현재가</th><th>전월 거래량</th><th>조회기간 최고월</th><th>월봉 MA</th><th>괴리율</th></tr>
+          </thead>
+          <tbody id="volPrevMonthKospiBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <hr>
+    <div class="mb-4">
+      <h6 class="px-3"><span class="badge bg-warning me-2">KOSDAQ150</span><span id="volPrevMonthKosdaqMatchCount">0</span>개 종목</h6>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr><th>#</th><th>종목코드</th><th>종목명</th><th>현재가</th><th>전월 거래량</th><th>조회기간 최고월</th><th>월봉 MA</th><th>괴리율</th></tr>
+          </thead>
+          <tbody id="volPrevMonthKosdaqBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <hr>
+    <div class="mb-2">
+      <h6 class="px-3"><span class="badge bg-info me-2">COIN</span><span id="volPrevMonthCoinMatchCount">0</span>개 종목</h6>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr><th>#</th><th>종목코드</th><th>종목명</th><th>현재가</th><th>전월 거래량</th><th>조회기간 최고월</th><th>월봉 MA</th><th>괴리율</th></tr>
+          </thead>
+          <tbody id="volPrevMonthCoinBody"></tbody>
+        </table>
+      </div>
+    </div>`;
+
+  let totalMatched = 0;
+  let kospiCount = 0;
+  let kosdaqCount = 0;
+  let coinCount = 0;
+  const total = stockList.length;
+
+  for (let i = 0; i < total; i++) {
+    const stock = stockList[i];
+    progressText.textContent = `분석 중: ${stock.name}`;
+    progressCount.textContent = `${i + 1} / ${total}`;
+    progressBar.style.width = `${Math.round(((i + 1) / total) * 100)}%`;
+
+    try {
+      const result = await fetchAndCheckVolPrevMonth(stock, days, maConfig, useBullish);
+      if (result) {
+        totalMatched++;
+        // 기존 row 코드 전체를 아래로 교체
+        const unit = result.isCoin ? '$' : '원';
+        const maCell =
+          result.maGap !== null
+            ? `<span class="badge bg-label-secondary me-1">MA${maConfig?.maPeriod}: ${result.maValue}${unit}</span>
+     <span class="badge ${parseFloat(result.maGap) >= 0 ? 'bg-label-danger' : 'bg-label-primary'}">${parseFloat(result.maGap) >= 0 ? '+' : ''}${result.maGap}%</span>`
+            : `<span class="text-muted small">-</span>`;
+
+        const row = `
+  <tr>
+    <td>-</td>
+    <td><a href="${buildTradingViewUrl(result.code, result.market)}" target="_blank"><code>${result.code}</code></a></td>
+    <td><strong>${result.name}</strong></td>
+    <td>${result.price}${unit}</td>
+    <td><span class="badge bg-label-danger">${result.prevMonthVol}</span></td>
+    <td><span class="badge bg-label-secondary">${result.topMonthLabel}</span></td>
+    <td colspan="2">${maCell}</td>
+  </tr>`;
+
+        if (result.market === 'KOSPI') {
+          kospiCount++;
+          document.getElementById('volPrevMonthKospiBody').insertAdjacentHTML('beforeend', row);
+          document.getElementById('volPrevMonthKospiMatchCount').textContent = kospiCount;
+        } else if (result.market === 'KOSDAQ') {
+          kosdaqCount++;
+          document.getElementById('volPrevMonthKosdaqBody').insertAdjacentHTML('beforeend', row);
+          document.getElementById('volPrevMonthKosdaqMatchCount').textContent = kosdaqCount;
+        } else {
+          coinCount++;
+          document.getElementById('volPrevMonthCoinBody').insertAdjacentHTML('beforeend', row);
+          document.getElementById('volPrevMonthCoinMatchCount').textContent = coinCount;
+        }
+
+        summaryEl.textContent = `현재까지 ${totalMatched}개 종목 발견`;
+      }
+    } catch (e) {
+      console.warn(`${stock.name} 실패:`, e);
+    }
+
+    await stockSleep(STOCK_CONFIG.REQUEST_DELAY);
+  }
+
+  progressEl.style.display = 'none';
+  summaryEl.textContent = `총 ${totalMatched}개 종목 발견`;
+}
+
+// 전월 거래량 최고 스캐너 - Yahoo Finance 데이터 체크
+async function fetchAndCheckVolPrevMonth(stock, days, maConfig, useBullish) {
+  const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${stock.code}?interval=1d&range=1y`;
+
+  const proxies = [
+    `http://moda.dothome.co.kr/proxy.php?url=${encodeURIComponent(yahooUrl)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(yahooUrl)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${yahooUrl}`,
+    `https://corsproxy.io/?${yahooUrl}`
+  ];
+
+  let data = null;
+  for (const url of proxies) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      data = await res.json();
+      if (data?.chart?.result?.[0]) break;
+    } catch (e) {
+      continue;
+    }
+  }
+
+  if (!data?.chart?.result?.[0]) return null;
+
+  const chart = data.chart.result[0];
+  const timestamps = chart.timestamp || [];
+  const quotes = chart.indicators.quote[0];
+  if (!quotes || !quotes.volume || !quotes.close) return null;
+
+  const isCoin = stock.code.includes('-USD');
+  const now = new Date();
+  const cutoffTs = now.getTime() / 1000 - days * 86400;
+  const thisYear = now.getFullYear();
+  const thisMonth = now.getMonth();
+  const prevMonth = thisMonth === 0 ? 11 : thisMonth - 1;
+  const prevYear = thisMonth === 0 ? thisYear - 1 : thisYear;
+  const prevKey = `${prevYear}-${prevMonth}`;
+
+  // 월별 거래량 합산 (이번 달 제외, cutoff 이후만)
+  const monthlyVol = {};
+  for (let i = 0; i < timestamps.length; i++) {
+    if (timestamps[i] < cutoffTs) continue;
+    const d = new Date(timestamps[i] * 1000);
+    const yr = d.getFullYear();
+    const mo = d.getMonth();
+    if (yr === thisYear && mo === thisMonth) continue;
+    const key = `${yr}-${mo}`;
+    monthlyVol[key] = (monthlyVol[key] || 0) + (quotes.volume[i] || 0);
+  }
+
+  const keys = Object.keys(monthlyVol);
+  if (keys.length < 2 || !monthlyVol[prevKey]) return null;
+
+  const maxVol = Math.max(...Object.values(monthlyVol));
+  if (monthlyVol[prevKey] < maxVol) return null;
+
+  // 저번달 양봉 조건 체크 (코인 제외)
+  if (useBullish && !isCoin) {
+    const opens = quotes.open || [];
+    const prevMonthOpens = [];
+    const prevMonthCloses = [];
+
+    for (let i = 0; i < timestamps.length; i++) {
+      const d = new Date(timestamps[i] * 1000);
+      const yr = d.getFullYear();
+      const mo = d.getMonth();
+      if (yr === prevYear && mo === prevMonth) {
+        if (opens[i] !== null && opens[i] !== undefined) prevMonthOpens.push(opens[i]);
+        if (quotes.close[i] !== null && quotes.close[i] !== undefined) prevMonthCloses.push(quotes.close[i]);
+      }
+    }
+
+    if (prevMonthOpens.length === 0 || prevMonthCloses.length === 0) return null;
+
+    const prevMonthFirstOpen = prevMonthOpens[0];
+    const prevMonthLastClose = prevMonthCloses[prevMonthCloses.length - 1];
+
+    if (prevMonthLastClose <= prevMonthFirstOpen) return null;
+  }
+
+  // MA 조건 체크 (선택 시)
+  let maGap = null;
+  let maValue = null;
+
+  if (maConfig) {
+    const monthlyLastClose = {};
+    for (let i = 0; i < timestamps.length; i++) {
+      if (!quotes.close[i]) continue;
+      const d = new Date(timestamps[i] * 1000);
+      const key = `${d.getFullYear()}-${d.getMonth()}`;
+      monthlyLastClose[key] = quotes.close[i];
+    }
+
+    const monthCloses = Object.values(monthlyLastClose);
+    if (monthCloses.length < maConfig.maPeriod) return null;
+
+    const slice = monthCloses.slice(-maConfig.maPeriod);
+    const ma = slice.reduce((a, b) => a + b, 0) / maConfig.maPeriod;
+    const current = monthCloses[monthCloses.length - 1];
+    const gap = ((current - ma) / ma) * 100;
+
+    if (gap < maConfig.minGap || gap > maConfig.maxGap) return null;
+
+    maGap = gap.toFixed(2);
+    maValue = isCoin ? ma.toFixed(4) : Math.round(ma).toLocaleString();
+  }
+
+  const closes = quotes.close.filter(v => v !== null);
+  const current = closes[closes.length - 1];
+  const market = stock.code.endsWith('.KS') ? 'KOSPI' : stock.code.endsWith('.KQ') ? 'KOSDAQ' : 'COIN';
+  const cleanCode = stock.code.replace('.KS', '').replace('.KQ', '').replace('-USD', '');
+
+  const topKey = keys.find(k => monthlyVol[k] === maxVol);
+  const [topYr, topMo] = topKey.split('-');
+
+  return {
+    market,
+    code: cleanCode,
+    name: stock.name,
+    isCoin,
+    price: isCoin ? current.toFixed(4) : Math.round(current).toLocaleString(),
+    prevMonthVol: Math.round(monthlyVol[prevKey]).toLocaleString(),
+    topMonthLabel: `${topYr}년 ${parseInt(topMo) + 1}월`,
+    maGap,
+    maValue
+  };
+}
+
 // 트레이딩뷰 URL 생성
 function buildTradingViewUrl(code, market) {
   if (market === 'COIN') {
     return `https://kr.tradingview.com/chart/?symbol=BINANCE%3A${code}USDT`;
   }
   return `https://kr.tradingview.com/chart/?symbol=KRX%3A${code}`;
+}
+
+// =============================================
+// 전월 거래량 최고 스캐너 v2
+// =============================================
+
+function toggleV2MA() {
+  const checked = document.getElementById('v2UseMA').checked;
+  document.getElementById('v2MAOptions').style.display = checked ? 'block' : 'none';
+}
+
+function toggleV2Gap(type) {
+  if (type === 'min') {
+    const toggle = document.getElementById('v2MinGapToggle');
+    const input = document.getElementById('v2MinGap');
+    input.disabled = !toggle.checked;
+    if (!toggle.checked) input.value = '-3';
+  } else {
+    const toggle = document.getElementById('v2MaxGapToggle');
+    const input = document.getElementById('v2MaxGap');
+    input.disabled = !toggle.checked;
+    if (!toggle.checked) input.value = '3';
+  }
+}
+
+function toggleV2MA120() {
+  const checked = document.getElementById('v2UseMA120').checked;
+  document.getElementById('v2MA120Options').style.display = checked ? 'block' : 'none';
+}
+
+function toggleV2MA120Gap(type) {
+  if (type === 'min') {
+    const toggle = document.getElementById('v2MA120MinToggle');
+    const input = document.getElementById('v2MA120MinGap');
+    input.disabled = !toggle.checked;
+    if (!toggle.checked) input.value = '-5';
+  } else {
+    const toggle = document.getElementById('v2MA120MaxToggle');
+    const input = document.getElementById('v2MA120MaxGap');
+    input.disabled = !toggle.checked;
+    if (!toggle.checked) input.value = '5';
+  }
+}
+
+function startV2Scan() {
+  const months = parseInt(document.getElementById('v2Months').value) || 6;
+  const minAgo = parseInt(document.getElementById('v2MinAgo').value) || 1;
+  const maxAgo = parseInt(document.getElementById('v2MaxAgo').value) || 3;
+
+  if (minAgo > maxAgo) {
+    alert('거래량 최고 달 범위: 최솟값이 최댓값보다 클 수 없습니다.');
+    return;
+  }
+
+  let kospiCount = parseInt(document.getElementById('v2KospiCount').value) || 0;
+  let kosdaqCount = parseInt(document.getElementById('v2KosdaqCount').value) || 0;
+  let coinCount = parseInt(document.getElementById('v2CoinCount').value) || 0;
+
+  if (kospiCount === 0 && kosdaqCount === 0 && coinCount === 0) {
+    alert('스캔 수량을 하나 이상 입력해주세요.');
+    return;
+  }
+
+  const useMA = document.getElementById('v2UseMA').checked;
+  let maConfig = null;
+  if (useMA) {
+    const maPeriod = parseInt(document.getElementById('v2MAPeriod').value);
+    const minGap = parseFloat(document.getElementById('v2MinGap').value);
+    const maxGap = parseFloat(document.getElementById('v2MaxGap').value);
+    if (!maPeriod || maPeriod < 1) {
+      alert('MA 기간을 입력해주세요.');
+      return;
+    }
+    if (isNaN(minGap) || isNaN(maxGap)) {
+      alert('괴리율 범위를 입력해주세요.');
+      return;
+    }
+    if (minGap >= maxGap) {
+      alert('괴리율 최솟값은 최댓값보다 작아야 합니다.');
+      return;
+    }
+    maConfig = { maPeriod, minGap, maxGap };
+  }
+
+  const useBullish = document.getElementById('v2Bullish').checked;
+
+  const useMA120 = document.getElementById('v2UseMA120').checked;
+  let ma120Config = null;
+  if (useMA120) {
+    const direction = document.getElementById('v2MA120Direction').value;
+    const minGap = parseFloat(document.getElementById('v2MA120MinGap').value);
+    const maxGap = parseFloat(document.getElementById('v2MA120MaxGap').value);
+    if (isNaN(minGap) || isNaN(maxGap)) {
+      alert('MA120 괴리율 범위를 입력해주세요.');
+      return;
+    }
+    if (minGap >= maxGap) {
+      alert('MA120 괴리율 최솟값은 최댓값보다 작아야 합니다.');
+      return;
+    }
+    ma120Config = { direction, minGap, maxGap };
+  }
+
+  const useMA60 = document.getElementById('v2UseMA60').checked;
+
+  kospiCount = Math.min(kospiCount, KOSPI200_LIST.length);
+  kosdaqCount = Math.min(kosdaqCount, KOSDAQ150_LIST.length);
+  coinCount = Math.min(coinCount, COIN_LIST.length);
+
+  const stockList = [
+    ...KOSPI200_LIST.slice(0, kospiCount),
+    ...KOSDAQ150_LIST.slice(0, kosdaqCount),
+    ...COIN_LIST.slice(0, coinCount)
+  ];
+
+  runV2Scan(stockList, months, minAgo, maxAgo, maConfig, useBullish, ma120Config, useMA60);
+}
+
+function clearV2Results() {
+  document.getElementById('v2Results').innerHTML = `
+    <div class="text-center text-muted" style="padding: 40px;">
+      <h5>검색 결과가 여기에 표시됩니다</h5>
+      <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+    </div>`;
+  document.getElementById('v2ResultSummary').textContent = '';
+  document.getElementById('v2Progress').style.display = 'none';
+}
+
+async function runV2Scan(stockList, months, minAgo, maxAgo, maConfig, useBullish, ma120Config, useMA60) {
+  const progressEl = document.getElementById('v2Progress');
+  const progressBar = document.getElementById('v2ProgressBar');
+  const progressText = document.getElementById('v2ProgressText');
+  const progressCount = document.getElementById('v2ProgressCount');
+  const resultsEl = document.getElementById('v2Results');
+  const summaryEl = document.getElementById('v2ResultSummary');
+
+  progressEl.style.display = 'block';
+  resultsEl.innerHTML = `
+    <div class="mb-4">
+      <h6 class="px-3 pt-3"><span class="badge bg-success me-2">KOSPI200</span><span id="v2KospiMatchCount">0</span>개 종목</h6>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr><th>#</th><th>종목코드</th><th>종목명</th><th>현재가</th><th>최고 거래량 달</th><th>거래량</th><th>월봉 MA</th><th>괴리율</th></tr>
+          </thead>
+          <tbody id="v2KospiBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <hr>
+    <div class="mb-4">
+      <h6 class="px-3"><span class="badge bg-warning me-2">KOSDAQ150</span><span id="v2KosdaqMatchCount">0</span>개 종목</h6>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr><th>#</th><th>종목코드</th><th>종목명</th><th>현재가</th><th>최고 거래량 달</th><th>거래량</th><th>월봉 MA</th><th>괴리율</th></tr>
+          </thead>
+          <tbody id="v2KosdaqBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <hr>
+    <div class="mb-2">
+      <h6 class="px-3"><span class="badge bg-info me-2">COIN</span><span id="v2CoinMatchCount">0</span>개 종목</h6>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr><th>#</th><th>종목코드</th><th>종목명</th><th>현재가</th><th>최고 거래량 달</th><th>거래량</th><th>월봉 MA</th><th>괴리율</th></tr>
+          </thead>
+          <tbody id="v2CoinBody"></tbody>
+        </table>
+      </div>
+    </div>`;
+
+  let totalMatched = 0,
+    kospiCount = 0,
+    kosdaqCount = 0,
+    coinCount = 0;
+  const total = stockList.length;
+
+  for (let i = 0; i < total; i++) {
+    const stock = stockList[i];
+    progressText.textContent = `분석 중: ${stock.name}`;
+    progressCount.textContent = `${i + 1} / ${total}`;
+    progressBar.style.width = `${Math.round(((i + 1) / total) * 100)}%`;
+
+    try {
+      const result = await fetchAndCheckV2(stock, months, minAgo, maxAgo, maConfig, useBullish, ma120Config, useMA60);
+      if (result) {
+        totalMatched++;
+        const unit = result.isCoin ? '$' : '원';
+        const maCell =
+          result.maGap !== null
+            ? `<span class="badge bg-label-secondary me-1">MA${maConfig?.maPeriod}: ${result.maValue}${unit}</span>
+             <span class="badge ${parseFloat(result.maGap) >= 0 ? 'bg-label-danger' : 'bg-label-primary'}">${parseFloat(result.maGap) >= 0 ? '+' : ''}${result.maGap}%</span>`
+            : `<span class="text-muted small">-</span>`;
+
+        const row = `
+          <tr>
+            <td>-</td>
+            <td><a href="${buildTradingViewUrl(result.code, result.market)}" target="_blank"><code>${result.code}</code></a></td>
+            <td><strong>${result.name}</strong></td>
+            <td>${result.price}${unit}</td>
+            <td><span class="badge bg-label-danger">${result.topMonthLabel}</span></td>
+            <td>${result.topMonthVol}</td>
+            <td colspan="2">${maCell}</td>
+          </tr>`;
+
+        if (result.market === 'KOSPI') {
+          kospiCount++;
+          document.getElementById('v2KospiBody').insertAdjacentHTML('beforeend', row);
+          document.getElementById('v2KospiMatchCount').textContent = kospiCount;
+        } else if (result.market === 'KOSDAQ') {
+          kosdaqCount++;
+          document.getElementById('v2KosdaqBody').insertAdjacentHTML('beforeend', row);
+          document.getElementById('v2KosdaqMatchCount').textContent = kosdaqCount;
+        } else {
+          coinCount++;
+          document.getElementById('v2CoinBody').insertAdjacentHTML('beforeend', row);
+          document.getElementById('v2CoinMatchCount').textContent = coinCount;
+        }
+        summaryEl.textContent = `현재까지 ${totalMatched}개 종목 발견`;
+      }
+    } catch (e) {
+      console.warn(`${stock.name} 실패:`, e);
+    }
+    await stockSleep(STOCK_CONFIG.REQUEST_DELAY);
+  }
+
+  progressEl.style.display = 'none';
+  summaryEl.textContent = `총 ${totalMatched}개 종목 발견`;
+}
+
+async function fetchAndCheckV2(stock, months, minAgo, maxAgo, maConfig, useBullish, ma120Config, useMA60) {
+  const dailyUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${stock.code}?interval=1d&range=2y`;
+  const makeProxies = url => [
+    `http://moda.dothome.co.kr/proxy.php?url=${encodeURIComponent(url)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${url}`,
+    `https://corsproxy.io/?${url}`
+  ];
+
+  let data = null;
+  for (const url of makeProxies(dailyUrl)) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      data = await res.json();
+      if (data?.chart?.result?.[0]) break;
+    } catch (e) {
+      continue;
+    }
+  }
+  if (!data?.chart?.result?.[0]) return null;
+
+  // MA 조건이 있으면 월봉 15년치 별도 요청
+  let monthData = null;
+  if (maConfig || ma120Config || useMA60) {
+    const monthUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${stock.code}?interval=1mo&range=15y`;
+    for (const url of makeProxies(monthUrl)) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) continue;
+        monthData = await res.json();
+        if (monthData?.chart?.result?.[0]) break;
+      } catch (e) {
+        continue;
+      }
+    }
+  }
+
+  const chart = data.chart.result[0];
+  const timestamps = chart.timestamp || [];
+  const quotes = chart.indicators.quote[0];
+  if (!quotes || !quotes.volume || !quotes.close) return null;
+
+  const isCoin = stock.code.includes('-USD');
+  const now = new Date();
+  const thisYear = now.getFullYear();
+  const thisMonth = now.getMonth();
+
+  // 조회 범위 cutoff
+  const cutoffDate = new Date(thisYear, thisMonth - months, 1);
+  const cutoffTs = cutoffDate.getTime() / 1000;
+
+  // 거래량 최고 달 범위 (월 단위)
+  const validKeys = new Set();
+  for (let ago = minAgo; ago <= maxAgo; ago++) {
+    const d = new Date(thisYear, thisMonth - ago, 1);
+    validKeys.add(`${d.getFullYear()}-${d.getMonth()}`);
+  }
+
+  // 월별 거래량 합산
+  const monthlyVol = {};
+  for (let i = 0; i < timestamps.length; i++) {
+    if (timestamps[i] < cutoffTs) continue;
+    const d = new Date(timestamps[i] * 1000);
+    const yr = d.getFullYear();
+    const mo = d.getMonth();
+    if (yr === thisYear && mo === thisMonth) continue;
+    const key = `${yr}-${mo}`;
+    monthlyVol[key] = (monthlyVol[key] || 0) + (quotes.volume[i] || 0);
+  }
+
+  const keys = Object.keys(monthlyVol);
+  if (keys.length < 2) return null;
+
+  const maxVol = Math.max(...Object.values(monthlyVol));
+  const topKey = keys.find(k => monthlyVol[k] === maxVol);
+  if (!validKeys.has(topKey)) return null;
+
+  // 거래량 최고 달 양봉 조건
+  if (useBullish && !isCoin) {
+    const [topYrStr, topMoStr] = topKey.split('-');
+    const topYr = parseInt(topYrStr),
+      topMo = parseInt(topMoStr);
+    const opens = quotes.open || [];
+    const topOpens = [],
+      topCloses = [];
+    for (let i = 0; i < timestamps.length; i++) {
+      const d = new Date(timestamps[i] * 1000);
+      if (d.getFullYear() === topYr && d.getMonth() === topMo) {
+        if (opens[i] != null) topOpens.push(opens[i]);
+        if (quotes.close[i] != null) topCloses.push(quotes.close[i]);
+      }
+    }
+    if (topOpens.length === 0 || topCloses.length === 0) return null;
+    if (topCloses[topCloses.length - 1] <= topOpens[0]) return null;
+  }
+
+  // 월봉 종가 배열 (MA 계산용)
+  let monthClosesCommon = [];
+  if (monthData?.chart?.result?.[0]) {
+    const mQuotes = monthData.chart.result[0].indicators.quote[0];
+    if (mQuotes?.close) monthClosesCommon = mQuotes.close.filter(v => v != null);
+  }
+
+  // MA 조건 체크
+  let maGap = null,
+    maValue = null;
+  if (maConfig) {
+    if (monthClosesCommon.length < maConfig.maPeriod) return null;
+    const slice = monthClosesCommon.slice(-maConfig.maPeriod);
+    const ma = slice.reduce((a, b) => a + b, 0) / maConfig.maPeriod;
+    const current = monthClosesCommon[monthClosesCommon.length - 1];
+    const gap = ((current - ma) / ma) * 100;
+    if (gap < maConfig.minGap || gap > maConfig.maxGap) return null;
+    maGap = gap.toFixed(2);
+    maValue = isCoin ? ma.toFixed(4) : Math.round(ma).toLocaleString();
+  }
+
+  // MA120 조건 체크
+  if (ma120Config) {
+    if (monthClosesCommon.length < 120) return null;
+    const ma10val = monthClosesCommon.slice(-10).reduce((a, b) => a + b, 0) / 10;
+    const ma120val = monthClosesCommon.slice(-120).reduce((a, b) => a + b, 0) / 120;
+    const gap = ((ma120val - ma10val) / ma10val) * 100;
+    if (gap < ma120Config.minGap || gap > ma120Config.maxGap) return null;
+    if (ma120Config.direction === 'above' && ma120val <= ma10val) return null;
+    if (ma120Config.direction === 'below' && ma120val >= ma10val) return null;
+  }
+
+  // MA60 조건 체크
+  if (useMA60) {
+    if (monthClosesCommon.length < 60) return null;
+    const ma10val = monthClosesCommon.slice(-10).reduce((a, b) => a + b, 0) / 10;
+    const ma60val = monthClosesCommon.slice(-60).reduce((a, b) => a + b, 0) / 60;
+    if (ma60val <= ma10val) return null;
+  }
+
+  const closes = quotes.close.filter(v => v != null);
+  const current = closes[closes.length - 1];
+  const market = stock.code.endsWith('.KS') ? 'KOSPI' : stock.code.endsWith('.KQ') ? 'KOSDAQ' : 'COIN';
+  const cleanCode = stock.code.replace('.KS', '').replace('.KQ', '').replace('-USD', '');
+  const [topYr, topMo] = topKey.split('-');
+
+  return {
+    market,
+    code: cleanCode,
+    name: stock.name,
+    isCoin,
+    price: isCoin ? current.toFixed(4) : Math.round(current).toLocaleString(),
+    topMonthLabel: `${topYr}년 ${parseInt(topMo) + 1}월`,
+    topMonthVol: Math.round(monthlyVol[topKey]).toLocaleString(),
+    maGap,
+    maValue
+  };
 }

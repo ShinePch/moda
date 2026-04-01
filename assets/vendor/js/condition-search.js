@@ -14,6 +14,48 @@ function collectParamValues(conditionId) {
 
   const values = {};
   fieldDef.fields.forEach(f => {
+    if (f.type === 'static_label') return;
+
+    if (f.type === 'radio_grid') {
+      const checked = document.querySelector(`input[name="csp_${f.id}_radio"]:checked`);
+      if (checked) values[f.id] = checked.value;
+      return;
+    }
+
+    if (f.type === 'mode_radio_pair') {
+      const modeEl = document.querySelector(`input[name="csp_mode_${conditionId}"]:checked`);
+      values['mode'] = modeEl ? modeEl.value : '이상';
+      if (values['mode'] === '이상') {
+        const v1El = document.getElementById('csp_value1_above_' + conditionId);
+        const dirEl = document.getElementById('csp_direction_' + conditionId);
+        values['value1'] = v1El ? parseFloat(v1El.value) : 0;
+        values['direction'] = dirEl ? dirEl.value : '이상';
+      } else {
+        const v1El = document.getElementById('csp_value1_range_' + conditionId);
+        const v2El = document.getElementById('csp_value2_' + conditionId);
+        values['value1'] = v1El ? parseFloat(v1El.value) : 0;
+        values['value2'] = v2El ? parseFloat(v2El.value) : 0;
+      }
+      return;
+    }
+
+    if (f.type === 'row_group') {
+      f.items.forEach(item => {
+        if (item.type === 'label') return;
+        if (item.type === 'radio') {
+          if (values[item.field] === undefined) {
+            const checked = document.querySelector(`input[name="${item.name}"]:checked`);
+            if (checked) values[item.field] = checked.value;
+          }
+          return;
+        }
+        const el = document.getElementById('csp_' + item.id);
+        if (!el) return;
+        values[item.id] = el.type === 'number' ? parseFloat(el.value) : el.value;
+      });
+      return;
+    }
+
     const el = document.getElementById(`csp_${f.id}`);
     if (!el) return;
     values[f.id] = el.type === 'number' ? parseFloat(el.value) : el.value;
@@ -231,6 +273,7 @@ async function fetchStockDataForCondition(stock) {
 
   const chart = data.chart.result[0];
   const quotes = chart.indicators.quote[0];
+  if (!quotes || !quotes.close) return null;
   const closes = quotes.close.filter(v => v !== null);
   const volumes = quotes.volume ? quotes.volume.filter(v => v !== null) : [];
 
@@ -598,26 +641,29 @@ function evaluateSingleCondition(stockData, cond) {
       // ==================== 기술적분석 - 주가이동평균 ====================
 
       case 'ta_ma_break': {
-        const ma = calcMA(closes, params.period || 20);
-        const maPrev = calcMA(closes.slice(0, -1), params.period || 20);
-        if (ma === null || maPrev === null) return false;
-        const prevClose = closes[closes.length - 2];
-        if (params.cross_type === '골든크로스') return current > ma && prevClose <= maPrev;
-        if (params.cross_type === '데드크로스') return current < ma && prevClose >= maPrev;
-        if (params.cross_type === '위') return current > ma;
-        if (params.cross_type === '아래') return current < ma;
+        const ma1b = calcMA(closes, params.period1 || 20);
+        const ma2b = calcMA(closes, params.period2 || 20);
+        const ma1bp = calcMA(closes.slice(0, -1), params.period1 || 20);
+        const ma2bp = calcMA(closes.slice(0, -1), params.period2 || 20);
+        if (!ma1b || !ma2b) return false;
+        const op = params.cross_type || params.cross_type;
+        if (op === '골든') return ma1b > ma2b && ma1bp <= ma2bp;
+        if (op === '데드') return ma1b < ma2b && ma1bp >= ma2bp;
+        if (op === '위') return current > ma1b;
+        if (op === '아래') return current < ma1b;
         return false;
       }
 
       case 'ta_ma_array3': {
-        // 3개 이평 정배열/역배열
         const ma1 = calcMA(closes, params.period1 || 5);
         const ma2 = calcMA(closes, params.period2 || 20);
         const ma3 = calcMA(closes, params.period3 || 60);
         if (!ma1 || !ma2 || !ma3) return false;
-        if (params.array_type === '정배열') return ma1 > ma2 && ma2 > ma3;
-        if (params.array_type === '역배열') return ma1 < ma2 && ma2 < ma3;
-        return false;
+        const op1 = params.op1 || '<';
+        const op2 = params.op2 || '<';
+        const r1 = op1 === '<' ? ma1 < ma2 : ma1 > ma2;
+        const r2 = op2 === '<' ? ma2 < ma3 : ma2 > ma3;
+        return r1 && r2;
       }
 
       case 'ta_ma_array4': {
@@ -626,77 +672,100 @@ function evaluateSingleCondition(stockData, cond) {
         const ma3 = calcMA(closes, params.period3 || 60);
         const ma4 = calcMA(closes, params.period4 || 120);
         if (!ma1 || !ma2 || !ma3 || !ma4) return false;
-        if (params.array_type === '정배열') return ma1 > ma2 && ma2 > ma3 && ma3 > ma4;
-        if (params.array_type === '역배열') return ma1 < ma2 && ma2 < ma3 && ma3 < ma4;
-        return false;
+        const op1 = params.op1 || '<';
+        const op2 = params.op2 || '<';
+        const op3 = params.op3 || '<';
+        const r1 = op1 === '<' ? ma1 < ma2 : ma1 > ma2;
+        const r2 = op2 === '<' ? ma2 < ma3 : ma2 > ma3;
+        const r3 = op3 === '<' ? ma3 < ma4 : ma3 > ma4;
+        return r1 && r2 && r3;
       }
 
       case 'ta_ma_compare': {
-        const ma1 = calcMA(closes, params.period1 || 5);
-        const ma2 = calcMA(closes, params.period2 || 20);
-        if (!ma1 || !ma2) return false;
-        if (params.cross_type === '위') return ma1 > ma2;
-        if (params.cross_type === '아래') return ma1 < ma2;
-        if (params.cross_type === '골든크로스') {
-          const ma1p = calcMA(closes.slice(0, -1), params.period1 || 5);
-          const ma2p = calcMA(closes.slice(0, -1), params.period2 || 20);
-          return ma1 > ma2 && ma1p <= ma2p;
-        }
-        if (params.cross_type === '데드크로스') {
-          const ma1p = calcMA(closes.slice(0, -1), params.period1 || 5);
-          const ma2p = calcMA(closes.slice(0, -1), params.period2 || 20);
-          return ma1 < ma2 && ma1p >= ma2p;
-        }
+        const ma1c = calcMA(closes, params.period1 || 5);
+        const ma2c = calcMA(closes, params.period2 || 20);
+        if (!ma1c || !ma2c) return false;
+        const opc = params.operator || '<';
+        if (opc === '<') return ma1c < ma2c;
+        if (opc === '>') return ma1c > ma2c;
         return false;
+      }
+
+      case 'ta_ma_compare2': {
+        const ma1 = calcMA(closes, params.period1 || 5);
+        const ma2 = calcMA(closes, params.period2 || 10);
+        const ma3 = calcMA(closes, params.period3 || 5);
+        const ma4 = calcMA(closes, params.period4 || 20);
+        if (!ma1 || !ma2 || !ma3 || !ma4) return false;
+        const r1 = (params.op1 || '<') === '<' ? ma1 < ma2 : ma1 > ma2;
+        const r2 = (params.op2 || '<') === '<' ? ma3 < ma4 : ma3 > ma4;
+        return r1 && r2;
+      }
+
+      case 'ta_ma_compare3': {
+        const ma1 = calcMA(closes, params.period1 || 5);
+        const ma2 = calcMA(closes, params.period2 || 10);
+        const ma3 = calcMA(closes, params.period3 || 5);
+        const ma4 = calcMA(closes, params.period4 || 20);
+        const ma5 = calcMA(closes, params.period5 || 5);
+        const ma6 = calcMA(closes, params.period6 || 60);
+        if (!ma1 || !ma2 || !ma3 || !ma4 || !ma5 || !ma6) return false;
+        const r1 = (params.op1 || '<') === '<' ? ma1 < ma2 : ma1 > ma2;
+        const r2 = (params.op2 || '<') === '<' ? ma3 < ma4 : ma3 > ma4;
+        const r3 = (params.op3 || '<') === '<' ? ma5 < ma6 : ma5 > ma6;
+        return r1 && r2 && r3;
       }
 
       case 'ta_ma_rate': {
-        // 이동평균 등락률
-        const ma = calcMA(closes, params.period || 20);
-        const maPrev = calcMA(closes.slice(0, -1), params.period || 20);
-        if (!ma || !maPrev || maPrev === 0) return false;
-        const rate = ((ma - maPrev) / maPrev) * 100;
-        if (params.operator === '범위') return rate >= params.value1 && rate <= params.value2;
-        return compare(rate, params.operator, params.value1);
-      }
-
-      case 'ta_gap_idx': {
-        // 이격도: 현재가 / 이동평균 * 100
-        const ma = calcMA(closes, params.period || 20);
-        if (!ma || ma === 0) return false;
-        const gap = (current / ma) * 100;
-        if (params.operator === '범위') return gap >= params.value1 && gap <= params.value2;
-        return compare(gap, params.operator, params.value1);
+        const maR = calcMA(closes, params.period_ma || params.period || 20);
+        const maRp = calcMA(closes.slice(0, -1), params.period_ma || params.period || 20);
+        if (!maR || !maRp || maRp === 0) return false;
+        const rate = ((maR - maRp) / maRp) * 100;
+        if (params.value2 !== undefined) return rate >= params.value1 && rate <= params.value2;
+        return compare(rate, params.operator || '이상', params.value1);
       }
 
       case 'ta_ma_gap': {
-        // 이동평균이격도: 현재가 / 이평 * 100, 범위 처리 포함
-        const maGap = calcMA(closes, params.period || 20);
-        if (!maGap || maGap === 0) return false;
-        const gapVal = (current / maGap) * 100;
-        if (params.operator === '범위') return gapVal >= params.value1 && gapVal <= params.value2;
-        return compare(gapVal, params.operator, params.value1);
+        const shortMA = calcMA(closes, params.short_period || 5);
+        const longMA = calcMA(closes, params.long_period || 20);
+        if (!shortMA || !longMA || longMA === 0) return false;
+        const gapPct = (shortMA / longMA) * 100;
+        const mode = params.gap_mode || '근접';
+        if (mode === '근접') {
+          const nearPct = params.near_pct || 2;
+          return Math.abs(gapPct - 100) <= nearPct;
+        }
+        return gapPct >= (params.range_min || 98) && gapPct <= (params.range_max || 102);
+      }
+
+      case 'ta_ma_price_diff': {
+        const maPD = calcMA(closes, params.period1 || 20);
+        if (!maPD) return false;
+        const opp = params.operator || '<';
+        if (opp === '<') return current < maPD;
+        if (opp === '>') return current > maPD;
+        return false;
       }
 
       case 'ta_ma_trend': {
-        // 이평 추세: 최근 N봉 이평이 우상향/우하향/횡보
-        const period = params.period || 20;
-        const trendBars = params.count || 3;
-        if (closes.length < period + trendBars) return false;
+        const periodT = params.period1 || params.period2 || 5;
+        const trendBars = (params.maintain_count || params.after_count || 2) + 1;
+        if (closes.length < periodT + trendBars) return false;
         const maValues = [];
         for (let i = 0; i < trendBars; i++) {
-          maValues.push(calcMA(closes.slice(0, closes.length - i), period));
+          maValues.push(calcMA(closes.slice(0, closes.length - i), periodT));
         }
         if (maValues.some(v => v === null)) return false;
-        if (params.trend === '상승') return maValues[0] > maValues[1] && maValues[1] > maValues[2];
-        if (params.trend === '하락') return maValues[0] < maValues[1] && maValues[1] < maValues[2];
-        if (params.trend === '횡보') {
-          return (
-            !(maValues[0] > maValues[1] && maValues[1] > maValues[2]) &&
-            !(maValues[0] < maValues[1] && maValues[1] < maValues[2])
-          );
+        const mode = params.trend_mode || '추세유지';
+        if (mode === '추세유지') {
+          const t = params.trend1 || '상승';
+          if (t === '상승') return maValues[0] > maValues[1];
+          if (t === '하락') return maValues[0] < maValues[1];
+          return Math.abs(maValues[0] - maValues[1]) / maValues[1] < 0.001;
         }
-        return false;
+        const rev = params.reversal || '상승';
+        if (rev === '상승') return maValues[0] > maValues[1] && maValues[1] < maValues[2];
+        return maValues[0] < maValues[1] && maValues[1] > maValues[2];
       }
 
       // ta_ma_break_det: 상세이동평균돌파 → 골든크로스/데드크로스/위/아래 + 괴리율

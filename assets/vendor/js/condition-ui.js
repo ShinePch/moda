@@ -84,6 +84,123 @@ function renderParamPanel(conditionId, fieldDef) {
 
   const fieldsHtml = fieldDef.fields
     .map(f => {
+      if (f.type === 'static_label') {
+        return `
+        <div class="col-12 mb-1">
+          <div class="form-check form-check-inline mb-0">
+            <input class="form-check-input" type="radio" checked disabled style="pointer-events:none; opacity:1">
+            <label class="form-check-label small fw-semibold">${f.text}</label>
+          </div>
+        </div>`;
+      }
+
+      if (f.type === 'radio_grid') {
+        const cols = f.cols || 4;
+        const rows = [];
+        for (let i = 0; i < f.options.length; i += cols) {
+          rows.push(f.options.slice(i, i + cols));
+        }
+        const radioName = 'csp_' + f.id + '_radio';
+        const defaultVal = f.default || f.options[0];
+        return `
+        <div class="col-12 mb-2">
+          ${rows
+            .map(
+              row => `
+            <div class="d-flex flex-wrap gap-3 mb-1">
+              ${row
+                .map(
+                  opt => `
+                <div class="form-check form-check-inline mb-0">
+                  <input class="form-check-input cs-param-input" type="radio"
+                    name="${radioName}"
+                    id="csp_${f.id}_${opt.replace(/[\s\/()]/g, '_')}"
+                    data-field="${f.id}" value="${opt}"
+                    ${defaultVal === opt ? 'checked' : ''}>
+                  <label class="form-check-label small"
+                    for="csp_${f.id}_${opt.replace(/[\s\/()]/g, '_')}">${opt}</label>
+                </div>`
+                )
+                .join('')}
+            </div>`
+            )
+            .join('')}
+        </div>`;
+      }
+
+      if (f.type === 'row_group') {
+        const itemsHtml = f.items
+          .map(item => {
+            if (item.type === 'label') {
+              return `<span class="small text-nowrap">${item.text}</span>`;
+            }
+            if (item.type === 'select') {
+              const opts = (item.options || []).map(o => `<option value="${o}">${o}</option>`).join('');
+              return `<select class="form-select form-select-sm cs-param-input" id="csp_${item.id}" data-field="${item.id}" style="width:${item.width || '70px'}">${opts}</select>`;
+            }
+            if (item.type === 'number') {
+              return `<input type="number" class="form-control form-control-sm cs-param-input"
+              id="csp_${item.id}" data-field="${item.id}"
+              value="${item.default !== undefined ? item.default : 0}"
+              min="${item.min !== undefined ? item.min : 0}"
+              step="${item.step || 1}"
+              style="width:${item.width || '55px'}">`;
+            }
+            if (item.type === 'radio') {
+              return `<input class="form-check-input cs-param-input" type="radio"
+              name="${item.name}" id="csp_${item.id}"
+              data-field="${item.field || item.id}" value="${item.value}"
+              ${item.checked ? 'checked' : ''}>`;
+            }
+            return '';
+          })
+          .join('');
+        return `<div class="col-12 mb-2"><div class="d-flex align-items-center flex-wrap gap-2">${itemsHtml}</div></div>`;
+      }
+
+      if (f.type === 'mode_radio_pair') {
+        const radioName = 'csp_mode_' + conditionId;
+        const dirOpts = (f.directions || ['이상', '이하', '미상'])
+          .map(d => `<option value="${d}">${d}</option>`)
+          .join('');
+        const v1 = f.value1Default !== undefined ? f.value1Default : 0;
+        const v2 = f.value2Default !== undefined ? f.value2Default : 0;
+        const step = f.step !== undefined ? f.step : 1;
+        const minVal = f.min !== undefined ? f.min : 0;
+        const maxAttr = f.max !== undefined ? `max="${f.max}"` : '';
+        return `
+        <div class="col-12 mb-2">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <input class="form-check-input cs-param-input" type="radio"
+              name="${radioName}" id="csp_mode_above_${conditionId}"
+              data-field="mode" value="이상" checked
+              onchange="syncModeRadio('${conditionId}', '이상')">
+            <input type="number" class="form-control form-control-sm cs-param-input"
+              id="csp_value1_above_${conditionId}" data-field="value1"
+              value="${v1}" min="${minVal}" ${maxAttr} step="${step}" style="width:90px">
+            <span class="small">${f.unit}</span>
+            <select class="form-select form-select-sm cs-param-input"
+              id="csp_direction_${conditionId}" data-field="direction" style="width:70px">
+              ${dirOpts}
+            </select>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <input class="form-check-input cs-param-input" type="radio"
+              name="${radioName}" id="csp_mode_range_${conditionId}"
+              data-field="mode" value="범위"
+              onchange="syncModeRadio('${conditionId}', '범위')">
+            <input type="number" class="form-control form-control-sm cs-param-input"
+              id="csp_value1_range_${conditionId}" data-field="value1r"
+              value="${v1}" min="${minVal}" ${maxAttr} step="${step}" style="width:90px" disabled>
+            <span class="small">${f.unit} 이상</span>
+            <input type="number" class="form-control form-control-sm cs-param-input"
+              id="csp_value2_${conditionId}" data-field="value2"
+              value="${v2}" min="${minVal}" ${maxAttr} step="${step}" style="width:90px" disabled>
+            <span class="small">${f.unit} 이하</span>
+          </div>
+        </div>`;
+      }
+
       if (f.type === 'select') {
         const optionsHtml = f.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
         return `
@@ -94,6 +211,7 @@ function renderParamPanel(conditionId, fieldDef) {
           </select>
         </div>`;
       }
+
       if (f.type === 'number') {
         return `
         <div class="col-auto mb-2">
@@ -109,6 +227,7 @@ function renderParamPanel(conditionId, fieldDef) {
             style="width:90px" />
         </div>`;
       }
+
       return '';
     })
     .join('');
@@ -248,4 +367,43 @@ function updateConditionProgress(current, total, stockName) {
   barEl.style.width = `${pct}%`;
   textEl.textContent = `분석 중: ${stockName}`;
   countEl.textContent = `${current} / ${total}`;
+}
+
+// 이상/범위 라디오 전환 시 입력 필드 활성화/비활성화
+function syncModeRadio(conditionId, mode) {
+  const aboveInput = document.getElementById('csp_value1_above_' + conditionId);
+  const dirSelect = document.getElementById('csp_direction_' + conditionId);
+  const rangeInput1 = document.getElementById('csp_value1_range_' + conditionId);
+  const rangeInput2 = document.getElementById('csp_value2_' + conditionId);
+
+  if (mode === '이상') {
+    if (aboveInput) aboveInput.disabled = false;
+    if (dirSelect) dirSelect.disabled = false;
+    if (rangeInput1) rangeInput1.disabled = true;
+    if (rangeInput2) rangeInput2.disabled = true;
+  } else {
+    if (aboveInput) aboveInput.disabled = true;
+    if (dirSelect) dirSelect.disabled = true;
+    if (rangeInput1) rangeInput1.disabled = false;
+    if (rangeInput2) rangeInput2.disabled = false;
+  }
+}
+
+function syncModeRadio(conditionId, mode) {
+  const aboveInput = document.getElementById('csp_value1_above_' + conditionId);
+  const dirSelect = document.getElementById('csp_direction_' + conditionId);
+  const rangeInput1 = document.getElementById('csp_value1_range_' + conditionId);
+  const rangeInput2 = document.getElementById('csp_value2_' + conditionId);
+
+  if (mode === '이상') {
+    if (aboveInput) aboveInput.disabled = false;
+    if (dirSelect) dirSelect.disabled = false;
+    if (rangeInput1) rangeInput1.disabled = true;
+    if (rangeInput2) rangeInput2.disabled = true;
+  } else {
+    if (aboveInput) aboveInput.disabled = true;
+    if (dirSelect) dirSelect.disabled = true;
+    if (rangeInput1) rangeInput1.disabled = false;
+    if (rangeInput2) rangeInput2.disabled = false;
+  }
 }

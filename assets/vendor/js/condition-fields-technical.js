@@ -4,343 +4,692 @@ const CONDITION_FIELDS_TECHNICAL = {
   ta_ma_break: {
     label: '주가이동평균돌파',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'price_type', type: 'select', label: '기준가격', options: ['종가', '시가', '고가', '저가'] },
-      { id: 'period', type: 'number', label: '이평기간', default: 20, min: 1 },
-      { id: 'ma_type', type: 'select', label: '이평종류', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'cross_type', type: 'select', label: '조건', options: ['골든크로스', '데드크로스', '위', '아래'] }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'price_type1', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'price_type2', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period2', type: 'number', default: 20, min: 1, width: '50px' },
+          { type: 'label', text: '이평' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' },
+          { id: 'cross_type', type: 'select', options: ['골든', '데드', '위', '아래'], width: '62px' },
+          { type: 'label', text: '크로스' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [{ id: 'calc_type', type: 'select', options: ['단순', '지수', '가중'], width: '62px' }]
+      }
     ],
     buildLabel: function (v) {
       return (
         '주가이평돌파:[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
-        v.price_type +
+        '] ' +
+        v.price_type1 +
         ' ' +
-        v.period +
-        v.ma_type +
+        v.period1 +
+        '이평 ' +
+        v.cross_type +
+        '크로스 ' +
+        v.price_type2 +
         ' ' +
-        v.cross_type
+        v.period2 +
+        '이평'
       );
     }
   },
   ta_ma_break_det: {
     label: '상세이동평균돌파',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'price_type', type: 'select', label: '기준가격', options: ['종가', '시가', '고가', '저가'] },
-      { id: 'period', type: 'number', label: '이평기간', default: 20, min: 1 },
-      { id: 'ma_type', type: 'select', label: '이평종류', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'cross_type', type: 'select', label: '조건', options: ['골든크로스', '데드크로스', '위', '아래'] },
-      { id: 'rate', type: 'number', label: '괴리율(%)', default: 0, step: 0.1 }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'calc_type1', type: 'select', options: ['단순', '지수', '가중'], width: '62px' },
+          { id: 'price_type1', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '이평이' },
+          { id: 'calc_type2', type: 'select', options: ['단순', '지수', '가중'], width: '62px' },
+          { id: 'price_type2', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period2', type: 'number', default: 20, min: 1, width: '50px' },
+          { type: 'label', text: '이평를' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' },
+          { id: 'within_candles', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '봉 이내' },
+          { id: 'cross_type', type: 'select', options: ['골든', '데드', '위', '아래'], width: '62px' },
+          { type: 'label', text: '크로스' },
+          { id: 'min_count', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '회 이상' }
+        ]
+      }
     ],
     buildLabel: function (v) {
       return (
         '상세이평돌파:[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
-        v.price_type +
+        '] ' +
+        v.calc_type1 +
         ' ' +
-        v.period +
-        v.ma_type +
+        v.price_type1 +
         ' ' +
+        v.period1 +
+        '이평 ' +
         v.cross_type +
-        ' ' +
-        v.rate +
-        '%'
+        '크로스 ' +
+        v.within_candles +
+        '봉이내 ' +
+        v.min_count +
+        '회이상'
       );
     }
   },
   ta_ma_array3: {
     label: '주가이동평균배열(3개)',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period1', type: 'number', label: '이평①', default: 5, min: 1 },
-      { id: 'period2', type: 'number', label: '이평②', default: 20, min: 1 },
-      { id: 'period3', type: 'number', label: '이평③', default: 60, min: 1 },
-      { id: 'array_type', type: 'select', label: '배열', options: ['정배열', '역배열'] }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'period1', type: 'number', default: 5, min: 1, width: '50px' },
+          { id: 'op1', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'period2', type: 'number', default: 20, min: 1, width: '50px' },
+          { id: 'op2', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'period3', type: 'number', default: 60, min: 1, width: '50px' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [{ id: 'calc_type', type: 'select', options: ['단순', '지수', '가중'], width: '62px' }]
+      }
     ],
     buildLabel: function (v) {
       return (
         '이평배열(3개):[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
+        '] ' +
         v.period1 +
-        '/' +
-        v.period2 +
-        '/' +
-        v.period3 +
         ' ' +
-        v.array_type
+        v.op1 +
+        ' ' +
+        v.period2 +
+        ' ' +
+        v.op2 +
+        ' ' +
+        v.period3
       );
     }
   },
   ta_ma_array4: {
     label: '주가이동평균배열(4개)',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period1', type: 'number', label: '이평①', default: 5, min: 1 },
-      { id: 'period2', type: 'number', label: '이평②', default: 20, min: 1 },
-      { id: 'period3', type: 'number', label: '이평③', default: 60, min: 1 },
-      { id: 'period4', type: 'number', label: '이평④', default: 120, min: 1 },
-      { id: 'array_type', type: 'select', label: '배열', options: ['정배열', '역배열'] }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'price_type', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 5, min: 1, width: '50px' },
+          { id: 'op1', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'period2', type: 'number', default: 20, min: 1, width: '50px' },
+          { id: 'op2', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'period3', type: 'number', default: 60, min: 1, width: '50px' },
+          { id: 'op3', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'period4', type: 'number', default: 120, min: 1, width: '55px' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [{ id: 'calc_type', type: 'select', options: ['단순', '지수', '가중'], width: '62px' }]
+      }
     ],
     buildLabel: function (v) {
       return (
         '이평배열(4개):[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
-        v.period1 +
-        '/' +
-        v.period2 +
-        '/' +
-        v.period3 +
-        '/' +
-        v.period4 +
+        '] ' +
+        v.price_type +
         ' ' +
-        v.array_type
+        v.period1 +
+        v.op1 +
+        v.period2 +
+        v.op2 +
+        v.period3 +
+        v.op3 +
+        v.period4
       );
     }
   },
   ta_ma_compare: {
     label: '주가이동평균비교',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period1', type: 'number', label: '이평①', default: 5, min: 1 },
-      { id: 'ma_type1', type: 'select', label: '종류①', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'cross_type', type: 'select', label: '조건', options: ['골든크로스', '데드크로스', '위', '아래'] },
-      { id: 'period2', type: 'number', label: '이평②', default: 20, min: 1 },
-      { id: 'ma_type2', type: 'select', label: '종류②', options: ['이평', '지수이평', '가중이평'] }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'price_type1', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'operator', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'price_type2', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period2', type: 'number', default: 20, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'min_count', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '회 이상' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [{ id: 'calc_type', type: 'select', options: ['단순', '지수', '가중'], width: '62px' }]
+      }
     ],
     buildLabel: function (v) {
       return (
         '이평비교:[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
-        v.period1 +
-        v.ma_type1 +
+        '] ' +
+        v.price_type1 +
         ' ' +
-        v.cross_type +
+        v.period1 +
+        '이평 ' +
+        v.operator +
+        ' ' +
+        v.price_type2 +
         ' ' +
         v.period2 +
-        v.ma_type2
+        '이평 ' +
+        v.min_count +
+        '회이상'
       );
     }
   },
   ta_ma_compare_det: {
     label: '상세이동평균비교',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period1', type: 'number', label: '이평①', default: 5, min: 1 },
-      { id: 'ma_type1', type: 'select', label: '종류①', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'cross_type', type: 'select', label: '조건', options: ['골든크로스', '데드크로스', '위', '아래'] },
-      { id: 'period2', type: 'number', label: '이평②', default: 20, min: 1 },
-      { id: 'ma_type2', type: 'select', label: '종류②', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'rate', type: 'number', label: '괴리율(%)', default: 0, step: 0.1 }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'calc_type1', type: 'select', options: ['단순', '지수', '가중'], width: '62px' },
+          { id: 'price_type1', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '이평이' },
+          { id: 'calc_type2', type: 'select', options: ['단순', '지수', '가중'], width: '62px' },
+          { id: 'price_type2', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period2', type: 'number', default: 20, min: 1, width: '50px' },
+          { type: 'label', text: '이평를' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' },
+          { id: 'within_candles', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '봉' },
+          {
+            id: 'det_mode_near',
+            type: 'radio',
+            name: 'csp_det_mode_ta_ma_compare_det',
+            field: 'det_mode',
+            value: '근접',
+            checked: true
+          },
+          { id: 'near_pct', type: 'number', default: 2, min: 0, step: 0.1, width: '50px' },
+          { type: 'label', text: '% 이내 근접' },
+          { id: 'min_count', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '회이상' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          {
+            id: 'det_mode_range',
+            type: 'radio',
+            name: 'csp_det_mode_ta_ma_compare_det',
+            field: 'det_mode',
+            value: '범위',
+            checked: false
+          },
+          { id: 'range_min', type: 'number', default: 98, min: 0, step: 0.1, width: '55px' },
+          { type: 'label', text: '% ~' },
+          { id: 'range_max', type: 'number', default: 102, min: 0, step: 0.1, width: '55px' },
+          { type: 'label', text: '%' }
+        ]
+      }
     ],
     buildLabel: function (v) {
+      const mode = v.det_mode || '근접';
+      const modeStr = mode === '근접' ? v.near_pct + '%이내근접' : v.range_min + '%~' + v.range_max + '%';
       return (
         '상세이평비교:[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
+        '] ' +
+        v.price_type1 +
+        ' ' +
         v.period1 +
-        v.ma_type1 +
+        '이평 ' +
+        modeStr +
         ' ' +
-        v.cross_type +
-        ' ' +
-        v.period2 +
-        v.ma_type2 +
-        ' ' +
-        v.rate +
-        '%'
+        v.within_candles +
+        '봉이내 ' +
+        v.min_count +
+        '회이상'
       );
     }
   },
   ta_ma_compare2: {
     label: '주가이동평균비교(2개)',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period1', type: 'number', label: '이평①', default: 5, min: 1 },
-      { id: 'period2', type: 'number', label: '이평②', default: 20, min: 1 },
-      { id: 'cross_type', type: 'select', label: '조건①', options: ['골든크로스', '데드크로스', '위', '아래'] },
-      { id: 'period3', type: 'number', label: '이평③', default: 60, min: 1 },
-      { id: 'cross_type2', type: 'select', label: '조건②', options: ['골든크로스', '데드크로스', '위', '아래'] },
-      { id: 'period4', type: 'number', label: '이평④', default: 120, min: 1 }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'price_type1', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'op1', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'price_type2', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period2', type: 'number', default: 10, min: 1, width: '50px' },
+          { type: 'label', text: '이평  모두만족' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' },
+          { id: 'price_type3', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period3', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'op2', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'price_type4', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period4', type: 'number', default: 20, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'min_count', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '회 이상' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [{ id: 'calc_type', type: 'select', options: ['단순', '지수', '가중'], width: '62px' }]
+      }
     ],
     buildLabel: function (v) {
       return (
         '이평비교(2개):[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
+        '] ' +
         v.period1 +
-        '/' +
+        v.op1 +
         v.period2 +
-        ' ' +
-        v.cross_type +
         ' AND ' +
         v.period3 +
-        '/' +
+        v.op2 +
         v.period4 +
         ' ' +
-        v.cross_type2
+        v.min_count +
+        '회이상'
       );
     }
   },
   ta_ma_compare3: {
     label: '주가이동평균비교(3개)',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period1', type: 'number', label: '이평①', default: 5, min: 1 },
-      { id: 'period2', type: 'number', label: '이평②', default: 20, min: 1 },
-      { id: 'period3', type: 'number', label: '이평③', default: 60, min: 1 },
-      { id: 'array_type', type: 'select', label: '배열조건', options: ['정배열', '역배열', '수렴', '발산'] }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'price_type1', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'op1', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'price_type2', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period2', type: 'number', default: 10, min: 1, width: '50px' },
+          { type: 'label', text: '이평  모두만족' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' },
+          { id: 'price_type3', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period3', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'op2', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'price_type4', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period4', type: 'number', default: 20, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'min_count', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '회 이상' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'calc_type', type: 'select', options: ['단순', '지수', '가중'], width: '62px' },
+          { id: 'price_type5', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period5', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'op3', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'price_type6', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period6', type: 'number', default: 60, min: 1, width: '50px' },
+          { type: 'label', text: '이평' }
+        ]
+      }
     ],
     buildLabel: function (v) {
       return (
         '이평비교(3개):[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
+        '] ' +
         v.period1 +
-        '/' +
+        v.op1 +
         v.period2 +
-        '/' +
+        ' AND ' +
         v.period3 +
+        v.op2 +
+        v.period4 +
+        ' AND ' +
+        v.period5 +
+        v.op3 +
+        v.period6 +
         ' ' +
-        v.array_type
+        v.min_count +
+        '회이상'
       );
     }
   },
   ta_ma_rate: {
     label: '주가이동평균등락률',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period', type: 'number', label: '이평기간', default: 20, min: 1 },
-      { id: 'ma_type', type: 'select', label: '이평종류', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'operator', type: 'select', label: '조건', options: ['이상', '이하', '범위'] },
-      { id: 'value1', type: 'number', label: '등락률(%)', default: 1, step: 0.1 },
-      { id: 'value2', type: 'number', label: '~이하(%)', default: 5, step: 0.1 }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'ref_candle', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '봉(중)' },
+          { id: 'price_ref', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period_ref', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '이평 대비' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전' },
+          { id: 'price_ma', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period_ma', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '이평 등락률' },
+          { id: 'value1', type: 'number', default: 10, step: 0.1, width: '55px' },
+          { type: 'label', text: '~' },
+          { id: 'value2', type: 'number', default: 20, step: 0.1, width: '55px' },
+          { type: 'label', text: '%' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [{ id: 'calc_type', type: 'select', options: ['단순', '지수', '가중'], width: '62px' }]
+      }
     ],
     buildLabel: function (v) {
       return (
         '이평등락률:[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
-        v.period +
-        v.ma_type +
+        '] ' +
+        v.ref_candle +
+        '봉 ' +
+        v.price_ref +
         ' ' +
+        v.period_ref +
+        '이평대비 ' +
+        v.price_ma +
+        ' ' +
+        v.period_ma +
+        '이평 ' +
         v.value1 +
-        '%' +
-        (v.operator === '범위' ? '~' + v.value2 + '%' : ' ' + v.operator)
+        '~' +
+        v.value2 +
+        '%'
       );
     }
   },
   ta_ma_gap: {
     label: '이동평균이격도',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period', type: 'number', label: '이평기간', default: 20, min: 1 },
-      { id: 'ma_type', type: 'select', label: '이평종류', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'operator', type: 'select', label: '조건', options: ['이상', '이하', '범위'] },
-      { id: 'value1', type: 'number', label: '이격도(%)', default: 105, step: 0.1 },
-      { id: 'value2', type: 'number', label: '~이하(%)', default: 110, step: 0.1 }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기  단기이평' },
+          { id: 'short_price', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'short_period', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '장기이평' },
+          { id: 'long_price', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'long_period', type: 'number', default: 20, min: 1, width: '50px' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준  단기/장기' },
+          {
+            id: 'gap_mode_near',
+            type: 'radio',
+            name: 'csp_gap_mode_ta_ma_gap',
+            field: 'gap_mode',
+            value: '근접',
+            checked: true
+          },
+          { id: 'near_pct', type: 'number', default: 2, min: 0, step: 0.1, width: '50px' },
+          { type: 'label', text: '% 이내 근접' },
+          { id: 'min_count', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '회 이상' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          {
+            id: 'gap_mode_range',
+            type: 'radio',
+            name: 'csp_gap_mode_ta_ma_gap',
+            field: 'gap_mode',
+            value: '범위',
+            checked: false
+          },
+          { id: 'range_min', type: 'number', default: 98, min: 0, step: 0.1, width: '55px' },
+          { type: 'label', text: '% ~' },
+          { id: 'range_max', type: 'number', default: 102, min: 0, step: 0.1, width: '55px' },
+          { type: 'label', text: '%' }
+        ]
+      }
     ],
     buildLabel: function (v) {
+      const mode = v.gap_mode || '근접';
+      const modeStr = mode === '근접' ? v.near_pct + '%이내근접' : v.range_min + '%~' + v.range_max + '%';
       return (
         '이평이격도:[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
-        v.period +
-        v.ma_type +
+        '] 단기' +
+        v.short_period +
+        '이평/장기' +
+        v.long_period +
+        '이평 ' +
+        modeStr +
         ' ' +
-        v.value1 +
-        '%' +
-        (v.operator === '범위' ? '~' + v.value2 + '%' : ' ' + v.operator)
+        v.min_count +
+        '회이상'
       );
     }
   },
   ta_ma_price_diff: {
     label: '가격-이동평균비교',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'price_type', type: 'select', label: '기준가격', options: ['종가', '시가', '고가', '저가'] },
-      { id: 'period', type: 'number', label: '이평기간', default: 20, min: 1 },
-      { id: 'ma_type', type: 'select', label: '이평종류', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'operator', type: 'select', label: '조건', options: ['이상', '이하', '범위'] },
-      { id: 'value1', type: 'number', label: '차이(원)', default: 0, step: 1 },
-      { id: 'value2', type: 'number', label: '~이하(원)', default: 1000, step: 1 }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          { id: 'price_type1', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 1, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'operator', type: 'select', options: ['<', '>'], width: '45px' },
+          { id: 'price_type2', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' }
+        ]
+      }
     ],
     buildLabel: function (v) {
       return (
         '가격-이평비교:[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
-        v.price_type +
-        '-' +
-        v.period +
-        v.ma_type +
+        '] ' +
+        v.price_type1 +
         ' ' +
-        v.value1 +
-        (v.operator === '범위' ? '~' + v.value2 : ' ' + v.operator)
+        v.period1 +
+        '이평 ' +
+        v.operator +
+        ' ' +
+        v.price_type2
       );
     }
   },
   ta_ma_trend: {
     label: '주가이동평균추세',
     fields: [
-      { id: 'period_type', type: 'select', label: '주기', options: ['일', '주', '월', '분'] },
-      { id: 'prev_candle', type: 'number', label: '봉전기준', default: 0, min: 0 },
-      { id: 'period', type: 'number', label: '이평기간', default: 20, min: 1 },
-      { id: 'ma_type', type: 'select', label: '이평종류', options: ['이평', '지수이평', '가중이평'] },
-      { id: 'trend', type: 'select', label: '추세', options: ['상승', '하락', '횡보'] },
-      { id: 'count', type: 'number', label: '연속(봉)', default: 3, min: 1 }
+      {
+        type: 'row_group',
+        items: [
+          { id: 'period_type', type: 'select', options: ['일', '주', '월', '분'], width: '52px' },
+          { type: 'label', text: '주기' },
+          {
+            id: 'trend_mode_hold',
+            type: 'radio',
+            name: 'csp_trend_mode_ta_ma_trend',
+            field: 'trend_mode',
+            value: '추세유지',
+            checked: true
+          },
+          { id: 'price_type1', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period1', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'trend1', type: 'select', options: ['상승', '하락', '횡보'], width: '62px' },
+          { type: 'label', text: '추세유지' },
+          { id: 'maintain_count', type: 'number', default: 2, min: 1, width: '50px' },
+          { type: 'label', text: '회 이상' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [
+          { id: 'prev_candle', type: 'number', default: 0, min: 0, width: '50px' },
+          { type: 'label', text: '봉전기준' },
+          {
+            id: 'trend_mode_reverse',
+            type: 'radio',
+            name: 'csp_trend_mode_ta_ma_trend',
+            field: 'trend_mode',
+            value: '반전',
+            checked: false
+          },
+          { id: 'price_type2', type: 'select', options: ['종가', '시가', '고가', '저가'], width: '55px' },
+          { id: 'period2', type: 'number', default: 5, min: 1, width: '50px' },
+          { type: 'label', text: '이평' },
+          { id: 'after_count', type: 'number', default: 2, min: 1, width: '50px' },
+          { type: 'label', text: '회 이상 추세유지 후' },
+          { id: 'reversal', type: 'select', options: ['상승', '하락'], width: '62px' },
+          { type: 'label', text: '반전' }
+        ]
+      },
+      {
+        type: 'row_group',
+        items: [{ id: 'calc_type', type: 'select', options: ['단순', '지수', '가중'], width: '62px' }]
+      }
     ],
     buildLabel: function (v) {
+      const mode = v.trend_mode || '추세유지';
+      if (mode === '추세유지') {
+        return (
+          '이평추세:[' +
+          v.period_type +
+          '] ' +
+          v.price_type1 +
+          ' ' +
+          v.period1 +
+          '이평 ' +
+          v.trend1 +
+          ' 추세유지 ' +
+          v.maintain_count +
+          '회이상'
+        );
+      }
       return (
         '이평추세:[' +
         v.period_type +
-        ']' +
-        v.prev_candle +
-        '봉전 ' +
-        v.period +
-        v.ma_type +
+        '] ' +
+        v.price_type2 +
         ' ' +
-        v.trend +
-        ' ' +
-        v.count +
-        '봉'
+        v.period2 +
+        '이평 ' +
+        v.after_count +
+        '회유지후 ' +
+        v.reversal +
+        '반전'
       );
     }
   },

@@ -75,6 +75,7 @@ function checkHashAndLoadPage() {
       stock: 'chart/stock.html',
       crypto: 'chart/crypto.html',
       stockAPI: 'chart/stockAPI.html',
+      stockAPIShineVer: 'chart/stockAPIShineVer.html',
       stockWord: 'chart/stockWord.html',
       InformationProcessing: 'certificate/InformationProcessing.html',
       SQLD: 'certificate/SQLD.html',

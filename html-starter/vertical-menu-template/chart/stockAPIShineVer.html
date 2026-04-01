@@ -1,0 +1,805 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <h4 class="py-3 mb-4">Bybit API</h4>
+  <!-- Autosize 하얀배경 전체 사이즈-->
+  <div class="col-12">
+    <div class="card mb-4">
+      <!-- card-navbar -->
+      <nav class="navbar navbar-example navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="javascript:void(0)">Bybit API</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-ex-bybit">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-ex-bybit">
+            <div class="navbar-nav me-auto">
+              <a class="nav-item nav-link" href="javascript:void(0)">#암호화폐 스캐너</a>
+              <a class="nav-item nav-link" href="javascript:void(0)">#API 트레이딩</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- card-navbar -->
+
+      <!-- 여기서부터 시작-->
+      <div class="nav-align-top nav-tabs-shadow mb-4">
+        <ul class="nav nav-tabs" role="tablist" style="width: 100%; margin-left: 0.01%">
+          <li class="nav-item">
+            <button
+              type="button"
+              class="nav-link active"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#navs-bybit-scanner"
+              aria-controls="navs-bybit-scanner"
+              aria-selected="true">
+              암호화폐 스캐너
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              type="button"
+              class="nav-link"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#navs-bybit-trading"
+              aria-controls="navs-bybit-trading"
+              aria-selected="false">
+              API 트레이딩 도구
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              type="button"
+              class="nav-link"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#navs-bybit-setup"
+              aria-controls="navs-bybit-setup"
+              aria-selected="false">
+              API 설정 가이드
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              type="button"
+              class="nav-link"
+              role="tab"
+              data-bs-toggle="tab"
+              data-bs-target="#navs-bybit-reference"
+              aria-controls="navs-bybit-reference"
+              aria-selected="false">
+              API 레퍼런스
+            </button>
+          </li>
+        </ul>
+        <!--tab-content-->
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="navs-bybit-scanner" role="tabpanel">
+            <!--accordion-->
+            <div class="col-md">
+              <div class="accordion mt-3 accordion-bordered" id="accordionBybitScanner">
+                <!-- 전월 거래량 최고 스캐너 -->
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionVolPrevMonth"
+                      aria-expanded="false">
+                      📊 전월 거래량 최고 스캐너
+                    </button>
+                  </h2>
+                  <div
+                    id="accordionVolPrevMonth"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionBybitScanner">
+                    <div class="accordion-body">
+                      <!-- 조회 일수 입력 -->
+                      <div class="row mb-3">
+                        <div class="col-md-3">
+                          <label class="form-label fw-semibold">조회 기간 (일)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="volPrevMonthDays"
+                            value="180"
+                            min="60"
+                            max="365" />
+                          <small class="text-muted">이번달 제외, 최근 N일 중 저번달 거래량이 최고인 종목</small>
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">KOSPI200 종목수</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="volPrevMonthKospiCount"
+                            value="200"
+                            min="0"
+                            max="200" />
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">KOSDAQ150 종목수</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="volPrevMonthKosdaqCount"
+                            value="150"
+                            min="0"
+                            max="150" />
+                        </div>
+                        <div class="col-md-3">
+                          <label class="form-label">COIN 종목수</label>
+                          <input type="number" class="form-control" id="volPrevMonthCoinCount" value="0" min="0" />
+                        </div>
+                      </div>
+
+                      <!-- MA 조건 옵션 -->
+                      <div class="row mb-3">
+                        <div class="col-12">
+                          <div class="form-check mb-2">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="volPrevMonthUseMA"
+                              onchange="toggleVolPrevMonthMA()" />
+                            <label class="form-check-label fw-semibold" for="volPrevMonthUseMA">
+                              월봉 MA 조건 추가
+                            </label>
+                          </div>
+                          <div id="volPrevMonthMAOptions" style="display: none">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <label class="form-label">MA 기간</label>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="volPrevMonthMAPeriod"
+                                  value="10"
+                                  min="1" />
+                                <small class="text-muted">예: 10 → 월봉 MA10</small>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-1">
+                                  <label class="form-label fw-semibold mb-0 me-2">괴리율 최솟값 (%)</label>
+                                  <div class="form-check form-switch mb-0">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="volPrevMonthMinGapToggle"
+                                      onchange="toggleVolPrevMonthGap('min')" />
+                                    <label class="form-check-label small" for="volPrevMonthMinGapToggle"
+                                      >직접 설정</label
+                                    >
+                                  </div>
+                                </div>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="volPrevMonthMinGap"
+                                  value="-3"
+                                  step="0.1"
+                                  disabled />
+                                <small class="text-muted">기본값 -3% / 직접 설정 시 토글 ON</small>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-1">
+                                  <label class="form-label fw-semibold mb-0 me-2">괴리율 최댓값 (%)</label>
+                                  <div class="form-check form-switch mb-0">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="volPrevMonthMaxGapToggle"
+                                      onchange="toggleVolPrevMonthGap('max')" />
+                                    <label class="form-check-label small" for="volPrevMonthMaxGapToggle"
+                                      >직접 설정</label
+                                    >
+                                  </div>
+                                </div>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="volPrevMonthMaxGap"
+                                  value="3"
+                                  step="0.1"
+                                  disabled />
+                                <small class="text-muted">기본값 +3% / 직접 설정 시 토글 ON</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 저번달 양봉 조건 -->
+                        <div class="form-check mt-2">
+                          <input class="form-check-input" type="checkbox" id="volPrevMonthBullish" />
+                          <label class="form-check-label fw-semibold" for="volPrevMonthBullish">
+                            저번달 양봉 조건 (저번달 시가 &lt; 종가)
+                          </label>
+                        </div>
+                        <!-- / 저번달 양봉 조건 -->
+                      </div>
+                      <!-- / MA 조건 옵션 -->
+
+                      <!-- 버튼 -->
+                      <div class="row mb-4">
+                        <div class="col-md-3">
+                          <button class="btn btn-primary w-100" onclick="startVolPrevMonthScan()">🔍 스캔 시작</button>
+                        </div>
+                        <div class="col-md-3">
+                          <button class="btn btn-secondary w-100" onclick="clearVolPrevMonthResults()">
+                            🗑️ 결과 지우기
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- 진행바 -->
+                      <div id="volPrevMonthProgress" style="display: none" class="mb-3">
+                        <div class="progress mb-1" style="height: 20px">
+                          <div
+                            id="volPrevMonthProgressBar"
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            style="width: 0%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted">
+                          <span id="volPrevMonthProgressText">분석 중...</span>
+                          <span id="volPrevMonthProgressCount"></span>
+                        </div>
+                      </div>
+
+                      <!-- 요약 -->
+                      <div id="volPrevMonthResultSummary" class="text-muted small mb-2"></div>
+
+                      <!-- 결과 -->
+                      <div id="volPrevMonthResults">
+                        <div class="text-center text-muted" style="padding: 40px">
+                          <h5>검색 결과가 여기에 표시됩니다</h5>
+                          <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+                        </div>
+                      </div>
+
+                      <!-- 안내 -->
+                      <div class="mt-3">
+                        <div class="accordion accordion-bordered" id="accordionGuideV1">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header">
+                              <button
+                                type="button"
+                                class="accordion-button collapsed py-2"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#guideV1Body"
+                                aria-expanded="false">
+                                <i class="ti ti-info-circle me-2"></i> 분석 기준 / 상세 설명 보기
+                              </button>
+                            </h2>
+                            <div
+                              id="guideV1Body"
+                              class="accordion-collapse collapse"
+                              data-bs-parent="#accordionGuideV1">
+                              <div class="accordion-body alert alert-info mb-0">
+                                <h6 class="fw-bold mb-2">데이터 소스</h6>
+                                <ul class="mb-3">
+                                  <li>Yahoo Finance 일봉 기준 월별 거래량 합산 (API 키 불필요, 무료)</li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">핵심 조건</h6>
+                                <ul class="mb-3">
+                                  <li>
+                                    <strong>거래량 조건:</strong> 이번달 제외, 최근 N일 범위 내에서
+                                    <strong>저번달(1달 전)</strong> 거래량 합계가 가장 높은 종목만 통과
+                                  </li>
+                                  <li>
+                                    <strong>저번달 양봉 조건 (선택):</strong> 저번달 시가 &lt; 저번달 종가 → 저번달에
+                                    상승 마감한 종목만
+                                  </li>
+                                  <li>
+                                    <strong>월봉 MA 조건 (선택):</strong> 현재 종가가 지정한 MA선 기준 괴리율 범위 안에
+                                    있는 종목
+                                  </li>
+                                  <li>
+                                    <strong>월봉 MA120 조건 (선택):</strong> MA120과 MA10의 위치 관계 + 괴리율 범위 설정
+                                    가능
+                                  </li>
+                                  <li>
+                                    <strong>월봉 MA60 &gt; MA10 조건 (선택):</strong> MA60이 MA10 위에 있는 종목만
+                                    (중장기 상승 추세 확인용)
+                                  </li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">사용 목적</h6>
+                                <ul class="mb-3">
+                                  <li>저번달에 거래량이 급등(폭발)한 종목을 찾아냄</li>
+                                  <li>급등 후 이번달 월봉 MA10선에 눌림 접근 중인 종목 포착 가능</li>
+                                  <li>MA60 &gt; MA10 조건 추가 시 중장기 우상향 추세인 종목만 필터링</li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">기본값 / 주의사항</h6>
+                                <ul class="mb-0">
+                                  <li>조회 기간 기본값: 180일 (약 6개월)</li>
+                                  <li>괴리율 기본값: -3% ~ +3%</li>
+                                  <li>
+                                    거래량 최고 달은 <strong>무조건 저번달(1달 전)</strong> 고정 → 더 유연한 설정은 v2
+                                    사용
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / 전월 거래량 최고 스캐너 -->
+                <!-- 전월 거래량 최고 스캐너 v2 -->
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionVolPrevMonthV2"
+                      aria-expanded="false">
+                      📊 전월 거래량 최고 스캐너 v2 (거래량 최고 달 범위 설정)
+                    </button>
+                  </h2>
+                  <div
+                    id="accordionVolPrevMonthV2"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionBybitScanner">
+                    <div class="accordion-body">
+                      <!-- 조회 기간 + 거래량 최고 달 범위 -->
+                      <div class="row mb-3">
+                        <div class="col-md-3">
+                          <label class="form-label fw-semibold">조회 기간 (개월)</label>
+                          <input type="number" class="form-control" id="v2Months" value="6" min="2" max="24" />
+                          <small class="text-muted">이번달 제외, 최근 N개월 범위 내에서 검색</small>
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label fw-semibold">거래량 최고 달 범위</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <input
+                              type="number"
+                              class="form-control text-center"
+                              id="v2MinAgo"
+                              value="1"
+                              min="1"
+                              max="24"
+                              style="width: 70px" />
+                            <span class="text-muted small text-nowrap">달 전 ~</span>
+                            <input
+                              type="number"
+                              class="form-control text-center"
+                              id="v2MaxAgo"
+                              value="3"
+                              min="1"
+                              max="24"
+                              style="width: 70px" />
+                            <span class="text-muted small text-nowrap">달 전</span>
+                          </div>
+                          <small class="text-muted">거래량 최고 달이 이 범위 안에 있어야 통과</small>
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">KOSPI200 종목수</label>
+                          <input type="number" class="form-control" id="v2KospiCount" value="200" min="0" max="200" />
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">KOSDAQ150 종목수</label>
+                          <input type="number" class="form-control" id="v2KosdaqCount" value="150" min="0" max="150" />
+                        </div>
+                        <div class="col-md-1">
+                          <label class="form-label">COIN</label>
+                          <input type="number" class="form-control" id="v2CoinCount" value="0" min="0" />
+                        </div>
+                      </div>
+
+                      <!-- MA 조건 옵션 -->
+                      <div class="row mb-3">
+                        <div class="col-12">
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="v2UseMA" onchange="toggleV2MA()" />
+                            <label class="form-check-label fw-semibold" for="v2UseMA"> 월봉 MA 조건 추가 </label>
+                          </div>
+                          <div id="v2MAOptions" style="display: none">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <label class="form-label">MA 기간</label>
+                                <input type="number" class="form-control" id="v2MAPeriod" value="10" min="1" />
+                                <small class="text-muted">예: 10 → 월봉 MA10</small>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-1">
+                                  <label class="form-label fw-semibold mb-0 me-2">괴리율 최솟값 (%)</label>
+                                  <div class="form-check form-switch mb-0">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="v2MinGapToggle"
+                                      onchange="toggleV2Gap('min')" />
+                                    <label class="form-check-label small" for="v2MinGapToggle">직접 설정</label>
+                                  </div>
+                                </div>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="v2MinGap"
+                                  value="-3"
+                                  step="0.1"
+                                  disabled />
+                                <small class="text-muted">기본값 -3% / 직접 설정 시 토글 ON</small>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-1">
+                                  <label class="form-label fw-semibold mb-0 me-2">괴리율 최댓값 (%)</label>
+                                  <div class="form-check form-switch mb-0">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="v2MaxGapToggle"
+                                      onchange="toggleV2Gap('max')" />
+                                    <label class="form-check-label small" for="v2MaxGapToggle">직접 설정</label>
+                                  </div>
+                                </div>
+                                <input type="number" class="form-control" id="v2MaxGap" value="3" step="0.1" disabled />
+                                <small class="text-muted">기본값 +3% / 직접 설정 시 토글 ON</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 거래량 최고 달 양봉 조건 -->
+                        <div class="form-check mt-2">
+                          <input class="form-check-input" type="checkbox" id="v2Bullish" />
+                          <label class="form-check-label fw-semibold" for="v2Bullish">
+                            거래량 최고 달 양봉 조건 (해당 달 시가 &lt; 종가)
+                          </label>
+                        </div>
+                        <!-- MA120 조건 -->
+                        <div class="form-check mt-2">
+                          <input class="form-check-input" type="checkbox" id="v2UseMA120" onchange="toggleV2MA120()" />
+                          <label class="form-check-label fw-semibold" for="v2UseMA120"> 월봉 MA120 조건 추가 </label>
+                        </div>
+                        <div id="v2MA120Options" style="display: none" class="mt-2 ms-4">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <label class="form-label">MA120 위치</label>
+                              <select class="form-select" id="v2MA120Direction">
+                                <option value="above">MA120 &gt; MA10 (MA120이 위)</option>
+                                <option value="below">MA120 &lt; MA10 (MA120이 아래)</option>
+                              </select>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="d-flex align-items-center mb-1">
+                                <label class="form-label fw-semibold mb-0 me-2">괴리율 최솟값 (%)</label>
+                                <div class="form-check form-switch mb-0">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="v2MA120MinToggle"
+                                    onchange="toggleV2MA120Gap('min')" />
+                                  <label class="form-check-label small" for="v2MA120MinToggle">직접 설정</label>
+                                </div>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="v2MA120MinGap"
+                                value="-5"
+                                step="0.1"
+                                disabled />
+                              <small class="text-muted">기본값 -5% / 직접 설정 시 토글 ON</small>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="d-flex align-items-center mb-1">
+                                <label class="form-label fw-semibold mb-0 me-2">괴리율 최댓값 (%)</label>
+                                <div class="form-check form-switch mb-0">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="v2MA120MaxToggle"
+                                    onchange="toggleV2MA120Gap('max')" />
+                                  <label class="form-check-label small" for="v2MA120MaxToggle">직접 설정</label>
+                                </div>
+                              </div>
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="v2MA120MaxGap"
+                                value="5"
+                                step="0.1"
+                                disabled />
+                              <small class="text-muted">기본값 +5% / 직접 설정 시 토글 ON</small>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- MA60 조건 -->
+                        <div class="form-check mt-2">
+                          <input class="form-check-input" type="checkbox" id="v2UseMA60" />
+                          <label class="form-check-label fw-semibold" for="v2UseMA60">
+                            월봉 MA60 &gt; MA10 조건 추가 (MA60이 MA10 위에 있는 종목)
+                          </label>
+                        </div>
+                      </div>
+                      <!-- / MA 조건 옵션 -->
+
+                      <!-- 버튼 -->
+                      <div class="row mb-4">
+                        <div class="col-md-3">
+                          <button class="btn btn-primary w-100" onclick="startV2Scan()">🔍 스캔 시작</button>
+                        </div>
+                        <div class="col-md-3">
+                          <button class="btn btn-secondary w-100" onclick="clearV2Results()">🗑️ 결과 지우기</button>
+                        </div>
+                      </div>
+
+                      <!-- 진행바 -->
+                      <div id="v2Progress" style="display: none" class="mb-3">
+                        <div class="progress mb-1" style="height: 20px">
+                          <div
+                            id="v2ProgressBar"
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            style="width: 0%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted">
+                          <span id="v2ProgressText">분석 중...</span>
+                          <span id="v2ProgressCount"></span>
+                        </div>
+                      </div>
+
+                      <!-- 요약 -->
+                      <div id="v2ResultSummary" class="text-muted small mb-2"></div>
+
+                      <!-- 결과 -->
+                      <div id="v2Results">
+                        <div class="text-center text-muted" style="padding: 40px">
+                          <h5>검색 결과가 여기에 표시됩니다</h5>
+                          <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+                        </div>
+                      </div>
+
+                      <!-- 안내 -->
+                      <div class="mt-3">
+                        <div class="accordion accordion-bordered" id="accordionGuideV2">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header">
+                              <button
+                                type="button"
+                                class="accordion-button collapsed py-2"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#guideV2Body"
+                                aria-expanded="false">
+                                <i class="ti ti-info-circle me-2"></i> 분석 기준 / 상세 설명 보기
+                              </button>
+                            </h2>
+                            <div
+                              id="guideV2Body"
+                              class="accordion-collapse collapse"
+                              data-bs-parent="#accordionGuideV2">
+                              <div class="accordion-body alert alert-info mb-0">
+                                <h6 class="fw-bold mb-2">v1과의 차이점</h6>
+                                <ul class="mb-3">
+                                  <li>v1은 거래량 최고 달이 <strong>저번달(1달 전) 고정</strong></li>
+                                  <li>v2는 거래량 최고 달 범위를 <strong>직접 설정</strong> 가능 (예: 1~3달 전)</li>
+                                  <li>급등 후 도지 캔들 or 횡보로 눌림이 1달 이상 이어지는 경우도 포착 가능</li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">핵심 조건</h6>
+                                <ul class="mb-3">
+                                  <li>
+                                    <strong>거래량 조건:</strong> 최근 N개월 범위 내에서 거래량 최고 달이 지정한 X~Y달
+                                    전 사이에 있는 종목
+                                  </li>
+                                  <li>
+                                    <strong>예시 (1~3달 전):</strong> 저번달 / 저저번달 / 3달 전 중 하나가 거래량
+                                    최고이면 통과
+                                  </li>
+                                  <li>
+                                    <strong>거래량 최고 달 양봉 조건 (선택):</strong> 거래량 최고였던 그 달의 시가 &lt;
+                                    종가 → 해당 달이 상승 마감
+                                  </li>
+                                  <li>
+                                    <strong>월봉 MA 조건 (선택):</strong> 현재 종가가 지정 MA선 괴리율 범위 안에 있는
+                                    종목
+                                  </li>
+                                  <li>
+                                    <strong>월봉 MA120 조건 (선택):</strong> MA120과 MA10의 위치 관계 + 괴리율 범위 설정
+                                    가능
+                                  </li>
+                                  <li>
+                                    <strong>월봉 MA60 &gt; MA10 조건 (선택):</strong> MA60이 MA10 위에 있는 종목만
+                                  </li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">사용 시나리오</h6>
+                                <ul class="mb-3">
+                                  <li>
+                                    <strong>시나리오 1:</strong> N달 전 거래량 폭발 + 급등 → 이후 도지/횡보 눌림 →
+                                    이번달 MA10 접근 중
+                                  </li>
+                                  <li>
+                                    <strong>시나리오 2:</strong> 거래량 최고 달 범위를 1~1로 설정하면 v1과 동일하게 동작
+                                  </li>
+                                  <li>
+                                    <strong>추천 설정:</strong> 범위 1~3달 전, MA 조건 괴리율 0~+5% (MA10 위에서 접근
+                                    중인 종목)
+                                  </li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">주의사항</h6>
+                                <ul class="mb-0">
+                                  <li>
+                                    MA60, MA120 계산은 월봉 15년치 데이터를 별도 요청 → 종목당 API 호출 2회 (속도 다소
+                                    느림)
+                                  </li>
+                                  <li>조회 기간(개월)은 거래량 집계 범위이므로 최소 maxAgo + 1 이상으로 설정 권장</li>
+                                  <li>거래량 최고 달 범위: 최솟값 &le; 최댓값이어야 함</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / 전월 거래량 최고 스캐너 v2 -->
+              </div>
+            </div>
+            <!--accordion-->
+          </div>
+
+          <div class="tab-pane fade" id="navs-bybit-trading" role="tabpanel">
+            <!--accordion-->
+            <div class="col-md">
+              <div class="accordion mt-3 accordion-bordered" id="accordionBybitTrading">
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionBybit-2"
+                      aria-expanded="false">
+                      📈 자동매매 도구 (개발중)
+                    </button>
+                  </h2>
+                  <div
+                    id="accordionBybit-2"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionBybitTrading">
+                    <div class="accordion-body">
+                      <div class="alert alert-warning">
+                        <h6><i class="ti ti-alert-triangle me-2"></i>주의사항:</h6>
+                        <p class="mb-0">
+                          자동매매 기능은 현재 개발 중입니다. 실제 거래 시 충분한 테스트 후 사용하세요.
+                        </p>
+                      </div>
+
+                      <ul>
+                        <li>🔄 자동 매수/매도 전략</li>
+                        <li>📊 실시간 가격 모니터링</li>
+                        <li>⚠️ 리스크 관리 도구</li>
+                        <li>📱 알림 시스템</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--accordion-->
+          </div>
+
+          <div class="tab-pane fade" id="navs-bybit-setup" role="tabpanel">
+            <!--accordion-->
+            <div class="col-md">
+              <div class="accordion mt-3 accordion-bordered" id="accordionBybitSetup">
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionBybit-3"
+                      aria-expanded="false">
+                      🔧 Bybit API 설정 가이드
+                    </button>
+                  </h2>
+                  <div id="accordionBybit-3" class="accordion-collapse collapse" data-bs-parent="#accordionBybitSetup">
+                    <div class="accordion-body">
+                      <h6>1. Bybit 계정 준비</h6>
+                      <ul>
+                        <li><a href="https://www.bybit.com" target="_blank">Bybit 공식 사이트</a>에서 계정 생성</li>
+                        <li>본인인증 완료 (KYC)</li>
+                        <li>2단계 인증(2FA) 설정 필수</li>
+                      </ul>
+
+                      <h6 class="mt-3">2. API 키 발급</h6>
+                      <ul>
+                        <li>계정 설정 → API Management 이동</li>
+                        <li>"Create New Key" 클릭</li>
+                        <li><strong>권한 설정:</strong> Read Only만 체크 (보안상 권장)</li>
+                        <li>IP 화이트리스트 설정 (선택사항)</li>
+                      </ul>
+
+                      <h6 class="mt-3">3. 보안 주의사항</h6>
+                      <div class="alert alert-danger">
+                        <ul class="mb-0">
+                          <li>API 키를 절대 다른 사람과 공유하지 마세요</li>
+                          <li>처음에는 Read-Only 권한만 사용하세요</li>
+                          <li>정기적으로 API 키를 갱신하세요</li>
+                          <li>의심스러운 활동 발견 시 즉시 키를 비활성화하세요</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--accordion-->
+          </div>
+
+          <div class="tab-pane fade" id="navs-bybit-reference" role="tabpanel">
+            <!--accordion-->
+            <div class="col-md">
+              <div class="accordion mt-3 accordion-bordered" id="accordionBybitRef">
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionBybit-4"
+                      aria-expanded="false">
+                      📚 API 레퍼런스 & 예제
+                    </button>
+                  </h2>
+                  <div id="accordionBybit-4" class="accordion-collapse collapse" data-bs-parent="#accordionBybitRef">
+                    <div class="accordion-body">
+                      <h6>주요 API 엔드포인트</h6>
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>용도</th>
+                              <th>엔드포인트</th>
+                              <th>설명</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>서버 시간</td>
+                              <td>/v5/market/time</td>
+                              <td>Bybit 서버의 현재 시간 조회</td>
+                            </tr>
+                            <tr>
+                              <td>티커 정보</td>
+                              <td>/v5/market/tickers</td>
+                              <td>코인별 가격, 거래량 등 기본 정보</td>
+                            </tr>
+                            <tr>
+                              <td>K라인 데이터</td>
+                              <td>/v5/market/kline</td>
+                              <td>차트 데이터 (OHLCV)</td>
+                            </tr>
+                            <tr>
+                              <td>계좌 정보</td>
+                              <td>/v5/account/wallet-balance</td>
+                              <td>보유 자산 조회</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <h6 class="mt-3">참고 링크</h6>
+                      <ul>
+                        <li>
+                          <a href="https://bybit-exchange.github.io/docs/" target="_blank">Bybit API 공식 문서</a>
+                        </li>
+                        <li><a href="https://testnet.bybit.com/" target="_blank">Bybit 테스트넷</a></li>
+                        <li><a href="https://github.com/bybit-exchange" target="_blank">Bybit GitHub</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--accordion-->
+          </div>
+        </div>
+        <!-- card-navbar -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / Content -->
