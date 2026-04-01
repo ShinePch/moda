@@ -180,7 +180,7 @@
                                   value="-3"
                                   step="0.1"
                                   disabled />
-                                <small class="text-muted">기본값 -3% / 직접 설정 시 토글 ON</small>
+                                <small class="text-muted">기본값 5% / 직접 설정 시 토글 ON</small>
                               </div>
                               <div class="col-md-3">
                                 <div class="d-flex align-items-center mb-1">
@@ -203,7 +203,7 @@
                                   value="3"
                                   step="0.1"
                                   disabled />
-                                <small class="text-muted">기본값 +3% / 직접 설정 시 토글 ON</small>
+                                <small class="text-muted">기본값 100% / 직접 설정 시 토글 ON</small>
                               </div>
                             </div>
                           </div>
@@ -414,13 +414,7 @@
                                     <label class="form-check-label small" for="v2MinGapToggle">직접 설정</label>
                                   </div>
                                 </div>
-                                <input
-                                  type="number"
-                                  class="form-control"
-                                  id="v2MinGap"
-                                  value="-3"
-                                  step="0.1"
-                                  disabled />
+                                <input type="number" class="form-control" id="v2MinGap" value="5" step="0.1" disabled />
                                 <small class="text-muted">기본값 -3% / 직접 설정 시 토글 ON</small>
                               </div>
                               <div class="col-md-3">
@@ -435,7 +429,13 @@
                                     <label class="form-check-label small" for="v2MaxGapToggle">직접 설정</label>
                                   </div>
                                 </div>
-                                <input type="number" class="form-control" id="v2MaxGap" value="3" step="0.1" disabled />
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="v2MaxGap"
+                                  value="100"
+                                  step="0.1"
+                                  disabled />
                                 <small class="text-muted">기본값 +3% / 직접 설정 시 토글 ON</small>
                               </div>
                             </div>
@@ -634,6 +634,241 @@
                   </div>
                 </div>
                 <!-- / 전월 거래량 최고 스캐너 v2 -->
+                <!-- 전월 거래량 최고 스캐너 v3 -->
+                <div class="accordion-item card">
+                  <h2 class="accordion-header">
+                    <button
+                      type="button"
+                      class="accordion-button collapsed"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#accordionVolPrevMonthV3"
+                      aria-expanded="false">
+                      📊 전월 거래량 최고 스캐너 v3
+                    </button>
+                  </h2>
+                  <div
+                    id="accordionVolPrevMonthV3"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#accordionBybitScanner">
+                    <div class="accordion-body">
+                      <!-- 조회 기간 + 거래량 최고 달 범위 -->
+                      <div class="row mb-3">
+                        <div class="col-md-3">
+                          <label class="form-label fw-semibold">조회 기간 (개월)</label>
+                          <input type="number" class="form-control" id="v3Months" value="6" min="2" max="24" />
+                          <small class="text-muted">이번달 제외, 최근 N개월 범위 내에서 검색</small>
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label fw-semibold">거래량 최고 달 범위</label>
+                          <div class="d-flex align-items-center gap-2">
+                            <input
+                              type="number"
+                              class="form-control text-center"
+                              id="v3MinAgo"
+                              value="1"
+                              min="1"
+                              max="24"
+                              style="width: 70px" />
+                            <span class="text-muted small text-nowrap">달 전 ~</span>
+                            <input
+                              type="number"
+                              class="form-control text-center"
+                              id="v3MaxAgo"
+                              value="3"
+                              min="1"
+                              max="24"
+                              style="width: 70px" />
+                            <span class="text-muted small text-nowrap">달 전</span>
+                          </div>
+                          <small class="text-muted">거래량 최고 달이 이 범위 안에 있어야 통과</small>
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">KOSPI200 종목수</label>
+                          <input type="number" class="form-control" id="v3KospiCount" value="200" min="0" max="200" />
+                        </div>
+                        <div class="col-md-2">
+                          <label class="form-label">KOSDAQ150 종목수</label>
+                          <input type="number" class="form-control" id="v3KosdaqCount" value="150" min="0" max="150" />
+                        </div>
+                        <div class="col-md-1">
+                          <label class="form-label">COIN</label>
+                          <input type="number" class="form-control" id="v3CoinCount" value="0" min="0" />
+                        </div>
+                      </div>
+
+                      <!-- MA 조건 옵션 -->
+                      <div class="row mb-3">
+                        <div class="col-12">
+                          <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="v3UseMA" onchange="toggleV3MA()" />
+                            <label class="form-check-label fw-semibold" for="v3UseMA"> 월봉 MA 조건 추가 </label>
+                          </div>
+                          <div id="v3MAOptions" style="display: none">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <label class="form-label">MA 기간</label>
+                                <input type="number" class="form-control" id="v3MAPeriod" value="10" min="1" />
+                                <small class="text-muted">예: 10 → 월봉 MA10</small>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-1">
+                                  <label class="form-label fw-semibold mb-0 me-2">괴리율 최솟값 (%)</label>
+                                  <div class="form-check form-switch mb-0">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="v3MinGapToggle"
+                                      onchange="toggleV3Gap('min')" />
+                                    <label class="form-check-label small" for="v3MinGapToggle">직접 설정</label>
+                                  </div>
+                                </div>
+                                <input type="number" class="form-control" id="v3MinGap" value="5" step="0.1" disabled />
+                                <small class="text-muted">기본값 5% / 직접 설정 시 토글 ON</small>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="d-flex align-items-center mb-1">
+                                  <label class="form-label fw-semibold mb-0 me-2">괴리율 최댓값 (%)</label>
+                                  <div class="form-check form-switch mb-0">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="v3MaxGapToggle"
+                                      onchange="toggleV3Gap('max')" />
+                                    <label class="form-check-label small" for="v3MaxGapToggle">직접 설정</label>
+                                  </div>
+                                </div>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="v3MaxGap"
+                                  value="100"
+                                  step="0.1"
+                                  disabled />
+                                <small class="text-muted">기본값 100% / 직접 설정 시 토글 ON</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- 거래량 최고 달 양봉 조건 -->
+                        <div class="form-check mt-2">
+                          <input class="form-check-input" type="checkbox" id="v3Bullish" />
+                          <label class="form-check-label fw-semibold" for="v3Bullish">
+                            거래량 최고 달 양봉 조건 (해당 달 시가 &lt; 종가)
+                          </label>
+                        </div>
+                      </div>
+                      <!-- / MA 조건 옵션 -->
+
+                      <!-- 버튼 -->
+                      <div class="row mb-4">
+                        <div class="col-md-3">
+                          <button class="btn btn-primary w-100" onclick="startV3Scan()">🔍 스캔 시작</button>
+                        </div>
+                        <div class="col-md-3">
+                          <button class="btn btn-secondary w-100" onclick="clearV3Results()">🗑️ 결과 지우기</button>
+                        </div>
+                      </div>
+
+                      <!-- 진행바 -->
+                      <div id="v3Progress" style="display: none" class="mb-3">
+                        <div class="progress mb-1" style="height: 20px">
+                          <div
+                            id="v3ProgressBar"
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            style="width: 0%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted">
+                          <span id="v3ProgressText">분석 중...</span>
+                          <span id="v3ProgressCount"></span>
+                        </div>
+                      </div>
+
+                      <!-- 요약 -->
+                      <div id="v3ResultSummary" class="text-muted small mb-2"></div>
+
+                      <!-- 결과 -->
+                      <div id="v3Results">
+                        <div class="text-center text-muted" style="padding: 40px">
+                          <h5>검색 결과가 여기에 표시됩니다</h5>
+                          <p>위의 버튼을 클릭하여 스캔을 시작하세요</p>
+                        </div>
+                      </div>
+                      <!-- 안내 -->
+                      <div class="mt-3">
+                        <div class="accordion accordion-bordered" id="accordionGuideV3">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header">
+                              <button
+                                type="button"
+                                class="accordion-button collapsed py-2"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#guideV3Body"
+                                aria-expanded="false">
+                                <i class="ti ti-info-circle me-2"></i> 분석 기준 / 상세 설명 보기
+                              </button>
+                            </h2>
+                            <div
+                              id="guideV3Body"
+                              class="accordion-collapse collapse"
+                              data-bs-parent="#accordionGuideV3">
+                              <div class="accordion-body alert alert-info mb-0">
+                                <h6 class="fw-bold mb-2">v1/v2와의 차이점</h6>
+                                <ul class="mb-3">
+                                  <li>v1은 거래량 최고 달이 <strong>저번달 고정</strong>, MA120/MA60 조건 없음</li>
+                                  <li>v2는 거래량 최고 달 범위를 직접 설정 가능, MA120/MA60 조건 선택</li>
+                                  <li>
+                                    v3는 <strong>MA120 &gt; MA60 조건과 고가 MA60 아래 조건이 항상 자동 적용</strong>
+                                  </li>
+                                  <li>
+                                    거래량 최고 달 범위 기본값: <strong>1~3달 전</strong> (v2와 동일하게 직접 설정 가능)
+                                  </li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">항상 자동 적용되는 조건 (체크박스 없음)</h6>
+                                <ul class="mb-3">
+                                  <li>
+                                    <strong>MA120 &gt; MA60:</strong> 현재 월봉 기준 MA120이 MA60 위에 있어야 통과 →
+                                    장기 우상향 추세 확인용
+                                  </li>
+                                  <li>
+                                    <strong>거래량 터진 달 고가(위꼬리 포함)가 MA60 아래:</strong>
+                                    캔들 전체가 MA60 아래에서 거래량이 폭발한 종목만 통과 → MA60을 뚫고 올라간 종목은
+                                    탈락
+                                  </li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">선택 조건 (체크박스)</h6>
+                                <ul class="mb-3">
+                                  <li>
+                                    <strong>월봉 MA 조건:</strong> 현재 종가가 지정 MA선 기준 괴리율 범위 안에 있는 종목
+                                    (기본값 5% ~ 100%)
+                                  </li>
+                                  <li>
+                                    <strong>거래량 최고 달 양봉 조건:</strong> 해당 달 시가 &lt; 종가 → 상승 마감한 달만
+                                  </li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">사용 시나리오</h6>
+                                <ul class="mb-3">
+                                  <li>장기 우상향 추세(MA120 &gt; MA60) 안에서</li>
+                                  <li>거래량이 폭발했지만 아직 MA60을 돌파하지 못한 눌림 구간의 종목 포착</li>
+                                  <li>이후 MA60 돌파 시 강한 상승 가능성 있는 종목 선별 용도</li>
+                                </ul>
+                                <h6 class="fw-bold mb-2">주의사항</h6>
+                                <ul class="mb-0">
+                                  <li>
+                                    MA60, MA120 계산을 위해 월봉 15년치 데이터를 항상 요청 → 종목당 API 호출 2회 (속도
+                                    다소 느림)
+                                  </li>
+                                  <li>코인은 지원하지 않음 (KOSPI200 / KOSDAQ150 주식만)</li>
+                                  <li>조회 기간은 거래량 집계 범위이므로 최소 maxAgo + 1 이상으로 설정 권장</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / 전월 거래량 최고 스캐너 v3 -->
               </div>
             </div>
             <!--accordion-->
